@@ -215,6 +215,12 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SoT.Infra,CrossCutting.IoC\SoT.Infra,CrossCutting.IoC.csproj">
+      <Project>{5DCEED43-B670-403F-A350-CF8110B336D4}</Project>
+      <Name>SoT.Infra,CrossCutting.IoC</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

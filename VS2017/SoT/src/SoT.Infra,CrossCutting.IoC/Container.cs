@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Ninject;
 
 namespace SoT.Infra_CrossCutting.IoC
 {
-    class Container
+    public class Container
     {
+        public StandardKernel GetModule()
+        {
+            return new StandardKernel(
+                new Ninject()
+                );
+        }
     }
 }

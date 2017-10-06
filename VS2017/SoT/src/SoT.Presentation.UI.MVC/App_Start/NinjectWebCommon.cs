@@ -10,6 +10,7 @@ namespace SoT.Presentation.UI.MVC.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
+    using SoT.Infra_CrossCutting.IoC;
 
     public static class NinjectWebCommon 
     {
@@ -39,13 +40,12 @@ namespace SoT.Presentation.UI.MVC.App_Start
         /// <returns>The created kernel.</returns>
         private static IKernel CreateKernel()
         {
-            var kernel = new StandardKernel();
+            var kernel = RegisterServices();
             try
             {
                 kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
 
-                RegisterServices(kernel);
                 return kernel;
             }
             catch
@@ -58,9 +58,10 @@ namespace SoT.Presentation.UI.MVC.App_Start
         /// <summary>
         /// Load your modules or register your services here!
         /// </summary>
-        /// <param name="kernel">The kernel.</param>
-        private static void RegisterServices(IKernel kernel)
+        /// <returns>Registered modules.</returns>
+        private static StandardKernel RegisterServices()
         {
+            return new Container().GetModule();
         }        
     }
 }
