@@ -44,10 +44,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Container.cs" />
+    <Compile Include="Ninject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SoT.Application\SoT.Application.csproj">
+      <Project>{3f2cd304-9ffd-454d-9f83-498d3543874b}</Project>
+      <Name>SoT.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SoT.Domain\SoT.Domain.csproj">
+      <Project>{71dca81a-c687-4568-bb2d-78972c8b7b15}</Project>
+      <Name>SoT.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SoT.Infra.Data\SoT.Infra.Data.csproj">
+      <Project>{bfdceb5c-bbf8-4758-b81d-39125116f50a}</Project>
+      <Name>SoT.Infra.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
