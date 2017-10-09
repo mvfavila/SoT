@@ -1,6 +1,86 @@
-﻿namespace SoT.Infra.Data.Context
+﻿using SoT.Domain.Entities.Example;
+using System;
+using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
+using System.Linq;
+
+namespace SoT.Infra.Data.Context
 {
-    public class SoTContext
+    /// <summary>
+    /// Sum of This database context.
+    /// </summary>
+    public class SoTContext : DbContext
     {
+        /// <summary>
+        /// Represents the standard max number of characters in a varchar column.
+        /// </summary>
+        private const int STANDARD_VARCHAR_COLUMN_MAX_SIZE = 100;
+        /// <summary>
+        /// Represents the name of the columns which holds the date when the<br/>
+        /// registy was recorded in the database.
+        /// </summary>
+        private const string NAME_FOR_REGISTER_DATE_PROPERTY = "RegisterDate";
+
+        /// <summary>
+        /// Database context constructor.
+        /// </summary>
+        public SoTContext()
+            : base("ConnectionStringName")
+        {
+
+        }
+
+        public DbSet<Example> Examples { get; set; }
+
+        public DbSet<SubExample> SubExamples { get; set; }
+
+        /// <summary>
+        /// Custom configuration of the Entity Framework model creation.
+        /// </summary>
+        /// <param name="modelBuilder"></param>
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            // Conventions
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+            modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
+
+            // General Custom Context Properties
+            modelBuilder.Properties()
+                .Where(p => p.Name == p.ReflectedType.Name + "Id")
+                .Configure(p => p.IsKey());
+
+            modelBuilder.Properties<string>()
+                .Configure(p => p.HasColumnType("varchar"));
+
+            modelBuilder.Properties<string>()
+                .Configure(p => p.HasMaxLength(STANDARD_VARCHAR_COLUMN_MAX_SIZE));
+
+            base.OnModelCreating(modelBuilder);
+        }
+ 
+        /// <summary>
+        /// Custom configuration added so all Date fields that represent the Date when the regiter<br/>
+        /// was recorded in the Database receive a value and never be updated.
+        /// </summary>
+        /// <returns></returns>
+        public override int SaveChanges()
+        {
+            foreach (var entry in ChangeTracker.Entries().Where(entry =>
+                entry.Entity.GetType().GetProperty(NAME_FOR_REGISTER_DATE_PROPERTY) != null))
+            {
+                if(entry.State == EntityState.Added)
+                {
+                    entry.Property(NAME_FOR_REGISTER_DATE_PROPERTY).CurrentValue = DateTime.Now;
+                }
+
+                if (entry.State == EntityState.Modified)
+                {
+                    entry.Property(NAME_FOR_REGISTER_DATE_PROPERTY).IsModified = false;
+                }
+            }
+
+            return base.SaveChanges();
+        }
     }
 }
