@@ -48,10 +48,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\SoTContext.cs" />
+    <Compile Include="EntityConfig\ExampleConfiguration.cs" />
+    <Compile Include="EntityConfig\SubExampleConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="EntityConfig\" />
     <Folder Include="Repositories\" />
   </ItemGroup>
   <ItemGroup>

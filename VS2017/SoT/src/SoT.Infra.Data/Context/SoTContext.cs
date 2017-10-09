@@ -1,4 +1,5 @@
 ﻿using SoT.Domain.Entities.Example;
+using SoT.Infra.Data.EntityConfig;
 using System;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
@@ -55,6 +56,10 @@ namespace SoT.Infra.Data.Context
 
             modelBuilder.Properties<string>()
                 .Configure(p => p.HasMaxLength(STANDARD_VARCHAR_COLUMN_MAX_SIZE));
+
+            // Mappings
+            modelBuilder.Configurations.Add(new ExampleConfiguration());
+            modelBuilder.Configurations.Add(new SubExampleConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }
