@@ -22,6 +22,8 @@ namespace SoT.Infra.Data.Repositories
         public void Add(TEntity obj)
         {
             DbSet.Add(obj);
+
+            SoTContext.SaveChanges();
         }
 
         public void Delete(Guid id)
@@ -49,6 +51,8 @@ namespace SoT.Infra.Data.Repositories
             var entry = SoTContext.Entry(obj);
             DbSet.Attach(obj);
             entry.State = EntityState.Modified;
+
+            SoTContext.SaveChanges();
         }
 
         public void Dispose()
