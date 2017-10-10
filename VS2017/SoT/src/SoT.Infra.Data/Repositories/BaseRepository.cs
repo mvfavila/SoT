@@ -19,34 +19,34 @@ namespace SoT.Infra.Data.Repositories
             DbSet = SoTContext.Set<TEntity>();
         }
 
-        public void Add(TEntity obj)
+        public virtual void Add(TEntity obj)
         {
             DbSet.Add(obj);
 
             SoTContext.SaveChanges();
         }
 
-        public void Delete(Guid id)
+        public virtual void Delete(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
+        public virtual IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
         {
             return DbSet.Where(predicate);
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public virtual IEnumerable<TEntity> GetAll()
         {
             return DbSet.ToList();
         }
 
-        public TEntity GetById(Guid id)
+        public virtual TEntity GetById(Guid id)
         {
             return DbSet.Find(id);
         }
 
-        public void Update(TEntity obj)
+        public virtual void Update(TEntity obj)
         {
             var entry = SoTContext.Entry(obj);
             DbSet.Attach(obj);

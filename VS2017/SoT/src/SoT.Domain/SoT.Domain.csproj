@@ -37,6 +37,7 @@
     <Compile Include="Entities\Example\SubExample.cs" />
     <Compile Include="Interfaces\Repository\IBaseRepository.cs" />
     <Compile Include="Interfaces\Repository\IExampleRepository.cs" />
+    <Compile Include="Interfaces\Repository\ISubExampleRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

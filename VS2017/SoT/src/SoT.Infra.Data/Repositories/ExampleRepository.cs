@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using SoT.Domain.Entities.Example;
+﻿using SoT.Domain.Entities.Example;
 using SoT.Domain.Interfaces.Repository;
+using System.Collections.Generic;
 
 namespace SoT.Infra.Data.Repositories
 {

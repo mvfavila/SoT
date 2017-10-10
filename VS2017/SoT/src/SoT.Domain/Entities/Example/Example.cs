@@ -21,6 +21,6 @@ namespace SoT.Domain.Entities.Example
 
         public DateTime RegisterDate { get; set; }
 
-        public virtual IEnumerable<Example> Examples { get; set; }
+        public virtual IEnumerable<SubExample> SubExamples { get; set; }
     }
 }
