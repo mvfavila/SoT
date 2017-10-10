@@ -1,15 +1,27 @@
 ﻿using SoT.Domain.Interfaces.Repository;
+using SoT.Infra.Data.Context;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
 using System.Linq.Expressions;
 
 namespace SoT.Infra.Data.Repositories
 {
     public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
     {
+        protected SoTContext SoTContext;
+        protected DbSet<TEntity> DbSet;
+
+        public BaseRepository()
+        {
+            SoTContext = new SoTContext();
+            DbSet = SoTContext.Set<TEntity>();
+        }
+
         public void Add(TEntity obj)
         {
-            throw new NotImplementedException();
+            DbSet.Add(obj);
         }
 
         public void Delete(Guid id)
@@ -17,29 +29,32 @@ namespace SoT.Infra.Data.Repositories
             throw new NotImplementedException();
         }
 
-        public void Dispose()
-        {
-            throw new NotImplementedException();
-        }
-
         public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return DbSet.Where(predicate);
         }
 
         public IEnumerable<TEntity> GetAll()
         {
-            throw new NotImplementedException();
+            return DbSet.ToList();
         }
 
         public TEntity GetById(Guid id)
         {
-            throw new NotImplementedException();
+            return DbSet.Find(id);
         }
 
         public void Update(TEntity obj)
         {
-            throw new NotImplementedException();
+            var entry = SoTContext.Entry(obj);
+            DbSet.Attach(obj);
+            entry.State = EntityState.Modified;
+        }
+
+        public void Dispose()
+        {
+            SoTContext.Dispose();
+            GC.SuppressFinalize(this);
         }
     }
 }
