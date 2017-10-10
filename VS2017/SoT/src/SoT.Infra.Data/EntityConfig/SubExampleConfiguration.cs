@@ -15,14 +15,7 @@ namespace SoT.Infra.Data.EntityConfig
                 .HasMaxLength(150)
                 .IsRequired();
 
-            Property(s => s.DatePropertyName)
-                .IsRequired();
-
-            // boolean values are required by nature
-            Property(s => s.Active)
-                .IsRequired();
-
-            Property(s => s.RegisterDate)
+            Property(s => s.SubExampleDatePropertyName)
                 .IsRequired();
 
             Ignore(s => s.CalculatedPropertyName);

@@ -8,17 +8,18 @@ using System.Web;
 using System.Web.Mvc;
 using SoT.Domain.Entities.Example;
 using SoT.Infra.Data.Context;
+using SoT.Infra.Data.Repositories;
 
 namespace SoT.Presentation.UI.MVC.Controllers
 {
     public class ExamplesController : Controller
     {
-        private SoTContext db = new SoTContext();
+        private ExampleRepository db = new ExampleRepository();
 
         // GET: Examples
         public ActionResult Index()
         {
-            return View(db.Examples.ToList());
+            return View(db.GetAll());
         }
 
         // GET: Examples/Details/5
@@ -28,7 +29,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Example example = db.Examples.Find(id);
+            Example example = db.GetById(id.Value);
             if (example == null)
             {
                 return HttpNotFound();
@@ -51,9 +52,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                example.ExampleId = Guid.NewGuid();
-                db.Examples.Add(example);
-                db.SaveChanges();
+                db.Add(example);
                 return RedirectToAction("Index");
             }
 
@@ -67,7 +66,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Example example = db.Examples.Find(id);
+            Example example = db.GetById(id.Value);
             if (example == null)
             {
                 return HttpNotFound();
@@ -84,8 +83,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(example).State = EntityState.Modified;
-                db.SaveChanges();
+                db.Update(example);
                 return RedirectToAction("Index");
             }
             return View(example);
@@ -98,7 +96,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Example example = db.Examples.Find(id);
+            Example example = db.GetById(id.Value);
             if (example == null)
             {
                 return HttpNotFound();
@@ -111,9 +109,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            Example example = db.Examples.Find(id);
-            db.Examples.Remove(example);
-            db.SaveChanges();
+            db.Delete(id);
             return RedirectToAction("Index");
         }
 

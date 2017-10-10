@@ -1,13 +1,25 @@
 ﻿using System;
 
-namespace SoT.Domain.Entities.Example
+namespace SoT.Application.ViewModels
 {
-    public class SubExample
+    public class ExampleSubExampleViewModel
     {
-        public SubExample()
+        public ExampleSubExampleViewModel()
         {
+            ExampleId = Guid.NewGuid();
             SubExampleId = Guid.NewGuid();
         }
+
+        // Example
+        public Guid ExampleId { get; set; }
+
+        public string Name { get; set; }
+
+        public DateTime DatePropertyName { get; set; }
+
+        public DateTime RegisterDate { get; set; }
+
+        // SubExample
 
         public Guid SubExampleId { get; set; }
 
@@ -22,9 +34,5 @@ namespace SoT.Domain.Entities.Example
                 return 1 + 1;
             }
         }
-
-        public Guid ExampleId { get; set; }
-
-        public virtual Example Example { get; set; }
     }
 }

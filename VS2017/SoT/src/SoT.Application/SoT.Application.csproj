@@ -42,10 +42,16 @@
   <ItemGroup>
     <Compile Include="Interfaces\IExampleAppService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\ExampleSubExampleViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Mapping\" />
-    <Folder Include="ViewModel\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SoT.Domain\SoT.Domain.csproj">
+      <Project>{71dca81a-c687-4568-bb2d-78972c8b7b15}</Project>
+      <Name>SoT.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

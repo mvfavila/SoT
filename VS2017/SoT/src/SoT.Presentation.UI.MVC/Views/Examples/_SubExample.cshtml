@@ -1,0 +1,24 @@
+﻿@model SoT.Application.ViewModels.ExampleSubExampleViewModel
+
+
+<div class="form-horizontal">
+    <h4>SubExample</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.StringPropertyName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.StringPropertyName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.StringPropertyName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.SubExampleDatePropertyName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.SubExampleDatePropertyName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.SubExampleDatePropertyName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+</div>
