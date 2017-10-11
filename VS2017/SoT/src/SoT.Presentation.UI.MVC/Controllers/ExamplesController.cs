@@ -1,4 +1,4 @@
-﻿using SoT.Application.AppServices;
+﻿using SoT.Application.Interfaces;
 using SoT.Application.ViewModels;
 using System;
 using System.Net;
@@ -8,12 +8,17 @@ namespace SoT.Presentation.UI.MVC.Controllers
 {
     public class ExamplesController : Controller
     {
-        private ExampleAppService db = new ExampleAppService();
+        private readonly IExampleAppService exampleAppService;
+
+        public ExamplesController(IExampleAppService exampleAppService)
+        {
+            this.exampleAppService = exampleAppService;
+        }
 
         // GET: Examples
         public ActionResult Index()
         {
-            return View(db.GetAll());
+            return View(exampleAppService.GetAll());
         }
 
         // GET: Examples/Details/5
@@ -23,7 +28,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var example = db.GetById(id.Value);
+            var example = exampleAppService.GetById(id.Value);
             if (example == null)
             {
                 return HttpNotFound();
@@ -48,7 +53,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Add(ExampleSubExampleViewModel);
+                exampleAppService.Add(ExampleSubExampleViewModel);
                 return RedirectToAction("Index");
             }
 
@@ -62,7 +67,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var example = db.GetById(id.Value);
+            var example = exampleAppService.GetById(id.Value);
             if (example == null)
             {
                 return HttpNotFound();
@@ -79,7 +84,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Update(example);
+                exampleAppService.Update(example);
                 return RedirectToAction("Index");
             }
             return View(example);
@@ -92,7 +97,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var example = db.GetById(id.Value);
+            var example = exampleAppService.GetById(id.Value);
             if (example == null)
             {
                 return HttpNotFound();
@@ -105,7 +110,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            db.Delete(id);
+            exampleAppService.Delete(id);
             return RedirectToAction("Index");
         }
 
@@ -113,7 +118,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                exampleAppService.Dispose();
             }
             base.Dispose(disposing);
         }

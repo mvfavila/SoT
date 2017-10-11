@@ -1,4 +1,4 @@
-﻿using SoT.Application.AppServices;
+﻿using SoT.Application.Interfaces;
 using SoT.Application.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,12 @@ namespace SoT.Services.WebAPI.Controllers
 {
     public class ExamplesController : ApiController
     {
-        private ExampleAppService exampleAppService = new ExampleAppService();
+        private readonly IExampleAppService exampleAppService;
+
+        public ExamplesController(IExampleAppService exampleAppService)
+        {
+            this.exampleAppService = exampleAppService;
+        }
 
         // GET: api/Examples
         public IEnumerable<ExampleViewModel> Get()
