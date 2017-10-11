@@ -1,4 +1,8 @@
 ﻿using Ninject.Modules;
+using SoT.Application.AppServices;
+using SoT.Application.Interfaces;
+using SoT.Domain.Interfaces.Repository;
+using SoT.Infra.Data.Repositories;
 
 namespace SoT.Infra.CrossCutting.IoC
 {
@@ -7,16 +11,16 @@ namespace SoT.Infra.CrossCutting.IoC
         public override void Load()
         {
             // application
+            Bind<IExampleAppService>().To<ExampleAppService>();
 
             // service
 
             // data repository
+            Bind<IExampleRepository>().To<ExampleRepository>();
+            Bind<ISubExampleRepository>().To<SubExampleRepository>();
 
             // data configuration
 
-            //Sample:
-            // Bind<ISampleRepository>().To<SampleRepository>();
-            throw new System.NotImplementedException();
         }
     }
 }
