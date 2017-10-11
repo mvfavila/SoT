@@ -8,6 +8,8 @@ namespace SoT.Infra.CrossCutting.IoC
 {
     public class Ninject : NinjectModule
     {
+        // TODO: create a differente class of IoC per SoT application function. e.g. Client registration.
+
         public override void Load()
         {
             // application
