@@ -7,8 +7,8 @@
     <ProjectGuid>{5DCEED43-B670-403F-A350-CF8110B336D4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SoT.Infra_CrossCutting.IoC</RootNamespace>
-    <AssemblyName>SoT.Infra,CrossCutting.IoC</AssemblyName>
+    <RootNamespace>SoT.Infra.CrossCutting.IoC</RootNamespace>
+    <AssemblyName>SoT.Infra.CrossCutting.IoC</AssemblyName>
     <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

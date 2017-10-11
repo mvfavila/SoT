@@ -8,6 +8,7 @@ namespace SoT.Domain.Entities.Example
         public Example()
         {
             ExampleId = Guid.NewGuid();
+            SubExamples = new List<SubExample>();
         }
 
         public Guid ExampleId { get; set; }

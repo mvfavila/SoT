@@ -1,6 +1,6 @@
 ﻿using Ninject;
 
-namespace SoT.Infra_CrossCutting.IoC
+namespace SoT.Infra.CrossCutting.IoC
 {
     public class Container
     {

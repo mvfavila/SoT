@@ -10,7 +10,7 @@ namespace SoT.Presentation.UI.MVC.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
-    using SoT.Infra_CrossCutting.IoC;
+    using SoT.Infra.CrossCutting.IoC;
 
     public static class NinjectWebCommon 
     {

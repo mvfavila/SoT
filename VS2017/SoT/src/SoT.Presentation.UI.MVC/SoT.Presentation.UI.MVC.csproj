@@ -237,9 +237,9 @@
       <Project>{71dca81a-c687-4568-bb2d-78972c8b7b15}</Project>
       <Name>SoT.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SoT.Infra,CrossCutting.IoC\SoT.Infra,CrossCutting.IoC.csproj">
+    <ProjectReference Include="..\SoT.Infra,CrossCutting.IoC\SoT.Infra.CrossCutting.IoC.csproj">
       <Project>{5DCEED43-B670-403F-A350-CF8110B336D4}</Project>
-      <Name>SoT.Infra,CrossCutting.IoC</Name>
+      <Name>SoT.Infra.CrossCutting.IoC</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

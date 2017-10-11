@@ -25,7 +25,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoT.Application", "src\SoT.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoT.Presentation.UI.MVC", "src\SoT.Presentation.UI.MVC\SoT.Presentation.UI.MVC.csproj", "{47946650-64FD-4908-BE85-EDC2111DC51C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoT.Infra,CrossCutting.IoC", "src\SoT.Infra,CrossCutting.IoC\SoT.Infra,CrossCutting.IoC.csproj", "{5DCEED43-B670-403F-A350-CF8110B336D4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoT.Infra.CrossCutting.IoC", "src\SoT.Infra,CrossCutting.IoC\SoT.Infra.CrossCutting.IoC.csproj", "{5DCEED43-B670-403F-A350-CF8110B336D4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
