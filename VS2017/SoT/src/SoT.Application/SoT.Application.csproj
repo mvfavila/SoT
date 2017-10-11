@@ -40,17 +40,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppServices\ExampleAppService.cs" />
     <Compile Include="Interfaces\IExampleAppService.cs" />
+    <Compile Include="Mapping\Example\ExampleMapper.cs" />
+    <Compile Include="Mapping\Example\SubExampleMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\ExampleSubExampleViewModel.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Mapping\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\SoT.Domain\SoT.Domain.csproj">
       <Project>{71dca81a-c687-4568-bb2d-78972c8b7b15}</Project>
       <Name>SoT.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SoT.Infra.Data\SoT.Infra.Data.csproj">
+      <Project>{BFDCEB5C-BBF8-4758-B81D-39125116F50A}</Project>
+      <Name>SoT.Infra.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

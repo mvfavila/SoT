@@ -241,10 +241,6 @@
       <Project>{5DCEED43-B670-403F-A350-CF8110B336D4}</Project>
       <Name>SoT.Infra,CrossCutting.IoC</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SoT.Infra.Data\SoT.Infra.Data.csproj">
-      <Project>{bfdceb5c-bbf8-4758-b81d-39125116f50a}</Project>
-      <Name>SoT.Infra.Data</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

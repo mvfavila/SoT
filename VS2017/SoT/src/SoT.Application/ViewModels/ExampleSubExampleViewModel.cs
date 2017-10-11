@@ -17,8 +17,6 @@ namespace SoT.Application.ViewModels
 
         public DateTime DatePropertyName { get; set; }
 
-        public DateTime RegisterDate { get; set; }
-
         // SubExample
 
         public Guid SubExampleId { get; set; }

@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
+﻿using SoT.Application.AppServices;
+using SoT.Application.ViewModels;
 using SoT.Domain.Entities.Example;
-using SoT.Infra.Data.Context;
-using SoT.Infra.Data.Repositories;
+using System;
+using System.Net;
+using System.Web.Mvc;
 
 namespace SoT.Presentation.UI.MVC.Controllers
 {
     public class ExamplesController : Controller
     {
-        private ExampleRepository db = new ExampleRepository();
+        private ExampleAppService db = new ExampleAppService();
 
         // GET: Examples
         public ActionResult Index()
@@ -48,15 +43,17 @@ namespace SoT.Presentation.UI.MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ExampleId,Name,DatePropertyName,Active,RegisterDate")] Example example)
+        public ActionResult Create(
+            [Bind(Include = "ExampleId,Name,DatePropertyName,StringPropertyName,SubExampleDatePropertyName")]
+            ExampleSubExampleViewModel ExampleSubExampleViewModel)
         {
             if (ModelState.IsValid)
             {
-                db.Add(example);
+                db.Add(ExampleSubExampleViewModel);
                 return RedirectToAction("Index");
             }
 
-            return View(example);
+            return View(ExampleSubExampleViewModel);
         }
 
         // GET: Examples/Edit/5
