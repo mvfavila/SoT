@@ -15,7 +15,7 @@ namespace SoT.Application.Interfaces
 
         void Add(ExampleSubExampleViewModel exampleSubExampleViewModel);
 
-        void Update(ExampleViewModel example);
+        void Update(ExampleViewModel exampleViewModel);
 
         void Delete(Guid id);
     }
