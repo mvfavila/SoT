@@ -28,7 +28,9 @@ namespace SoT.Infra.Data.Repositories
 
         public virtual void Delete(Guid id)
         {
-            throw new NotImplementedException();
+            DbSet.Remove(DbSet.Find(id));
+
+            SoTContext.SaveChanges();
         }
 
         public virtual IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
