@@ -1,6 +1,5 @@
 ﻿using SoT.Application.AppServices;
 using SoT.Application.ViewModels;
-using SoT.Domain.Entities.Example;
 using System;
 using System.Net;
 using System.Web.Mvc;
@@ -24,7 +23,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Example example = db.GetById(id.Value);
+            var example = db.GetById(id.Value);
             if (example == null)
             {
                 return HttpNotFound();
@@ -63,7 +62,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Example example = db.GetById(id.Value);
+            var example = db.GetById(id.Value);
             if (example == null)
             {
                 return HttpNotFound();
@@ -76,7 +75,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ExampleId,Name,DatePropertyName,Active,RegisterDate")] Example example)
+        public ActionResult Edit([Bind(Include = "ExampleId,Name,DatePropertyName,Active,RegisterDate")] ExampleViewModel example)
         {
             if (ModelState.IsValid)
             {
@@ -93,7 +92,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Example example = db.GetById(id.Value);
+            var example = db.GetById(id.Value);
             if (example == null)
             {
                 return HttpNotFound();

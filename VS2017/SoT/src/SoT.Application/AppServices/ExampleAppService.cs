@@ -1,10 +1,8 @@
 ﻿using SoT.Application.Interfaces;
 using SoT.Application.ViewModels;
-using SoT.Domain.Entities.Example;
 using SoT.Infra.Data.Repositories;
 using System;
 using System.Collections.Generic;
-using System.Linq.Expressions;
 
 namespace SoT.Application.AppServices
 {
@@ -28,28 +26,31 @@ namespace SoT.Application.AppServices
             Db.Delete(id);
         }
 
-        public IEnumerable<Example> Find(Expression<Func<Example, bool>> predicate)
+        public IEnumerable<ExampleViewModel> GetActive()
         {
-            return Db.Find(predicate);
+            var example = Db.GetActive();
+
+            return Mapping.Example.ExampleMapper.FromDomainToViewModel(example);
         }
 
-        public IEnumerable<Example> GetActive()
+        public IEnumerable<ExampleViewModel> GetAll()
         {
-            return Db.GetActive();
+            var examples = Db.GetAll();
+
+            return Mapping.Example.ExampleMapper.FromDomainToViewModel(examples);
         }
 
-        public IEnumerable<Example> GetAll()
+        public ExampleViewModel GetById(Guid id)
         {
-            return Db.GetAll();
+            var example = Db.GetById(id);
+
+            return Mapping.Example.ExampleMapper.FromDomainToViewModel(example);
         }
 
-        public Example GetById(Guid id)
+        public void Update(ExampleViewModel exampleViewModel)
         {
-            return Db.GetById(id);
-        }
+            var example = Mapping.Example.ExampleMapper.FromViewModelToDomain(exampleViewModel);
 
-        public void Update(Example example)
-        {
             Db.Update(example);
         }
 

@@ -1,25 +1,21 @@
 ﻿using SoT.Application.ViewModels;
-using SoT.Domain.Entities.Example;
 using System;
 using System.Collections.Generic;
-using System.Linq.Expressions;
 
 namespace SoT.Application.Interfaces
 {
     public interface IExampleAppService : IDisposable
     {
-        IEnumerable<Example> GetActive();
+        IEnumerable<ExampleViewModel> GetActive();
 
         // TODO: paging should be added to method.
-        IEnumerable<Example> GetAll();
+        IEnumerable<ExampleViewModel> GetAll();
 
-        IEnumerable<Example> Find(Expression<Func<Example, bool>> predicate);
-
-        Example GetById(Guid id);
+        ExampleViewModel GetById(Guid id);
 
         void Add(ExampleSubExampleViewModel exampleSubExampleViewModel);
 
-        void Update(Example example);
+        void Update(ExampleViewModel example);
 
         void Delete(Guid id);
     }
