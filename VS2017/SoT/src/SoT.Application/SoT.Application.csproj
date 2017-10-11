@@ -47,6 +47,8 @@
     <Compile Include="Mapping\Example\SubExampleMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\ExampleSubExampleViewModel.cs" />
+    <Compile Include="ViewModels\ExampleViewModel.cs" />
+    <Compile Include="ViewModels\SubExampleViewModel.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

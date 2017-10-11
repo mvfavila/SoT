@@ -15,5 +15,16 @@ namespace SoT.Application.Mapping.Example
                 ExampleId = exampleSubExampleViewModel.ExampleId
             };
         }
+
+        public static SubExample FromViewModelToDomain(SubExampleViewModel subExampleViewModel)
+        {
+            return new SubExample
+            {
+                SubExampleId = subExampleViewModel.SubExampleId,
+                StringPropertyName = subExampleViewModel.StringPropertyName,
+                SubExampleDatePropertyName = subExampleViewModel.SubExampleDatePropertyName,
+                ExampleId = subExampleViewModel.ExampleId
+            };
+        }
     }
 }
