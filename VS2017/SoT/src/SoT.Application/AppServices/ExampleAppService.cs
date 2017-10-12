@@ -1,6 +1,5 @@
 ﻿using SoT.Application.Interfaces;
 using SoT.Application.ViewModels;
-using SoT.Domain.Interfaces.Repository;
 using SoT.Domain.Interfaces.Services;
 using System;
 using System.Collections.Generic;
@@ -9,25 +8,32 @@ namespace SoT.Application.AppServices
 {
     public class ExampleAppService : IExampleAppService
     {
-        private IExampleService exampleService;
-        private ISubExampleRepository subExampleRepository;
+        private readonly IExampleService exampleService;
+        private readonly ISubExampleService subExampleService;
 
         public ExampleAppService(
             IExampleService exampleService,
-            ISubExampleRepository subExampleRepository)
+            ISubExampleService subExampleService)
         {
             this.exampleService = exampleService;
+            this.subExampleService = subExampleService;
         }
 
         public void Add(ExampleSubExampleViewModel exampleSubExampleViewModel)
         {
             var example = Mapping.Example.ExampleMapper.FromViewModelToDomain(exampleSubExampleViewModel);
 
+            // TODO: Open transaction here
+
             exampleService.Add(example);
+
+            // TODO: log should me added here informing that the example was added
                         
             var subExample = Mapping.Example.SubExampleMapper.FromViewModelToDomain(exampleSubExampleViewModel);
 
-            subExampleRepository.Add(subExample);
+            subExampleService.Add(subExample);
+
+            // TODO: Close transaction here
         }
                                                                           
         public void Delete(Guid id)

@@ -2,6 +2,8 @@
 using SoT.Application.AppServices;
 using SoT.Application.Interfaces;
 using SoT.Domain.Interfaces.Repository;
+using SoT.Domain.Interfaces.Services;
+using SoT.Domain.Services;
 using SoT.Infra.Data.Repositories;
 
 namespace SoT.Infra.CrossCutting.IoC
@@ -17,6 +19,8 @@ namespace SoT.Infra.CrossCutting.IoC
             Bind<IExampleAppService>().To<ExampleAppService>();
 
             // service
+            Bind<IExampleService>().To<ExampleService>();
+            Bind<ISubExampleService>().To<SubExampleService>();
 
             // data repository
             Bind<IExampleRepository>().To<ExampleRepository>();
