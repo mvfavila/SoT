@@ -4,7 +4,10 @@ using SoT.Application.Interfaces;
 using SoT.Domain.Interfaces.Repository;
 using SoT.Domain.Interfaces.Services;
 using SoT.Domain.Services;
+using SoT.Infra.Data.Context;
+using SoT.Infra.Data.Interfaces;
 using SoT.Infra.Data.Repositories;
+using SoT.Infra.Data.UoW;
 
 namespace SoT.Infra.CrossCutting.IoC
 {
@@ -27,7 +30,8 @@ namespace SoT.Infra.CrossCutting.IoC
             Bind<ISubExampleRepository>().To<SubExampleRepository>();
 
             // data configuration
-
+            Bind<IContextManager>().To<ContextManager>();
+            Bind<IUnitOfWork>().To<UnitOfWork>();
         }
     }
 }
