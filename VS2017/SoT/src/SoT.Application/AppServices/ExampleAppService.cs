@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace SoT.Application.AppServices
 {
-    public class ExampleAppService : IExampleAppService
+    public class ExampleAppService : BaseAppService, IExampleAppService
     {
         private readonly IExampleService exampleService;
         private readonly ISubExampleService subExampleService;
@@ -23,7 +23,7 @@ namespace SoT.Application.AppServices
         {
             var example = Mapping.Example.ExampleMapper.FromViewModelToDomain(exampleSubExampleViewModel);
 
-            // TODO: Open transaction here
+            BeginTransaction();
 
             exampleService.Add(example);
 
@@ -33,7 +33,7 @@ namespace SoT.Application.AppServices
 
             subExampleService.Add(subExample);
 
-            // TODO: Close transaction here
+            Commit();
         }
                                                                           
         public void Delete(Guid id)

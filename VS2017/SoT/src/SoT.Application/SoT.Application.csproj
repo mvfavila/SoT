@@ -41,7 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppServices\BaseAppService.cs" />
     <Compile Include="AppServices\ExampleAppService.cs" />
+    <Compile Include="Interfaces\IBaseAppService.cs" />
     <Compile Include="Interfaces\IExampleAppService.cs" />
     <Compile Include="Mapping\Example\ExampleMapper.cs" />
     <Compile Include="Mapping\Example\SubExampleMapper.cs" />

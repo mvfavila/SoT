@@ -13,24 +13,23 @@ namespace SoT.Infra.Data.Repositories
         protected SoTContext SoTContext;
         protected DbSet<TEntity> DbSet;
 
+        // TODO: contextManager must be initialized here
+        private readonly ContextManager contextManager;
+
         public BaseRepository()
         {
-            SoTContext = new SoTContext();
+            SoTContext = contextManager.GetContext();
             DbSet = SoTContext.Set<TEntity>();
         }
 
         public virtual void Add(TEntity obj)
         {
             DbSet.Add(obj);
-
-            SoTContext.SaveChanges();
         }
 
         public virtual void Delete(Guid id)
         {
             DbSet.Remove(DbSet.Find(id));
-
-            SoTContext.SaveChanges();
         }
 
         public virtual IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
@@ -53,7 +52,10 @@ namespace SoT.Infra.Data.Repositories
             var entry = SoTContext.Entry(obj);
             DbSet.Attach(obj);
             entry.State = EntityState.Modified;
+        }
 
+        public void SaveChanges()
+        {
             SoTContext.SaveChanges();
         }
 

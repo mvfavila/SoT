@@ -18,5 +18,7 @@ namespace SoT.Domain.Interfaces.Repository
         void Update(TEntity obj);
 
         void Delete(Guid id);
+
+        void SaveChanges();
     }
 }
