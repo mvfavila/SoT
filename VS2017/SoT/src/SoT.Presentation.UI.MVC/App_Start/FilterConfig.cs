@@ -1,4 +1,4 @@
-﻿using System.Web;
+﻿using SoT.Infra.CrossCutting.Filters;
 using System.Web.Mvc;
 
 namespace SoT.Presentation.UI.MVC
@@ -8,6 +8,7 @@ namespace SoT.Presentation.UI.MVC
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+            filters.Add(new SoTErrorHandler());
         }
     }
 }

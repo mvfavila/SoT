@@ -250,6 +250,10 @@
       <Project>{5dceed43-b670-403f-a350-cf8110b336d4}</Project>
       <Name>SoT.Infra.CrossCutting.IoC</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SoT.Infra.CrossCutting.Filters\SoT.Infra.CrossCutting.Filters.csproj">
+      <Project>{CC8776E9-7E56-4944-8E73-915024F77415}</Project>
+      <Name>SoT.Infra.CrossCutting.Filters</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
