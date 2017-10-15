@@ -4,16 +4,21 @@ using System.Linq.Expressions;
 using SoT.Domain.Entities.Example;
 using SoT.Domain.Interfaces.Services;
 using SoT.Domain.Interfaces.Repository;
+using SoT.Domain.Interfaces.Repository.ReadOnly;
 
 namespace SoT.Domain.Services
 {
     public class ExampleService : IExampleService
     {
         private readonly IExampleRepository exampleRepository;
+        private readonly IExampleReadOnlyRepository exampleReadOnlyRepository;
 
-        public ExampleService(IExampleRepository exampleRepository)
+        public ExampleService(
+            IExampleRepository exampleRepository,
+            IExampleReadOnlyRepository exampleReadOnlyRepository)
         {
             this.exampleRepository = exampleRepository;
+            this.exampleReadOnlyRepository = exampleReadOnlyRepository;
         }
 
         public void Add(Example example)
@@ -38,12 +43,12 @@ namespace SoT.Domain.Services
 
         public IEnumerable<Example> GetAll()
         {
-            return exampleRepository.GetAll();
+            return exampleReadOnlyRepository.GetAll();
         }
 
         public Example GetById(Guid id)
         {
-            return exampleRepository.GetById(id);
+            return exampleReadOnlyRepository.GetById(id);
         }
 
         public void Update(Example example)
@@ -54,6 +59,7 @@ namespace SoT.Domain.Services
         public void Dispose()
         {
             exampleRepository.Dispose();
+            exampleReadOnlyRepository.Dispose();
             GC.SuppressFinalize(this);
         }
     }
