@@ -4,7 +4,7 @@ using SoT.Domain.Validation.Base;
 
 namespace SoT.Domain.Validation.Example
 {
-    class ExampleIsVerifiedForDatabaseRegistration : BaseSupervisor<Entities.Example.Example>
+    public class ExampleIsVerifiedForDatabaseRegistration : BaseSupervisor<Entities.Example.Example>
     {
         private readonly IExampleRepository exampleRepository;
 
