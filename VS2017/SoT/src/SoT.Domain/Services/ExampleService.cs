@@ -5,6 +5,7 @@ using SoT.Domain.Entities.Example;
 using SoT.Domain.Interfaces.Services;
 using SoT.Domain.Interfaces.Repository;
 using SoT.Domain.Interfaces.Repository.ReadOnly;
+using SoT.Domain.ValueObjects;
 
 namespace SoT.Domain.Services
 {
@@ -21,9 +22,19 @@ namespace SoT.Domain.Services
             this.exampleReadOnlyRepository = exampleReadOnlyRepository;
         }
 
-        public void Add(Example example)
+        public ValidationResult Add(Example example)
         {
+            var validationResult = new ValidationResult();
+
+            if (!example.IsValid())
+            {
+                validationResult.AddError(example.ValidationResult);
+                return validationResult;
+            }
+
             exampleRepository.Add(example);
+
+            return validationResult;
         }
 
         public void Delete(Guid id)

@@ -1,4 +1,5 @@
 ﻿using SoT.Application.Interfaces;
+using SoT.Application.Validation;
 using SoT.Application.ViewModels;
 using SoT.Domain.Interfaces.Services;
 using System;
@@ -19,13 +20,15 @@ namespace SoT.Application.AppServices
             this.subExampleService = subExampleService;
         }
 
-        public void Add(ExampleSubExampleViewModel exampleSubExampleViewModel)
+        public ValidationAppResult Add(ExampleSubExampleViewModel exampleSubExampleViewModel)
         {
             var example = Mapping.Example.ExampleMapper.FromViewModelToDomain(exampleSubExampleViewModel);
 
             BeginTransaction();
 
-            exampleService.Add(example);
+            var result = exampleService.Add(example);
+            if (!result.IsValid)
+                return FromDomainToApplicationResult(result);
 
             // TODO: log should me added here informing that the example was added
                         
@@ -34,6 +37,8 @@ namespace SoT.Application.AppServices
             subExampleService.Add(subExample);
 
             Commit();
+
+            return FromDomainToApplicationResult(result);
         }
                                                                           
         public void Delete(Guid id)

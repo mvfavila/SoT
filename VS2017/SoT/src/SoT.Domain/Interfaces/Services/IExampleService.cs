@@ -1,4 +1,5 @@
 ﻿using SoT.Domain.Entities.Example;
+using SoT.Domain.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -15,7 +16,7 @@ namespace SoT.Domain.Interfaces.Services
 
         Example GetById(Guid id);
 
-        void Add(Example example);
+        ValidationResult Add(Example example);
 
         void Update(Example example);
 

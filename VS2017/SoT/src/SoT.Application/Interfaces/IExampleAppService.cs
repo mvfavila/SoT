@@ -1,4 +1,5 @@
-﻿using SoT.Application.ViewModels;
+﻿using SoT.Application.Validation;
+using SoT.Application.ViewModels;
 using System;
 using System.Collections.Generic;
 
@@ -13,7 +14,7 @@ namespace SoT.Application.Interfaces
 
         ExampleViewModel GetById(Guid id);
 
-        void Add(ExampleSubExampleViewModel exampleSubExampleViewModel);
+        ValidationAppResult Add(ExampleSubExampleViewModel exampleSubExampleViewModel);
 
         void Update(ExampleViewModel exampleViewModel);
 

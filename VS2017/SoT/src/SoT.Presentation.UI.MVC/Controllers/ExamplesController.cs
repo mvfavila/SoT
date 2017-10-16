@@ -49,15 +49,24 @@ namespace SoT.Presentation.UI.MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(
             [Bind(Include = "ExampleId,Name,DatePropertyName,StringPropertyName,SubExampleDatePropertyName")]
-            ExampleSubExampleViewModel ExampleSubExampleViewModel)
+            ExampleSubExampleViewModel exampleSubExampleViewModel)
         {
             if (ModelState.IsValid)
             {
-                exampleAppService.Add(ExampleSubExampleViewModel);
+                var result = exampleAppService.Add(exampleSubExampleViewModel);
+                if (!result.IsValid)
+                {
+                    foreach (var validationAppError in result.Errors)
+                    {
+                        ModelState.AddModelError(string.Empty, validationAppError.Message);
+                    }
+                    return View(exampleSubExampleViewModel);
+                }
+
                 return RedirectToAction("Index");
             }
 
-            return View(ExampleSubExampleViewModel);
+            return View(exampleSubExampleViewModel);
         }
 
         // GET: Examples/Edit/5

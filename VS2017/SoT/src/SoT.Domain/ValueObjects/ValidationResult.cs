@@ -11,22 +11,24 @@ namespace SoT.Domain.ValueObjects
         public bool IsValid { get { return errors.Count == 0; } }
 
         public IEnumerable<ValidationError> Errors { get { return this.errors; } }
+
         public void AddError(ValidationError error)
         {
             errors.Add(error);
         }
-        public void RemoveError(ValidationError error)
-        {
-            if (errors.Contains(error))
-                errors.Remove(error);
-        }
 
-        public void AdicionarErro(params ValidationResult[] validationResults)
+        public void AddError(params ValidationResult[] validationResults)
         {
             if (validationResults == null) return;
 
             foreach (var validationResult in validationResults.Where(result => result != null))
                 this.errors.AddRange(validationResult.Errors);
+        }
+
+        public void RemoveError(ValidationError error)
+        {
+            if (errors.Contains(error))
+                errors.Remove(error);
         }
     }
 }
