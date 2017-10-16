@@ -1,8 +1,11 @@
-﻿using System;
+﻿using SoT.Domain.Interfaces.Validation;
+using System;
+using SoT.Domain.ValueObjects;
+using SoT.Domain.Validation.SubExample;
 
 namespace SoT.Domain.Entities.Example
 {
-    public class SubExample
+    public class SubExample : ISelfValidator
     {
         public SubExample()
         {
@@ -26,5 +29,15 @@ namespace SoT.Domain.Entities.Example
         public Guid ExampleId { get; set; }
 
         public virtual Example Example { get; set; }
+
+        public ValidationResult ValidationResult { get; private set; }
+
+        public bool IsValid()
+        {
+            var validation = new SubExampleIsVerifiedForRegistration();
+            ValidationResult = validation.Validate(this);
+
+            return ValidationResult.IsValid;
+        }
     }
 }
