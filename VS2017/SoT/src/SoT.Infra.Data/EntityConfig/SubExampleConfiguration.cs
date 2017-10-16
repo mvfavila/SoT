@@ -23,6 +23,8 @@ namespace SoT.Infra.Data.EntityConfig
             HasRequired(s => s.Example)
                 .WithMany()
                 .HasForeignKey(s => s.ExampleId);
+
+            Ignore(s => s.ValidationResult);
         }
     }
 }

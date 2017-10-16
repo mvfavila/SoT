@@ -6,6 +6,7 @@ using SoT.Domain.Interfaces.Services;
 using SoT.Domain.Interfaces.Repository;
 using SoT.Domain.Interfaces.Repository.ReadOnly;
 using SoT.Domain.ValueObjects;
+using SoT.Domain.Validation.Example;
 
 namespace SoT.Domain.Services
 {
@@ -27,6 +28,14 @@ namespace SoT.Domain.Services
             var validationResult = new ValidationResult();
 
             if (!example.IsValid())
+            {
+                validationResult.AddError(example.ValidationResult);
+                return validationResult;
+            }
+
+            var validator = new ExampleIsVerifiedForDatabaseRegistration(exampleRepository);
+            var validationService = validator.Validate(example);
+            if (!validationService.IsValid)
             {
                 validationResult.AddError(example.ValidationResult);
                 return validationResult;

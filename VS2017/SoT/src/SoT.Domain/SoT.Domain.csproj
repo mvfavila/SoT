@@ -51,8 +51,10 @@
     <Compile Include="Specification\Example\ExampleIsRecentDateSpecification.cs" />
     <Compile Include="Specification\Example\ExampleHasSubExampleSpecification.cs" />
     <Compile Include="Specification\Example\ExampleIsActiveSpecification.cs" />
+    <Compile Include="Specification\Example\ExampleIsUniqueEntrySpecification.cs" />
     <Compile Include="Specification\SubExample\SubExampleHasPositiveCalculatedPropertyNameSpecification.cs" />
     <Compile Include="Validation\Base\BaseSupervisor.cs" />
+    <Compile Include="Validation\Example\ExampleIsVerifiedForDatabaseRegistration.cs" />
     <Compile Include="Validation\Example\ExampleIsVerifiedForRegistration.cs" />
     <Compile Include="Validation\Rule.cs" />
     <Compile Include="Validation\SubExample\SubExampleIsVerifiedForRegistration.cs" />
