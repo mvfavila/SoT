@@ -26,7 +26,7 @@ namespace SoT.Infra.Data.Context
         /// Database context constructor.
         /// </summary>
         public SoTContext()
-            : base("ConnectionStringName")
+            : base("SumOfThisConnection")
         {
 
         }
