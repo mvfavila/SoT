@@ -1,4 +1,5 @@
-﻿using SoT.Domain.Entities.Example;
+﻿using SoT.Domain.Entities;
+using SoT.Domain.Entities.Example;
 using SoT.Infra.Data.EntityConfig;
 using System;
 using System.Data.Entity;
@@ -32,8 +33,13 @@ namespace SoT.Infra.Data.Context
         }
 
         public DbSet<Example> Examples { get; set; }
-
         public DbSet<SubExample> SubExamples { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Country> Countries { get; set; }
+        public DbSet<Element> Elements { get; set; }
+        public DbSet<City> Cities { get; set; }
+        public DbSet<Region> Regions { get; set; }
+        public DbSet<Continent> Continents { get; set; }
 
         /// <summary>
         /// Custom configuration of the Entity Framework model creation.

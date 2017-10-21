@@ -33,8 +33,14 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Category.cs" />
+    <Compile Include="Entities\Continent.cs" />
+    <Compile Include="Entities\Country.cs" />
+    <Compile Include="Entities\Element.cs" />
     <Compile Include="Entities\Example\Example.cs" />
     <Compile Include="Entities\Example\SubExample.cs" />
+    <Compile Include="Entities\City.cs" />
+    <Compile Include="Entities\Region.cs" />
     <Compile Include="Interfaces\Repository\IBaseRepository.cs" />
     <Compile Include="Interfaces\Repository\IExampleRepository.cs" />
     <Compile Include="Interfaces\Repository\ISubExampleRepository.cs" />
