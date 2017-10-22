@@ -33,6 +33,8 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Address.cs" />
+    <Compile Include="Entities\Adventure.cs" />
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\Continent.cs" />
     <Compile Include="Entities\Country.cs" />

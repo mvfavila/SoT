@@ -43,7 +43,7 @@ namespace SoT.Domain.Entities
         public Guid CountryId { get; private set; }
 
         /// <summary>
-        /// Collection of <see cref="Country"/> attached to the City.
+        /// <see cref="Country"/> attached to the City.
         /// </summary>
         public virtual Country Country { get; private set; }
 
