@@ -42,6 +42,7 @@
     <Compile Include="Entities\Example\Example.cs" />
     <Compile Include="Entities\Example\SubExample.cs" />
     <Compile Include="Entities\City.cs" />
+    <Compile Include="Entities\Provider.cs" />
     <Compile Include="Entities\Region.cs" />
     <Compile Include="Interfaces\Repository\IBaseRepository.cs" />
     <Compile Include="Interfaces\Repository\IExampleRepository.cs" />

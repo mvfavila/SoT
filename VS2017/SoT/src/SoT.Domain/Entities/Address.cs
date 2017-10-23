@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SoT.Domain.Entities
 {
@@ -13,24 +9,65 @@ namespace SoT.Domain.Entities
     public class Address
     {
         /// <summary>
+        /// Class constructor.
+        /// </summary>
+        /// <param name="street01">Street's Address.</param>
+        /// <param name="complement">Street's Address' Complement.</param>
+        /// <param name="postcode">Address' Postcode.</param>
+        /// <param name="adventureId">Unique id of the <see cref="Entities.Adventure"/> to which the Address belongs.
+        /// </param>
+        private Address(string street01, string complement, string postcode, Guid adventureId)
+        {
+            AddressId = Guid.NewGuid();
+            Street01 = street01;
+            Complement = complement;
+            Postcode = postcode;
+            AdventureId = adventureId;
+        }
+
+        /// <summary>
         /// Address Unique Id.
         /// </summary>
         public Guid AddressId { get; private set; }
 
         /// <summary>
-        /// First part of the Street's Address.
+        /// Street's Address.
         /// </summary>
         public string Street01 { get; private set; }
 
         /// <summary>
-        /// Second part of the Street's Address.
+        /// Street's Address' Complement.
         /// </summary>
-        public string Street02 { get; private set; }
+        public string Complement { get; private set; }
 
         /// <summary>
-        /// Address'Post Code.
+        /// Address' Postcode.
         /// Ex.: 4102, EC, 49040-000.
         /// </summary>
-        public string PostCode { get; private set; }
+        public string Postcode { get; private set; }
+
+        /// <summary>
+        /// Unique id of the <see cref="Entities.Adventure"/> to which the Address belongs.
+        /// </summary>
+        public Guid AdventureId { get; private set; }
+
+        /// <summary>
+        /// <see cref="Adventure"/> attached to the Address.
+        /// </summary>
+        public virtual Adventure Adventure { get; private set; }
+
+        /// <summary>
+        /// Factory used when a new Address is being added to the database context.
+        /// </summary>
+        /// <param name="street01">Street's Address.</param>
+        /// <param name="complement">Street's Address' Complement.</param>
+        /// <param name="postcode">Address' Postcode.</param>
+        /// <param name="adventureId">Unique id of the <see cref="Entities.Adventure"/> to which the Address belongs.
+        /// </param>
+        /// <returns>See <see cref="Address"/>.</returns>
+        public Address FactoryAdd(string street01, string complement, string postcode, Guid adventureId)
+        {
+            return new Address(street01, complement, postcode, adventureId);
+        }
     }
 }
