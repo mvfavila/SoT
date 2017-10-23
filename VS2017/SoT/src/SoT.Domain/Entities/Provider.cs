@@ -2,6 +2,9 @@
 
 namespace SoT.Domain.Entities
 {
+    /// <summary>
+    /// Represents the Provider of an Adventure.<br/>
+    /// </summary>
     public class Provider
     {
         /// <summary>
