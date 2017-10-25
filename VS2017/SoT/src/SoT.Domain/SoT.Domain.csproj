@@ -57,11 +57,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ExampleService.cs" />
     <Compile Include="Services\SubExampleService.cs" />
+    <Compile Include="Specification\Address\AddressIsAttachedToAdventure.cs" />
     <Compile Include="Specification\Example\ExampleIsRecentDateSpecification.cs" />
     <Compile Include="Specification\Example\ExampleHasSubExampleSpecification.cs" />
     <Compile Include="Specification\Example\ExampleIsActiveSpecification.cs" />
     <Compile Include="Specification\Example\ExampleIsUniqueEntrySpecification.cs" />
     <Compile Include="Specification\SubExample\SubExampleHasPositiveCalculatedPropertyNameSpecification.cs" />
+    <Compile Include="Validation\AddressIsVerified.cs" />
     <Compile Include="Validation\Base\BaseSupervisor.cs" />
     <Compile Include="Validation\Example\ExampleIsVerifiedForDatabaseRegistration.cs" />
     <Compile Include="Validation\Example\ExampleIsVerifiedForRegistration.cs" />

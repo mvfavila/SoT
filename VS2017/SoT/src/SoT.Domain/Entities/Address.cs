@@ -1,4 +1,7 @@
-﻿using System;
+﻿using SoT.Domain.Interfaces.Validation;
+using SoT.Domain.Validation;
+using SoT.Domain.ValueObjects;
+using System;
 
 namespace SoT.Domain.Entities
 {
@@ -6,7 +9,7 @@ namespace SoT.Domain.Entities
     /// Represents an Address.<br/>
     /// e.g. Address from where the Adventure will take place.
     /// </summary>
-    public class Address
+    public class Address : ISelfValidator
     {
         /// <summary>
         /// Class constructor.
@@ -55,6 +58,23 @@ namespace SoT.Domain.Entities
         /// <see cref="Adventure"/> attached to the Address.
         /// </summary>
         public virtual Adventure Adventure { get; private set; }
+
+        /// <summary>
+        /// See <see cref="ValueObjects.ValidationResult"/>.
+        /// </summary>
+        public ValidationResult ValidationResult { get; private set; }
+
+        /// <summary>
+        /// See <see cref="ISelfValidator.IsValid"/>.
+        /// </summary>
+        /// <returns>See <see cref="ISelfValidator.IsValid"/>.</returns>
+        public bool IsValid()
+        {
+            var validation = new AddressIsVerified();
+            ValidationResult = validation.Validate(this);
+
+            return ValidationResult.IsValid;
+        }
 
         /// <summary>
         /// Factory used when a new Address is being added to the database context.
