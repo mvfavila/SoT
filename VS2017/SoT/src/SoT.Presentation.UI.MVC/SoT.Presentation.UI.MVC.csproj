@@ -207,6 +207,7 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ClaimsAdminController.cs" />
     <Compile Include="Controllers\ExamplesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -221,6 +222,7 @@
     <Compile Include="ViewModels\Account\ResetPasswordViewModel.cs" />
     <Compile Include="ViewModels\Account\SendCodeViewModel.cs" />
     <Compile Include="ViewModels\Account\VerifyCodeViewModel.cs" />
+    <Compile Include="ViewModels\Claims\ClaimViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -269,6 +271,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Account\" />
+    <Folder Include="Views\ClaimsAdmin\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -299,6 +302,10 @@
     <ProjectReference Include="..\SoT.Infra.CrossCutting.Identity\SoT.Infra.CrossCutting.Identity.csproj">
       <Project>{95A34CFD-7D6F-453E-BA00-68E4AD1DAE82}</Project>
       <Name>SoT.Infra.CrossCutting.Identity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SoT.Infra.CrossCutting.MvcFilters\SoT.Infra.CrossCutting.MvcFilters.csproj">
+      <Project>{A9E36224-67BD-4B08-8FF3-C9721256A8EF}</Project>
+      <Name>SoT.Infra.CrossCutting.MvcFilters</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
