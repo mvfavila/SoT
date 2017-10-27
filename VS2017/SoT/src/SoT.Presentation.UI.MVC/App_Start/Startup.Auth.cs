@@ -79,18 +79,20 @@ namespace SoT.Presentation.UI.MVC.App_Start
             fao.Scope.Add("publish_actions");
             fao.Scope.Add("basic_info");
 
-            fao.Provider = new FacebookAuthenticationProvider()
+            fao.Provider = new FacebookAuthenticationProvider
             {
 
                 OnAuthenticated = (context) =>
                 {
-                    context.Identity.AddClaim(new System.Security.Claims.Claim("urn:facebook:access_token", context.AccessToken, XmlSchemaString, "Facebook"));
+                    context.Identity.AddClaim(new System.Security.Claims.Claim("urn:facebook:access_token",
+                        context.AccessToken, XmlSchemaString, "Facebook"));
                     foreach (var x in context.User)
                     {
-                        var claimType = string.Format("urn:facebook:{0}", x.Key);
-                        string claimValue = x.Value.ToString();
+                        var claimType = $"urn:facebook:{x.Key}";
+                        var claimValue = x.Value.ToString();
                         if (!context.Identity.HasClaim(claimType, claimValue))
-                            context.Identity.AddClaim(new System.Security.Claims.Claim(claimType, claimValue, XmlSchemaString, "Facebook"));
+                            context.Identity.AddClaim(new System.Security.Claims.Claim(claimType, claimValue,
+                                XmlSchemaString, "Facebook"));
 
                     }
                     return Task.FromResult(0);
