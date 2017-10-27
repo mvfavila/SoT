@@ -9,7 +9,7 @@ using SoT.Infra.CrossCutting.Identity.Context;
 using System;
 using System.Threading.Tasks;
 
-namespace SoT.Presentation.UI.MVC.App_Start
+namespace SoT.Presentation.UI.MVC
 {
     public partial class Startup
     {
@@ -34,7 +34,7 @@ namespace SoT.Presentation.UI.MVC.App_Start
                 Provider = new CookieAuthenticationProvider
                 {
                     // Enables the application to validate the security stamp when the user logs in.
-                    // This is a security feature which is used when you change a password or add an external login to your account.  
+                    // This is a security feature which is used when you change a password or add an external login to your account.
 
                     //OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<ApplicationUserManager, ApplicationUser>(
                     //    validateInterval: TimeSpan.FromMinutes(30),
