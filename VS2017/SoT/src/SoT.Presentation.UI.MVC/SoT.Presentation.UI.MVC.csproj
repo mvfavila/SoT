@@ -210,6 +210,7 @@
     <Compile Include="Controllers\ClaimsAdminController.cs" />
     <Compile Include="Controllers\ExamplesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -223,6 +224,12 @@
     <Compile Include="ViewModels\Account\SendCodeViewModel.cs" />
     <Compile Include="ViewModels\Account\VerifyCodeViewModel.cs" />
     <Compile Include="ViewModels\Claims\ClaimViewModel.cs" />
+    <Compile Include="ViewModels\Manage\AddPhoneNumberViewModel.cs" />
+    <Compile Include="ViewModels\Manage\ChangePasswordViewModel.cs" />
+    <Compile Include="ViewModels\Manage\IndexViewModel.cs" />
+    <Compile Include="ViewModels\Manage\ManageLoginsViewModel.cs" />
+    <Compile Include="ViewModels\Manage\SetPasswordViewModel.cs" />
+    <Compile Include="ViewModels\Manage\VerifyPhoneNumberViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -272,6 +279,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Views\Account\" />
     <Folder Include="Views\ClaimsAdmin\" />
+    <Folder Include="Views\Manage\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
