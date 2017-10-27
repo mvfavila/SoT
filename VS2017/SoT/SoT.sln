@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoT.Infra.CrossCutting.Filt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoT.Domain.Tests", "src\SoT.Domain.Tests\SoT.Domain.Tests.csproj", "{034837F1-9E63-43D1-BFC2-34CC9E04BE09}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoT.Infra.CrossCutting.Identity", "src\SoT.Infra.CrossCutting.Identity\SoT.Infra.CrossCutting.Identity.csproj", "{95A34CFD-7D6F-453E-BA00-68E4AD1DAE82}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,10 @@ Global
 		{034837F1-9E63-43D1-BFC2-34CC9E04BE09}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{034837F1-9E63-43D1-BFC2-34CC9E04BE09}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{034837F1-9E63-43D1-BFC2-34CC9E04BE09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95A34CFD-7D6F-453E-BA00-68E4AD1DAE82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95A34CFD-7D6F-453E-BA00-68E4AD1DAE82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95A34CFD-7D6F-453E-BA00-68E4AD1DAE82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95A34CFD-7D6F-453E-BA00-68E4AD1DAE82}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -86,6 +92,7 @@ Global
 		{8D45997B-BD11-4BF3-B1D2-28F5F075607D} = {EE179452-84B9-482C-9B15-53E64539255D}
 		{CC8776E9-7E56-4944-8E73-915024F77415} = {44D68367-DC16-47B3-80B0-38B1A502F9C8}
 		{034837F1-9E63-43D1-BFC2-34CC9E04BE09} = {EF528734-A625-4663-9DCF-25FE288DD2ED}
+		{95A34CFD-7D6F-453E-BA00-68E4AD1DAE82} = {44D68367-DC16-47B3-80B0-38B1A502F9C8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0E1E4B21-021E-432F-8D4F-A60070A71357}
