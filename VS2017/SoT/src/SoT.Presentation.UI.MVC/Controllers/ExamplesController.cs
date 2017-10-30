@@ -43,7 +43,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
         }
 
         // POST: Examples/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -63,7 +63,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
                     return View(exampleSubExampleViewModel);
                 }
 
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
             }
 
             return View(exampleSubExampleViewModel);
@@ -85,7 +85,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
         }
 
         // POST: Examples/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -94,7 +94,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
             if (ModelState.IsValid)
             {
                 exampleAppService.Update(example);
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
             }
             return View(example);
         }
@@ -115,12 +115,12 @@ namespace SoT.Presentation.UI.MVC.Controllers
         }
 
         // POST: Examples/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName(nameof(Delete))]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
             exampleAppService.Delete(id);
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(Index));
         }
 
         protected override void Dispose(bool disposing)
