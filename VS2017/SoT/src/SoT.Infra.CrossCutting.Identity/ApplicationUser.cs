@@ -59,7 +59,7 @@ namespace SoT.Infra.CrossCutting.Identity
         {
             if (ext != null)
             {
-                var ignoreClaim = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims";
+                const string ignoreClaim = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims";
                 // Adding external Claims into Identity
                 foreach (var c in ext.Claims)
                 {
