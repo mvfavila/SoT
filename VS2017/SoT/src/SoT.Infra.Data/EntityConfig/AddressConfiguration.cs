@@ -28,8 +28,7 @@ namespace SoT.Infra.Data.EntityConfig
                 .WithMany()
                 .HasForeignKey(s => s.AdventureId);
 
-            // TODO: add validation and uncomment the line below
-            //Ignore(s => s.ValidationResult);
+            Ignore(s => s.ValidationResult);
         }
     }
 }

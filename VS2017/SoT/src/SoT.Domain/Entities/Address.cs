@@ -85,7 +85,7 @@ namespace SoT.Domain.Entities
         /// <param name="adventureId">Unique id of the <see cref="Entities.Adventure"/> to which the Address belongs.
         /// </param>
         /// <returns>See <see cref="Address"/>.</returns>
-        public Address FactoryAdd(string street01, string complement, string postcode, Guid adventureId)
+        public static Address FactoryAdd(string street01, string complement, string postcode, Guid adventureId)
         {
             return new Address(street01, complement, postcode, adventureId);
         }
