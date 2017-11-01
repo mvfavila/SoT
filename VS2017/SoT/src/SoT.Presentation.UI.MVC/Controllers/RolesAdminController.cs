@@ -16,47 +16,20 @@ namespace SoT.Presentation.UI.MVC.Controllers
     [Authorize(Roles = "Admin")]
     public class RolesAdminController : Controller
     {
-        public RolesAdminController()
-        {
-        }
+        private readonly ApplicationUserManager userManager;
+        private readonly ApplicationRoleManager roleManager;
 
         public RolesAdminController(ApplicationUserManager userManager,
             ApplicationRoleManager roleManager)
         {
-            UserManager = userManager;
-            RoleManager = roleManager;
-        }
-
-        private ApplicationUserManager _userManager;
-        public ApplicationUserManager UserManager
-        {
-            get
-            {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-            set
-            {
-                _userManager = value;
-            }
-        }
-
-        private ApplicationRoleManager _roleManager;
-        public ApplicationRoleManager RoleManager
-        {
-            get
-            {
-                return _roleManager ?? HttpContext.GetOwinContext().Get<ApplicationRoleManager>();
-            }
-            private set
-            {
-                _roleManager = value;
-            }
+            this.userManager = userManager;
+            this.roleManager = roleManager;
         }
 
         // GET: /Roles/
         public ActionResult Index()
         {
-            return View(RoleManager.Roles);
+            return View(roleManager.Roles);
         }
 
         // GET: /Roles/Details/5
@@ -66,14 +39,14 @@ namespace SoT.Presentation.UI.MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var role = await RoleManager.FindByIdAsync(id);
+            var role = await roleManager.FindByIdAsync(id);
             // Get the list of Users in this Role
             var users = new List<ApplicationUser>();
 
             // Get the list of Users in this Role
-            foreach (var user in UserManager.Users.ToList())
+            foreach (var user in userManager.Users.ToList())
             {
-                if (await UserManager.IsInRoleAsync(user.Id, role.Name))
+                if (await userManager.IsInRoleAsync(user.Id, role.Name))
                 {
                     users.Add(user);
                 }
@@ -97,7 +70,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
             if (ModelState.IsValid)
             {
                 var role = new IdentityRole(roleViewModel.Name);
-                var roleresult = await RoleManager.CreateAsync(role);
+                var roleresult = await roleManager.CreateAsync(role);
                 if (!roleresult.Succeeded)
                 {
                     ModelState.AddModelError("", roleresult.Errors.First());
@@ -115,7 +88,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var role = await RoleManager.FindByIdAsync(id);
+            var role = await roleManager.FindByIdAsync(id);
             if (role == null)
             {
                 return HttpNotFound();
@@ -131,9 +104,9 @@ namespace SoT.Presentation.UI.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                var role = await RoleManager.FindByIdAsync(roleModel.Id);
+                var role = await roleManager.FindByIdAsync(roleModel.Id);
                 role.Name = roleModel.Name;
-                await RoleManager.UpdateAsync(role);
+                await roleManager.UpdateAsync(role);
                 return RedirectToAction(nameof(Index));
             }
             return View();
@@ -146,7 +119,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var role = await RoleManager.FindByIdAsync(id);
+            var role = await roleManager.FindByIdAsync(id);
             if (role == null)
             {
                 return HttpNotFound();
@@ -165,7 +138,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
-                var role = await RoleManager.FindByIdAsync(id);
+                var role = await roleManager.FindByIdAsync(id);
                 if (role == null)
                 {
                     return HttpNotFound();
@@ -173,11 +146,11 @@ namespace SoT.Presentation.UI.MVC.Controllers
                 IdentityResult result;
                 if (deleteUser != null)
                 {
-                    result = await RoleManager.DeleteAsync(role);
+                    result = await roleManager.DeleteAsync(role);
                 }
                 else
                 {
-                    result = await RoleManager.DeleteAsync(role);
+                    result = await roleManager.DeleteAsync(role);
                 }
                 if (!result.Succeeded)
                 {

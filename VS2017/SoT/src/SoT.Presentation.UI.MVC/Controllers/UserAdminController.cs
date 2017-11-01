@@ -1,16 +1,12 @@
-﻿using Microsoft.AspNet.Identity.Owin;
-using SoT.Infra.CrossCutting.Identity;
+﻿using SoT.Infra.CrossCutting.Identity;
 using SoT.Infra.CrossCutting.Identity.Configuration;
 using SoT.Infra.CrossCutting.MvcFilters;
 using SoT.Presentation.UI.MVC.ViewModels.Account;
 using SoT.Presentation.UI.MVC.ViewModels.User;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 
 namespace SoT.Presentation.UI.MVC.Controllers
@@ -18,46 +14,19 @@ namespace SoT.Presentation.UI.MVC.Controllers
     [ClaimsAuthorize("AdmUsers", "True")]
     public class UsersAdminController : Controller
     {
-        public UsersAdminController()
-        {
-        }
+        private readonly ApplicationUserManager userManager;
+        private readonly ApplicationRoleManager roleManager;
 
         public UsersAdminController(ApplicationUserManager userManager, ApplicationRoleManager roleManager)
         {
-            UserManager = userManager;
-            RoleManager = roleManager;
-        }
-
-        private ApplicationUserManager _userManager;
-        public ApplicationUserManager UserManager
-        {
-            get
-            {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-            private set
-            {
-                _userManager = value;
-            }
-        }
-
-        private ApplicationRoleManager _roleManager;
-        public ApplicationRoleManager RoleManager
-        {
-            get
-            {
-                return _roleManager ?? HttpContext.GetOwinContext().Get<ApplicationRoleManager>();
-            }
-            private set
-            {
-                _roleManager = value;
-            }
+            this.userManager = userManager;
+            this.roleManager = roleManager;
         }
 
         // GET: /Users/
         public async Task<ActionResult> Index()
         {
-            return View(await UserManager.Users.ToListAsync());
+            return View(await userManager.Users.ToListAsync());
         }
 
         // GET: /Users/Details/5
@@ -67,10 +36,10 @@ namespace SoT.Presentation.UI.MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var user = await UserManager.FindByIdAsync(id);
+            var user = await userManager.FindByIdAsync(id);
 
-            ViewBag.RoleNames = await UserManager.GetRolesAsync(user.Id);
-            ViewBag.Claims = await UserManager.GetClaimsAsync(user.Id);
+            ViewBag.RoleNames = await userManager.GetRolesAsync(user.Id);
+            ViewBag.Claims = await userManager.GetClaimsAsync(user.Id);
 
             return View(user);
         }
@@ -79,7 +48,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
         public async Task<ActionResult> Create()
         {
             //Gets the list of Roles
-            ViewBag.RoleId = new SelectList(await RoleManager.Roles.ToListAsync(), "Name", "Name");
+            ViewBag.RoleId = new SelectList(await roleManager.Roles.ToListAsync(), "Name", "Name");
             return View();
         }
 
@@ -90,18 +59,18 @@ namespace SoT.Presentation.UI.MVC.Controllers
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = userViewModel.Email, Email = userViewModel.Email };
-                var adminresult = await UserManager.CreateAsync(user, userViewModel.Password);
+                var adminresult = await userManager.CreateAsync(user, userViewModel.Password);
 
                 //Add User to the selected Roles
                 if (adminresult.Succeeded)
                 {
                     if (selectedRoles != null)
                     {
-                        var result = await UserManager.AddToRolesAsync(user.Id, selectedRoles);
+                        var result = await userManager.AddToRolesAsync(user.Id, selectedRoles);
                         if (!result.Succeeded)
                         {
                             ModelState.AddModelError("", result.Errors.First());
-                            ViewBag.RoleId = new SelectList(await RoleManager.Roles.ToListAsync(), "Name", "Name");
+                            ViewBag.RoleId = new SelectList(await roleManager.Roles.ToListAsync(), "Name", "Name");
                             return View();
                         }
                     }
@@ -109,13 +78,13 @@ namespace SoT.Presentation.UI.MVC.Controllers
                 else
                 {
                     ModelState.AddModelError("", adminresult.Errors.First());
-                    ViewBag.RoleId = new SelectList(RoleManager.Roles, "Name", "Name");
+                    ViewBag.RoleId = new SelectList(roleManager.Roles, "Name", "Name");
                     return View();
 
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewBag.RoleId = new SelectList(RoleManager.Roles, "Name", "Name");
+            ViewBag.RoleId = new SelectList(roleManager.Roles, "Name", "Name");
             return View();
         }
 
@@ -126,19 +95,19 @@ namespace SoT.Presentation.UI.MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var user = await UserManager.FindByIdAsync(id);
+            var user = await userManager.FindByIdAsync(id);
             if (user == null)
             {
                 return HttpNotFound();
             }
 
-            var userRoles = await UserManager.GetRolesAsync(user.Id);
+            var userRoles = await userManager.GetRolesAsync(user.Id);
 
             return View(new EditUserViewModel
             {
                 Id = user.Id,
                 Email = user.Email,
-                RolesList = RoleManager.Roles.ToList().Select(x => new SelectListItem
+                RolesList = roleManager.Roles.ToList().Select(x => new SelectListItem
                 {
                     Selected = userRoles.Contains(x.Name),
                     Text = x.Name,
@@ -155,7 +124,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await UserManager.FindByIdAsync(editUser.Id);
+                var user = await userManager.FindByIdAsync(editUser.Id);
                 if (user == null)
                 {
                     return HttpNotFound();
@@ -164,11 +133,11 @@ namespace SoT.Presentation.UI.MVC.Controllers
                 user.UserName = editUser.Email;
                 user.Email = editUser.Email;
 
-                var userRoles = await UserManager.GetRolesAsync(user.Id);
+                var userRoles = await userManager.GetRolesAsync(user.Id);
 
                 selectedRole = selectedRole ?? new string[] { };
 
-                var result = await UserManager.AddToRolesAsync(user.Id,
+                var result = await userManager.AddToRolesAsync(user.Id,
                     selectedRole.Except(userRoles).ToArray<string>());
 
                 if (!result.Succeeded)
@@ -176,7 +145,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
                     ModelState.AddModelError("", result.Errors.First());
                     return View();
                 }
-                result = await UserManager.RemoveFromRolesAsync(user.Id,
+                result = await userManager.RemoveFromRolesAsync(user.Id,
                     userRoles.Except(selectedRole).ToArray<string>());
 
                 if (!result.Succeeded)
@@ -197,7 +166,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var user = await UserManager.FindByIdAsync(id);
+            var user = await userManager.FindByIdAsync(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -217,12 +186,12 @@ namespace SoT.Presentation.UI.MVC.Controllers
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
 
-                var user = await UserManager.FindByIdAsync(id);
+                var user = await userManager.FindByIdAsync(id);
                 if (user == null)
                 {
                     return HttpNotFound();
                 }
-                var result = await UserManager.DeleteAsync(user);
+                var result = await userManager.DeleteAsync(user);
                 if (!result.Succeeded)
                 {
                     ModelState.AddModelError("", result.Errors.First());

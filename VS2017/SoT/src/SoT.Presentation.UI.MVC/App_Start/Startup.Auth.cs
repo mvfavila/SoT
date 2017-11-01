@@ -41,7 +41,7 @@ namespace SoT.Presentation.UI.MVC
                     //    regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
 
                     OnValidateIdentity = ApplicationCookieIdentityValidator.OnValidateIdentity(
-                       validateInterval: TimeSpan.FromMinutes(0),
+                       validateInterval: TimeSpan.FromMinutes(15),
                        regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
                 }
             });

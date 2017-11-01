@@ -15,26 +15,11 @@ namespace SoT.Presentation.UI.MVC.Controllers
     [Authorize]
     public class ManageController : Controller
     {
-        public ManageController()
-        {
-        }
+        private ApplicationUserManager userManager;
 
         public ManageController(ApplicationUserManager userManager)
         {
-            UserManager = userManager;
-        }
-
-        private ApplicationUserManager _userManager;
-        public ApplicationUserManager UserManager
-        {
-            get
-            {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-            private set
-            {
-                _userManager = value;
-            }
+            this.userManager = userManager;
         }
 
         // GET: /Account/Index
@@ -52,9 +37,9 @@ namespace SoT.Presentation.UI.MVC.Controllers
             var model = new IndexViewModel
             {
                 HasPassword = HasPassword(),
-                PhoneNumber = await UserManager.GetPhoneNumberAsync(User.Identity.GetUserId()),
-                TwoFactor = await UserManager.GetTwoFactorEnabledAsync(User.Identity.GetUserId()),
-                Logins = await UserManager.GetLoginsAsync(User.Identity.GetUserId()),
+                PhoneNumber = await userManager.GetPhoneNumberAsync(User.Identity.GetUserId()),
+                TwoFactor = await userManager.GetTwoFactorEnabledAsync(User.Identity.GetUserId()),
+                Logins = await userManager.GetLoginsAsync(User.Identity.GetUserId()),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(
                     User.Identity.GetUserId())
             };
@@ -64,7 +49,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
         // GET: /Account/RemoveLogin
         public ActionResult RemoveLogin()
         {
-            var linkedAccounts = UserManager.GetLogins(User.Identity.GetUserId());
+            var linkedAccounts = userManager.GetLogins(User.Identity.GetUserId());
             ViewBag.ShowRemoveButton = HasPassword() || linkedAccounts.Count > 1;
             return View(linkedAccounts);
         }
@@ -75,11 +60,11 @@ namespace SoT.Presentation.UI.MVC.Controllers
         public async Task<ActionResult> RemoveLogin(string loginProvider, string providerKey)
         {
             ManageMessageId? message;
-            var result = await UserManager.RemoveLoginAsync(User.Identity.GetUserId(), new UserLoginInfo(loginProvider,
+            var result = await userManager.RemoveLoginAsync(User.Identity.GetUserId(), new UserLoginInfo(loginProvider,
                 providerKey));
             if (result.Succeeded)
             {
-                var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+                var user = await userManager.FindByIdAsync(User.Identity.GetUserId());
                 if (user != null)
                 {
                     await SignInAsync(user, isPersistent: false);
@@ -109,15 +94,15 @@ namespace SoT.Presentation.UI.MVC.Controllers
                 return View(model);
             }
             // Gerar um token e enviar
-            var code = await UserManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), model.Number);
-            if (UserManager.SmsService != null)
+            var code = await userManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), model.Number);
+            if (userManager.SmsService != null)
             {
                 var message = new IdentityMessage
                 {
                     Destination = model.Number,
                     Body = "The security code is: " + code
                 };
-                await UserManager.SmsService.SendAsync(message);
+                await userManager.SmsService.SendAsync(message);
             }
             return RedirectToAction(nameof(VerifyPhoneNumber), new { PhoneNumber = model.Number });
         }
@@ -144,8 +129,8 @@ namespace SoT.Presentation.UI.MVC.Controllers
         [HttpPost]
         public async Task<ActionResult> EnableTFA()
         {
-            await UserManager.SetTwoFactorEnabledAsync(User.Identity.GetUserId(), true);
-            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+            await userManager.SetTwoFactorEnabledAsync(User.Identity.GetUserId(), true);
+            var user = await userManager.FindByIdAsync(User.Identity.GetUserId());
             if (user != null)
             {
                 await SignInAsync(user, isPersistent: false);
@@ -157,8 +142,8 @@ namespace SoT.Presentation.UI.MVC.Controllers
         [HttpPost]
         public async Task<ActionResult> DisableTFA()
         {
-            await UserManager.SetTwoFactorEnabledAsync(User.Identity.GetUserId(), false);
-            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+            await userManager.SetTwoFactorEnabledAsync(User.Identity.GetUserId(), false);
+            var user = await userManager.FindByIdAsync(User.Identity.GetUserId());
             if (user != null)
             {
                 await SignInAsync(user, isPersistent: false);
@@ -171,7 +156,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
         {
             // This code allows you exercise the flow without actually sending codes
             // For production use please register a SMS provider in IdentityConfig and generate a code here.
-            var code = await UserManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), phoneNumber);
+            var code = await userManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), phoneNumber);
 
             ViewBag.Status = "DEMO: If the SMS does not arrive the security code is: ";
             ViewBag.CodigoAcesso = code;
@@ -190,11 +175,11 @@ namespace SoT.Presentation.UI.MVC.Controllers
             {
                 return View(model);
             }
-            var result = await UserManager.ChangePhoneNumberAsync(User.Identity.GetUserId(), model.PhoneNumber,
+            var result = await userManager.ChangePhoneNumberAsync(User.Identity.GetUserId(), model.PhoneNumber,
                 model.Code);
             if (result.Succeeded)
             {
-                var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+                var user = await userManager.FindByIdAsync(User.Identity.GetUserId());
                 if (user != null)
                 {
                     await SignInAsync(user, isPersistent: false);
@@ -209,12 +194,12 @@ namespace SoT.Presentation.UI.MVC.Controllers
         // GET: /Account/RemovePhoneNumber
         public async Task<ActionResult> RemovePhoneNumber()
         {
-            var result = await UserManager.SetPhoneNumberAsync(User.Identity.GetUserId(), null);
+            var result = await userManager.SetPhoneNumberAsync(User.Identity.GetUserId(), null);
             if (!result.Succeeded)
             {
                 return RedirectToAction(nameof(Index), new { Message = ManageMessageId.Error });
             }
-            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+            var user = await userManager.FindByIdAsync(User.Identity.GetUserId());
             if (user != null)
             {
                 await SignInAsync(user, isPersistent: false);
@@ -237,11 +222,11 @@ namespace SoT.Presentation.UI.MVC.Controllers
             {
                 return View(model);
             }
-            var result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword,
+            var result = await userManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword,
                 model.NewPassword);
             if (result.Succeeded)
             {
-                var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+                var user = await userManager.FindByIdAsync(User.Identity.GetUserId());
                 if (user != null)
                 {
                     await SignInAsync(user, isPersistent: false);
@@ -265,10 +250,10 @@ namespace SoT.Presentation.UI.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await UserManager.AddPasswordAsync(User.Identity.GetUserId(), model.NewPassword);
+                var result = await userManager.AddPasswordAsync(User.Identity.GetUserId(), model.NewPassword);
                 if (result.Succeeded)
                 {
-                    var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+                    var user = await userManager.FindByIdAsync(User.Identity.GetUserId());
                     if (user != null)
                     {
                         await SignInAsync(user, isPersistent: false);
@@ -289,12 +274,12 @@ namespace SoT.Presentation.UI.MVC.Controllers
                 message == ManageMessageId.RemoveLoginSuccess ? "The Login has been removed."
                 : message == ManageMessageId.Error ? "An erro has occurred."
                 : "";
-            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+            var user = await userManager.FindByIdAsync(User.Identity.GetUserId());
             if (user == null)
             {
                 return View("Error");
             }
-            var userLogins = await UserManager.GetLoginsAsync(User.Identity.GetUserId());
+            var userLogins = await userManager.GetLoginsAsync(User.Identity.GetUserId());
             var otherLogins = AuthenticationManager.GetExternalAuthenticationTypes()
                 .Where(auth => userLogins.All(ul => auth.AuthenticationType != ul.LoginProvider)).ToList();
             ViewBag.ShowRemoveButton = user.PasswordHash != null || userLogins.Count > 1;
@@ -323,7 +308,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
             {
                 return RedirectToAction(nameof(ManageLogins), new { Message = ManageMessageId.Error });
             }
-            var result = await UserManager.AddLoginAsync(User.Identity.GetUserId(), loginInfo.Login);
+            var result = await userManager.AddLoginAsync(User.Identity.GetUserId(), loginInfo.Login);
             return result.Succeeded ? RedirectToAction(nameof(ManageLogins)) : RedirectToAction(nameof(ManageLogins),
                 new { Message = ManageMessageId.Error });
         }
@@ -343,11 +328,11 @@ namespace SoT.Presentation.UI.MVC.Controllers
         private async Task SignInAsync(ApplicationUser user, bool isPersistent)
         {
             var clientKey = Request.Browser.Type;
-            await UserManager.SignInClientAsync(user, clientKey);
+            await userManager.SignInClientAsync(user, clientKey);
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie,
                 DefaultAuthenticationTypes.TwoFactorCookie);
             AuthenticationManager.SignIn(new AuthenticationProperties { IsPersistent = isPersistent },
-                await user.GenerateUserIdentityAsync(UserManager));
+                await user.GenerateUserIdentityAsync(userManager));
         }
 
         private void AddErrors(IdentityResult result)
@@ -360,7 +345,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
 
         private bool HasPassword()
         {
-            var user = UserManager.FindById(User.Identity.GetUserId());
+            var user = userManager.FindById(User.Identity.GetUserId());
             if (user != null)
             {
                 return user.PasswordHash != null;
@@ -370,7 +355,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
 
         private bool HasPhoneNumber()
         {
-            var user = UserManager.FindById(User.Identity.GetUserId());
+            var user = userManager.FindById(User.Identity.GetUserId());
             if (user != null)
             {
                 return user.PhoneNumber != null;

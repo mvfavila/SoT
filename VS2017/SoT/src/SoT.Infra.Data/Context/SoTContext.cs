@@ -11,7 +11,7 @@ namespace SoT.Infra.Data.Context
     /// <summary>
     /// Sum of This database context.
     /// </summary>
-    public class SoTContext : DbContext
+    public class SoTContext : BaseDbContext
     {
         /// <summary>
         /// Represents the standard max number of characters in a varchar column.
@@ -69,7 +69,7 @@ namespace SoT.Infra.Data.Context
 
             base.OnModelCreating(modelBuilder);
         }
- 
+
         /// <summary>
         /// Custom configuration added so all Date fields that represent the Date when the regiter<br/>
         /// was recorded in the Database receive a value and never be updated.

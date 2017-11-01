@@ -55,12 +55,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Context\BaseDbContext.cs" />
     <Compile Include="Context\ContextManager.cs" />
     <Compile Include="Context\SoTContext.cs" />
     <Compile Include="EntityConfig\AddressConfiguration.cs" />
     <Compile Include="EntityConfig\ExampleConfiguration.cs" />
     <Compile Include="EntityConfig\SubExampleConfiguration.cs" />
     <Compile Include="Interfaces\IContextManager.cs" />
+    <Compile Include="Interfaces\IDbContext.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="Migrations\201710200801589_Initial database.cs" />
     <Compile Include="Migrations\201710200801589_Initial database.Designer.cs">

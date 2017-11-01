@@ -16,36 +16,19 @@ namespace SoT.Presentation.UI.MVC.Controllers
     [ClaimsAuthorize("AdmClaims", "True")]
     public class ClaimsAdminController : Controller
     {
-        public ClaimsAdminController()
-        {
-        }
+        private readonly ApplicationUserManager userManager;
+        private readonly IdentityContext dbContext;
 
         public ClaimsAdminController(ApplicationUserManager userManager, IdentityContext dbContext)
         {
-            DbContext = dbContext;
-            UserManager = userManager;
-        }
-
-        private ApplicationUserManager _userManager;
-
-        public ApplicationUserManager UserManager
-        {
-            get { return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>(); }
-            set { _userManager = value; }
-        }
-
-        private IdentityContext _dbContext;
-
-        public IdentityContext DbContext
-        {
-            get { return _dbContext ?? HttpContext.GetOwinContext().GetUserManager<IdentityContext>(); }
-            set { _dbContext = value; }
+            this.dbContext = dbContext;
+            this.userManager = userManager;
         }
 
         // GET: ClaimsAdmin
         public ActionResult Index()
         {
-            return View(DbContext.Claims.ToList());
+            return View(dbContext.Claims.ToList());
         }
 
         // GET: ClaimsAdmin/SetUserClaim
@@ -53,12 +36,12 @@ namespace SoT.Presentation.UI.MVC.Controllers
         {
             ViewBag.Type = new SelectList
                 (
-                    DbContext.Claims.ToList(),
+                    dbContext.Claims.ToList(),
                     "Name",
                     "Name"
                 );
 
-            ViewBag.User = UserManager.FindById(id);
+            ViewBag.User = userManager.FindById(id);
 
             return View();
         }
@@ -69,7 +52,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
         {
             try
             {
-                UserManager.AddClaimAsync(id, new Claim(claim.Type, claim.Value));
+                userManager.AddClaimAsync(id, new Claim(claim.Type, claim.Value));
 
                 return RedirectToAction("Details", "UsersAdmin", new { id = id });
             }
@@ -93,8 +76,8 @@ namespace SoT.Presentation.UI.MVC.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    DbContext.Claims.Add(claim);
-                    DbContext.SaveChanges();
+                    dbContext.Claims.Add(claim);
+                    dbContext.SaveChanges();
                 }
 
                 return RedirectToAction(nameof(Index));

@@ -6,7 +6,7 @@ namespace SoT.Infra.CrossCutting.Identity.Context
     public class IdentityContext : IdentityDbContext<ApplicationUser>
     {
         public IdentityContext()
-            : base("ProjetoModelo", throwIfV1Schema: false)
+            : base("SumOfThisConnection", throwIfV1Schema: false)
         {
         }
 

@@ -15,42 +15,13 @@ namespace SoT.Presentation.UI.MVC.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        public AccountController()
-        {
-        }
+        private ApplicationSignInManager signInManager;
+        private ApplicationUserManager userManager;
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
-            UserManager = userManager;
-            SignInManager = signInManager;
-        }
-
-        // Definindo a instancia UserManager presente no request.
-        private ApplicationUserManager _userManager;
-        public ApplicationUserManager UserManager
-        {
-            get
-            {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-            private set
-            {
-                _userManager = value;
-            }
-        }
-
-        // Definindo a instancia SignInManager presente no request.
-        private ApplicationSignInManager _signInManager;
-        public ApplicationSignInManager SignInManager
-        {
-            get
-            {
-                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
-            }
-            private set
-            {
-                _signInManager = value;
-            }
+            this.userManager = userManager;
+            this.signInManager = signInManager;
         }
 
         // GET: /Account/Login
@@ -72,12 +43,12 @@ namespace SoT.Presentation.UI.MVC.Controllers
                 return View(model);
             }
 
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe,
+            var result = await signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe,
                 shouldLockout: true);
             switch (result)
             {
                 case SignInStatus.Success:
-                    var user = await UserManager.FindAsync(model.Email, model.Password);
+                    var user = await userManager.FindAsync(model.Email, model.Password);
                     if (!user.EmailConfirmed)
                     {
                         TempData["AvisoEmail"] = "User not confirmed. Please check your e-mail.";
@@ -97,9 +68,9 @@ namespace SoT.Presentation.UI.MVC.Controllers
         private async Task SignInAsync(ApplicationUser user, bool isPersistent)
         {
             var clientKey = Request.Browser.Type;
-            await UserManager.SignInClientAsync(user, clientKey);
+            await userManager.SignInClientAsync(user, clientKey);
             // Setting incorrect login attempt counter back to zero
-            await UserManager.ResetAccessFailedCountAsync(user.Id);
+            await userManager.ResetAccessFailedCountAsync(user.Id);
 
             // Collecting external claims
             var ext = await AuthenticationManager.GetExternalIdentityAsync(DefaultAuthenticationTypes.ExternalCookie);
@@ -110,7 +81,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
                 (
                     new AuthenticationProperties { IsPersistent = isPersistent },
                     // Creating Identity instance and setting claims
-                    await user.GenerateUserIdentityAsync(UserManager, ext)
+                    await user.GenerateUserIdentityAsync(userManager, ext)
                 );
         }
 
@@ -119,15 +90,15 @@ namespace SoT.Presentation.UI.MVC.Controllers
         public async Task<ActionResult> VerifyCode(string provider, string returnUrl, string userId)
         {
             // Requerys that the user has made um login using his password
-            if (!await SignInManager.HasBeenVerifiedAsync())
+            if (!await signInManager.HasBeenVerifiedAsync())
             {
                 return View("Error");
             }
-            var user = await UserManager.FindByIdAsync(await SignInManager.GetVerifiedUserIdAsync());
+            var user = await userManager.FindByIdAsync(await signInManager.GetVerifiedUserIdAsync());
             if (user != null)
             {
                 ViewBag.Status = "DEMO: In case the code has not arrived through " + provider + " the code is: ";
-                ViewBag.CodigoAcesso = await UserManager.GenerateTwoFactorTokenAsync(user.Id, provider);
+                ViewBag.CodigoAcesso = await userManager.GenerateTwoFactorTokenAsync(user.Id, provider);
             }
             return View(new VerifyCodeViewModel { Provider = provider, ReturnUrl = returnUrl, UserId = userId });
         }
@@ -143,12 +114,12 @@ namespace SoT.Presentation.UI.MVC.Controllers
                 return View(model);
             }
 
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: false,
+            var result = await signInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: false,
                 rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
-                    var user = UserManager.FindByIdAsync(model.UserId);
+                    var user = userManager.FindByIdAsync(model.UserId);
                     await SignInAsync(user.Result, false);
                     return RedirectToLocal(model.ReturnUrl);
                 case SignInStatus.LockedOut:
@@ -184,13 +155,13 @@ namespace SoT.Presentation.UI.MVC.Controllers
                     Gender = model.Gender,
                     BirthDate = model.BirthDate
                 };
-                var result = await UserManager.CreateAsync(user, model.Password);
+                var result = await userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    var code = await userManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     var callbackUrl = Url.Action(nameof(ConfirmEmail), "Account",
                         new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    await UserManager.SendEmailAsync(user.Id, "Confirm your account",
+                    await userManager.SendEmailAsync(user.Id, "Confirm your account",
                         "Please confirm your account by clicking here: <a href='" + callbackUrl + "'></a>");
                     ViewBag.Link = callbackUrl;
                     return View("DisplayEmail");
@@ -210,7 +181,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
             {
                 return View("Error");
             }
-            var result = await UserManager.ConfirmEmailAsync(userId, code);
+            var result = await userManager.ConfirmEmailAsync(userId, code);
             return View(result.Succeeded ? nameof(ConfirmEmail) : "Error");
         }
 
@@ -229,17 +200,17 @@ namespace SoT.Presentation.UI.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await UserManager.FindByNameAsync(model.Email);
-                if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
+                var user = await userManager.FindByNameAsync(model.Email);
+                if (user == null || !(await userManager.IsEmailConfirmedAsync(user.Id)))
                 {
                     // Não revelar se o usuario nao existe ou nao esta confirmado
                     return View(nameof(ForgotPasswordConfirmation));
                 }
 
-                var code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                var code = await userManager.GeneratePasswordResetTokenAsync(user.Id);
                 var callbackUrl = Url.Action(nameof(ResetPassword), "Account",
                     new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                await UserManager.SendEmailAsync(user.Id, "Forgot my password",
+                await userManager.SendEmailAsync(user.Id, "Forgot my password",
                     "Please change your password by clicking here: <a href='" + callbackUrl + "'></a>");
                 ViewBag.Link = callbackUrl;
                 ViewBag.Status = "DEMO: In case the link does not arrive: ";
@@ -275,13 +246,13 @@ namespace SoT.Presentation.UI.MVC.Controllers
             {
                 return View(model);
             }
-            var user = await UserManager.FindByNameAsync(model.Email);
+            var user = await userManager.FindByNameAsync(model.Email);
             if (user == null)
             {
                 // Do not show if the user exists or is not confirmed
                 return RedirectToAction(nameof(ResetPasswordConfirmation), "Account");
             }
-            var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
+            var result = await userManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
             if (result.Succeeded)
             {
                 return RedirectToAction(nameof(ResetPasswordConfirmation), "Account");
@@ -312,12 +283,12 @@ namespace SoT.Presentation.UI.MVC.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> SendCode(string returnUrl)
         {
-            var userId = await SignInManager.GetVerifiedUserIdAsync();
+            var userId = await signInManager.GetVerifiedUserIdAsync();
             if (userId == null)
             {
                 return View("Error");
             }
-            var userFactors = await UserManager.GetValidTwoFactorProvidersAsync(userId);
+            var userFactors = await userManager.GetValidTwoFactorProvidersAsync(userId);
             var factorOptions = userFactors.Select(purpose => new SelectListItem { Text = purpose, Value = purpose })
                 .ToList();
             return View(new SendCodeViewModel { Providers = factorOptions, ReturnUrl = returnUrl, UserId = userId });
@@ -335,7 +306,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
             }
 
             // Generates and sends the token
-            if (!await SignInManager.SendTwoFactorCodeAsync(model.SelectedProvider))
+            if (!await signInManager.SendTwoFactorCodeAsync(model.SelectedProvider))
             {
                 return View("Error");
             }
@@ -353,15 +324,15 @@ namespace SoT.Presentation.UI.MVC.Controllers
                 return RedirectToAction(nameof(Login));
             }
 
-            var user = await UserManager.FindAsync(loginInfo.Login);
+            var user = await userManager.FindAsync(loginInfo.Login);
 
             // Creates a log entry if an external login exists and the user is already logged on this login provider
-            var result = await SignInManager.ExternalSignInAsync(loginInfo, isPersistent: false);
+            var result = await signInManager.ExternalSignInAsync(loginInfo, isPersistent: false);
 
             switch (result)
             {
                 case SignInStatus.Success:
-                    var userext = UserManager.FindByEmailAsync(user.Email);
+                    var userext = userManager.FindByEmailAsync(user.Email);
                     await SignInAsync(userext.Result, false);
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
@@ -410,14 +381,14 @@ namespace SoT.Presentation.UI.MVC.Controllers
                     return View(nameof(ExternalLoginFailure));
                 }
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user);
+                var result = await userManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
-                    result = await UserManager.AddLoginAsync(user.Id, info.Login);
+                    result = await userManager.AddLoginAsync(user.Id, info.Login);
                     if (result.Succeeded)
                     {
-                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                        var userext = UserManager.FindByEmailAsync(model.Email);
+                        await signInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                        var userext = userManager.FindByEmailAsync(model.Email);
                         await SignInAsync(userext.Result, false);
                         return RedirectToLocal(returnUrl);
                     }
@@ -508,8 +479,8 @@ namespace SoT.Presentation.UI.MVC.Controllers
         private async Task SignOutAsync()
         {
             var clientKey = Request.Browser.Type;
-            var user = UserManager.FindById(User.Identity.GetUserId());
-            await UserManager.SignOutClientAsync(user, clientKey);
+            var user = userManager.FindById(User.Identity.GetUserId());
+            await userManager.SignOutClientAsync(user, clientKey);
             AuthenticationManager.SignOut();
         }
 
@@ -517,7 +488,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> SignOutEverywhere()
         {
-            UserManager.UpdateSecurityStamp(User.Identity.GetUserId());
+            userManager.UpdateSecurityStamp(User.Identity.GetUserId());
             await SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
@@ -526,14 +497,34 @@ namespace SoT.Presentation.UI.MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult SignOutClient(int clientId)
         {
-            var user = UserManager.FindById(User.Identity.GetUserId());
+            var user = userManager.FindById(User.Identity.GetUserId());
             var client = user.Clients.SingleOrDefault(c => c.Id == clientId);
             if (client != null)
             {
                 user.Clients.Remove(client);
             }
-            UserManager.Update(user);
+            userManager.Update(user);
             return RedirectToAction("Index", "Home");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (userManager != null)
+                {
+                    userManager.Dispose();
+                    userManager = null;
+                }
+
+                if (signInManager != null)
+                {
+                    signInManager.Dispose();
+                    signInManager = null;
+                }
+            }
+
+            base.Dispose(disposing);
         }
     }
 }
