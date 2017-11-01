@@ -1,4 +1,7 @@
-﻿using System;
+﻿using SoT.Domain.Interfaces.Validation;
+using SoT.Domain.Validation.City;
+using SoT.Domain.ValueObjects;
+using System;
 
 namespace SoT.Domain.Entities
 {
@@ -6,7 +9,7 @@ namespace SoT.Domain.Entities
     /// Represents the City where the Adventure takes place.<br/>
     /// e.g. Lisbon, Rome, Berlin.
     /// </summary>
-    public class City
+    public class City : ISelfValidator
     {
         /// <summary>
         /// Class constructor.
@@ -46,6 +49,23 @@ namespace SoT.Domain.Entities
         /// <see cref="Country"/> attached to the City.
         /// </summary>
         public virtual Country Country { get; private set; }
+
+        /// <summary>
+        /// See <see cref="ValueObjects.ValidationResult"/>.
+        /// </summary>
+        public ValidationResult ValidationResult { get; private set; }
+
+        /// <summary>
+        /// See <see cref="ISelfValidator.IsValid"/>.
+        /// </summary>
+        /// <returns>See <see cref="ISelfValidator.IsValid"/>.</returns>
+        public bool IsValid()
+        {
+            var validation = new CityIsVerifiedForRegistration();
+            ValidationResult = validation.Validate(this);
+
+            return ValidationResult.IsValid;
+        }
 
         /// <summary>
         /// Factory used when a new City is being added to the database context.
