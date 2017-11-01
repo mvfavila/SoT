@@ -69,6 +69,7 @@
     <Compile Include="Validation\City\CityIsVerifiedForRegistration.cs" />
     <Compile Include="Validation\Example\ExampleIsVerifiedForDatabaseRegistration.cs" />
     <Compile Include="Validation\Example\ExampleIsVerifiedForRegistration.cs" />
+    <Compile Include="Validation\Region\RegionIsVerifiedForRegistration.cs" />
     <Compile Include="Validation\Rule.cs" />
     <Compile Include="Validation\SubExample\SubExampleIsVerifiedForRegistration.cs" />
     <Compile Include="ValueObjects\SubExamplesExample.cs" />

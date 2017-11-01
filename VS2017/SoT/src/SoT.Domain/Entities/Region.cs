@@ -1,4 +1,7 @@
-﻿using System;
+﻿using SoT.Domain.Interfaces.Validation;
+using SoT.Domain.Validation.Region;
+using SoT.Domain.ValueObjects;
+using System;
 using System.Collections.Generic;
 
 namespace SoT.Domain.Entities
@@ -7,7 +10,7 @@ namespace SoT.Domain.Entities
     /// Represents the region where the Adventure takes place.<br/>
     /// e.g. East Europe.
     /// </summary>
-    public class Region
+    public class Region : ISelfValidator
     {
         /// <summary>
         /// Class constructor.
@@ -55,10 +58,27 @@ namespace SoT.Domain.Entities
         public virtual IEnumerable<Country> Countries { get; private set; }
 
         /// <summary>
+        /// See <see cref="ValueObjects.ValidationResult"/>.
+        /// </summary>
+        public ValidationResult ValidationResult { get; private set; }
+
+        /// <summary>
+        /// See <see cref="ISelfValidator.IsValid"/>.
+        /// </summary>
+        /// <returns>See <see cref="ISelfValidator.IsValid"/>.</returns>
+        public bool IsValid()
+        {
+            var validation = new RegionIsVerifiedForRegistration();
+            ValidationResult = validation.Validate(this);
+
+            return ValidationResult.IsValid;
+        }
+
+        /// <summary>
         /// Factory used when a new Region is being added to the database context.
         /// </summary>
         /// <param name="name">Name of the Region.</param>
-        /// <param name="ContinentId">Unique id of the <see cref="Entities.Continent"/> where the Region is located.
+        /// <param name="continentId">Unique id of the <see cref="Entities.Continent"/> where the Region is located.
         /// </param>
         /// <returns>See <see cref="Region"/>.</returns>
         public static Region FactoryAdd(string name, Guid continentId)
