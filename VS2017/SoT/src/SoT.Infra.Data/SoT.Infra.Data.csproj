@@ -64,6 +64,7 @@
     <Compile Include="EntityConfig\ContinentConfiguration.cs" />
     <Compile Include="EntityConfig\ElementConfiguration.cs" />
     <Compile Include="EntityConfig\ExampleConfiguration.cs" />
+    <Compile Include="EntityConfig\RegionConfiguration.cs" />
     <Compile Include="EntityConfig\SubExampleConfiguration.cs" />
     <Compile Include="Interfaces\IContextManager.cs" />
     <Compile Include="Interfaces\IDbContext.cs" />
