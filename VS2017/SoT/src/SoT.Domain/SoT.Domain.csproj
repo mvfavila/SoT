@@ -71,6 +71,7 @@
     <Compile Include="Validation\Country\CountryIsVerifiedForRegistration.cs" />
     <Compile Include="Validation\Example\ExampleIsVerifiedForDatabaseRegistration.cs" />
     <Compile Include="Validation\Example\ExampleIsVerifiedForRegistration.cs" />
+    <Compile Include="Validation\Provider\ProviderIsVerifiedForRegistration.cs" />
     <Compile Include="Validation\Region\RegionIsVerifiedForRegistration.cs" />
     <Compile Include="Validation\Rule.cs" />
     <Compile Include="Validation\SubExample\SubExampleIsVerifiedForRegistration.cs" />
