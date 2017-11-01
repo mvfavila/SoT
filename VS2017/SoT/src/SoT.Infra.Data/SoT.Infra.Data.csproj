@@ -62,6 +62,7 @@
     <Compile Include="EntityConfig\CategoryConfiguration.cs" />
     <Compile Include="EntityConfig\CityConfiguration.cs" />
     <Compile Include="EntityConfig\ContinentConfiguration.cs" />
+    <Compile Include="EntityConfig\CountryConfiguration.cs" />
     <Compile Include="EntityConfig\ElementConfiguration.cs" />
     <Compile Include="EntityConfig\ExampleConfiguration.cs" />
     <Compile Include="EntityConfig\RegionConfiguration.cs" />
