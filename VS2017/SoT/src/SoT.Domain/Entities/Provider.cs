@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace SoT.Domain.Entities
 {
@@ -19,6 +20,7 @@ namespace SoT.Domain.Entities
             ProviderId = Guid.NewGuid();
             Email = email;
             Name = name;
+            CompanyName = companyName;
             Active = active;
         }
 
@@ -43,6 +45,11 @@ namespace SoT.Domain.Entities
         public string CompanyName { get; private set; }
 
         /// <summary>
+        /// Collection of <see cref="Adventure"/> attached to the Provider.
+        /// </summary>
+        public virtual IEnumerable<Adventure> Adventures { get; private set; }
+
+        /// <summary>
         /// Informs if the Provider is active in SoT system.
         /// </summary>
         public bool Active { get; private set; }
@@ -54,7 +61,7 @@ namespace SoT.Domain.Entities
         /// <param name="name">Adventure Provider's name.</param>
         /// <param name="companyName">Adventure Provider's company name.</param>
         /// <returns>See <see cref="Provider"/>.</returns>
-        public Provider FactoryAdd(string email, string name, string companyName)
+        public static Provider FactoryAdd(string email, string name, string companyName)
         {
             const bool ACVTIVE = true;
             return new Provider(email, name, companyName, ACVTIVE);

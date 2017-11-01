@@ -17,9 +17,10 @@ namespace SoT.Domain.Entities
         /// <param name="addressId">Unique id of the <see cref="Entities.Address"/> where the Adventure takes place or
         /// where it starts from.</param>
         /// <param name="insurenceMinimalAmount">Minimal insurence value required by the Adventure Provider.</param>
+        /// <param name="providerId">Unique id of the Adventure's <see cref="Entities.Provider"/>.</param>
         /// <param name="active">Informs if the Adventure is active in SoT system.</param>
         private Adventure(string name, Guid categoryId, Guid cityId, Guid addressId, decimal? insurenceMinimalAmount,
-            bool active)
+            Guid providerId, bool active)
         {
             AdventureId = Guid.NewGuid();
             Name = name;
@@ -27,6 +28,7 @@ namespace SoT.Domain.Entities
             CityId = cityId;
             AddressId = addressId;
             InsurenceMinimalAmount = insurenceMinimalAmount;
+            ProviderId = providerId;
             Active = active;
         }
 
@@ -75,6 +77,16 @@ namespace SoT.Domain.Entities
         /// </summary>
         public decimal? InsurenceMinimalAmount { get; private set; }
 
+        /// <summary>
+        /// Unique id of the Adventure's <see cref="Entities.Provider"/>.
+        /// </summary>
+        public Guid ProviderId { get; private set; }
+
+        /// <summary>
+        /// <see cref="Provider"/> attached to the Adventure.
+        /// </summary>
+        public virtual Provider Provider { get; private set; }
+
         //TODO: add calendar
 
         /// <summary>
@@ -91,12 +103,13 @@ namespace SoT.Domain.Entities
         /// <param name="addressId">Unique id of the <see cref="Entities.Address"/> where the Adventure takes place or
         /// where it starts from.</param>
         /// <param name="insurenceMinimalAmount">Minimal insurence value required by the Adventure Provider.</param>
+        /// <param name="providerId">Unique id of the Adventure's <see cref="Entities.Provider"/>.</param>
         /// <returns>See <see cref="Adventure"/>.</returns>
         public static Adventure FactoryAdd(string name, Guid categoryId, Guid cityId, Guid addressId,
-            decimal? insurenceMinimalAmount)
+            decimal? insurenceMinimalAmount, Guid providerId)
         {
             const bool ACVTIVE = true;
-            return new Adventure(name, categoryId, cityId, addressId, insurenceMinimalAmount, ACVTIVE);
+            return new Adventure(name, categoryId, cityId, addressId, insurenceMinimalAmount, providerId, ACVTIVE);
         }
     }
 }
