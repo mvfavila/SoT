@@ -40,6 +40,8 @@ namespace SoT.Infra.Data.Context
         public DbSet<City> Cities { get; set; }
         public DbSet<Region> Regions { get; set; }
         public DbSet<Continent> Continents { get; set; }
+        public DbSet<Adventure> Adventures { get; set; }
+        public DbSet<Provider> Providers { get; set; }
 
         /// <summary>
         /// Custom configuration of the Entity Framework model creation.
