@@ -10,7 +10,8 @@ namespace SoT.Infra.Data.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            // TODO: set to false before launch
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(Context.SoTContext context)
