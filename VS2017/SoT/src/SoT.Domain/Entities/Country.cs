@@ -1,4 +1,7 @@
-﻿using System;
+﻿using SoT.Domain.Interfaces.Validation;
+using SoT.Domain.Validation.Country;
+using SoT.Domain.ValueObjects;
+using System;
 using System.Collections.Generic;
 
 namespace SoT.Domain.Entities
@@ -7,7 +10,7 @@ namespace SoT.Domain.Entities
     /// Represents the Country where the Adventure takes place.<br/>
     /// e.g. Portugal, Spain, Germany.
     /// </summary>
-    public class Country
+    public class Country : ISelfValidator
     {
         /// <summary>
         /// Class constructor.
@@ -52,6 +55,23 @@ namespace SoT.Domain.Entities
         /// Collection of <see cref="City"/> attached to the Country.
         /// </summary>
         public virtual IEnumerable<City> Cities { get; private set; }
+
+        /// <summary>
+        /// See <see cref="ValueObjects.ValidationResult"/>.
+        /// </summary>
+        public ValidationResult ValidationResult { get; private set; }
+
+        /// <summary>
+        /// See <see cref="ISelfValidator.IsValid"/>.
+        /// </summary>
+        /// <returns>See <see cref="ISelfValidator.IsValid"/>.</returns>
+        public bool IsValid()
+        {
+            var validation = new CountryIsVerifiedForRegistration();
+            ValidationResult = validation.Validate(this);
+
+            return ValidationResult.IsValid;
+        }
 
         /// <summary>
         /// Factory used when a new Country is being added to the database context.
