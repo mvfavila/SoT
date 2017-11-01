@@ -3,11 +3,11 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace SoT.Infra.Data.EntityConfig
 {
-    public class CategoryConfiguration : EntityTypeConfiguration<Category>
+    public class CityConfiguration : EntityTypeConfiguration<City>
     {
-        public CategoryConfiguration()
+        public CityConfiguration()
         {
-            HasKey(c => c.CategoryId);
+            HasKey(c => c.CityId);
 
             Property(c => c.Name)
                 .HasMaxLength(100)
@@ -16,9 +16,9 @@ namespace SoT.Infra.Data.EntityConfig
             Property(c => c.Active)
                 .IsRequired();
 
-            HasRequired(c => c.Element)
+            HasRequired(c => c.Country)
                 .WithMany()
-                .HasForeignKey(c => c.ElementId);
+                .HasForeignKey(c => c.CountryId);
 
             Ignore(c => c.ValidationResult);
         }

@@ -60,6 +60,7 @@
     <Compile Include="Context\SoTContext.cs" />
     <Compile Include="EntityConfig\AddressConfiguration.cs" />
     <Compile Include="EntityConfig\CategoryConfiguration.cs" />
+    <Compile Include="EntityConfig\CityConfiguration.cs" />
     <Compile Include="EntityConfig\ElementConfiguration.cs" />
     <Compile Include="EntityConfig\ExampleConfiguration.cs" />
     <Compile Include="EntityConfig\SubExampleConfiguration.cs" />
