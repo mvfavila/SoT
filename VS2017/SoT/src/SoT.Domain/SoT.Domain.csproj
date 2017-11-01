@@ -64,6 +64,7 @@
     <Compile Include="Specification\Example\ExampleIsUniqueEntrySpecification.cs" />
     <Compile Include="Specification\SubExample\SubExampleHasPositiveCalculatedPropertyNameSpecification.cs" />
     <Compile Include="Validation\AddressIsVerified.cs" />
+    <Compile Include="Validation\Adventure\AdventureIsVerifiedForRegistration.cs" />
     <Compile Include="Validation\Base\BaseSupervisor.cs" />
     <Compile Include="Validation\Category\CategoryIsVerifiedForRegistration.cs" />
     <Compile Include="Validation\City\CityIsVerifiedForRegistration.cs" />

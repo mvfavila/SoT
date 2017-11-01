@@ -1,4 +1,7 @@
-﻿using System;
+﻿using SoT.Domain.Interfaces.Validation;
+using SoT.Domain.Validation.Adventure;
+using SoT.Domain.ValueObjects;
+using System;
 
 namespace SoT.Domain.Entities
 {
@@ -6,7 +9,7 @@ namespace SoT.Domain.Entities
     /// Represents the Adventure. The activity offered by a provider.<br/>
     /// e.g. Kayking in Lisbon, Sky Diving in Paris.
     /// </summary>
-    public class Adventure
+    public class Adventure : ISelfValidator
     {
         /// <summary>
         /// Class constructor.
@@ -93,6 +96,23 @@ namespace SoT.Domain.Entities
         /// Informs if the Adventure is active in SoT system.
         /// </summary>
         public bool Active { get; private set; }
+
+        /// <summary>
+        /// See <see cref="ValueObjects.ValidationResult"/>.
+        /// </summary>
+        public ValidationResult ValidationResult { get; private set; }
+
+        /// <summary>
+        /// See <see cref="ISelfValidator.IsValid"/>.
+        /// </summary>
+        /// <returns>See <see cref="ISelfValidator.IsValid"/>.</returns>
+        public bool IsValid()
+        {
+            var validation = new AdventureIsVerifiedForRegistration();
+            ValidationResult = validation.Validate(this);
+
+            return ValidationResult.IsValid;
+        }
 
         /// <summary>
         /// Factory used when a new Adventure is being added to the database context.
