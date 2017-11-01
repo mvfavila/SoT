@@ -44,10 +44,13 @@
     <Compile Include="Entities\City.cs" />
     <Compile Include="Entities\Provider.cs" />
     <Compile Include="Entities\Region.cs" />
+    <Compile Include="Entities\User.cs" />
     <Compile Include="Interfaces\Repository\IBaseRepository.cs" />
     <Compile Include="Interfaces\Repository\IExampleRepository.cs" />
     <Compile Include="Interfaces\Repository\ISubExampleRepository.cs" />
+    <Compile Include="Interfaces\Repository\IUserRepository.cs" />
     <Compile Include="Interfaces\Repository\ReadOnly\IExampleReadOnlyRepository.cs" />
+    <Compile Include="Interfaces\Repository\ReadOnly\IUserReadOnlyRepository.cs" />
     <Compile Include="Interfaces\Services\IExampleService.cs" />
     <Compile Include="Interfaces\Services\ISubExampleService.cs" />
     <Compile Include="Interfaces\Specification\ISpecification.cs" />
