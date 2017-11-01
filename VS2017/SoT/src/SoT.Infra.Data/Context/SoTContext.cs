@@ -67,6 +67,16 @@ namespace SoT.Infra.Data.Context
             modelBuilder.Configurations.Add(new ExampleConfiguration());
             modelBuilder.Configurations.Add(new SubExampleConfiguration());
 
+            modelBuilder.Configurations.Add(new AddressConfiguration());
+            modelBuilder.Configurations.Add(new AdventureConfiguration());
+            modelBuilder.Configurations.Add(new CategoryConfiguration());
+            modelBuilder.Configurations.Add(new CityConfiguration());
+            modelBuilder.Configurations.Add(new ContinentConfiguration());
+            modelBuilder.Configurations.Add(new CountryConfiguration());
+            modelBuilder.Configurations.Add(new ElementConfiguration());
+            modelBuilder.Configurations.Add(new ProviderConfiguration());
+            modelBuilder.Configurations.Add(new RegionConfiguration());
+
             base.OnModelCreating(modelBuilder);
         }
 

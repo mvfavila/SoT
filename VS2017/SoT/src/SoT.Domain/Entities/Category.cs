@@ -14,6 +14,11 @@ namespace SoT.Domain.Entities
         /// <summary>
         /// Class constructor.
         /// </summary>
+        private Category() { }
+
+        /// <summary>
+        /// Class constructor.
+        /// </summary>
         /// <param name="name">Name of the Category.</param>
         /// <param name="active">Informs if the Element is active in SoT system.</param>
         /// <param name="elementId">Unique id of the <see cref="Entities.Element"/> attached to the Category.</param>

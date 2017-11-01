@@ -15,6 +15,11 @@ namespace SoT.Domain.Entities
         /// <summary>
         /// Class constructor.
         /// </summary>
+        private Country() { }
+
+        /// <summary>
+        /// Class constructor.
+        /// </summary>
         /// <param name="name">Name of the Country.</param>
         /// <param name="active">Informs if the Country is active in SoT system.</param>
         /// <param name="elementId">Unique id of the <see cref="Entities.Region"/> attached to the Country.</param>

@@ -14,6 +14,11 @@ namespace SoT.Domain.Entities
         /// <summary>
         /// Class constructor.
         /// </summary>
+        private Address() { }
+
+        /// <summary>
+        /// Class constructor.
+        /// </summary>
         /// <param name="street01">Street's Address.</param>
         /// <param name="complement">Street's Address' Complement.</param>
         /// <param name="postcode">Address' Postcode.</param>

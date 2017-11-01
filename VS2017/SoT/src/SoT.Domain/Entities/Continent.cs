@@ -12,6 +12,11 @@ namespace SoT.Domain.Entities
         /// <summary>
         /// Class constructor.
         /// </summary>
+        private Continent() { }
+
+        /// <summary>
+        /// Class constructor.
+        /// </summary>
         /// <param name="name">Name fo the Continent.</param>
         /// <param name="active">Informs if the Continent is active in SoT system.</param>
         private Continent(string name, bool active)

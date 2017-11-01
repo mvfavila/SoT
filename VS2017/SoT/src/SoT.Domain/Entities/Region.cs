@@ -15,6 +15,11 @@ namespace SoT.Domain.Entities
         /// <summary>
         /// Class constructor.
         /// </summary>
+        private Region() { }
+
+        /// <summary>
+        /// Class constructor.
+        /// </summary>
         /// <param name="name">Name of the Region.</param>
         /// <param name="active">Informs if the Region is active in SoT system.</param>
         /// <param name="continentId">Unique id of the <see cref="Entities.Continent"/> where the Region is located.

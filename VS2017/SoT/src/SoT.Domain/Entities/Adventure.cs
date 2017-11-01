@@ -14,6 +14,11 @@ namespace SoT.Domain.Entities
         /// <summary>
         /// Class constructor.
         /// </summary>
+        private Adventure() { }
+
+        /// <summary>
+        /// Class constructor.
+        /// </summary>
         /// <param name="name">Name fo the Adventure.</param>
         /// <param name="categoryId">Unique id of the Adventure <see cref="Entities.Category"/>.</param>
         /// <param name="cityId">Unique id of the <see cref="Entities.City"/> where the Adventure takes place.</param>

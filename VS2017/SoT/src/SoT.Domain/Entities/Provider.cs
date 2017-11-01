@@ -14,6 +14,11 @@ namespace SoT.Domain.Entities
         /// <summary>
         /// Class constructor.
         /// </summary>
+        private Provider() { }
+
+        /// <summary>
+        /// Class constructor.
+        /// </summary>
         /// <param name="email">Adventure Provider's unique e-mail/login.</param>
         /// <param name="name">Adventure Provider's name.</param>
         /// <param name="companyName">Adventure Provider's company name.</param>

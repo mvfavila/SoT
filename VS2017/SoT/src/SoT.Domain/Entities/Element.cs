@@ -12,6 +12,11 @@ namespace SoT.Domain.Entities
         /// <summary>
         /// Class constructor.
         /// </summary>
+        private Element() { }
+
+        /// <summary>
+        /// Class constructor.
+        /// </summary>
         /// <param name="name">Name of the Element.</param>
         /// <param name="active">Informs if the Element is active in SoT system.</param>
         private Element(string name, bool active)

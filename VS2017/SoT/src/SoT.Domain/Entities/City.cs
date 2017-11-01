@@ -14,6 +14,11 @@ namespace SoT.Domain.Entities
         /// <summary>
         /// Class constructor.
         /// </summary>
+        private City() { }
+
+        /// <summary>
+        /// Class constructor.
+        /// </summary>
         /// <param name="name">Name fo the City.</param>
         /// <param name="active">Informs if the City is active in SoT system.</param>
         /// <param name="countryId">Unique id of the <see cref="Entities.Country"/> where the City is located.</param>
