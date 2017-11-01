@@ -1,4 +1,7 @@
-﻿using System;
+﻿using SoT.Domain.Interfaces.Validation;
+using SoT.Domain.Validation.Category;
+using SoT.Domain.ValueObjects;
+using System;
 
 namespace SoT.Domain.Entities
 {
@@ -6,7 +9,7 @@ namespace SoT.Domain.Entities
     /// Represents the Category of a set of Adventures.<br/>
     /// e.g. Kayaking, Sky diving, Parachuting.
     /// </summary>
-    public class Category
+    public class Category : ISelfValidator
     {
         /// <summary>
         /// Class constructor.
@@ -46,6 +49,23 @@ namespace SoT.Domain.Entities
         /// <see cref="Entities.Element"/> attached to the Category.
         /// </summary>
         public virtual Element Element { get; private set; }
+
+        /// <summary>
+        /// See <see cref="SoT.Domain.ValueObjects.ValidationResult"/>.
+        /// </summary>
+        public ValidationResult ValidationResult { get; private set; }
+
+        /// <summary>
+        /// See <see cref="ISelfValidator.IsValid"/>.
+        /// </summary>
+        /// <returns>See <see cref="ISelfValidator.IsValid"/>.</returns>
+        public bool IsValid()
+        {
+            var validation = new CategoryIsVerifiedForRegistration();
+            ValidationResult = validation.Validate(this);
+
+            return ValidationResult.IsValid;
+        }
 
         /// <summary>
         /// Factory used when a new Category is being added to the database context.
