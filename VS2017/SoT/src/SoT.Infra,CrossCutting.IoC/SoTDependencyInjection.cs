@@ -46,6 +46,9 @@ namespace SoT.Infra.CrossCutting.IoC
             container.Register<ApplicationUserManager>(Lifestyle.Scoped);
             container.Register<ApplicationSignInManager>(Lifestyle.Scoped);
 
+            container.Register<IClaimReadOnlyRepository, ClaimReadOnlyRepository>(Lifestyle.Scoped);
+            container.Register<IClaimRepository, ClaimRepository>(Lifestyle.Scoped);
+            container.Register<IClaimService, ClaimService>(Lifestyle.Scoped);
             container.Register<IClaimAppService, ClaimAppService>(Lifestyle.Scoped);
         }
     }
