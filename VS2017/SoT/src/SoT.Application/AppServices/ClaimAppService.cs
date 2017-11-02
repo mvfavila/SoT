@@ -27,11 +27,6 @@ namespace SoT.Application.AppServices
             throw new NotImplementedException();
         }
 
-        public void Dispose()
-        {
-            throw new NotImplementedException();
-        }
-
         public IEnumerable<ClaimViewModel> GetActive()
         {
             throw new NotImplementedException();
@@ -50,6 +45,11 @@ namespace SoT.Application.AppServices
         public void Update(ClaimViewModel claimViewModel)
         {
             throw new NotImplementedException();
+        }
+
+        public void Dispose()
+        {
+            GC.SuppressFinalize(this);
         }
     }
 }
