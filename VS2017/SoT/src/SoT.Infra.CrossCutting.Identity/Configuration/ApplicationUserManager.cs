@@ -2,7 +2,7 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
-using SoT.Infra.Data.Context;
+using SoT.Infra.CrossCutting.Identity.Context;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,7 +19,7 @@ namespace SoT.Infra.CrossCutting.Identity.Configuration
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options,
             IOwinContext context)
         {
-            var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<IdentityContext>()));
+            var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<AppDbContext>()));
 
             // Configuring validator for username
             manager.UserValidator = new UserValidator<ApplicationUser>(manager)

@@ -2,7 +2,7 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
-using SoT.Infra.Data.Context;
+using SoT.Infra.CrossCutting.Identity.Context;
 
 namespace SoT.Infra.CrossCutting.Identity.Configuration
 {
@@ -14,7 +14,7 @@ namespace SoT.Infra.CrossCutting.Identity.Configuration
         public static ApplicationRoleManager Create(IdentityFactoryOptions<ApplicationRoleManager> options,
             IOwinContext context)
         {
-            return new ApplicationRoleManager(new RoleStore<IdentityRole>(context.Get<IdentityContext>()));
+            return new ApplicationRoleManager(new RoleStore<IdentityRole>(context.Get<AppDbContext>()));
         }
     }
 }
