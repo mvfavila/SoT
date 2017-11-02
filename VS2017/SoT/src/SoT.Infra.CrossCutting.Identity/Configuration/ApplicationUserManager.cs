@@ -2,7 +2,7 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
-using SoT.Infra.CrossCutting.Identity.Context;
+using SoT.Infra.Data.Context;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -82,13 +82,13 @@ namespace SoT.Infra.CrossCutting.Identity.Configuration
         {
             if (string.IsNullOrEmpty(clientKey))
             {
-                throw new ArgumentNullException("clientKey");
+                throw new ArgumentNullException(nameof(clientKey));
             }
 
             var client = user.Clients.SingleOrDefault(c => c.ClientKey == clientKey);
             if (client == null)
             {
-                client = new Client() { ClientKey = clientKey };
+                client = new Client { ClientKey = clientKey };
                 user.Clients.Add(client);
             }
 
@@ -107,7 +107,7 @@ namespace SoT.Infra.CrossCutting.Identity.Configuration
         {
             if (string.IsNullOrEmpty(clientKey))
             {
-                throw new ArgumentNullException("clientKey");
+                throw new ArgumentNullException(nameof(clientKey));
             }
 
             var client = user.Clients.SingleOrDefault(c => c.ClientKey == clientKey);

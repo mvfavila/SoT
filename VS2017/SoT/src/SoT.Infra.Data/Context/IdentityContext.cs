@@ -1,5 +1,4 @@
 ﻿using SoT.Domain.Entities;
-using SoT.Domain.Entities.Example;
 using SoT.Infra.Data.EntityConfig;
 using System;
 using System.Data.Entity;
@@ -9,29 +8,20 @@ using System.Linq;
 namespace SoT.Infra.Data.Context
 {
     /// <summary>
-    /// Sum of This database context.
+    /// Identity database context.
     /// </summary>
-    public class SoTContext : BaseDbContext
+    public class IdentityContext : BaseDbContext
     {
         /// <summary>
         /// Database context constructor.
         /// </summary>
-        public SoTContext()
+        public IdentityContext()
             : base("SumOfThisConnection")
         {
 
         }
 
-        public DbSet<Example> Examples { get; set; }
-        public DbSet<SubExample> SubExamples { get; set; }
-        public DbSet<Category> Categories { get; set; }
-        public DbSet<Country> Countries { get; set; }
-        public DbSet<Element> Elements { get; set; }
-        public DbSet<City> Cities { get; set; }
-        public DbSet<Region> Regions { get; set; }
-        public DbSet<Continent> Continents { get; set; }
-        public DbSet<Adventure> Adventures { get; set; }
-        public DbSet<Provider> Providers { get; set; }
+        public DbSet<User> Users { get; set; }
 
         /// <summary>
         /// Custom configuration of the Entity Framework model creation.
@@ -56,18 +46,7 @@ namespace SoT.Infra.Data.Context
                 .Configure(p => p.HasMaxLength(STANDARD_VARCHAR_COLUMN_MAX_SIZE));
 
             // Mappings
-            modelBuilder.Configurations.Add(new ExampleConfiguration());
-            modelBuilder.Configurations.Add(new SubExampleConfiguration());
-
-            modelBuilder.Configurations.Add(new AddressConfiguration());
-            modelBuilder.Configurations.Add(new AdventureConfiguration());
-            modelBuilder.Configurations.Add(new CategoryConfiguration());
-            modelBuilder.Configurations.Add(new CityConfiguration());
-            modelBuilder.Configurations.Add(new ContinentConfiguration());
-            modelBuilder.Configurations.Add(new CountryConfiguration());
-            modelBuilder.Configurations.Add(new ElementConfiguration());
-            modelBuilder.Configurations.Add(new ProviderConfiguration());
-            modelBuilder.Configurations.Add(new RegionConfiguration());
+            modelBuilder.Configurations.Add(new UserConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }
@@ -82,7 +61,7 @@ namespace SoT.Infra.Data.Context
             foreach (var entry in ChangeTracker.Entries().Where(entry =>
                 entry.Entity.GetType().GetProperty(NAME_FOR_REGISTER_DATE_PROPERTY) != null))
             {
-                if(entry.State == EntityState.Added)
+                if (entry.State == EntityState.Added)
                 {
                     entry.Property(NAME_FOR_REGISTER_DATE_PROPERTY).CurrentValue = DateTime.Now;
                 }

@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="Context\BaseDbContext.cs" />
     <Compile Include="Context\ContextManager.cs" />
+    <Compile Include="Context\IdentityContext.cs" />
     <Compile Include="Context\SoTContext.cs" />
     <Compile Include="EntityConfig\AddressConfiguration.cs" />
     <Compile Include="EntityConfig\AdventureConfiguration.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="EntityConfig\ProviderConfiguration.cs" />
     <Compile Include="EntityConfig\RegionConfiguration.cs" />
     <Compile Include="EntityConfig\SubExampleConfiguration.cs" />
+    <Compile Include="EntityConfig\UserConfiguration.cs" />
     <Compile Include="Interfaces\IContextManager.cs" />
     <Compile Include="Interfaces\IDbContext.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />

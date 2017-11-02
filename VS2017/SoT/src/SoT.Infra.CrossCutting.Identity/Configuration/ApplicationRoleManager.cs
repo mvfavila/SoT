@@ -2,7 +2,7 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
-using SoT.Infra.CrossCutting.Identity.Context;
+using SoT.Infra.Data.Context;
 
 namespace SoT.Infra.CrossCutting.Identity.Configuration
 {

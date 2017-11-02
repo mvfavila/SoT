@@ -98,10 +98,15 @@
     <Compile Include="Configuration\ApplicationUserManager.cs" />
     <Compile Include="Configuration\EmailService.cs" />
     <Compile Include="Configuration\SmsService.cs" />
-    <Compile Include="Context\IdentityContext.cs" />
+    <Compile Include="Context\AppDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\SoT.Infra.Data\SoT.Infra.Data.csproj">
+      <Project>{BFDCEB5C-BBF8-4758-B81D-39125116F50A}</Project>
+      <Name>SoT.Infra.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
