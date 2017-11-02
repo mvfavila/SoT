@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppServices\BaseAppService.cs" />
+    <Compile Include="AppServices\ClaimAppService.cs" />
     <Compile Include="AppServices\ExampleAppService.cs" />
     <Compile Include="Interfaces\IBaseAppService.cs" />
     <Compile Include="Interfaces\IClaimAppService.cs" />
