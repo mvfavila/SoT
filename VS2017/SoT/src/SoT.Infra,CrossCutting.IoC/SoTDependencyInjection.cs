@@ -9,6 +9,7 @@ using SoT.Domain.Interfaces.Services;
 using SoT.Domain.Services;
 using SoT.Infra.CrossCutting.Identity;
 using SoT.Infra.CrossCutting.Identity.Configuration;
+using SoT.Infra.CrossCutting.Identity.Context;
 using SoT.Infra.Data.Context;
 using SoT.Infra.Data.Repositories;
 using SoT.Infra.Data.Repositories.ReadOnly;
@@ -20,6 +21,7 @@ namespace SoT.Infra.CrossCutting.IoC
         public static void RegisterServices(Container container)
         {
             container.Register<SoTContext>(Lifestyle.Scoped);
+            container.Register<AppDbContext>(Lifestyle.Scoped);
             container.Register<IdentityContext>(Lifestyle.Scoped);
 
             container.Register<ISubExampleRepository, SubExampleRepository>(Lifestyle.Scoped);
@@ -32,7 +34,7 @@ namespace SoT.Infra.CrossCutting.IoC
 
             container.Register<IUserStore<ApplicationUser>>(
                 () => new UserStore<ApplicationUser>(
-                    new SoTContext()
+                    new AppDbContext()
                 ),
                 Lifestyle.Scoped
             );
