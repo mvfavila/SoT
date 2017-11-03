@@ -125,9 +125,9 @@ namespace SoT.Presentation.UI.MVC.Controllers
             return RedirectToAction(nameof(Index), "Manage");
         }
 
-        // POST: /Manage/EnableTFA
+        // POST: /Manage/EnableTwoFactorAuthentication
         [HttpPost]
-        public async Task<ActionResult> EnableTFA()
+        public async Task<ActionResult> EnableTwoFactorAuthentication()
         {
             await userManager.SetTwoFactorEnabledAsync(User.Identity.GetUserId(), true);
             var user = await userManager.FindByIdAsync(User.Identity.GetUserId());
@@ -138,9 +138,9 @@ namespace SoT.Presentation.UI.MVC.Controllers
             return RedirectToAction(nameof(Index), "Manage");
         }
 
-        // POST: /Manage/DisableTFA
+        // POST: /Manage/DisableTwoFactorAuthentication
         [HttpPost]
-        public async Task<ActionResult> DisableTFA()
+        public async Task<ActionResult> DisableTwoFactorAuthentication()
         {
             await userManager.SetTwoFactorEnabledAsync(User.Identity.GetUserId(), false);
             var user = await userManager.FindByIdAsync(User.Identity.GetUserId());
