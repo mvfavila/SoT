@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin;
-using SoT.Infra.CrossCutting.Identity.Context;
+using Microsoft.Owin.Security.DataProtection;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,22 +12,15 @@ namespace SoT.Infra.CrossCutting.Identity.Configuration
         public ApplicationUserManager(IUserStore<ApplicationUser> store)
             : base(store)
         {
-        }
-
-        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options,
-            IOwinContext context)
-        {
-            var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<AppDbContext>()));
-
             // Configuring validator for username
-            manager.UserValidator = new UserValidator<ApplicationUser>(manager)
+            UserValidator = new UserValidator<ApplicationUser>(this)
             {
                 AllowOnlyAlphanumericUserNames = false,
                 RequireUniqueEmail = true
             };
 
             // Password's validation and complexity
-            manager.PasswordValidator = new PasswordValidator
+            PasswordValidator = new PasswordValidator
             {
                 RequiredLength = 6,
                 RequireNonLetterOrDigit = true,
@@ -39,37 +30,32 @@ namespace SoT.Infra.CrossCutting.Identity.Configuration
             };
 
             // Lockout configutation
-            manager.UserLockoutEnabledByDefault = true;
-            manager.DefaultAccountLockoutTimeSpan = TimeSpan.FromMinutes(5);
-            manager.MaxFailedAccessAttemptsBeforeLockout = 5;
+            UserLockoutEnabledByDefault = true;
+            DefaultAccountLockoutTimeSpan = TimeSpan.FromMinutes(5);
+            MaxFailedAccessAttemptsBeforeLockout = 5;
 
             // Two factor authentication provider
-            manager.RegisterTwoFactorProvider("SMS Code", new PhoneNumberTokenProvider<ApplicationUser>
+            RegisterTwoFactorProvider("SMS Code", new PhoneNumberTokenProvider<ApplicationUser>
             {
                 MessageFormat = "Your safety code is: {0}"
             });
 
-            manager.RegisterTwoFactorProvider("E-mail Code", new EmailTokenProvider<ApplicationUser>
+            RegisterTwoFactorProvider("E-mail Code", new EmailTokenProvider<ApplicationUser>
             {
                 Subject = "Safety Code",
                 BodyFormat = "Your safety code is: {0}"
             });
 
             // E-mail service class definition
-            manager.EmailService = new EmailService();
+            EmailService = new EmailService();
 
             // SMS service class definition
-            manager.SmsService = new SmsService();
+            SmsService = new SmsService();
 
-            var dataProtectionProvider = options.DataProtectionProvider;
+            var provider = new DpapiDataProtectionProvider(nameof(SoT));
+            var dataProtector = provider.Create("ASP.NET Identity");
 
-            if (dataProtectionProvider != null)
-            {
-                manager.UserTokenProvider =
-                    new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"));
-            }
-
-            return manager;
+            UserTokenProvider = new DataProtectorTokenProvider<ApplicationUser>(dataProtector);
         }
 
         /// <summary>

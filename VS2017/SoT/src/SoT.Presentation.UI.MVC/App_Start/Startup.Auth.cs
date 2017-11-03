@@ -8,6 +8,7 @@ using SoT.Infra.CrossCutting.Identity.Configuration;
 using SoT.Infra.CrossCutting.Identity.Context;
 using System;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace SoT.Presentation.UI.MVC
 {
@@ -20,7 +21,7 @@ namespace SoT.Presentation.UI.MVC
         {
             // Configure the db context, user manager and role manager to use a single instance per request
             app.CreatePerOwinContext(AppDbContext.Create);
-            app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
+            app.CreatePerOwinContext(() => DependencyResolver.Current.GetService<ApplicationUserManager>());
             app.CreatePerOwinContext<ApplicationRoleManager>(ApplicationRoleManager.Create);
             app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
 
