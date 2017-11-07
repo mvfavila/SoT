@@ -1,15 +1,9 @@
 ﻿using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
 using SoT.Application.Interfaces;
 using SoT.Application.ViewModels;
-using SoT.Infra.CrossCutting.Identity;
 using SoT.Infra.CrossCutting.Identity.Configuration;
-using SoT.Infra.CrossCutting.Identity.Context;
 using SoT.Infra.CrossCutting.MvcFilters;
 using System;
-using System.Linq;
-using System.Security.Claims;
-using System.Web;
 using System.Web.Mvc;
 
 namespace SoT.Presentation.UI.MVC.Controllers
