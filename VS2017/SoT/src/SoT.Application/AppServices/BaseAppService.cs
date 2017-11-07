@@ -5,7 +5,7 @@ using SoT.Infra.Data.Interfaces;
 
 namespace SoT.Application.AppServices
 {
-    public class BaseAppService : IBaseAppService
+    public class BaseAppService<TContext> : IBaseAppService<TContext> where TContext : IDbContext, new()
     {
         private IUnitOfWork unitOfWork;
 

@@ -2,12 +2,13 @@
 using SoT.Application.Validation;
 using SoT.Application.ViewModels;
 using SoT.Domain.Interfaces.Services;
+using SoT.Infra.Data.Context;
 using System;
 using System.Collections.Generic;
 
 namespace SoT.Application.AppServices
 {
-    public class ExampleAppService : BaseAppService, IExampleAppService
+    public class ExampleAppService : BaseAppService<SoTContext>, IExampleAppService
     {
         private readonly IExampleService exampleService;
         private readonly ISubExampleService subExampleService;

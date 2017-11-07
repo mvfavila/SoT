@@ -1,6 +1,8 @@
-﻿namespace SoT.Application.Interfaces
+﻿using SoT.Infra.Data.Interfaces;
+
+namespace SoT.Application.Interfaces
 {
-    public interface IBaseAppService
+    public interface IBaseAppService<TContext> where TContext : IDbContext
     {
         void BeginTransaction();
 
