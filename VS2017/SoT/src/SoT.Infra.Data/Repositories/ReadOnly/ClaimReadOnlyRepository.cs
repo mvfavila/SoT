@@ -4,6 +4,7 @@ using SoT.Domain.Entities;
 using System.Collections.Generic;
 using Dapper;
 using SoT.Infra.Data.SQL.Claim;
+using System.Data;
 
 namespace SoT.Infra.Data.Repositories.ReadOnly
 {

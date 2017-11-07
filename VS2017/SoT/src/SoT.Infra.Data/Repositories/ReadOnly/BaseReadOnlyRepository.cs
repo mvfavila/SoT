@@ -11,7 +11,7 @@ namespace SoT.Infra.Data.Repositories.ReadOnly
             get
             {
                 return new SqlConnection(
-                    ConfigurationManager.ConnectionStrings["SumOfThisConnection"].ConnectionString
+                    ConfigurationManager.AppSettings["SumOfThisConnection"]
                     );
             }
         }
