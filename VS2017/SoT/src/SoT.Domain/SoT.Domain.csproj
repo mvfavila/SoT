@@ -36,6 +36,7 @@
     <Compile Include="Entities\Address.cs" />
     <Compile Include="Entities\Adventure.cs" />
     <Compile Include="Entities\Category.cs" />
+    <Compile Include="Entities\Claim.cs" />
     <Compile Include="Entities\Continent.cs" />
     <Compile Include="Entities\Country.cs" />
     <Compile Include="Entities\Element.cs" />

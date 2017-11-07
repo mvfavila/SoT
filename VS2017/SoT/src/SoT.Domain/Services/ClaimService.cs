@@ -1,11 +1,11 @@
-﻿using SoT.Domain.Interfaces.Repository;
+﻿using SoT.Domain.Entities;
+using SoT.Domain.Interfaces.Repository;
 using SoT.Domain.Interfaces.Repository.ReadOnly;
 using SoT.Domain.Interfaces.Services;
 using SoT.Domain.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Security.Claims;
 
 namespace SoT.Domain.Services
 {

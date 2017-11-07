@@ -2,12 +2,13 @@
 using SoT.Application.Validation;
 using SoT.Application.ViewModels;
 using SoT.Domain.Interfaces.Services;
+using SoT.Infra.Data.Context;
 using System;
 using System.Collections.Generic;
 
 namespace SoT.Application.AppServices
 {
-    public class ClaimAppService : IClaimAppService
+    public class ClaimAppService : BaseAppService<SoTContext>, IClaimAppService
     {
         private readonly IClaimService claimService;
 
@@ -34,7 +35,9 @@ namespace SoT.Application.AppServices
 
         public IEnumerable<ClaimViewModel> GetAll()
         {
-            throw new NotImplementedException();
+            var claims = claimService.GetAll();
+
+            return Mapping.ClaimMapper.FromDomainToViewModel(claims);
         }
 
         public ClaimViewModel GetById(Guid id)

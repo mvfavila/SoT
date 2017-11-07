@@ -48,6 +48,7 @@
     <Compile Include="Interfaces\IBaseAppService.cs" />
     <Compile Include="Interfaces\IClaimAppService.cs" />
     <Compile Include="Interfaces\IExampleAppService.cs" />
+    <Compile Include="Mapping\ClaimMapper.cs" />
     <Compile Include="Mapping\Example\ExampleMapper.cs" />
     <Compile Include="Mapping\Example\SubExampleMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

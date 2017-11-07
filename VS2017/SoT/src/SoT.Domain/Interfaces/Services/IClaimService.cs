@@ -1,8 +1,8 @@
-﻿using SoT.Domain.ValueObjects;
+﻿using SoT.Domain.Entities;
+using SoT.Domain.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Security.Claims;
 
 namespace SoT.Domain.Interfaces.Services
 {
