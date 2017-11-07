@@ -91,6 +91,8 @@
     <Compile Include="Repositories\ReadOnly\ClaimReadOnlyRepository.cs" />
     <Compile Include="Repositories\ReadOnly\ExampleReadOnlyRepository.cs" />
     <Compile Include="Repositories\SubExampleRepository.cs" />
+    <Compile Include="SQL\Claim\ClaimCommand.cs" />
+    <Compile Include="SQL\Claim\ClaimQuery.cs" />
     <Compile Include="UoW\UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -111,5 +113,6 @@
       <Name>SoT.Domain</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

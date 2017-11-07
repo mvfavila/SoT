@@ -9,6 +9,9 @@ using System.Linq.Expressions;
 
 namespace SoT.Domain.Services
 {
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
     public class ClaimService : IClaimService
     {
         private readonly IClaimRepository claimRepository;
@@ -42,9 +45,13 @@ namespace SoT.Domain.Services
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
+        /// <returns>See <see cref="IClaimService.GetAll()"/>.</returns>
         public IEnumerable<Claim> GetAll()
         {
-            throw new NotImplementedException();
+            return claimReadOnlyRepository.GetAll();
         }
 
         public Claim GetById(Guid id)
