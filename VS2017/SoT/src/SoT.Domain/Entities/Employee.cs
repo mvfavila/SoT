@@ -82,5 +82,32 @@ namespace SoT.Domain.Entities
         {
             return new Employee(name, surname, birthDate);
         }
+
+        /// <summary>
+        /// Factory used when Mapping from a View Model to a <see cref="Employee"/>.
+        /// </summary>
+        /// <param name="id">Employee's Unique Id.</param>
+        /// <param name="name">Employee's name.</param>
+        /// <param name="surname">Employee's surname.</param>
+        /// <param name="email">Employee's e-mail</param>
+        /// <param name="birthDate">Employee's birth date.</param>
+        /// <param name="provider"><see cref="Entities.Provider"/> where the Employee works or which is owned by the
+        /// Employee.</param>
+        /// <returns>See <see cref="Employee"/>.</returns>
+        public static Employee FactoryMap(Guid id, string name, string surname, string email, DateTime birthDate,
+            Provider provider)
+        {
+            return new Employee
+            {
+                Id = id.ToString(),
+                UserName = email,
+                Email = email,
+                Name = name,
+                Surname = surname,
+                BirthDate = birthDate,
+                ProviderId = provider.ProviderId,
+                Provider = provider
+            };
+        }
     }
 }

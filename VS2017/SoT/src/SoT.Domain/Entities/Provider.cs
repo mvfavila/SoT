@@ -85,5 +85,29 @@ namespace SoT.Domain.Entities
             const bool ACVTIVE = true;
             return new Provider(companyName, ACVTIVE);
         }
+
+        /// <summary>
+        /// Factory used when Mapping from a View Model to a <see cref="Provider"/>.
+        /// </summary>
+        /// <param name="providerId">Provider Unique Id.</param>
+        /// <param name="companyName">Adventure Provider's company name.</param>
+        /// <param name="adventures">Collection of <see cref="Adventure"/> attached to the Provider.</param>
+        /// <param name="employees">Collection of <see cref="Employee"/> attached to the Provider.</param>
+        /// <param name="active">Informs if the Provider is active in SoT system.</param>
+        /// <param name="registerDate">Date when the Provider was registered in the SumOfThis.</param>
+        /// <returns>See <see cref="Provider"/>.</returns>
+        public static Provider FactoryMap(string providerId, string companyName, IEnumerable<Adventure> adventures,
+            IEnumerable<Employee> employees, bool active, DateTime registerDate)
+        {
+            return new Provider
+            {
+                ProviderId = Guid.Parse(providerId),
+                CompanyName = companyName,
+                Adventures = adventures,
+                Employees = employees,
+                Active = active,
+                RegisterDate = registerDate
+            };
+        }
     }
 }
