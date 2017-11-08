@@ -9,14 +9,6 @@ namespace SoT.Infra.Data.EntityConfig
         {
             HasKey(p => p.ProviderId);
 
-            Property(p => p.Email)
-                .HasMaxLength(150)
-                .IsRequired();
-
-            Property(p => p.Name)
-                .HasMaxLength(400)
-                .IsRequired();
-
             Property(p => p.CompanyName)
                 .HasMaxLength(400)
                 .IsRequired();

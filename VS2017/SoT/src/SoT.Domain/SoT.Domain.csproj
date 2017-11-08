@@ -39,6 +39,7 @@
     <Compile Include="Entities\Continent.cs" />
     <Compile Include="Entities\Country.cs" />
     <Compile Include="Entities\Element.cs" />
+    <Compile Include="Entities\Employee.cs" />
     <Compile Include="Entities\Example\Example.cs" />
     <Compile Include="Entities\Example\SubExample.cs" />
     <Compile Include="Entities\City.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Validation\Category\CategoryIsVerifiedForRegistration.cs" />
     <Compile Include="Validation\City\CityIsVerifiedForRegistration.cs" />
     <Compile Include="Validation\Country\CountryIsVerifiedForRegistration.cs" />
+    <Compile Include="Validation\Employee\EmployeeIsVerifiedForRegistration.cs" />
     <Compile Include="Validation\Example\ExampleIsVerifiedForDatabaseRegistration.cs" />
     <Compile Include="Validation\Example\ExampleIsVerifiedForRegistration.cs" />
     <Compile Include="Validation\Provider\ProviderIsVerifiedForRegistration.cs" />

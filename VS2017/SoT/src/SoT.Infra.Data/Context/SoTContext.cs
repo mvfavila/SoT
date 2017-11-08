@@ -32,6 +32,7 @@ namespace SoT.Infra.Data.Context
         public DbSet<Continent> Continents { get; set; }
         public DbSet<Adventure> Adventures { get; set; }
         public DbSet<Provider> Providers { get; set; }
+        public DbSet<Employee> Employees { get; set; }
 
         /// <summary>
         /// Custom configuration of the Entity Framework model creation.
@@ -68,6 +69,7 @@ namespace SoT.Infra.Data.Context
             modelBuilder.Configurations.Add(new ElementConfiguration());
             modelBuilder.Configurations.Add(new ProviderConfiguration());
             modelBuilder.Configurations.Add(new RegionConfiguration());
+            modelBuilder.Configurations.Add(new EmployeeConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }

@@ -19,15 +19,11 @@ namespace SoT.Domain.Entities
         /// <summary>
         /// Class constructor.
         /// </summary>
-        /// <param name="email">Adventure Provider's unique e-mail/login.</param>
-        /// <param name="name">Adventure Provider's name.</param>
         /// <param name="companyName">Adventure Provider's company name.</param>
         /// <param name="active">Informs if the Provider is active in SoT system.</param>
-        private Provider(string email, string name, string companyName, bool active)
+        private Provider(string companyName, bool active)
         {
             ProviderId = Guid.NewGuid();
-            Email = email;
-            Name = name;
             CompanyName = companyName;
             Active = active;
         }
@@ -38,16 +34,6 @@ namespace SoT.Domain.Entities
         public Guid ProviderId { get; private set; }
 
         /// <summary>
-        /// Adventure Provider's unique e-mail/login.
-        /// </summary>
-        public string Email { get; private set; }
-
-        /// <summary>
-        /// Adventure Provider's name.
-        /// </summary>
-        public string Name { get; private set; }
-
-        /// <summary>
         /// Adventure Provider's company name.
         /// </summary>
         public string CompanyName { get; private set; }
@@ -56,6 +42,11 @@ namespace SoT.Domain.Entities
         /// Collection of <see cref="Adventure"/> attached to the Provider.
         /// </summary>
         public virtual IEnumerable<Adventure> Adventures { get; private set; }
+
+        /// <summary>
+        /// Collection of <see cref="Employee"/> attached to the Provider.
+        /// </summary>
+        public virtual IEnumerable<Employee> Employees { get; private set; }
 
         /// <summary>
         /// Informs if the Provider is active in SoT system.
@@ -82,14 +73,12 @@ namespace SoT.Domain.Entities
         /// <summary>
         /// Factory used when a new Provider is being added to the database context.
         /// </summary>
-        /// <param name="email">Adventure Provider's unique e-mail/login.</param>
-        /// <param name="name">Adventure Provider's name.</param>
         /// <param name="companyName">Adventure Provider's company name.</param>
         /// <returns>See <see cref="Provider"/>.</returns>
-        public static Provider FactoryAdd(string email, string name, string companyName)
+        public static Provider FactoryAdd(string companyName)
         {
             const bool ACVTIVE = true;
-            return new Provider(email, name, companyName, ACVTIVE);
+            return new Provider(companyName, ACVTIVE);
         }
     }
 }
