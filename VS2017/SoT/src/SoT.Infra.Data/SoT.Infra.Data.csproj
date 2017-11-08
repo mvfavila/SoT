@@ -68,7 +68,7 @@
     <Compile Include="Context\ContextManager.cs" />
     <Compile Include="Context\IdentityContext.cs" />
     <Compile Include="Context\SoTContext.cs" />
-    <Compile Include="EmployeeConfiguration.cs" />
+    <Compile Include="EntityConfig\EmployeeConfiguration.cs" />
     <Compile Include="EntityConfig\AddressConfiguration.cs" />
     <Compile Include="EntityConfig\AdventureConfiguration.cs" />
     <Compile Include="EntityConfig\CategoryConfiguration.cs" />

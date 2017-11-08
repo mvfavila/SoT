@@ -51,6 +51,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validation\ValidationAppError.cs" />
     <Compile Include="Validation\ValidationAppResult.cs" />
+    <Compile Include="ViewModels\EmployeeProviderViewModel.cs" />
     <Compile Include="ViewModels\ExampleSubExampleViewModel.cs" />
     <Compile Include="ViewModels\ExampleViewModel.cs" />
     <Compile Include="ViewModels\SubExampleViewModel.cs" />

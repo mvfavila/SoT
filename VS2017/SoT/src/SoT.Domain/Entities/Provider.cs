@@ -54,6 +54,11 @@ namespace SoT.Domain.Entities
         public bool Active { get; private set; }
 
         /// <summary>
+        /// Date when the Provider was registered in the SumOfThis.
+        /// </summary>
+        public DateTime RegisterDate { get; private set; }
+
+        /// <summary>
         /// See <see cref="ValueObjects.ValidationResult"/>.
         /// </summary>
         public ValidationResult ValidationResult { get; private set; }

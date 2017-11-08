@@ -1,7 +1,7 @@
 ﻿using SoT.Domain.Entities;
 using System.Data.Entity.ModelConfiguration;
 
-namespace SoT.Infra.Data
+namespace SoT.Infra.Data.EntityConfig
 {
     public class EmployeeConfiguration : EntityTypeConfiguration<Employee>
     {

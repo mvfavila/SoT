@@ -16,6 +16,9 @@ namespace SoT.Infra.Data.EntityConfig
             Property(p => p.Active)
                 .IsRequired();
 
+            Property(p => p.RegisterDate)
+                .IsRequired();
+
             Ignore(p => p.ValidationResult);
         }
     }
