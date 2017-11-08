@@ -13,6 +13,7 @@ namespace SoT.Application.ViewModels
 
         // User
 
+        [ScaffoldColumn(false)]
         public string Id { get; set; }
 
         [Display(Name = "E-mail")]
@@ -36,6 +37,7 @@ namespace SoT.Application.ViewModels
         public DateTime BirthDate { get; set; }
 
         // Provider
+        [ScaffoldColumn(false)]
         public Guid ProviderId { get; set; }
 
         [Display(Name = "Company name")]
