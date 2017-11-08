@@ -43,18 +43,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppServices\BaseAppService.cs" />
-    <Compile Include="AppServices\ClaimAppService.cs" />
     <Compile Include="AppServices\ExampleAppService.cs" />
     <Compile Include="Interfaces\IBaseAppService.cs" />
-    <Compile Include="Interfaces\IClaimAppService.cs" />
     <Compile Include="Interfaces\IExampleAppService.cs" />
-    <Compile Include="Mapping\ClaimMapper.cs" />
     <Compile Include="Mapping\Example\ExampleMapper.cs" />
     <Compile Include="Mapping\Example\SubExampleMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validation\ValidationAppError.cs" />
     <Compile Include="Validation\ValidationAppResult.cs" />
-    <Compile Include="ViewModels\ClaimViewModel.cs" />
     <Compile Include="ViewModels\ExampleSubExampleViewModel.cs" />
     <Compile Include="ViewModels\ExampleViewModel.cs" />
     <Compile Include="ViewModels\SubExampleViewModel.cs" />
