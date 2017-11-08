@@ -76,6 +76,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
                 if (ModelState.IsValid)
                 {
                     appDbContext.Claims.Add(claim);
+                    appDbContext.SaveChanges();
                 }
 
                 return RedirectToAction(nameof(Index));
