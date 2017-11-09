@@ -3,6 +3,7 @@ using SoT.Domain.Validation.Provider;
 using SoT.Domain.ValueObjects;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SoT.Domain.Entities
 {
@@ -108,6 +109,18 @@ namespace SoT.Domain.Entities
                 Active = active,
                 RegisterDate = registerDate
             };
+        }
+
+        /// <summary>
+        /// Adds a new Employee to the Adventure Provider.
+        /// </summary>
+        /// <param name="employee">See <see cref="Employee"/>.</param>
+        public void AddEmployee(Employee employee)
+        {
+            if (Employees == null)
+                Employees = new List<Employee>();
+
+            Employees.ToList().Add(employee);
         }
     }
 }

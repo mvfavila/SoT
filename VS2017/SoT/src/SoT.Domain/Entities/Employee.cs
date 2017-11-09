@@ -18,26 +18,12 @@ namespace SoT.Domain.Entities
         /// <summary>
         /// Class constructor.
         /// </summary>
-        /// <param name="name">Employee's name.</param>
-        /// <param name="surname">Employee's surname.</param>
         /// <param name="birthDate">Employee's birth date.</param>
-        private Employee(string name, string surname, DateTime birthDate)
+        private Employee(DateTime birthDate)
             : base()
         {
-            Name = name;
-            Surname = surname;
             BirthDate = birthDate;
         }
-
-        /// <summary>
-        /// Employee's name.
-        /// </summary>
-        public string Name { get; private set; }
-
-        /// <summary>
-        /// Employee's surname.
-        /// </summary>
-        public string Surname { get; private set; }
 
         /// <summary>
         /// Employee's birth date.
@@ -74,36 +60,26 @@ namespace SoT.Domain.Entities
         /// <summary>
         /// Factory used when a new Employee is being added to the database context.
         /// </summary>
-        /// <param name="name">Employee's name.</param>
-        /// <param name="surname">Employee's surname.</param>
         /// <param name="birthDate">Employee's birth date.</param>
         /// <returns>See <see cref="Employee"/>.</returns>
-        public static Employee FactoryAdd(string name, string surname, DateTime birthDate)
+        public static Employee FactoryAdd(DateTime birthDate)
         {
-            return new Employee(name, surname, birthDate);
+            return new Employee(birthDate);
         }
 
         /// <summary>
         /// Factory used when Mapping from a View Model to a <see cref="Employee"/>.
         /// </summary>
         /// <param name="id">Employee's Unique Id.</param>
-        /// <param name="name">Employee's name.</param>
-        /// <param name="surname">Employee's surname.</param>
-        /// <param name="email">Employee's e-mail</param>
         /// <param name="birthDate">Employee's birth date.</param>
         /// <param name="provider"><see cref="Entities.Provider"/> where the Employee works or which is owned by the
         /// Employee.</param>
         /// <returns>See <see cref="Employee"/>.</returns>
-        public static Employee FactoryMap(Guid id, string name, string surname, string email, DateTime birthDate,
-            Provider provider)
+        public static Employee FactoryMap(Guid id, DateTime birthDate, Provider provider)
         {
             return new Employee
             {
                 Id = id.ToString(),
-                UserName = email,
-                Email = email,
-                Name = name,
-                Surname = surname,
                 BirthDate = birthDate,
                 ProviderId = provider.ProviderId,
                 Provider = provider

@@ -7,14 +7,6 @@ namespace SoT.Infra.Data.EntityConfig
     {
         public EmployeeConfiguration()
         {
-            Property(e => e.Name)
-                .HasMaxLength(200)
-                .IsRequired();
-
-            Property(e => e.Surname)
-                .HasMaxLength(200)
-                .IsRequired();
-
             Property(e => e.BirthDate)
                 .IsRequired();
 

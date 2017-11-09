@@ -24,6 +24,8 @@ namespace SoT.Application.AppServices
 
             var provider = Mapping.ProviderMapper.FromViewModelToDomain(employeeProviderViewModel);
 
+            provider.AddEmployee(employee);
+
             BeginTransaction();
 
             var result = employeeService.Add(employee);

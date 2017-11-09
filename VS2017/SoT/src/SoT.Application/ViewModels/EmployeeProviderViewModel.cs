@@ -16,20 +16,7 @@ namespace SoT.Application.ViewModels
         [ScaffoldColumn(false)]
         public string Id { get; set; }
 
-        [Display(Name = "E-mail")]
-        [Required(ErrorMessage = "Field E-mail is required")]
-        [MaxLength(200, ErrorMessage = "The maximum length of the field Name is 200")]
-        public string Email { get; set; }
-
         // Employee
-
-        [Required(ErrorMessage = "Field Name is required")]
-        [MaxLength(200, ErrorMessage = "The maximum length of the field Name is 200")]
-        public string Name { get; set; }
-
-        [Required(ErrorMessage = "Field Surname is required")]
-        [MaxLength(200, ErrorMessage = "The maximum length of the field Surname is 200")]
-        public string Surname { get; set; }
 
         [Display(Name = "Birth date")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
@@ -37,6 +24,7 @@ namespace SoT.Application.ViewModels
         public DateTime BirthDate { get; set; }
 
         // Provider
+
         [ScaffoldColumn(false)]
         public Guid ProviderId { get; set; }
 

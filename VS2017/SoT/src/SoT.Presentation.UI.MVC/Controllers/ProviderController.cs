@@ -1,4 +1,5 @@
-﻿using SoT.Application.Interfaces;
+﻿using Microsoft.AspNet.Identity;
+using SoT.Application.Interfaces;
 using SoT.Application.ViewModels;
 using System;
 using System.Net;
@@ -41,11 +42,13 @@ namespace SoT.Presentation.UI.MVC.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(
-            [Bind(Include = "Id,Email,Name,Surname,BirthDate,ProviderId,CompanyName,Active,RegisterDate")]
+            [Bind(Include = "Id,BirthDate,ProviderId,CompanyName,Active,RegisterDate")]
             EmployeeProviderViewModel employeeProviderViewModel)
         {
             if (ModelState.IsValid)
             {
+                employeeProviderViewModel.Id = User.Identity.GetUserId();
+
                 var result = providerAppService.Add(employeeProviderViewModel);
                 if (!result.IsValid)
                 {

@@ -11,13 +11,11 @@ namespace SoT.Application.Mapping
         internal static Provider FromViewModelToDomain(
             EmployeeProviderViewModel employeeProviderViewModel)
         {
-            var employee = EmployeeMapper.FromViewModelToDomain(employeeProviderViewModel);
-
             return Provider.FactoryMap(
                 employeeProviderViewModel.Id,
                 employeeProviderViewModel.CompanyName,
                 new List<Adventure>(),
-                new List<Employee> { employee },
+                new List<Employee>(),
                 employeeProviderViewModel.Active,
                 employeeProviderViewModel.RegisterDate
                 );

@@ -15,9 +15,6 @@ namespace SoT.Application.Mapping
 
             return Employee.FactoryMap(
                 Guid.Parse(employeeProviderViewModel.Id),
-                employeeProviderViewModel.Name,
-                employeeProviderViewModel.Surname,
-                employeeProviderViewModel.Email,
                 employeeProviderViewModel.BirthDate,
                 provider
                 );
