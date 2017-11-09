@@ -2,6 +2,7 @@
 using SoT.Domain.Interfaces.Repository;
 using SoT.Domain.Interfaces.Repository.ReadOnly;
 using SoT.Domain.Interfaces.Services;
+using SoT.Domain.Validation.Employee;
 using SoT.Domain.ValueObjects;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,25 @@ namespace SoT.Domain.Services
 
         ValidationResult IEmployeeService.Add(Employee employee)
         {
-            throw new NotImplementedException();
+            var validationResult = new ValidationResult();
+
+            if (!employee.IsValid())
+            {
+                validationResult.AddError(employee.ValidationResult);
+                return validationResult;
+            }
+
+            var validator = new EmployeeIsVerifiedForRegistration();
+            var validationService = validator.Validate(employee);
+            if (!validationService.IsValid)
+            {
+                validationResult.AddError(employee.ValidationResult);
+                return validationResult;
+            }
+
+            employeeRepository.Add(employee);
+
+            return validationResult;
         }
 
         ValidationResult IEmployeeService.Update(Employee employee)
