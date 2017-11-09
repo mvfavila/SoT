@@ -95,12 +95,17 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
+    <Compile Include="Repositories\EmployeeRepository.cs" />
     <Compile Include="Repositories\ExampleRepository.cs" />
+    <Compile Include="Repositories\ProviderRepository.cs" />
     <Compile Include="Repositories\ReadOnly\BaseReadOnlyRepository.cs" />
+    <Compile Include="Repositories\ReadOnly\EmployeeReadOnlyRepository.cs" />
     <Compile Include="Repositories\ReadOnly\ExampleReadOnlyRepository.cs" />
+    <Compile Include="Repositories\ReadOnly\ProviderReadOnlyRepository.cs" />
+    <Compile Include="Repositories\ReadOnly\SubExampleReadOnlyRepository.cs" />
     <Compile Include="Repositories\SubExampleRepository.cs" />
-    <Compile Include="SQL\Claim\ClaimCommand.cs" />
-    <Compile Include="SQL\Claim\ClaimQuery.cs" />
+    <Compile Include="SQL\EmployeeQuery.cs" />
+    <Compile Include="SQL\ProviderQuery.cs" />
     <Compile Include="UoW\UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
