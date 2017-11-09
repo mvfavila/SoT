@@ -20,6 +20,10 @@ namespace SoT.Infra.CrossCutting.IoC
     {
         public static void RegisterServices(Container container)
         {
+            // Infra
+
+            // Infra - Data
+
             container.Register<SoTContext>(Lifestyle.Scoped);
             container.Register<AppDbContext>(Lifestyle.Scoped);
             container.Register<IdentityContext>(Lifestyle.Scoped);
@@ -28,9 +32,7 @@ namespace SoT.Infra.CrossCutting.IoC
             container.Register<IExampleRepository, ExampleRepository>(Lifestyle.Scoped);
             container.Register<IExampleReadOnlyRepository, ExampleReadOnlyRepository>(Lifestyle.Scoped);
 
-            container.Register<IExampleService, ExampleService>(Lifestyle.Scoped);
-            container.Register<ISubExampleService, SubExampleService>(Lifestyle.Scoped);
-            container.Register<IExampleAppService, ExampleAppService>(Lifestyle.Scoped);
+            // Infra - CrossCutting - Identity
 
             container.Register<IUserStore<ApplicationUser>>(
                 () => new UserStore<ApplicationUser>(
@@ -48,9 +50,16 @@ namespace SoT.Infra.CrossCutting.IoC
             container.Register<ApplicationUserManager>(Lifestyle.Scoped);
             container.Register<ApplicationSignInManager>(Lifestyle.Scoped);
 
+            // Domain
+
+            container.Register<IExampleService, ExampleService>(Lifestyle.Scoped);
+            container.Register<ISubExampleService, SubExampleService>(Lifestyle.Scoped);
             container.Register<IEmployeeService, EmployeeService>(Lifestyle.Scoped);
             container.Register<IProviderService, ProviderService>(Lifestyle.Scoped);
 
+            // Application
+
+            container.Register<IExampleAppService, ExampleAppService>(Lifestyle.Scoped);
             container.Register<IProviderAppService, ProviderAppService>(Lifestyle.Scoped);
         }
     }
