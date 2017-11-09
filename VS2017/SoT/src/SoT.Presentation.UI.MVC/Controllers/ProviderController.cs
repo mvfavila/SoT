@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace SoT.Presentation.UI.MVC.Controllers
 {
+    [Authorize]
     public class ProviderController : Controller
     {
         private readonly IProviderAppService providerAppService;
