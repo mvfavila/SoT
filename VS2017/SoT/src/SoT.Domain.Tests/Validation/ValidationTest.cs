@@ -13,7 +13,7 @@ namespace SoT.Domain.Tests.Validation
         [Test]
         public void RegisteredExampleMustBeUniqueEntry()
         {
-            var repository = new ExampleRepositoryMock();
+            var repository = new ExampleReadOnlyRepositoryMock();
 
             var example = new Example
             {

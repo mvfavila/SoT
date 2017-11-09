@@ -2,34 +2,32 @@
 using SoT.Domain.Entities;
 using SoT.Domain.Interfaces.Services;
 using SoT.Domain.ValueObjects;
+using SoT.Domain.Interfaces.Repository;
+using SoT.Domain.Interfaces.Repository.ReadOnly;
 
 namespace SoT.Domain.Services
 {
-    public class ProviderService : IProviderService
+    public class ProviderService : BaseService<Provider>, IProviderService
     {
-        public ValidationResult Add(Provider provider)
+        private readonly IProviderRepository providerRepository;
+        private readonly IProviderReadOnlyRepository providerReadOnlyRepository;
+
+        public ProviderService(IProviderRepository providerRepository,
+            IProviderReadOnlyRepository providerReadOnlyRepository)
+            : base(providerRepository, providerReadOnlyRepository)
+        {
+            this.providerRepository = providerRepository;
+            this.providerReadOnlyRepository = providerReadOnlyRepository;
+        }
+
+        ValidationResult IProviderService.Add(Provider provider)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(Guid id)
+        ValidationResult IProviderService.Update(Provider provider)
         {
             throw new NotImplementedException();
-        }
-
-        public Provider GetById(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public ValidationResult Update(Provider provider)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Dispose()
-        {
-            GC.SuppressFinalize(this);
         }
     }
 }

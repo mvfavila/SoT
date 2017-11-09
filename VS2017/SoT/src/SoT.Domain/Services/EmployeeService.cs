@@ -1,35 +1,50 @@
-﻿using System;
-using SoT.Domain.Entities;
+﻿using SoT.Domain.Entities;
+using SoT.Domain.Interfaces.Repository;
+using SoT.Domain.Interfaces.Repository.ReadOnly;
 using SoT.Domain.Interfaces.Services;
 using SoT.Domain.ValueObjects;
+using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace SoT.Domain.Services
 {
-    public class EmployeeService : IEmployeeService
+    public class EmployeeService : BaseService<Employee>, IEmployeeService
     {
-        public ValidationResult Add(Employee employee)
+        private readonly IEmployeeRepository employeeRepository;
+        private readonly IEmployeeReadOnlyRepository employeeReadOnlyRepository;
+
+        public EmployeeService(IEmployeeRepository employeeRepository,
+            IEmployeeReadOnlyRepository employeeReadOnlyRepository)
+            : base(employeeRepository, employeeReadOnlyRepository)
+        {
+            this.employeeRepository = employeeRepository;
+            this.employeeReadOnlyRepository = employeeReadOnlyRepository;
+        }
+
+        ValidationResult IEmployeeService.Add(Employee employee)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(Guid id)
+        ValidationResult IEmployeeService.Update(Employee employee)
         {
             throw new NotImplementedException();
         }
 
-        public Employee GetById(Guid id)
+        new IEnumerable<Employee> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public ValidationResult Update(Employee employee)
+        IEnumerable<Employee> Find(Expression<Func<Employee, bool>> predicate)
         {
             throw new NotImplementedException();
         }
 
-        public void Dispose()
+        new Employee GetById(Guid id)
         {
-            GC.SuppressFinalize(this);
+            throw new NotImplementedException();
         }
     }
 }

@@ -4,52 +4,47 @@ using System.Linq.Expressions;
 using SoT.Domain.Entities.Example;
 using SoT.Domain.Interfaces.Services;
 using SoT.Domain.Interfaces.Repository;
+using SoT.Domain.Interfaces.Repository.ReadOnly;
+using SoT.Domain.ValueObjects;
 
 namespace SoT.Domain.Services
 {
-    public class SubExampleService : ISubExampleService
+    public class SubExampleService : BaseService<SubExample>, ISubExampleService
     {
         private readonly ISubExampleRepository subExampleRepository;
+        private readonly ISubExampleReadOnlyRepository subExampleReadOnlyRepository;
 
-        public SubExampleService(ISubExampleRepository subExampleRepository)
+        public SubExampleService(ISubExampleRepository subExampleRepository,
+            ISubExampleReadOnlyRepository subExampleReadOnlyRepository)
+            : base(subExampleRepository, subExampleReadOnlyRepository)
         {
             this.subExampleRepository = subExampleRepository;
-        }
-
-        public void Add(SubExample subExample)
-        {
-            subExampleRepository.Add(subExample);
-        }
-
-        public void Delete(Guid id)
-        {
-            subExampleRepository.Delete(id);
-        }
-
-        public void Dispose()
-        {
-            subExampleRepository.Dispose();
-            GC.SuppressFinalize(this);
+            this.subExampleReadOnlyRepository = subExampleReadOnlyRepository;
         }
 
         public IEnumerable<SubExample> Find(Expression<Func<SubExample, bool>> predicate)
         {
-            return subExampleRepository.Find(predicate);
+            return subExampleReadOnlyRepository.Find(predicate);
         }
 
-        public IEnumerable<SubExample> GetAll()
+        public new IEnumerable<SubExample> GetAll()
         {
-            return subExampleRepository.GetAll();
+            return subExampleReadOnlyRepository.GetAll();
         }
 
-        public SubExample GetById(Guid id)
+        public new SubExample GetById(Guid id)
         {
-            return subExampleRepository.GetById(id);
+            return subExampleReadOnlyRepository.GetById(id);
         }
 
-        public void Update(SubExample subExample)
+        public new ValidationResult Add(SubExample subExample)
         {
-            subExampleRepository.Update(subExample);
+            throw new NotImplementedException();
+        }
+
+        public new ValidationResult Update(SubExample subExample)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -28,9 +28,14 @@ namespace SoT.Infra.CrossCutting.IoC
             container.Register<AppDbContext>(Lifestyle.Scoped);
             container.Register<IdentityContext>(Lifestyle.Scoped);
 
-            container.Register<ISubExampleRepository, SubExampleRepository>(Lifestyle.Scoped);
             container.Register<IExampleRepository, ExampleRepository>(Lifestyle.Scoped);
             container.Register<IExampleReadOnlyRepository, ExampleReadOnlyRepository>(Lifestyle.Scoped);
+            container.Register<ISubExampleRepository, SubExampleRepository>(Lifestyle.Scoped);
+            container.Register<ISubExampleReadOnlyRepository, SubExampleReadOnlyRepository>(Lifestyle.Scoped);
+            container.Register<IProviderRepository, ProviderRepository> (Lifestyle.Scoped);
+            container.Register<IProviderReadOnlyRepository, ProviderReadOnlyRepository> (Lifestyle.Scoped);
+            container.Register<IEmployeeRepository, EmployeeRepository> (Lifestyle.Scoped);
+            container.Register<IEmployeeReadOnlyRepository, EmployeeReadOnlyRepository>(Lifestyle.Scoped);
 
             // Infra - CrossCutting - Identity
 

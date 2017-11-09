@@ -1,13 +1,13 @@
-﻿using SoT.Domain.Interfaces.Repository;
+﻿using SoT.Domain.Interfaces.Repository.ReadOnly;
 using SoT.Domain.Interfaces.Specification;
 
 namespace SoT.Domain.Specification.Example
 {
     class ExampleIsUniqueEntrySpecification : ISpecification<Entities.Example.Example>
     {
-        private readonly IExampleRepository exampleRepository;
+        private readonly IExampleReadOnlyRepository exampleRepository;
 
-        public ExampleIsUniqueEntrySpecification(IExampleRepository exampleRepository)
+        public ExampleIsUniqueEntrySpecification(IExampleReadOnlyRepository exampleRepository)
         {
             this.exampleRepository = exampleRepository;
         }

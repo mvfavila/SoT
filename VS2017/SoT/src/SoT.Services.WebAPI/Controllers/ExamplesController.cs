@@ -44,7 +44,7 @@ namespace SoT.Services.WebAPI.Controllers
         // DELETE: api/Examples/5
         public void Delete(Guid id)
         {
-            exampleAppService.Delete(id);
+            exampleAppService.Remove(id);
         }
     }
 }

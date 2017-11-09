@@ -1,22 +1,17 @@
 ﻿using SoT.Domain.Entities.Example;
+using SoT.Domain.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
 namespace SoT.Domain.Interfaces.Services
 {
-    public interface ISubExampleService : IDisposable
+    public interface ISubExampleService : IBaseService<SubExample>
     {
-        IEnumerable<SubExample> GetAll();
-
         IEnumerable<SubExample> Find(Expression<Func<SubExample, bool>> predicate);
 
-        SubExample GetById(Guid id);
+        new ValidationResult Add(SubExample subExample);
 
-        void Add(SubExample subExample);
-
-        void Update(SubExample subExample);
-
-        void Delete(Guid id);
+        new ValidationResult Update(SubExample subExample);
     }
 }

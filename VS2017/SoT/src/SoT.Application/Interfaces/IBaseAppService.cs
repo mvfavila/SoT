@@ -1,11 +1,6 @@
-﻿using SoT.Infra.Data.Interfaces;
-
-namespace SoT.Application.Interfaces
+﻿namespace SoT.Application.Interfaces
 {
-    public interface IBaseAppService<TContext> where TContext : IDbContext
+    public interface IBaseAppService<TEntity> where TEntity : class
     {
-        void BeginTransaction();
-
-        void Commit();
     }
 }

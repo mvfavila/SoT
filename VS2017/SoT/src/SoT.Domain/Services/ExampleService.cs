@@ -10,7 +10,7 @@ using SoT.Domain.Validation.Example;
 
 namespace SoT.Domain.Services
 {
-    public class ExampleService : IExampleService
+    public class ExampleService : BaseService<Example>, IExampleService
     {
         private readonly IExampleRepository exampleRepository;
         private readonly IExampleReadOnlyRepository exampleReadOnlyRepository;
@@ -18,12 +18,13 @@ namespace SoT.Domain.Services
         public ExampleService(
             IExampleRepository exampleRepository,
             IExampleReadOnlyRepository exampleReadOnlyRepository)
+            : base(exampleRepository, exampleReadOnlyRepository)
         {
             this.exampleRepository = exampleRepository;
             this.exampleReadOnlyRepository = exampleReadOnlyRepository;
         }
 
-        public ValidationResult Add(Example example)
+        public new ValidationResult Add(Example example)
         {
             var validationResult = new ValidationResult();
 
@@ -33,7 +34,7 @@ namespace SoT.Domain.Services
                 return validationResult;
             }
 
-            var validator = new ExampleIsVerifiedForDatabaseRegistration(exampleRepository);
+            var validator = new ExampleIsVerifiedForDatabaseRegistration(exampleReadOnlyRepository);
             var validationService = validator.Validate(example);
             if (!validationService.IsValid)
             {
@@ -46,41 +47,14 @@ namespace SoT.Domain.Services
             return validationResult;
         }
 
-        public void Delete(Guid id)
-        {
-            exampleRepository.Delete(id);
-        }
-
         public IEnumerable<Example> Find(Expression<Func<Example, bool>> predicate)
         {
-            return exampleRepository.Find(predicate);
+            return exampleReadOnlyRepository.Find(predicate);
         }
 
         public IEnumerable<Example> GetActive()
         {
-            return exampleRepository.GetActive();
-        }
-
-        public IEnumerable<Example> GetAll()
-        {
-            return exampleReadOnlyRepository.GetAll();
-        }
-
-        public Example GetById(Guid id)
-        {
-            return exampleReadOnlyRepository.GetById(id);
-        }
-
-        public void Update(Example example)
-        {
-            exampleRepository.Update(example);
-        }
-
-        public void Dispose()
-        {
-            exampleRepository.Dispose();
-            exampleReadOnlyRepository.Dispose();
-            GC.SuppressFinalize(this);
+            return exampleReadOnlyRepository.GetActive();
         }
     }
 }

@@ -2,8 +2,10 @@
 using SoT.Application.Validation;
 using SoT.Application.ViewModels;
 using SoT.Domain.Interfaces.Services;
+using SoT.Domain.ValueObjects;
 using SoT.Infra.Data.Context;
 using System;
+using System.Transactions;
 
 namespace SoT.Application.AppServices
 {
@@ -26,21 +28,24 @@ namespace SoT.Application.AppServices
 
             provider.AddEmployee(employee);
 
-            BeginTransaction();
+            ValidationResult result;
 
-            var result = employeeService.Add(employee);
+            using(var scope = new TransactionScope())
+            {
+                result = employeeService.Add(employee);
 
-            if (!result.IsValid)
-                return FromDomainToApplicationResult(result);
+                if (!result.IsValid)
+                    return FromDomainToApplicationResult(result);
 
-            // TODO: log should be added here informing that the example was added
+                // TODO: log should be added here informing that the example was added
 
-            result = providerService.Add(provider);
+                result = providerService.Add(provider);
 
-            if (!result.IsValid)
-                return FromDomainToApplicationResult(result);
+                if (!result.IsValid)
+                    return FromDomainToApplicationResult(result);
 
-            Commit();
+                scope.Complete();
+            }
 
             return FromDomainToApplicationResult(result);
         }
@@ -62,6 +67,8 @@ namespace SoT.Application.AppServices
 
         public void Dispose()
         {
+            employeeService.Dispose();
+            providerService.Dispose();
             GC.SuppressFinalize(this);
         }
     }

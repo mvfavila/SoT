@@ -18,6 +18,6 @@ namespace SoT.Application.Interfaces
 
         void Update(ExampleViewModel exampleViewModel);
 
-        void Delete(Guid id);
+        void Remove(Guid id);
     }
 }

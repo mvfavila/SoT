@@ -119,7 +119,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            exampleAppService.Delete(id);
+            exampleAppService.Remove(id);
             return RedirectToAction(nameof(Index));
         }
 

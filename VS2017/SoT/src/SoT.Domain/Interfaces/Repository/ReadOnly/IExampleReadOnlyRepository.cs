@@ -1,13 +1,10 @@
 ﻿using SoT.Domain.Entities.Example;
-using System;
 using System.Collections.Generic;
 
 namespace SoT.Domain.Interfaces.Repository.ReadOnly
 {
-    public interface IExampleReadOnlyRepository : IDisposable
+    public interface IExampleReadOnlyRepository : IBaseReadOnlyRepository<Example>
     {
-        Example GetById(Guid id);
-
-        IEnumerable<Example> GetAll();
+        IEnumerable<Example> GetActive();
     }
 }

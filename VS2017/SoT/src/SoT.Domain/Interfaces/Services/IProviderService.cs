@@ -1,17 +1,12 @@
 ﻿using SoT.Domain.Entities;
 using SoT.Domain.ValueObjects;
-using System;
 
 namespace SoT.Domain.Interfaces.Services
 {
-    public interface IProviderService : IDisposable
+    public interface IProviderService : IBaseService<Provider>
     {
-        Provider GetById(Guid id);
+        new ValidationResult Add(Provider provider);
 
-        ValidationResult Add(Provider provider);
-
-        ValidationResult Update(Provider provider);
-
-        void Delete(Guid id);
+        new ValidationResult Update(Provider provider);
     }
 }

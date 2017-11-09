@@ -1,6 +1,6 @@
 ﻿namespace SoT.Infra.Data.Interfaces
 {
-    public interface IUnitOfWork
+    public interface IUnitOfWork<TContext> where TContext : IDbContext, new()
     {
         void BeginTransaction();
 

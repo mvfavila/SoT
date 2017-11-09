@@ -2,9 +2,11 @@
 using SoT.Application.Validation;
 using SoT.Application.ViewModels;
 using SoT.Domain.Interfaces.Services;
+using SoT.Domain.ValueObjects;
 using SoT.Infra.Data.Context;
 using System;
 using System.Collections.Generic;
+using System.Transactions;
 
 namespace SoT.Application.AppServices
 {
@@ -25,26 +27,29 @@ namespace SoT.Application.AppServices
         {
             var example = Mapping.Example.ExampleMapper.FromViewModelToDomain(exampleSubExampleViewModel);
 
-            BeginTransaction();
+            ValidationResult result;
 
-            var result = exampleService.Add(example);
-            if (!result.IsValid)
-                return FromDomainToApplicationResult(result);
+            using (var scope = new TransactionScope())
+            {
+                result = exampleService.Add(example);
+                if (!result.IsValid)
+                    return FromDomainToApplicationResult(result);
 
-            // TODO: log should me added here informing that the example was added
-                        
-            var subExample = Mapping.Example.SubExampleMapper.FromViewModelToDomain(exampleSubExampleViewModel);
+                // TODO: log should me added here informing that the example was added
 
-            subExampleService.Add(subExample);
+                var subExample = Mapping.Example.SubExampleMapper.FromViewModelToDomain(exampleSubExampleViewModel);
 
-            Commit();
+                subExampleService.Add(subExample);
+
+                scope.Complete();
+            }
 
             return FromDomainToApplicationResult(result);
         }
                                                                           
-        public void Delete(Guid id)
+        public void Remove(Guid id)
         {
-            exampleService.Delete(id);
+            exampleService.Remove(id);
         }
 
         public IEnumerable<ExampleViewModel> GetActive()
@@ -78,6 +83,7 @@ namespace SoT.Application.AppServices
         public void Dispose()
         {
             exampleService.Dispose();
+            subExampleService.Dispose();
             GC.SuppressFinalize(this);
         }
     }

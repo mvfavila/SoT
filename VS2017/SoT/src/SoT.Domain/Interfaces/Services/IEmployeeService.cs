@@ -1,17 +1,12 @@
 ﻿using SoT.Domain.Entities;
 using SoT.Domain.ValueObjects;
-using System;
 
 namespace SoT.Domain.Interfaces.Services
 {
-    public interface IEmployeeService : IDisposable
+    public interface IEmployeeService : IBaseService<Employee>
     {
-        Employee GetById(Guid id);
+        new ValidationResult Add(Employee employee);
 
-        ValidationResult Add(Employee employee);
-
-        ValidationResult Update(Employee employee);
-
-        void Delete(Guid id);
+        new ValidationResult Update(Employee employee);
     }
 }

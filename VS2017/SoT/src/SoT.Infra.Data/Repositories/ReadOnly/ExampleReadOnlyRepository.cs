@@ -4,15 +4,16 @@ using SoT.Domain.Interfaces.Repository.ReadOnly;
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using SoT.Infra.Data.Context;
 
 namespace SoT.Infra.Data.Repositories.ReadOnly
 {
-    public class ExampleReadOnlyRepository : BaseReadOnlyRepository, IExampleReadOnlyRepository
+    public class ExampleReadOnlyRepository : BaseReadOnlyRepository<Example, SoTContext>, IExampleReadOnlyRepository
     {
-        public IEnumerable<Example> GetAll()
+        public override IEnumerable<Example> GetAll()
         {
             // TODO: SQL Commands and Querys should be moved to a readonly Command or Query class
-            var sql = "SELECT * FROM Example e";
+            const string sql = "SELECT * FROM Example e";
 
             using (var connection = Connection)
             {
@@ -24,11 +25,17 @@ namespace SoT.Infra.Data.Repositories.ReadOnly
             }
         }
 
-        public Example GetById(Guid id)
+        public IEnumerable<Example> GetActive()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override Example GetById(Guid id)
         {
             // TODO: SQL Commands and Querys should be moved to a readonly Command or Query class
-            var sql = "SELECT * FROM Example e" +
-                        "WHERE e.EXAMPLE_ID = @EXAMPLE_ID";
+            const string sql = @"
+                SELECT * FROM Example e
+                WHERE e.EXAMPLE_ID = @EXAMPLE_ID";
 
             using (var connection = Connection)
             {
@@ -44,7 +51,7 @@ namespace SoT.Infra.Data.Repositories.ReadOnly
         {
             // TODO: SQL Commands and Querys should be moved to a readonly Command or Query class
             // TODO: parameters must be passed using frameworks avoiding SQL Injection
-            var sql = "SELECT * FROM Example e" +
+            const string sql = "SELECT * FROM Example e" +
                         "INNER JOIN SubExample se ON e.ExampleId = se.ExampleId" +
                         "WHERE e.EXAMPLE_ID = @EXAMPLE_ID";
 
@@ -63,11 +70,6 @@ namespace SoT.Infra.Data.Repositories.ReadOnly
 
                 return exampleWithSubExample.FirstOrDefault();
             }
-        }
-
-        public void Dispose()
-        {
-            GC.SuppressFinalize(this);
         }
     }
 }

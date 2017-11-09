@@ -1,4 +1,4 @@
-﻿using SoT.Domain.Interfaces.Repository;
+﻿using SoT.Domain.Interfaces.Repository.ReadOnly;
 using SoT.Domain.Specification.Example;
 using SoT.Domain.Validation.Base;
 
@@ -6,14 +6,14 @@ namespace SoT.Domain.Validation.Example
 {
     public class ExampleIsVerifiedForDatabaseRegistration : BaseSupervisor<Entities.Example.Example>
     {
-        private readonly IExampleRepository exampleRepository;
+        private readonly IExampleReadOnlyRepository exampleReadOnlyRepository;
 
-        public ExampleIsVerifiedForDatabaseRegistration(IExampleRepository exampleRepository)
+        public ExampleIsVerifiedForDatabaseRegistration(IExampleReadOnlyRepository exampleReadOnlyRepository)
         {
-            this.exampleRepository = exampleRepository;
-            
-            var isUniqueEntry = new ExampleIsUniqueEntrySpecification(exampleRepository);
-            
+            this.exampleReadOnlyRepository = exampleReadOnlyRepository;
+
+            var isUniqueEntry = new ExampleIsUniqueEntrySpecification(exampleReadOnlyRepository);
+
             base.AddRule("IsUniqueEntry", new Rule<Entities.Example.Example>(isUniqueEntry,
                 "Example is already registered"));
         }

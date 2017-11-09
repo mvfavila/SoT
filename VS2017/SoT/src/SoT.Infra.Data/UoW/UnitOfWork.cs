@@ -1,19 +1,17 @@
-﻿using CommonServiceLocator;
-using SoT.Infra.Data.Context;
-using SoT.Infra.Data.Interfaces;
+﻿using SoT.Infra.Data.Interfaces;
 using System;
 
 namespace SoT.Infra.Data.UoW
 {
-    public class UnitOfWork : IUnitOfWork
+    public class UnitOfWork<TContext> : IUnitOfWork<TContext> where TContext : IDbContext, new()
     {
-        private readonly SoTContext dbContext;
-        private readonly ContextManager contextManager =
-            ServiceLocator.Current.GetInstance<IContextManager>() as ContextManager;
+        private readonly IDbContext dbContext;
+        private readonly IContextManager contextManager;
         private bool disposed;
 
-        public UnitOfWork()
+        public UnitOfWork(IContextManager contextManager)
         {
+            this.contextManager = contextManager;
             dbContext = contextManager.GetContext();
         }
 
