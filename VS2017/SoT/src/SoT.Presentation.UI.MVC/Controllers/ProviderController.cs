@@ -42,12 +42,12 @@ namespace SoT.Presentation.UI.MVC.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(
-            [Bind(Include = "Id,BirthDate,ProviderId,CompanyName,Active,RegisterDate")]
+            [Bind(Include = "EmployeeId,BirthDate,ProviderId,CompanyName,RegisterDate")]
             EmployeeProviderViewModel employeeProviderViewModel)
         {
             if (ModelState.IsValid)
             {
-                employeeProviderViewModel.Id = User.Identity.GetUserId();
+                employeeProviderViewModel.UserId = Guid.Parse(User.Identity.GetUserId());
 
                 var result = providerAppService.Add(employeeProviderViewModel);
                 if (!result.IsValid)

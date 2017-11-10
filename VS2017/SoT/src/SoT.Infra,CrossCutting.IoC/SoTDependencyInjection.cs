@@ -26,7 +26,6 @@ namespace SoT.Infra.CrossCutting.IoC
 
             container.Register<SoTContext>(Lifestyle.Scoped);
             container.Register<AppDbContext>(Lifestyle.Scoped);
-            container.Register<IdentityContext>(Lifestyle.Scoped);
 
             container.Register<IExampleRepository, ExampleRepository>(Lifestyle.Scoped);
             container.Register<IExampleReadOnlyRepository, ExampleReadOnlyRepository>(Lifestyle.Scoped);

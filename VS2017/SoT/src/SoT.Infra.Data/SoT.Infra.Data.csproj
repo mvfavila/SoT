@@ -66,7 +66,6 @@
   <ItemGroup>
     <Compile Include="Context\BaseDbContext.cs" />
     <Compile Include="Context\ContextManager.cs" />
-    <Compile Include="Context\IdentityContext.cs" />
     <Compile Include="Context\SoTContext.cs" />
     <Compile Include="EntityConfig\EmployeeConfiguration.cs" />
     <Compile Include="EntityConfig\AddressConfiguration.cs" />
@@ -80,7 +79,6 @@
     <Compile Include="EntityConfig\ProviderConfiguration.cs" />
     <Compile Include="EntityConfig\RegionConfiguration.cs" />
     <Compile Include="EntityConfig\SubExampleConfiguration.cs" />
-    <Compile Include="EntityConfig\UserConfiguration.cs" />
     <Compile Include="Interfaces\IContextManager.cs" />
     <Compile Include="Interfaces\IDbContext.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
@@ -91,6 +89,14 @@
     <Compile Include="Migrations\201711010731435_New entities added.cs" />
     <Compile Include="Migrations\201711010731435_New entities added.Designer.cs">
       <DependentUpon>201711010731435_New entities added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711091050505_Employee and Provider added.cs" />
+    <Compile Include="Migrations\201711091050505_Employee and Provider added.Designer.cs">
+      <DependentUpon>201711091050505_Employee and Provider added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711100054488_Employee does not inherit from User.cs" />
+    <Compile Include="Migrations\201711100054488_Employee does not inherit from User.Designer.cs">
+      <DependentUpon>201711100054488_Employee does not inherit from User.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -114,6 +120,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711010731435_New entities added.resx">
       <DependentUpon>201711010731435_New entities added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711091050505_Employee and Provider added.resx">
+      <DependentUpon>201711091050505_Employee and Provider added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711100054488_Employee does not inherit from User.resx">
+      <DependentUpon>201711100054488_Employee does not inherit from User.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

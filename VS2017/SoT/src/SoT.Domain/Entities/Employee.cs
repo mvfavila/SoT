@@ -8,7 +8,7 @@ namespace SoT.Domain.Entities
     /// <summary>
     /// Represents an Employee/Owner of a Adventure Provider.
     /// </summary>
-    public class Employee : User, ISelfValidator
+    public class Employee : ISelfValidator
     {
         /// <summary>
         /// Class constructor.
@@ -22,8 +22,14 @@ namespace SoT.Domain.Entities
         private Employee(DateTime birthDate)
             : base()
         {
+            EmployeeId = Guid.NewGuid();
             BirthDate = birthDate;
         }
+
+        /// <summary>
+        /// Employee Unique Id.
+        /// </summary>
+        public Guid EmployeeId { get; private set; }
 
         /// <summary>
         /// Employee's birth date.
@@ -39,6 +45,11 @@ namespace SoT.Domain.Entities
         /// <see cref="Entities.Provider"/> where the Employee works or which is owned by the Employee.
         /// </summary>
         public virtual Provider Provider { get; private set; }
+
+        /// <summary>
+        /// Unique id of the ApplicationUser attached to the Employee.
+        /// </summary>
+        public Guid UserId { get; private set; }
 
         /// <summary>
         /// See <see cref="ValueObjects.ValidationResult"/>.
@@ -70,19 +81,21 @@ namespace SoT.Domain.Entities
         /// <summary>
         /// Factory used when Mapping from a View Model to a <see cref="Employee"/>.
         /// </summary>
-        /// <param name="id">Employee's Unique Id.</param>
+        /// <param name="employeeId">Employee's Unique Id.</param>
         /// <param name="birthDate">Employee's birth date.</param>
         /// <param name="provider"><see cref="Entities.Provider"/> where the Employee works or which is owned by the
         /// Employee.</param>
+        /// <param name="userId">Unique id of the <see cref="Entities.User"/> attached to the Employee.</param>
         /// <returns>See <see cref="Employee"/>.</returns>
-        public static Employee FactoryMap(Guid id, DateTime birthDate, Provider provider)
+        public static Employee FactoryMap(Guid employeeId, DateTime birthDate, Provider provider, Guid userId)
         {
             return new Employee
             {
-                Id = id.ToString(),
+                EmployeeId = employeeId,
                 BirthDate = birthDate,
                 ProviderId = provider.ProviderId,
-                Provider = provider
+                Provider = provider,
+                UserId = userId
             };
         }
     }

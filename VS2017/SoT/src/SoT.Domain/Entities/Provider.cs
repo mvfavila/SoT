@@ -97,12 +97,12 @@ namespace SoT.Domain.Entities
         /// <param name="active">Informs if the Provider is active in SoT system.</param>
         /// <param name="registerDate">Date when the Provider was registered in the SumOfThis.</param>
         /// <returns>See <see cref="Provider"/>.</returns>
-        public static Provider FactoryMap(string providerId, string companyName, IEnumerable<Adventure> adventures,
+        public static Provider FactoryMap(Guid providerId, string companyName, IEnumerable<Adventure> adventures,
             IEnumerable<Employee> employees, bool active, DateTime registerDate)
         {
             return new Provider
             {
-                ProviderId = Guid.Parse(providerId),
+                ProviderId = providerId,
                 CompanyName = companyName,
                 Adventures = adventures,
                 Employees = employees,

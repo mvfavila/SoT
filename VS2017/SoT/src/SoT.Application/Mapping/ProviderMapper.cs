@@ -12,7 +12,7 @@ namespace SoT.Application.Mapping
             EmployeeProviderViewModel employeeProviderViewModel)
         {
             return Provider.FactoryMap(
-                employeeProviderViewModel.Id,
+                employeeProviderViewModel.ProviderId,
                 employeeProviderViewModel.CompanyName,
                 new List<Adventure>(),
                 new List<Employee>(),

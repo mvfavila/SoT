@@ -1,6 +1,5 @@
 ﻿using SoT.Application.ViewModels;
 using SoT.Domain.Entities;
-using System;
 
 namespace SoT.Application.Mapping
 {
@@ -14,9 +13,10 @@ namespace SoT.Application.Mapping
             var provider = ProviderMapper.FromViewModelToDomain(employeeProviderViewModel);
 
             return Employee.FactoryMap(
-                Guid.Parse(employeeProviderViewModel.Id),
+                employeeProviderViewModel.EmployeeId,
                 employeeProviderViewModel.BirthDate,
-                provider
+                provider,
+                employeeProviderViewModel.UserId
                 );
         }
     }

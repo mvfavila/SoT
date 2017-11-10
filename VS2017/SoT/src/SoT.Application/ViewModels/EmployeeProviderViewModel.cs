@@ -7,21 +7,22 @@ namespace SoT.Application.ViewModels
     {
         public EmployeeProviderViewModel()
         {
-            Id = Guid.NewGuid().ToString();
+            EmployeeId = Guid.NewGuid();
             ProviderId = Guid.NewGuid();
         }
 
-        // User
+        // Employee
 
         [ScaffoldColumn(false)]
-        public string Id { get; set; }
-
-        // Employee
+        public Guid EmployeeId { get; set; }
 
         [Display(Name = "Birth date")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         [DataType(DataType.Date, ErrorMessage = "Date format invalid")]
         public DateTime BirthDate { get; set; }
+
+        [ScaffoldColumn(false)]
+        public Guid UserId { get; set; }
 
         // Provider
 
