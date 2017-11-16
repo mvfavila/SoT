@@ -4,6 +4,7 @@ using SoT.Domain.Interfaces.Services;
 using SoT.Domain.ValueObjects;
 using SoT.Domain.Interfaces.Repository;
 using SoT.Domain.Interfaces.Repository.ReadOnly;
+using SoT.Domain.Validation.Provider;
 
 namespace SoT.Domain.Services
 {
@@ -22,7 +23,25 @@ namespace SoT.Domain.Services
 
         ValidationResult IProviderService.Add(Provider provider)
         {
-            throw new NotImplementedException();
+            var validationResult = new ValidationResult();
+
+            if (!provider.IsValid())
+            {
+                validationResult.AddError(provider.ValidationResult);
+                return validationResult;
+            }
+
+            var validator = new ProviderIsVerifiedForRegistration();
+            var validationService = validator.Validate(provider);
+            if (!validationService.IsValid)
+            {
+                validationResult.AddError(provider.ValidationResult);
+                return validationResult;
+            }
+
+            providerRepository.Add(provider);
+
+            return validationResult;
         }
 
         ValidationResult IProviderService.Update(Provider provider)

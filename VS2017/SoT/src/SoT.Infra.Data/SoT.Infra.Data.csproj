@@ -98,6 +98,10 @@
     <Compile Include="Migrations\201711100054488_Employee does not inherit from User.Designer.cs">
       <DependentUpon>201711100054488_Employee does not inherit from User.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711100152576_IdentityContext removed.cs" />
+    <Compile Include="Migrations\201711100152576_IdentityContext removed.Designer.cs">
+      <DependentUpon>201711100152576_IdentityContext removed.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
@@ -126,6 +130,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711100054488_Employee does not inherit from User.resx">
       <DependentUpon>201711100054488_Employee does not inherit from User.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711100152576_IdentityContext removed.resx">
+      <DependentUpon>201711100152576_IdentityContext removed.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
