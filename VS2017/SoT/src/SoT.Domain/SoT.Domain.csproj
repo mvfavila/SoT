@@ -46,6 +46,7 @@
     <Compile Include="Entities\Provider.cs" />
     <Compile Include="Entities\Region.cs" />
     <Compile Include="Interfaces\Repository\IBaseRepository.cs" />
+    <Compile Include="Interfaces\Repository\ICountryRepository.cs" />
     <Compile Include="Interfaces\Repository\IEmployeeRepository.cs" />
     <Compile Include="Interfaces\Repository\IExampleRepository.cs" />
     <Compile Include="Interfaces\Repository\IProviderRepository.cs" />

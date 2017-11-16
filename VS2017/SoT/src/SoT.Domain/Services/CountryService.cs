@@ -1,4 +1,5 @@
 ﻿using SoT.Domain.Entities;
+using SoT.Domain.Interfaces.Repository;
 using SoT.Domain.Interfaces.Repository.ReadOnly;
 using SoT.Domain.Interfaces.Services;
 using SoT.Domain.ValueObjects;
@@ -8,11 +9,14 @@ namespace SoT.Domain.Services
 {
     public class CountryService : BaseService<Country>, ICountryService
     {
+        private readonly ICountryRepository countryRepository;
         private readonly ICountryReadOnlyRepository countryReadOnlyRepository;
 
-        public CountryService(ICountryReadOnlyRepository countryReadOnlyRepository)
-            : base(null, countryReadOnlyRepository)
+        public CountryService(ICountryRepository countryRepository,
+            ICountryReadOnlyRepository countryReadOnlyRepository)
+            : base(countryRepository, countryReadOnlyRepository)
         {
+            this.countryRepository = countryRepository;
             this.countryReadOnlyRepository = countryReadOnlyRepository;
         }
 
