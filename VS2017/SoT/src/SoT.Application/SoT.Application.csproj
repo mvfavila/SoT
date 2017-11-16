@@ -51,6 +51,7 @@
     <Compile Include="Interfaces\ICountryAppService.cs" />
     <Compile Include="Interfaces\IExampleAppService.cs" />
     <Compile Include="Interfaces\IProviderAppService.cs" />
+    <Compile Include="Mapping\CountryMapper.cs" />
     <Compile Include="Mapping\EmployeeMapper.cs" />
     <Compile Include="Mapping\Example\ExampleMapper.cs" />
     <Compile Include="Mapping\Example\SubExampleMapper.cs" />

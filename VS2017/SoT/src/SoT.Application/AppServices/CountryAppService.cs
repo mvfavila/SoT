@@ -4,6 +4,7 @@ using SoT.Application.Validation;
 using SoT.Application.ViewModels;
 using SoT.Domain.Interfaces.Services;
 using SoT.Infra.Data.Context;
+using SoT.Application.Mapping;
 
 namespace SoT.Application.AppServices
 {
@@ -23,7 +24,7 @@ namespace SoT.Application.AppServices
 
         public CountryViewModel GetById(Guid id)
         {
-            throw new NotImplementedException();
+            return CountryMapper.FromDomainToViewModel(countryService.GetById(id));
         }
 
         public ValidationAppResult Update(CountryViewModel countryViewModel)
