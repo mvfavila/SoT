@@ -57,6 +57,7 @@
     <Compile Include="Interfaces\Repository\ReadOnly\IProviderReadOnlyRepository.cs" />
     <Compile Include="Interfaces\Repository\ReadOnly\ISubExampleReadOnlyRepository.cs" />
     <Compile Include="Interfaces\Services\IBaseService.cs" />
+    <Compile Include="Interfaces\Services\ICountryService.cs" />
     <Compile Include="Interfaces\Services\IEmployeeService.cs" />
     <Compile Include="Interfaces\Services\IExampleService.cs" />
     <Compile Include="Interfaces\Services\IProviderService.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="Interfaces\Validation\ISelfValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\BaseService.cs" />
+    <Compile Include="Services\CountryService.cs" />
     <Compile Include="Services\EmployeeService.cs" />
     <Compile Include="Services\ExampleService.cs" />
     <Compile Include="Services\ProviderService.cs" />
