@@ -35,6 +35,7 @@ namespace SoT.Infra.CrossCutting.IoC
             container.Register<IProviderReadOnlyRepository, ProviderReadOnlyRepository> (Lifestyle.Scoped);
             container.Register<IEmployeeRepository, EmployeeRepository> (Lifestyle.Scoped);
             container.Register<IEmployeeReadOnlyRepository, EmployeeReadOnlyRepository>(Lifestyle.Scoped);
+            container.Register<ICountryReadOnlyRepository, CountryReadOnlyRepository>(Lifestyle.Scoped);
 
             // Infra - CrossCutting - Identity
 

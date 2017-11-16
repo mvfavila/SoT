@@ -109,6 +109,7 @@
     <Compile Include="Repositories\ExampleRepository.cs" />
     <Compile Include="Repositories\ProviderRepository.cs" />
     <Compile Include="Repositories\ReadOnly\BaseReadOnlyRepository.cs" />
+    <Compile Include="Repositories\ReadOnly\CountryReadOnlyRepository.cs" />
     <Compile Include="Repositories\ReadOnly\EmployeeReadOnlyRepository.cs" />
     <Compile Include="Repositories\ReadOnly\ExampleReadOnlyRepository.cs" />
     <Compile Include="Repositories\ReadOnly\ProviderReadOnlyRepository.cs" />
