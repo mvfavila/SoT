@@ -62,7 +62,7 @@ namespace SoT.Infra.CrossCutting.IoC
             container.Register<ISubExampleService, SubExampleService>(Lifestyle.Scoped);
             container.Register<IEmployeeService, EmployeeService>(Lifestyle.Scoped);
             container.Register<IProviderService, ProviderService>(Lifestyle.Scoped);
-            container.Register<ICountryReadOnlyRepository, CountryReadOnlyRepository>(Lifestyle.Scoped);
+            container.Register<ICountryService, CountryService>(Lifestyle.Scoped);
 
             // Application
 
