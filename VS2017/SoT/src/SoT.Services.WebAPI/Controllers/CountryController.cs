@@ -9,9 +9,7 @@ namespace SoT.Services.WebAPI.Controllers
     public class CountryController : ApiController
     {
         private readonly ICountryAppService countryAppService;
-
-        public CountryController() { }
-
+        
         public CountryController(ICountryAppService countryAppService)
         {
             this.countryAppService = countryAppService;
