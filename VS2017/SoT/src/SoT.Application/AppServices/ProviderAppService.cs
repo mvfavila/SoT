@@ -5,7 +5,6 @@ using SoT.Domain.Interfaces.Services;
 using SoT.Domain.ValueObjects;
 using SoT.Infra.Data.Context;
 using System;
-using System.Transactions;
 
 namespace SoT.Application.AppServices
 {
@@ -28,24 +27,9 @@ namespace SoT.Application.AppServices
 
             provider.AddEmployee(employee);
 
-            ValidationResult result;
+            var result = employeeService.Add(employee);
 
-            using(var scope = new TransactionScope())
-            {
-                result = employeeService.Add(employee);
-
-                if (!result.IsValid)
-                    return FromDomainToApplicationResult(result);
-
-                // TODO: log should be added here informing that the example was added
-
-                result = providerService.Add(provider);
-
-                if (!result.IsValid)
-                    return FromDomainToApplicationResult(result);
-
-                scope.Complete();
-            }
+            // TODO: log should be added here informing that the example was added
 
             return FromDomainToApplicationResult(result);
         }
