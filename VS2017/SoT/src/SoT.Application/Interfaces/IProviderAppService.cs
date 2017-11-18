@@ -6,7 +6,7 @@ namespace SoT.Application.Interfaces
 {
     public interface IProviderAppService : IDisposable
     {
-        EmployeeProviderViewModel GetById(Guid id);
+        EmployeeProviderViewModel GetByUserId(Guid userId);
 
         ValidationAppResult Add(EmployeeProviderViewModel employeeProviderViewModel);
 

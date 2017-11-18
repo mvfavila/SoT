@@ -35,7 +35,7 @@ namespace SoT.Infra.Data.Repositories.ReadOnly
             }
         }
 
-        public Provider GetWithEmployeeById(Guid id)
+        public Provider GetWithEmployeeById(Guid userId)
         {
             using (var connection = Connection)
             {
@@ -48,10 +48,35 @@ namespace SoT.Infra.Data.Repositories.ReadOnly
                         provider.Employees.ToList().Add(employee);
                         return provider;
                     },
-                    new { ID = id },
-                    splitOn: "Id, EmployeeId");
+                    new { ID = userId },
+                    splitOn: "UserId, EmployeeId");
 
                 return providerWithEmployees.FirstOrDefault();
+                
+
+
+
+                //var providerDictionary = new Dictionary<int, Provider>();
+
+                //var invoices = connection.Query<Provider, Employee, Provider>(
+                //        ProviderQuery.GET_WITH_EMPLOYEE_BY_ID,
+                //        (provider, employee) =>
+                //        {
+                //            Provider providerEntry;
+
+                //            if (!providerDictionary.TryGetValue(provider.InvoiceID, out providerEntry))
+                //            {
+                //                providerEntry = provider;
+                //                providerEntry.Items = new List<InvoiceItem>();
+                //                providerDictionary.Add(providerEntry.InvoiceID, providerEntry);
+                //            }
+
+                //            providerEntry.Items.Add(employee);
+                //            return providerEntry;
+                //        },
+                //        splitOn: "InvoiceID")
+                //    .Distinct()
+                //    .ToList();
             }
         }
     }

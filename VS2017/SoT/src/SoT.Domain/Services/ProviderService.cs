@@ -21,6 +21,11 @@ namespace SoT.Domain.Services
             this.providerReadOnlyRepository = providerReadOnlyRepository;
         }
 
+        public Provider GetWithEmployeeById(Guid userId)
+        {
+            return providerReadOnlyRepository.GetWithEmployeeById(userId);
+        }
+
         ValidationResult IProviderService.Add(Provider provider)
         {
             var validationResult = new ValidationResult();

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using SoT.Application.Interfaces;
 using SoT.Application.ViewModels;
+using SoT.Infra.CrossCutting.MvcFilters;
 using System;
 using System.Net;
 using System.Web.Mvc;
@@ -17,14 +18,17 @@ namespace SoT.Presentation.UI.MVC.Controllers
             this.providerAppService = providerAppService;
         }
 
-        // GET: Provider/Details/5
-        public ActionResult Details(string id)
+        [ClaimsAuthorize("ManageProvider", "True")]
+        // GET: Provider/Details
+        public ActionResult Details()
         {
-            if (id == null)
+            var loggedId = User.Identity.GetUserId();
+
+            if (loggedId == null || !Guid.TryParse(loggedId, out Guid userId))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var employeeProviderViewModel = providerAppService.GetById(Guid.Parse(id));
+            var employeeProviderViewModel = providerAppService.GetByUserId(userId);
             if (employeeProviderViewModel == null)
             {
                 return HttpNotFound();
@@ -73,7 +77,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var employeeProviderViewModel = providerAppService.GetById(Guid.Parse(id));
+            var employeeProviderViewModel = providerAppService.GetByUserId(Guid.Parse(id));
             if (employeeProviderViewModel == null)
             {
                 return HttpNotFound();
@@ -114,7 +118,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var employeeProviderViewModel = providerAppService.GetById(Guid.Parse(id));
+            var employeeProviderViewModel = providerAppService.GetByUserId(Guid.Parse(id));
             if (employeeProviderViewModel == null)
             {
                 return HttpNotFound();

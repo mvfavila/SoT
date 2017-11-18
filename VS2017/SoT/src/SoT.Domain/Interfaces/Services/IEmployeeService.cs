@@ -1,5 +1,6 @@
 ﻿using SoT.Domain.Entities;
 using SoT.Domain.ValueObjects;
+using System;
 
 namespace SoT.Domain.Interfaces.Services
 {

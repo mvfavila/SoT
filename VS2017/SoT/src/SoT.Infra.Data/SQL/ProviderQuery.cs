@@ -14,7 +14,7 @@
         public static readonly string GET_WITH_EMPLOYEE_BY_ID = @"
             SELECT *
             FROM Provider p
-            INNER JOIN Employee e ON p.Id = e.EmployeeId
-            WHERE p.ID = @ID";
+            INNER JOIN Employee e ON p.ProviderId = e.ProviderId
+            WHERE e.UserId = @ID";
     }
 }

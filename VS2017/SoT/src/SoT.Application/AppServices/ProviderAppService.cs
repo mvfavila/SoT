@@ -2,7 +2,6 @@
 using SoT.Application.Validation;
 using SoT.Application.ViewModels;
 using SoT.Domain.Interfaces.Services;
-using SoT.Domain.ValueObjects;
 using SoT.Infra.Data.Context;
 using System;
 
@@ -39,9 +38,11 @@ namespace SoT.Application.AppServices
             throw new NotImplementedException();
         }
 
-        public EmployeeProviderViewModel GetById(Guid id)
+        public EmployeeProviderViewModel GetByUserId(Guid userId)
         {
-            throw new NotImplementedException();
+            var provider = providerService.GetWithEmployeeById(userId);
+
+            return Mapping.ProviderMapper.FromDomainToViewModel(provider);
         }
 
         public ValidationAppResult Update(EmployeeProviderViewModel employeeProviderViewModel)

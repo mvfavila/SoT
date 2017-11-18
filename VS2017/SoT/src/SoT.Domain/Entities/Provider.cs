@@ -15,7 +15,10 @@ namespace SoT.Domain.Entities
         /// <summary>
         /// Class constructor.
         /// </summary>
-        private Provider() { }
+        private Provider()
+        {
+            Employees = new List<Employee>();
+        }
 
         /// <summary>
         /// Class constructor.
@@ -27,6 +30,7 @@ namespace SoT.Domain.Entities
             ProviderId = Guid.NewGuid();
             CompanyName = companyName;
             Active = active;
+            Employees = new List<Employee>();
         }
 
         /// <summary>
