@@ -55,6 +55,8 @@ namespace SoT.Application.AppServices
 
             var result = employeeService.Update(employee);
 
+            Commit();
+
             return FromDomainToApplicationResult(result);
         }
 

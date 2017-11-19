@@ -93,11 +93,19 @@ namespace SoT.Presentation.UI.MVC.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(
-            [Bind(Include = "Id,Email,Name,Surname,BirthDate,ProviderId,CompanyName,Active,RegisterDate")]
+            [Bind(Include = "EmployeeId,Email,Name,Surname,BirthDate,ProviderId,CompanyName,Active,RegisterDate")]
             EmployeeProviderViewModel employeeProviderViewModel)
         {
             if (ModelState.IsValid)
             {
+                var loggedId = User.Identity.GetUserId();
+
+                if (loggedId == null || !Guid.TryParse(loggedId, out Guid userId))
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                employeeProviderViewModel.UserId = userId;
+
                 var result = providerAppService.Update(employeeProviderViewModel);
                 if (!result.IsValid)
                 {
@@ -108,8 +116,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
                     return View(employeeProviderViewModel);
                 }
 
-                // TODO: check if this should be the action to redirect to
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction(nameof(Details), "Provider");
             }
 
             return View(employeeProviderViewModel);

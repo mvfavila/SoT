@@ -51,7 +51,25 @@ namespace SoT.Domain.Services
 
         ValidationResult IProviderService.Update(Provider provider)
         {
-            throw new NotImplementedException();
+            var validationResult = new ValidationResult();
+
+            if (!provider.IsValid())
+            {
+                validationResult.AddError(provider.ValidationResult);
+                return validationResult;
+            }
+
+            var validator = new ProviderIsVerifiedForEdition();
+            var validationService = validator.Validate(provider);
+            if (!validationService.IsValid)
+            {
+                validationResult.AddError(provider.ValidationResult);
+                return validationResult;
+            }
+
+            providerRepository.Update(provider);
+
+            return validationResult;
         }
     }
 }
