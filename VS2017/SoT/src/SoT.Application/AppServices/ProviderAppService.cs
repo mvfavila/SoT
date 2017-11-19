@@ -47,7 +47,15 @@ namespace SoT.Application.AppServices
 
         public ValidationAppResult Update(EmployeeProviderViewModel employeeProviderViewModel)
         {
-            throw new NotImplementedException();
+            var employee = Mapping.EmployeeMapper.FromViewModelToDomain(employeeProviderViewModel);
+
+            var provider = Mapping.ProviderMapper.FromViewModelToDomain(employeeProviderViewModel);
+
+            provider.AddEmployee(employee);
+
+            var result = employeeService.Update(employee);
+
+            return FromDomainToApplicationResult(result);
         }
 
         public void Dispose()

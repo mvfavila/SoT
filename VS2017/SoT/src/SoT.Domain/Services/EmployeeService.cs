@@ -4,9 +4,6 @@ using SoT.Domain.Interfaces.Repository.ReadOnly;
 using SoT.Domain.Interfaces.Services;
 using SoT.Domain.Validation.Employee;
 using SoT.Domain.ValueObjects;
-using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
 
 namespace SoT.Domain.Services
 {
@@ -48,22 +45,25 @@ namespace SoT.Domain.Services
 
         ValidationResult IEmployeeService.Update(Employee employee)
         {
-            throw new NotImplementedException();
-        }
+            var validationResult = new ValidationResult();
 
-        new IEnumerable<Employee> GetAll()
-        {
-            throw new NotImplementedException();
-        }
+            if (!employee.IsValid())
+            {
+                validationResult.AddError(employee.ValidationResult);
+                return validationResult;
+            }
 
-        IEnumerable<Employee> Find(Expression<Func<Employee, bool>> predicate)
-        {
-            throw new NotImplementedException();
-        }
+            var validator = new EmployeeIsVerifiedForEdition();
+            var validationService = validator.Validate(employee);
+            if (!validationService.IsValid)
+            {
+                validationResult.AddError(employee.ValidationResult);
+                return validationResult;
+            }
 
-        new Employee GetById(Guid id)
-        {
-            throw new NotImplementedException();
+            employeeRepository.Update(employee);
+
+            return validationResult;
         }
     }
 }
