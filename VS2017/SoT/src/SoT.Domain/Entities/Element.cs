@@ -44,7 +44,7 @@ namespace SoT.Domain.Entities
         /// <summary>
         /// Collection of <see cref="Category"/> attached to the Element.
         /// </summary>
-        public virtual IEnumerable<Category> Categories { get; private set; }
+        public virtual ICollection<Category> Categories { get; private set; }
 
         /// <summary>
         /// Factory used when a new Element is being added to the database context.

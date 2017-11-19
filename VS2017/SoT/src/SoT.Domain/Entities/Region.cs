@@ -15,7 +15,10 @@ namespace SoT.Domain.Entities
         /// <summary>
         /// Class constructor.
         /// </summary>
-        private Region() { }
+        private Region()
+        {
+            Countries = new List<Country>();
+        }
 
         /// <summary>
         /// Class constructor.
@@ -30,6 +33,7 @@ namespace SoT.Domain.Entities
             Name = name;
             Active = active;
             ContinentId = continentId;
+            Countries = new List<Country>();
         }
 
         /// <summary>
@@ -60,7 +64,7 @@ namespace SoT.Domain.Entities
         /// <summary>
         /// Collection of <see cref="Country"/> attached to the Region.
         /// </summary>
-        public virtual IEnumerable<Country> Countries { get; private set; }
+        public virtual ICollection<Country> Countries { get; private set; }
 
         /// <summary>
         /// See <see cref="ValueObjects.ValidationResult"/>.

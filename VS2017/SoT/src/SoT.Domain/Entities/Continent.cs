@@ -44,7 +44,7 @@ namespace SoT.Domain.Entities
         /// <summary>
         /// Collection of <see cref="Region"/> attached to the Continent.
         /// </summary>
-        public virtual IEnumerable<Region> Regions { get; private set; }
+        public virtual ICollection<Region> Regions { get; private set; }
 
         /// <summary>
         /// Factory used when a new Continent is being added to the database context.

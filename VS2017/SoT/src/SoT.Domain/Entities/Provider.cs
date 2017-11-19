@@ -18,6 +18,7 @@ namespace SoT.Domain.Entities
         private Provider()
         {
             Employees = new List<Employee>();
+            Adventures = new List<Adventure>();
         }
 
         /// <summary>
@@ -31,6 +32,7 @@ namespace SoT.Domain.Entities
             CompanyName = companyName;
             Active = active;
             Employees = new List<Employee>();
+            Adventures = new List<Adventure>();
         }
 
         /// <summary>

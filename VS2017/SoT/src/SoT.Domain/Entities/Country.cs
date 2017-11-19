@@ -59,7 +59,7 @@ namespace SoT.Domain.Entities
         /// <summary>
         /// Collection of <see cref="City"/> attached to the Country.
         /// </summary>
-        public virtual IEnumerable<City> Cities { get; private set; }
+        public virtual ICollection<City> Cities { get; private set; }
 
         /// <summary>
         /// See <see cref="ValueObjects.ValidationResult"/>.
