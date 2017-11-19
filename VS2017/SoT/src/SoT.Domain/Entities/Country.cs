@@ -15,7 +15,10 @@ namespace SoT.Domain.Entities
         /// <summary>
         /// Class constructor.
         /// </summary>
-        private Country() { }
+        private Country()
+        {
+            Cities = new List<City>();
+        }
 
         /// <summary>
         /// Class constructor.
@@ -29,6 +32,7 @@ namespace SoT.Domain.Entities
             Name = name;
             Active = active;
             RegionId = regionId;
+            Cities = new List<City>();
         }
 
         /// <summary>
@@ -59,7 +63,7 @@ namespace SoT.Domain.Entities
         /// <summary>
         /// Collection of <see cref="City"/> attached to the Country.
         /// </summary>
-        public virtual ICollection<City> Cities { get; private set; }
+        public virtual IEnumerable<City> Cities { get; private set; }
 
         /// <summary>
         /// See <see cref="ValueObjects.ValidationResult"/>.

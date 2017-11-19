@@ -48,12 +48,12 @@ namespace SoT.Domain.Entities
         /// <summary>
         /// Collection of <see cref="Adventure"/> attached to the Provider.
         /// </summary>
-        public virtual ICollection<Adventure> Adventures { get; private set; }
+        public virtual IEnumerable<Adventure> Adventures { get; private set; }
 
         /// <summary>
         /// Collection of <see cref="Employee"/> attached to the Provider.
         /// </summary>
-        public virtual ICollection<Employee> Employees { get; private set; }
+        public virtual IEnumerable<Employee> Employees { get; private set; }
 
         /// <summary>
         /// Informs if the Provider is active in SoT system.
@@ -128,7 +128,9 @@ namespace SoT.Domain.Entities
 
             employee.AttachProvider(this);
 
-            Employees.Add(employee);
+            var list = Employees.ToList();
+            list.Add(employee);
+            Employees = list;
         }
     }
 }

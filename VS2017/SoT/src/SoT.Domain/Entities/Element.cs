@@ -12,7 +12,10 @@ namespace SoT.Domain.Entities
         /// <summary>
         /// Class constructor.
         /// </summary>
-        private Element() { }
+        private Element()
+        {
+            Categories = new List<Category>();
+        }
 
         /// <summary>
         /// Class constructor.
@@ -24,6 +27,7 @@ namespace SoT.Domain.Entities
             ElementId = Guid.NewGuid();
             Name = name;
             Active = active;
+            Categories = new List<Category>();
         }
 
         /// <summary>
@@ -44,7 +48,7 @@ namespace SoT.Domain.Entities
         /// <summary>
         /// Collection of <see cref="Category"/> attached to the Element.
         /// </summary>
-        public virtual ICollection<Category> Categories { get; private set; }
+        public virtual IEnumerable<Category> Categories { get; private set; }
 
         /// <summary>
         /// Factory used when a new Element is being added to the database context.

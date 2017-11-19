@@ -64,7 +64,7 @@ namespace SoT.Domain.Entities
         /// <summary>
         /// Collection of <see cref="Country"/> attached to the Region.
         /// </summary>
-        public virtual ICollection<Country> Countries { get; private set; }
+        public virtual IEnumerable<Country> Countries { get; private set; }
 
         /// <summary>
         /// See <see cref="ValueObjects.ValidationResult"/>.

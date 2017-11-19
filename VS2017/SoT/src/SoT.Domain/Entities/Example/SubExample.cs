@@ -39,5 +39,15 @@ namespace SoT.Domain.Entities.Example
 
             return ValidationResult.IsValid;
         }
+
+        /// <summary>
+        /// Method used internally to attach the Example to the current SubExample.
+        /// </summary>
+        /// <param name="example">See <see cref="Entities.Example.Example"/>.</param>
+        internal void AttachProvider(Example example)
+        {
+            Example = example;
+            ExampleId = example.ExampleId;
+        }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using SoT.Domain.ValueObjects;
 using SoT.Domain.Validation.Example;
+using System.Linq;
 
 namespace SoT.Domain.Entities.Example
 {
@@ -25,7 +26,7 @@ namespace SoT.Domain.Entities.Example
 
         public DateTime RegisterDate { get; set; }
 
-        public virtual ICollection<SubExample> SubExamples { get; set; }
+        public virtual IEnumerable<SubExample> SubExamples { get; set; }
 
         public ValidationResult ValidationResult { get; private set; }
 
@@ -35,6 +36,18 @@ namespace SoT.Domain.Entities.Example
             ValidationResult = validation.Validate(this);
 
             return ValidationResult.IsValid;
+        }
+
+        public void AddSubExample(SubExample subExample)
+        {
+            if (SubExamples == null)
+                SubExamples = new List<SubExample>();
+
+            subExample.AttachProvider(this);
+
+            var list = SubExamples.ToList();
+            list.Add(subExample);
+            SubExamples = list;
         }
     }
 }

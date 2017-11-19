@@ -12,7 +12,10 @@ namespace SoT.Domain.Entities
         /// <summary>
         /// Class constructor.
         /// </summary>
-        private Continent() { }
+        private Continent()
+        {
+            Regions = new List<Region>();
+        }
 
         /// <summary>
         /// Class constructor.
@@ -24,6 +27,7 @@ namespace SoT.Domain.Entities
             ContinentId = Guid.NewGuid();
             Name = name;
             Active = active;
+            Regions = new List<Region>();
         }
 
         /// <summary>
@@ -44,7 +48,7 @@ namespace SoT.Domain.Entities
         /// <summary>
         /// Collection of <see cref="Region"/> attached to the Continent.
         /// </summary>
-        public virtual ICollection<Region> Regions { get; private set; }
+        public virtual IEnumerable<Region> Regions { get; private set; }
 
         /// <summary>
         /// Factory used when a new Continent is being added to the database context.
