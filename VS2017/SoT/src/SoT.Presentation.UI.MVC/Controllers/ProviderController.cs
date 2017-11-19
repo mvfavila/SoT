@@ -70,6 +70,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
             return View(employeeProviderViewModel);
         }
 
+        [ClaimsAuthorize("ManageProvider", "True")]
         // GET: Provider/Edit/5
         public ActionResult Edit(string id)
         {
@@ -85,6 +86,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
             return View(employeeProviderViewModel);
         }
 
+        [ClaimsAuthorize("ManageProvider", "True")]
         // POST: Provider/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -111,6 +113,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
             return View(employeeProviderViewModel);
         }
 
+        [ClaimsAuthorize("ManageProvider", "True")]
         // GET: Provider/Delete/5
         public ActionResult Delete(string id)
         {
@@ -126,6 +129,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
             return View(employeeProviderViewModel);
         }
 
+        [ClaimsAuthorize("ManageProvider", "True")]
         // POST: Provider/Delete/5
         [HttpPost, ActionName(nameof(Delete))]
         [ValidateAntiForgeryToken]
