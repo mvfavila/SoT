@@ -46,12 +46,12 @@ namespace SoT.Domain.Entities
         /// <summary>
         /// Collection of <see cref="Adventure"/> attached to the Provider.
         /// </summary>
-        public virtual IEnumerable<Adventure> Adventures { get; private set; }
+        public virtual ICollection<Adventure> Adventures { get; private set; }
 
         /// <summary>
         /// Collection of <see cref="Employee"/> attached to the Provider.
         /// </summary>
-        public virtual IEnumerable<Employee> Employees { get; private set; }
+        public virtual ICollection<Employee> Employees { get; private set; }
 
         /// <summary>
         /// Informs if the Provider is active in SoT system.
@@ -101,8 +101,8 @@ namespace SoT.Domain.Entities
         /// <param name="active">Informs if the Provider is active in SoT system.</param>
         /// <param name="registerDate">Date when the Provider was registered in the SumOfThis.</param>
         /// <returns>See <see cref="Provider"/>.</returns>
-        public static Provider FactoryMap(Guid providerId, string companyName, IEnumerable<Adventure> adventures,
-            IEnumerable<Employee> employees, bool active, DateTime registerDate)
+        public static Provider FactoryMap(Guid providerId, string companyName, ICollection<Adventure> adventures,
+            ICollection<Employee> employees, bool active, DateTime registerDate)
         {
             return new Provider
             {
@@ -124,7 +124,9 @@ namespace SoT.Domain.Entities
             if (Employees == null)
                 Employees = new List<Employee>();
 
-            Employees.ToList().Add(employee);
+            employee.AttachProvider(this);
+
+            Employees.Add(employee);
         }
     }
 }

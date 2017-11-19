@@ -35,6 +35,12 @@ namespace SoT.Infra.Data.Repositories.ReadOnly
             }
         }
 
+        /// <summary>
+        /// Gets the Provider from the data repository along with all the information attached to it e.g. The employee
+        /// attached to the Provider.
+        /// </summary>
+        /// <param name="userId">User id fetched from the system.</param>
+        /// <returns>See <see cref="Provider"/>.</returns>
         public Provider GetWithEmployeeById(Guid userId)
         {
             using (var connection = Connection)
@@ -42,41 +48,16 @@ namespace SoT.Infra.Data.Repositories.ReadOnly
                 connection.Open();
 
                 var providerWithEmployees = connection.Query<Provider, Employee, Provider>(
-                    ProviderQuery.GET_WITH_EMPLOYEE_BY_ID,
-                    (provider, employee) =>
-                    {
-                        provider.Employees.ToList().Add(employee);
-                        return provider;
-                    },
-                    new { ID = userId },
-                    splitOn: "UserId, EmployeeId");
+                        ProviderQuery.GET_WITH_EMPLOYEE_BY_ID,
+                        (provider, employee) =>
+                        {
+                            provider.AddEmployee(employee);
+                            return provider;
+                        },
+                        new { ID = userId })
+                    .ToList();
 
                 return providerWithEmployees.FirstOrDefault();
-                
-
-
-
-                //var providerDictionary = new Dictionary<int, Provider>();
-
-                //var invoices = connection.Query<Provider, Employee, Provider>(
-                //        ProviderQuery.GET_WITH_EMPLOYEE_BY_ID,
-                //        (provider, employee) =>
-                //        {
-                //            Provider providerEntry;
-
-                //            if (!providerDictionary.TryGetValue(provider.InvoiceID, out providerEntry))
-                //            {
-                //                providerEntry = provider;
-                //                providerEntry.Items = new List<InvoiceItem>();
-                //                providerDictionary.Add(providerEntry.InvoiceID, providerEntry);
-                //            }
-
-                //            providerEntry.Items.Add(employee);
-                //            return providerEntry;
-                //        },
-                //        splitOn: "InvoiceID")
-                //    .Distinct()
-                //    .ToList();
             }
         }
     }

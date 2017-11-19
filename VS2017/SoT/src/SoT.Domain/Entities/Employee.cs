@@ -69,6 +69,16 @@ namespace SoT.Domain.Entities
         }
 
         /// <summary>
+        /// Method used internally to attach the Provider to the current Employee.
+        /// </summary>
+        /// <param name="provider">See <see cref="Provider"/>.</param>
+        internal void AttachProvider(Provider provider)
+        {
+            Provider = provider;
+            ProviderId = provider.ProviderId;
+        }
+
+        /// <summary>
         /// Factory used when a new Employee is being added to the database context.
         /// </summary>
         /// <param name="birthDate">Employee's birth date.</param>

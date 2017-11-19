@@ -12,7 +12,9 @@
             WHERE p.ID = @ID";
 
         public static readonly string GET_WITH_EMPLOYEE_BY_ID = @"
-            SELECT *
+            SELECT p.*,
+	               e.EmployeeId as 'Id',
+                   e.*
             FROM Provider p
             INNER JOIN Employee e ON p.ProviderId = e.ProviderId
             WHERE e.UserId = @ID";
