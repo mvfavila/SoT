@@ -71,14 +71,16 @@ namespace SoT.Presentation.UI.MVC.Controllers
         }
 
         [ClaimsAuthorize("ManageProvider", "True")]
-        // GET: Provider/Edit/5
-        public ActionResult Edit(string id)
+        // GET: Provider/Edit
+        public ActionResult Edit()
         {
-            if (id == null)
+            var loggedId = User.Identity.GetUserId();
+
+            if (loggedId == null || !Guid.TryParse(loggedId, out Guid userId))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var employeeProviderViewModel = providerAppService.GetByUserId(Guid.Parse(id));
+            var employeeProviderViewModel = providerAppService.GetByUserId(userId);
             if (employeeProviderViewModel == null)
             {
                 return HttpNotFound();
@@ -87,7 +89,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
         }
 
         [ClaimsAuthorize("ManageProvider", "True")]
-        // POST: Provider/Edit/5
+        // POST: Provider/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(
