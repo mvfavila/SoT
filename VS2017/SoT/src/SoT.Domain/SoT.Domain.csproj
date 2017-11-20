@@ -76,6 +76,10 @@
     <Compile Include="Services\ProviderService.cs" />
     <Compile Include="Services\SubExampleService.cs" />
     <Compile Include="Specification\Address\AddressIsAttachedToAdventure.cs" />
+    <Compile Include="Specification\Availability\AvailabilityIsActiveSpecification.cs" />
+    <Compile Include="Specification\Availability\AvailabilityIsCapacityHigherThanZeroSpecification.cs" />
+    <Compile Include="Specification\Availability\AvailabilityIsFutureDateSpecification.cs" />
+    <Compile Include="Specification\Availability\AvailabilityIsMinimumDurationLowerOrEqualToMaximumDurationSpecification.cs" />
     <Compile Include="Specification\Example\ExampleIsRecentDateSpecification.cs" />
     <Compile Include="Specification\Example\ExampleHasSubExampleSpecification.cs" />
     <Compile Include="Specification\Example\ExampleIsActiveSpecification.cs" />

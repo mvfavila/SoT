@@ -2,10 +2,6 @@
 using SoT.Domain.Validation.Availability;
 using SoT.Domain.ValueObjects;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SoT.Domain.Entities
 {
