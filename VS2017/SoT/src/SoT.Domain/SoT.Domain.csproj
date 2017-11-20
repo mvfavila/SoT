@@ -35,6 +35,7 @@
   <ItemGroup>
     <Compile Include="Entities\Address.cs" />
     <Compile Include="Entities\Adventure.cs" />
+    <Compile Include="Entities\Availability.cs" />
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\Continent.cs" />
     <Compile Include="Entities\Country.cs" />
@@ -82,6 +83,7 @@
     <Compile Include="Specification\SubExample\SubExampleHasPositiveCalculatedPropertyNameSpecification.cs" />
     <Compile Include="Validation\AddressIsVerified.cs" />
     <Compile Include="Validation\Adventure\AdventureIsVerifiedForRegistration.cs" />
+    <Compile Include="Validation\Availability\AvailabilityIsVerifiedForRegistration.cs" />
     <Compile Include="Validation\Base\BaseSupervisor.cs" />
     <Compile Include="Validation\Category\CategoryIsVerifiedForRegistration.cs" />
     <Compile Include="Validation\City\CityIsVerifiedForRegistration.cs" />

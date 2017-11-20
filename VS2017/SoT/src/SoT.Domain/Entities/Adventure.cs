@@ -2,6 +2,7 @@
 using SoT.Domain.Validation.Adventure;
 using SoT.Domain.ValueObjects;
 using System;
+using System.Collections.Generic;
 
 namespace SoT.Domain.Entities
 {
@@ -14,7 +15,10 @@ namespace SoT.Domain.Entities
         /// <summary>
         /// Class constructor.
         /// </summary>
-        private Adventure() { }
+        private Adventure()
+        {
+            Availabilities = new List<Availability>();
+        }
 
         /// <summary>
         /// Class constructor.
@@ -37,6 +41,7 @@ namespace SoT.Domain.Entities
             AddressId = addressId;
             InsurenceMinimalAmount = insurenceMinimalAmount;
             ProviderId = providerId;
+            Availabilities = new List<Availability>();
             Active = active;
         }
 
@@ -95,7 +100,10 @@ namespace SoT.Domain.Entities
         /// </summary>
         public virtual Provider Provider { get; private set; }
 
-        //TODO: add calendar
+        /// <summary>
+        /// Adventure's collection of <see cref="Availability"/>.
+        /// </summary>
+        public virtual IEnumerable<Availability> Availabilities { get; private set; }
 
         /// <summary>
         /// Informs if the Adventure is active in SoT system.
