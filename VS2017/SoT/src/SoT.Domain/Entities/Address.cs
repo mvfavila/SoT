@@ -82,6 +82,16 @@ namespace SoT.Domain.Entities
         }
 
         /// <summary>
+        /// Method used internally to attach the Adventure to the current Address.
+        /// </summary>
+        /// <param name="adventure">See <see cref="Entities.Adventure"/>.</param>
+        internal void AttachAdventure(Adventure adventure)
+        {
+            Adventure = adventure;
+            AdventureId = adventure.AdventureId;
+        }
+
+        /// <summary>
         /// Factory used when a new Address is being added to the database context.
         /// </summary>
         /// <param name="street01">Street's Address.</param>

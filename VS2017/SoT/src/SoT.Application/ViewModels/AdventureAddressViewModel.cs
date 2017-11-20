@@ -39,7 +39,8 @@ namespace SoT.Application.ViewModels
         [ScaffoldColumn(false)]
         public Guid ProviderId { get; set; }
 
-        //TODO: add calendar
+        [ScaffoldColumn(false)]
+        public Guid UserId { get; set; }
 
         [ScaffoldColumn(false)]
         public bool Active { get; set; }

@@ -37,6 +37,8 @@ namespace SoT.Infra.CrossCutting.IoC
             container.Register<IEmployeeReadOnlyRepository, EmployeeReadOnlyRepository>(Lifestyle.Scoped);
             container.Register<ICountryRepository, CountryRepository>(Lifestyle.Scoped);
             container.Register<ICountryReadOnlyRepository, CountryReadOnlyRepository>(Lifestyle.Scoped);
+            container.Register<IAdventureRepository, AdventureRepository>(Lifestyle.Scoped);
+            container.Register<IAdventureReadOnlyRepository, AdventureReadOnlyRepository>(Lifestyle.Scoped);
 
             // Infra - CrossCutting - Identity
 
@@ -63,6 +65,7 @@ namespace SoT.Infra.CrossCutting.IoC
             container.Register<IEmployeeService, EmployeeService>(Lifestyle.Scoped);
             container.Register<IProviderService, ProviderService>(Lifestyle.Scoped);
             container.Register<ICountryService, CountryService>(Lifestyle.Scoped);
+            container.Register<IAdventureService, AdventureService>(Lifestyle.Scoped);
 
             // Application
 

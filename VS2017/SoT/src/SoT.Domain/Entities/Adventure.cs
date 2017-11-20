@@ -106,6 +106,11 @@ namespace SoT.Domain.Entities
         public virtual IEnumerable<Availability> Availabilities { get; private set; }
 
         /// <summary>
+        /// Unique id of the ApplicationUser attached to the Adventure.
+        /// </summary>
+        public Guid UserId { get; private set; }
+
+        /// <summary>
         /// Informs if the Adventure is active in SoT system.
         /// </summary>
         public bool Active { get; private set; }
@@ -125,6 +130,18 @@ namespace SoT.Domain.Entities
             ValidationResult = validation.Validate(this);
 
             return ValidationResult.IsValid;
+        }
+
+        /// <summary>
+        /// Adds the current Adventure's Address.
+        /// </summary>
+        /// <param name="address">See <see cref="Entities.Address"/>.</param>
+        public void AddAddress(Address address)
+        {
+            address.AttachAdventure(this);
+
+            Address = address;
+            AddressId = address.AddressId;
         }
 
         /// <summary>
