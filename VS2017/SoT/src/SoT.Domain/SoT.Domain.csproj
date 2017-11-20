@@ -48,6 +48,7 @@
     <Compile Include="Entities\Region.cs" />
     <Compile Include="Interfaces\Repository\IAdventureRepository.cs" />
     <Compile Include="Interfaces\Repository\IBaseRepository.cs" />
+    <Compile Include="Interfaces\Repository\ICategoryRepository.cs" />
     <Compile Include="Interfaces\Repository\ICityRepository.cs" />
     <Compile Include="Interfaces\Repository\ICountryRepository.cs" />
     <Compile Include="Interfaces\Repository\IEmployeeRepository.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="Interfaces\Repository\ISubExampleRepository.cs" />
     <Compile Include="Interfaces\Repository\ReadOnly\IAdventureReadOnlyRepository.cs" />
     <Compile Include="Interfaces\Repository\ReadOnly\IBaseReadOnlyRepository.cs" />
+    <Compile Include="Interfaces\Repository\ReadOnly\ICategoryReadOnlyRepository.cs" />
     <Compile Include="Interfaces\Repository\ReadOnly\ICityReadOnlyRepository.cs" />
     <Compile Include="Interfaces\Repository\ReadOnly\ICountryReadOnlyRepository.cs" />
     <Compile Include="Interfaces\Repository\ReadOnly\IEmployeeReadOnlyRepository.cs" />
@@ -64,6 +66,7 @@
     <Compile Include="Interfaces\Repository\ReadOnly\ISubExampleReadOnlyRepository.cs" />
     <Compile Include="Interfaces\Services\IAdventureService.cs" />
     <Compile Include="Interfaces\Services\IBaseService.cs" />
+    <Compile Include="Interfaces\Services\ICategoryService.cs" />
     <Compile Include="Interfaces\Services\ICityService.cs" />
     <Compile Include="Interfaces\Services\ICountryService.cs" />
     <Compile Include="Interfaces\Services\IEmployeeService.cs" />
@@ -77,6 +80,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AdventureService.cs" />
     <Compile Include="Services\BaseService.cs" />
+    <Compile Include="Services\CategoryService.cs" />
     <Compile Include="Services\CityService.cs" />
     <Compile Include="Services\CountryService.cs" />
     <Compile Include="Services\EmployeeService.cs" />

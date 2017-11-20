@@ -1,14 +1,14 @@
 ﻿namespace SoT.Infra.Data.SQL
 {
-    public class EmployeeQuery
+    public class CategoryQuery
     {
         public static readonly string GET_ALL = @"
             SELECT *
-            FROM Employee e";
+            FROM Category c";
 
         public static readonly string GET_BY_ID = @"
             SELECT *
-            FROM Employee e
-            WHERE e.EmployeeId = @EMPLOYEE_ID";
+            FROM Category c
+            WHERE c.CategoryId = @ID";
     }
 }

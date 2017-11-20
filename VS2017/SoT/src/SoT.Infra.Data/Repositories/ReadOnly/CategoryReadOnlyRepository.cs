@@ -9,29 +9,29 @@ using System.Linq;
 
 namespace SoT.Infra.Data.Repositories.ReadOnly
 {
-    public class CityReadOnlyRepository : BaseReadOnlyRepository<City, SoTContext>, ICityReadOnlyRepository
+    public class CategoryReadOnlyRepository : BaseReadOnlyRepository<Category, SoTContext>, ICategoryReadOnlyRepository
     {
-        public override IEnumerable<City> GetAll()
+        public override IEnumerable<Category> GetAll()
         {
             using (var connection = Connection)
             {
                 connection.Open();
 
-                var cities = connection.Query<City>(CityQuery.GET_ALL);
+                var categories = connection.Query<Category>(CategoryQuery.GET_ALL);
 
-                return cities;
+                return categories;
             }
         }
 
-        public override City GetById(Guid id)
+        public override Category GetById(Guid id)
         {
             using (var connection = Connection)
             {
                 connection.Open();
 
-                var cities = connection.Query<City>(CityQuery.GET_BY_ID, new { ID = id });
+                var categories = connection.Query<Category>(CategoryQuery.GET_BY_ID, new { ID = id });
 
-                return cities.FirstOrDefault();
+                return categories.FirstOrDefault();
             }
         }
     }
