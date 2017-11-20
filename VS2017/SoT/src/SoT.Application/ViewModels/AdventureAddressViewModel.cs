@@ -46,17 +46,17 @@ namespace SoT.Application.ViewModels
 
         // Address
         [ScaffoldColumn(false)]
-        public Guid AddressId { get; private set; }
+        public Guid AddressId { get; set; }
 
         [Display(Name = "Address")]
         [Required(ErrorMessage = "Field Address is required")]
         [MaxLength(300, ErrorMessage = "The maximum length of the field Address is 300")]
-        public string Street01 { get; private set; }
+        public string Street01 { get; set; }
 
         [MaxLength(300, ErrorMessage = "The maximum length of the field Complement is 300")]
-        public string Complement { get; private set; }
+        public string Complement { get; set; }
 
         [MaxLength(30, ErrorMessage = "The maximum length of the field Postcode is 30")]
-        public string Postcode { get; private set; }
+        public string Postcode { get; set; }
     }
 }

@@ -69,6 +69,7 @@ namespace SoT.Infra.CrossCutting.IoC
             container.Register<IExampleAppService, ExampleAppService>(Lifestyle.Scoped);
             container.Register<IProviderAppService, ProviderAppService>(Lifestyle.Scoped);
             container.Register<ICountryAppService, CountryAppService>(Lifestyle.Scoped);
+            container.Register<IAdventureAppService, AdventureAppService>(Lifestyle.Scoped);
         }
     }
 }

@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppServices\AdventureAppService.cs" />
     <Compile Include="AppServices\BaseAppService.cs" />
     <Compile Include="AppServices\CountryAppService.cs" />
     <Compile Include="AppServices\ExampleAppService.cs" />
@@ -54,6 +55,7 @@
     <Compile Include="Interfaces\ICountryAppService.cs" />
     <Compile Include="Interfaces\IExampleAppService.cs" />
     <Compile Include="Interfaces\IProviderAppService.cs" />
+    <Compile Include="Mapping\AdventureMapper.cs" />
     <Compile Include="Mapping\CountryMapper.cs" />
     <Compile Include="Mapping\EmployeeMapper.cs" />
     <Compile Include="Mapping\Example\ExampleMapper.cs" />

@@ -5,6 +5,6 @@ namespace SoT.Application.Interfaces
 {
     public interface IAdventureAppService : IDisposable
     {
-        AdventureAddressViewModel GetById(Guid id);
+        AdventureAddressViewModel GetById(Guid adventureId, Guid userId);
     }
 }

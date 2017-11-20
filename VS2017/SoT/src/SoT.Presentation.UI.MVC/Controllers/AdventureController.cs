@@ -28,16 +28,11 @@ namespace SoT.Presentation.UI.MVC.Controllers
         {
             var loggedId = User.Identity.GetUserId();
 
-            if (loggedId == null || !Guid.TryParse(loggedId, out Guid userId))
+            if (id == null || loggedId == null || !Guid.TryParse(loggedId, out Guid userId))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var adventureAddressViewModel = adventureAppService.GetById((Guid)id);
+            var adventureAddressViewModel = adventureAppService.GetById((Guid)id, userId);
             if (adventureAddressViewModel == null)
             {
                 return HttpNotFound();
@@ -81,11 +76,13 @@ namespace SoT.Presentation.UI.MVC.Controllers
         // GET: Adventure/Edit/5
         public ActionResult Edit(Guid? id)
         {
-            if (id == null)
+            var loggedId = User.Identity.GetUserId();
+
+            if (id == null || loggedId == null || !Guid.TryParse(loggedId, out Guid userId))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var adventureAddressViewModel = adventureAppService.GetById((Guid)id);
+            var adventureAddressViewModel = adventureAppService.GetById((Guid)id, userId);
             if (adventureAddressViewModel == null)
             {
                 return HttpNotFound();
@@ -120,11 +117,13 @@ namespace SoT.Presentation.UI.MVC.Controllers
         // GET: Adventure/Delete/5
         public ActionResult Delete(Guid? id)
         {
-            if (id == null)
+            var loggedId = User.Identity.GetUserId();
+
+            if (id == null || loggedId == null || !Guid.TryParse(loggedId, out Guid userId))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var adventureAddressViewModel = adventureAppService.GetById((Guid)id);
+            var adventureAddressViewModel = adventureAppService.GetById((Guid)id, userId);
             if (adventureAddressViewModel == null)
             {
                 return HttpNotFound();

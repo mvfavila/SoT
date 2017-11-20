@@ -58,6 +58,7 @@
     <Compile Include="Interfaces\Repository\ReadOnly\IExampleReadOnlyRepository.cs" />
     <Compile Include="Interfaces\Repository\ReadOnly\IProviderReadOnlyRepository.cs" />
     <Compile Include="Interfaces\Repository\ReadOnly\ISubExampleReadOnlyRepository.cs" />
+    <Compile Include="Interfaces\Services\IAdventureService.cs" />
     <Compile Include="Interfaces\Services\IBaseService.cs" />
     <Compile Include="Interfaces\Services\ICountryService.cs" />
     <Compile Include="Interfaces\Services\IEmployeeService.cs" />
