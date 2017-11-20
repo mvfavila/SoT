@@ -97,5 +97,7 @@ namespace SoT.Infra.Data.Context
 
             return base.SaveChanges();
         }
+
+        public System.Data.Entity.DbSet<SoT.Domain.Entities.Address> Addresses { get; set; }
     }
 }
