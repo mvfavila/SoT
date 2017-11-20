@@ -39,6 +39,9 @@ namespace SoT.Infra.CrossCutting.IoC
             container.Register<ICountryReadOnlyRepository, CountryReadOnlyRepository>(Lifestyle.Scoped);
             container.Register<IAdventureRepository, AdventureRepository>(Lifestyle.Scoped);
             container.Register<IAdventureReadOnlyRepository, AdventureReadOnlyRepository>(Lifestyle.Scoped);
+            container.Register<ICityRepository, CityRepository>(Lifestyle.Scoped);
+            container.Register<ICityReadOnlyRepository, CityReadOnlyRepository>(Lifestyle.Scoped);
+            
 
             // Infra - CrossCutting - Identity
 
@@ -66,6 +69,7 @@ namespace SoT.Infra.CrossCutting.IoC
             container.Register<IProviderService, ProviderService>(Lifestyle.Scoped);
             container.Register<ICountryService, CountryService>(Lifestyle.Scoped);
             container.Register<IAdventureService, AdventureService>(Lifestyle.Scoped);
+            container.Register<ICityService, CityService>(Lifestyle.Scoped);
 
             // Application
 
@@ -73,6 +77,7 @@ namespace SoT.Infra.CrossCutting.IoC
             container.Register<IProviderAppService, ProviderAppService>(Lifestyle.Scoped);
             container.Register<ICountryAppService, CountryAppService>(Lifestyle.Scoped);
             container.Register<IAdventureAppService, AdventureAppService>(Lifestyle.Scoped);
+            container.Register<ICityAppService, CityAppService>(Lifestyle.Scoped);
         }
     }
 }

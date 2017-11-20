@@ -1,0 +1,38 @@
+﻿using Dapper;
+using SoT.Domain.Entities;
+using SoT.Domain.Interfaces.Repository.ReadOnly;
+using SoT.Infra.Data.Context;
+using SoT.Infra.Data.SQL;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace SoT.Infra.Data.Repositories.ReadOnly
+{
+    public class CityReadOnlyRepository : BaseReadOnlyRepository<City, SoTContext>, ICityReadOnlyRepository
+    {
+        public override IEnumerable<City> GetAll()
+        {
+            using (var connection = Connection)
+            {
+                connection.Open();
+
+                var providers = connection.Query<City>(CityQuery.GET_ALL);
+
+                return providers;
+            }
+        }
+
+        public override City GetById(Guid id)
+        {
+            using (var connection = Connection)
+            {
+                connection.Open();
+
+                var cities = connection.Query<City>(CityQuery.GET_BY_ID, new { ID = id });
+
+                return cities.FirstOrDefault();
+            }
+        }
+    }
+}

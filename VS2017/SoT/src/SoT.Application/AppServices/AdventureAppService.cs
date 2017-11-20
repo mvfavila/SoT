@@ -25,6 +25,7 @@ namespace SoT.Application.AppServices
         public void Dispose()
         {
             adventureService.Dispose();
+            GC.SuppressFinalize(this);
         }
     }
 }

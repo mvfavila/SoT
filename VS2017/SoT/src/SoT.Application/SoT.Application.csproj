@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="AppServices\AdventureAppService.cs" />
     <Compile Include="AppServices\BaseAppService.cs" />
+    <Compile Include="AppServices\CityAppService.cs" />
     <Compile Include="AppServices\CountryAppService.cs" />
     <Compile Include="AppServices\ExampleAppService.cs" />
     <Compile Include="AppServices\ProviderAppService.cs" />
