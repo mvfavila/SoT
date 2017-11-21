@@ -41,7 +41,7 @@ namespace SoT.Infra.CrossCutting.IoC
             container.Register<IAdventureReadOnlyRepository, AdventureReadOnlyRepository>(Lifestyle.Scoped);
             container.Register<ICityRepository, CityRepository>(Lifestyle.Scoped);
             container.Register<ICityReadOnlyRepository, CityReadOnlyRepository>(Lifestyle.Scoped);
-            container.Register<ICategoryRepository, ICategoryRepository>(Lifestyle.Scoped);
+            container.Register<ICategoryRepository, CategoryRepository>(Lifestyle.Scoped);
             container.Register<ICategoryReadOnlyRepository, CategoryReadOnlyRepository>(Lifestyle.Scoped);
 
 
