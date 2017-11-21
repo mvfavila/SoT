@@ -83,5 +83,24 @@ namespace SoT.Domain.Entities
             const bool ACVTIVE = true;
             return new City(name, ACVTIVE, countryId);
         }
+
+        /// <summary>
+        /// Factory used to seed the database context.
+        /// </summary>
+        /// <param name="cityId">City Unique Id.</param>
+        /// <param name="name">Name of the City.</param>
+        /// <param name="active">Informs if the City is active in SoT system.</param>
+        /// <param name="countryId">Unique id of the <see cref="Entities.Country"/> where the City is located.</param>
+        /// <returns>See <see cref="City"/>.</returns>
+        public static City FactorySeed(string cityId, string name, bool active, Guid countryId)
+        {
+            return new City
+            {
+                CityId = Guid.Parse(cityId),
+                Name = name,
+                Active = active,
+                CountryId = countryId
+            };
+        }
     }
 }

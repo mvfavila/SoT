@@ -83,5 +83,24 @@ namespace SoT.Domain.Entities
             const bool ACTIVE = true;
             return new Category(name, ACTIVE, elementId);
         }
+
+        /// <summary>
+        /// Factory used to seed the database context.
+        /// </summary>
+        /// <param name="categoryId">Category Unique Id.</param>
+        /// <param name="name">Name of the Category.</param>
+        /// <param name="active">Informs if the Category is active in SoT system.</param>
+        /// <param name="elementId">Unique id of the <see cref="Entities.Element"/> attached to the Category.</param>
+        /// <returns>See <see cref="Category"/>.</returns>
+        public static Category FactorySeed(string categoryId, string name, bool active, Guid elementId)
+        {
+            return new Category
+            {
+                CategoryId = Guid.Parse(categoryId),
+                Name = name,
+                Active = active,
+                ElementId = elementId
+            };
+        }
     }
 }

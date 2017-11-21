@@ -93,5 +93,24 @@ namespace SoT.Domain.Entities
             const bool ACTIVE = true;
             return new Country(name, ACTIVE, regionId);
         }
+
+        /// <summary>
+        /// Factory used to seed the database context.
+        /// </summary>
+        /// <param name="countryId">Country Unique Id.</param>
+        /// <param name="name">Name of the Country.</param>
+        /// <param name="active">Informs if the Country is active in SoT system.</param>
+        /// <param name="regionId">Unique id of the <see cref="Entities.Region"/> attached to the Country.</param>
+        /// <returns>See <see cref="Country"/>.</returns>
+        public static Country FactorySeed(string countryId, string name, bool active, Guid regionId)
+        {
+            return new Country
+            {
+                CountryId = Guid.Parse(countryId),
+                Name = name,
+                Active = active,
+                RegionId = regionId
+            };
+        }
     }
 }

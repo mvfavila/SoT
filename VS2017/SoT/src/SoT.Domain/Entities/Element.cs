@@ -60,5 +60,22 @@ namespace SoT.Domain.Entities
             const bool ACVTIVE = true;
             return new Element(name, ACVTIVE);
         }
+
+        /// <summary>
+        /// Factory used to seed the database context.
+        /// </summary>
+        /// <param name="elementId">Element Unique Id.</param>
+        /// <param name="name">Name of the Element.</param>
+        /// <param name="active">Informs if the Element is active in SoT system.</param>
+        /// <returns>See <see cref="Element"/>.</returns>
+        public static Element FactorySeed(string elementId, string name, bool active)
+        {
+            return new Element
+            {
+                ElementId = Guid.Parse(elementId),
+                Name = name,
+                Active = active
+            };
+        }
     }
 }

@@ -95,5 +95,25 @@ namespace SoT.Domain.Entities
             const bool ACVTIVE = true;
             return new Region(name, ACVTIVE, continentId);
         }
+
+        /// <summary>
+        /// Factory used to seed the database context.
+        /// </summary>
+        /// <param name="regionId">Region Unique Id.</param>
+        /// <param name="name">Name of the Region.</param>
+        /// <param name="active">Informs if the Region is active in SoT system.</param>
+        /// <param name="continentId">Unique id of the <see cref="Entities.Continent"/> where the Region is located.
+        /// </param>
+        /// <returns>See <see cref="Region"/>.</returns>
+        public static Region FactorySeed(string regionId, string name, bool active, Guid continentId)
+        {
+            return new Region
+            {
+                RegionId = Guid.Parse(regionId),
+                Name = name,
+                Active = active,
+                ContinentId = continentId
+            };
+        }
     }
 }

@@ -60,5 +60,22 @@ namespace SoT.Domain.Entities
             const bool ACTIVE = true;
             return new Continent(name, ACTIVE);
         }
+
+        /// <summary>
+        /// Factory used to seed the database context.
+        /// </summary>
+        /// <param name="continentId">Informs if the Continent is active in SoT system.</param>
+        /// <param name="name">Name fo the Continent.</param>
+        /// <param name="active">Continent Unique Id.</param>
+        /// <returns>See <see cref="Country"/>.</returns>
+        public static Continent FactorySeed(string continentId, string name, bool active)
+        {
+            return new Continent
+            {
+                ContinentId = Guid.Parse(continentId),
+                Name = name,
+                Active = active
+            };
+        }
     }
 }

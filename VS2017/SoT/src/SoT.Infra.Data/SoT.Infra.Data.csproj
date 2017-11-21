@@ -82,38 +82,6 @@
     <Compile Include="Interfaces\IContextManager.cs" />
     <Compile Include="Interfaces\IDbContext.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
-    <Compile Include="Migrations\201710200801589_Initial database.cs" />
-    <Compile Include="Migrations\201710200801589_Initial database.Designer.cs">
-      <DependentUpon>201710200801589_Initial database.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711010731435_New entities added.cs" />
-    <Compile Include="Migrations\201711010731435_New entities added.Designer.cs">
-      <DependentUpon>201711010731435_New entities added.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711091050505_Employee and Provider added.cs" />
-    <Compile Include="Migrations\201711091050505_Employee and Provider added.Designer.cs">
-      <DependentUpon>201711091050505_Employee and Provider added.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711100054488_Employee does not inherit from User.cs" />
-    <Compile Include="Migrations\201711100054488_Employee does not inherit from User.Designer.cs">
-      <DependentUpon>201711100054488_Employee does not inherit from User.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711100152576_IdentityContext removed.cs" />
-    <Compile Include="Migrations\201711100152576_IdentityContext removed.Designer.cs">
-      <DependentUpon>201711100152576_IdentityContext removed.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711190424570_First dapper query successful.cs" />
-    <Compile Include="Migrations\201711190424570_First dapper query successful.Designer.cs">
-      <DependentUpon>201711190424570_First dapper query successful.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711190458454_Entity Collections changed back to IEnumerable.cs" />
-    <Compile Include="Migrations\201711190458454_Entity Collections changed back to IEnumerable.Designer.cs">
-      <DependentUpon>201711190458454_Entity Collections changed back to IEnumerable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711210336413_UserId added to Adventure.cs" />
-    <Compile Include="Migrations\201711210336413_UserId added to Adventure.Designer.cs">
-      <DependentUpon>201711210336413_UserId added to Adventure.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AdventureRepository.cs" />
@@ -142,32 +110,6 @@
     <Compile Include="UoW\UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201710200801589_Initial database.resx">
-      <DependentUpon>201710200801589_Initial database.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711010731435_New entities added.resx">
-      <DependentUpon>201711010731435_New entities added.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711091050505_Employee and Provider added.resx">
-      <DependentUpon>201711091050505_Employee and Provider added.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711100054488_Employee does not inherit from User.resx">
-      <DependentUpon>201711100054488_Employee does not inherit from User.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711100152576_IdentityContext removed.resx">
-      <DependentUpon>201711100152576_IdentityContext removed.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711190424570_First dapper query successful.resx">
-      <DependentUpon>201711190424570_First dapper query successful.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711190458454_Entity Collections changed back to IEnumerable.resx">
-      <DependentUpon>201711190458454_Entity Collections changed back to IEnumerable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711210336413_UserId added to Adventure.resx">
-      <DependentUpon>201711210336413_UserId added to Adventure.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
@@ -177,6 +119,5 @@
       <Name>SoT.Domain</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
