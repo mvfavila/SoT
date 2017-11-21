@@ -110,6 +110,10 @@
     <Compile Include="Migrations\201711190458454_Entity Collections changed back to IEnumerable.Designer.cs">
       <DependentUpon>201711190458454_Entity Collections changed back to IEnumerable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711210336413_UserId added to Adventure.cs" />
+    <Compile Include="Migrations\201711210336413_UserId added to Adventure.Designer.cs">
+      <DependentUpon>201711210336413_UserId added to Adventure.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AdventureRepository.cs" />
@@ -158,6 +162,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711190458454_Entity Collections changed back to IEnumerable.resx">
       <DependentUpon>201711190458454_Entity Collections changed back to IEnumerable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711210336413_UserId added to Adventure.resx">
+      <DependentUpon>201711210336413_UserId added to Adventure.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
