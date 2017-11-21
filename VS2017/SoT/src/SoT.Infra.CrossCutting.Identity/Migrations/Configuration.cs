@@ -16,10 +16,12 @@ namespace SoT.Infra.CrossCutting.Identity.Migrations
 
         protected override void Seed(SoT.Infra.CrossCutting.Identity.Context.AppDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            var claimAdmClaims = Claims.FactorySeed("6b97292c-01ea-48a3-90d4-eafa09b33d64", "AdmClaims");
+            var claimManageProvider = Claims.FactorySeed("f26349fb-820d-4d4f-8d2c-9dd9cf922495", "ManageProvider");
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data.
+            context.Claims.AddOrUpdate(
+                claimAdmClaims,
+                claimManageProvider);
         }
     }
 }
