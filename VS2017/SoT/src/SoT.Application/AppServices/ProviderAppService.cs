@@ -4,6 +4,7 @@ using SoT.Application.ViewModels;
 using SoT.Domain.Interfaces.Services;
 using SoT.Infra.Data.Context;
 using System;
+using System.Linq;
 
 namespace SoT.Application.AppServices
 {
@@ -29,6 +30,9 @@ namespace SoT.Application.AppServices
             var result = employeeService.Add(employee);
 
             // TODO: log should be added here informing that the example was added
+            // TODO: check if it was a valid insertion
+
+            Commit();
 
             return FromDomainToApplicationResult(result);
         }

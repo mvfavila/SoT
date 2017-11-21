@@ -39,6 +39,18 @@ namespace SoT.Presentation.UI.MVC.Controllers
         // GET: Provider/Create
         public ActionResult Create()
         {
+            var loggedId = User.Identity.GetUserId();
+
+            if (loggedId == null || !Guid.TryParse(loggedId, out Guid userId))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var employeeProviderViewModel = providerAppService.GetByUserId(userId);
+            if (employeeProviderViewModel != null)
+            {
+                return RedirectToAction(nameof(Details), "Provider");
+            }
+
             return View();
         }
 
