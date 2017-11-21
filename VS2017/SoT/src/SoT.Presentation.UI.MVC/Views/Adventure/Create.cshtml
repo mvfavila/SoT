@@ -51,4 +51,33 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+    
+        $(document).ready(function () {
+            //Dropdownlist Selectedchange event
+            $("#CountryId").change(function () {
+                $("#CityId").empty();
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetActiveByCountry", "City")',
+                    dataType: 'json',
+                    data: { id: $("#CountryId").val() },
+                    success: function (citys) {
+                        // CountryId contains the JSON formatted list
+                        // of Cities passed from the controller
+                        $.each(citys, function (i, city) {
+                            $("#CityId").append('<option value="'
+    + city.Value + '">'
+    + city.Text + '</option>');
+                        });
+                    },
+                    error: function (ex) {
+                        alert('Failed to retrieve countries.' + ex);
+                    }
+                });
+                return false;
+            })
+        });
+    </script>
 }
