@@ -31,6 +31,7 @@ namespace SoT.Infra.Data.Context
         public DbSet<Region> Regions { get; set; }
         public DbSet<Continent> Continents { get; set; }
         public DbSet<Adventure> Adventures { get; set; }
+        public DbSet<Address> Addresses { get; set; }
         public DbSet<Provider> Providers { get; set; }
         public DbSet<Employee> Employees { get; set; }
 
@@ -98,6 +99,5 @@ namespace SoT.Infra.Data.Context
             return base.SaveChanges();
         }
 
-        public System.Data.Entity.DbSet<SoT.Domain.Entities.Address> Addresses { get; set; }
     }
 }
