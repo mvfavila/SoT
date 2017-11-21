@@ -105,6 +105,7 @@
     <Compile Include="SQL\AdventureQuery.cs" />
     <Compile Include="SQL\CategoryQuery.cs" />
     <Compile Include="SQL\CityQuery.cs" />
+    <Compile Include="SQL\CountryQuery.cs" />
     <Compile Include="SQL\EmployeeQuery.cs" />
     <Compile Include="SQL\ProviderQuery.cs" />
     <Compile Include="UoW\UnitOfWork.cs" />

@@ -198,6 +198,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdventureController.cs" />
+    <Compile Include="Controllers\CityController.cs" />
     <Compile Include="Controllers\ClaimsAdminController.cs" />
     <Compile Include="Controllers\ExamplesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -305,6 +306,11 @@
     <Content Include="Views\Adventure\Delete.cshtml" />
     <Content Include="Views\Adventure\Details.cshtml" />
     <Content Include="Views\Adventure\Edit.cshtml" />
+    <Content Include="Views\City\Create.cshtml" />
+    <Content Include="Views\City\Delete.cshtml" />
+    <Content Include="Views\City\Details.cshtml" />
+    <Content Include="Views\City\Edit.cshtml" />
+    <Content Include="Views\City\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

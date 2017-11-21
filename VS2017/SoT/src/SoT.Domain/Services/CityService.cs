@@ -1,4 +1,6 @@
-﻿using SoT.Domain.Entities;
+﻿using System;
+using System.Collections.Generic;
+using SoT.Domain.Entities;
 using SoT.Domain.Interfaces.Repository;
 using SoT.Domain.Interfaces.Repository.ReadOnly;
 using SoT.Domain.Interfaces.Services;
@@ -17,5 +19,9 @@ namespace SoT.Domain.Services
             this.cityReadOnlyRepository = cityReadOnlyRepository;
         }
 
+        public IEnumerable<City> GetActiveByCountry(Guid countryId)
+        {
+            return cityReadOnlyRepository.GetActiveByCountry(countryId);
+        }
     }
 }

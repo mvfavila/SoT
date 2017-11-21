@@ -7,5 +7,9 @@ namespace SoT.Application.Interfaces
     public interface ICityAppService : IDisposable
     {
         IEnumerable<CityViewModel> GetAll();
+
+        IEnumerable<CityViewModel> GetActiveByCountry(Guid countryId);
+
+        CityViewModel GetById(Guid id);
     }
 }

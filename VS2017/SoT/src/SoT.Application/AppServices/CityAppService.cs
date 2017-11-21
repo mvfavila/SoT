@@ -22,6 +22,16 @@ namespace SoT.Application.AppServices
             return CityMapper.FromDomainToViewModel(cityService.GetAll());
         }
 
+        public CityViewModel GetById(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<CityViewModel> GetActiveByCountry(Guid countryId)
+        {
+            return CityMapper.FromDomainToViewModel(cityService.GetActiveByCountry(countryId));
+        }
+
         public void Dispose()
         {
             cityService.Dispose();

@@ -23,6 +23,19 @@ namespace SoT.Infra.Data.Repositories.ReadOnly
             }
         }
 
+        public IEnumerable<City> GetActiveByCountry(Guid countryId)
+        {
+            using (var connection = Connection)
+            {
+                connection.Open();
+
+                var cities = connection.Query<City>(CityQuery.GET_ACTIVE_BY_COUNTRY_ID,
+                    new { COUNTRY_ID = countryId });
+
+                return cities;
+            }
+        }
+
         public override City GetById(Guid id)
         {
             using (var connection = Connection)
