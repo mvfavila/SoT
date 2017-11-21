@@ -5,6 +5,7 @@ using SoT.Application.ViewModels;
 using SoT.Domain.Interfaces.Services;
 using SoT.Infra.Data.Context;
 using SoT.Application.Mapping;
+using System.Collections.Generic;
 
 namespace SoT.Application.AppServices
 {
@@ -25,6 +26,11 @@ namespace SoT.Application.AppServices
         public CountryViewModel GetById(Guid id)
         {
             return CountryMapper.FromDomainToViewModel(countryService.GetById(id));
+        }
+
+        public IEnumerable<CountryViewModel> GetAll()
+        {
+            return CountryMapper.FromDomainToViewModel(countryService.GetAll());
         }
 
         public ValidationAppResult Update(CountryViewModel countryViewModel)

@@ -2,6 +2,9 @@
 using SoT.Domain.Interfaces.Services;
 using SoT.Infra.Data.Context;
 using System;
+using SoT.Application.ViewModels;
+using System.Collections.Generic;
+using SoT.Application.Mapping;
 
 namespace SoT.Application.AppServices
 {
@@ -12,6 +15,11 @@ namespace SoT.Application.AppServices
         public CityAppService(ICityService cityService)
         {
             this.cityService = cityService;
+        }
+
+        public IEnumerable<CityViewModel> GetAll()
+        {
+            return CityMapper.FromDomainToViewModel(cityService.GetAll());
         }
 
         public void Dispose()

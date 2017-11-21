@@ -17,6 +17,5 @@ namespace SoT.Domain.Services
             this.categoryRepository = categoryRepository;
             this.categoryReadOnlyRepository = categoryReadOnlyRepository;
         }
-
     }
 }

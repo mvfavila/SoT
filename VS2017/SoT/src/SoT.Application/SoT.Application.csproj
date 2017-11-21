@@ -58,6 +58,8 @@
     <Compile Include="Interfaces\IExampleAppService.cs" />
     <Compile Include="Interfaces\IProviderAppService.cs" />
     <Compile Include="Mapping\AdventureMapper.cs" />
+    <Compile Include="Mapping\CategoryMapper.cs" />
+    <Compile Include="Mapping\CityMapper.cs" />
     <Compile Include="Mapping\CountryMapper.cs" />
     <Compile Include="Mapping\EmployeeMapper.cs" />
     <Compile Include="Mapping\Example\ExampleMapper.cs" />
@@ -67,6 +69,8 @@
     <Compile Include="Validation\ValidationAppError.cs" />
     <Compile Include="Validation\ValidationAppResult.cs" />
     <Compile Include="ViewModels\AdventureAddressViewModel.cs" />
+    <Compile Include="ViewModels\CategoryViewModel.cs" />
+    <Compile Include="ViewModels\CityViewModel.cs" />
     <Compile Include="ViewModels\CountryViewModel.cs" />
     <Compile Include="ViewModels\EmployeeProviderViewModel.cs" />
     <Compile Include="ViewModels\ExampleSubExampleViewModel.cs" />

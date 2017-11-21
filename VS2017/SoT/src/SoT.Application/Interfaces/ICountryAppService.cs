@@ -1,6 +1,7 @@
 ﻿using SoT.Application.Validation;
 using SoT.Application.ViewModels;
 using System;
+using System.Collections.Generic;
 
 namespace SoT.Application.Interfaces
 {
@@ -11,5 +12,7 @@ namespace SoT.Application.Interfaces
         ValidationAppResult Add(CountryViewModel countryViewModel);
 
         ValidationAppResult Update(CountryViewModel countryViewModel);
+
+        IEnumerable<CountryViewModel> GetAll();
     }
 }

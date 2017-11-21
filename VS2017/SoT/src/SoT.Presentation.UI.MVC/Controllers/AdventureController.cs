@@ -43,11 +43,13 @@ namespace SoT.Presentation.UI.MVC.Controllers
         // GET: Adventure/Create
         public ActionResult Create()
         {
-            //IEnumerable<CategoryViewModel> categories = categoryAppService.GetAll();
+            var categories = categoryAppService.GetAll();
+            var countries = countryAppService.GetAll();
+            var cities = cityAppService.GetAll();
 
-            //ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Name");
-            //ViewBag.CityId = new SelectList(db.Cities, "CityId", "Name");
-            //ViewBag.CityId = new SelectList(db.Cities, "CityId", "Name");
+            ViewBag.CategoryId = new SelectList(categories, "CategoryId", "Name");
+            ViewBag.CityId = new SelectList(countries, "CountryId", "Name");
+            ViewBag.CityId = new SelectList(cities, "CityId", "Name");
             return View();
         }
 
