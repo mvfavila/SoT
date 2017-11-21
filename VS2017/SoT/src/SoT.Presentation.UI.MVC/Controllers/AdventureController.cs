@@ -48,7 +48,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
             var cities = cityAppService.GetAll();
 
             ViewBag.CategoryId = new SelectList(categories, "CategoryId", "Name");
-            ViewBag.CityId = new SelectList(countries, "CountryId", "Name");
+            ViewBag.CountryId = new SelectList(countries, "CountryId", "Name");
             ViewBag.CityId = new SelectList(cities, "CityId", "Name");
             return View();
         }
