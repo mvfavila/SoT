@@ -8,6 +8,9 @@ namespace SoT.Domain.Specification.Address
 
         public bool IsSatisfiedBy(Entities.Address address)
         {
+            if (address.Street01 == null)
+                return true;
+
             return address.Street01.Length <= STREET01_MAX_LENGTH;
         }
     }

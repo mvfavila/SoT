@@ -161,5 +161,47 @@ namespace SoT.Domain.Entities
             const bool ACVTIVE = true;
             return new Adventure(name, categoryId, cityId, addressId, insurenceMinimalAmount, providerId, ACVTIVE);
         }
+
+        /// <summary>
+        /// Factory used for Adventure's Unit Tests.
+        /// </summary>
+        /// <param name="adventureId">Adventure Unique Id.</param>
+        /// <param name="name">Name fo the Adventure.</param>
+        /// <param name="categoryId">Unique id of the Adventure <see cref="Entities.Category"/>.</param>
+        /// <param name="category"><see cref="Category"/> attached to the Adventure.</param>
+        /// <param name="cityId">Unique id of the <see cref="Entities.City"/> where the Adventure takes place.</param>
+        /// <param name="city"><see cref="City"/> attached to the Adventure.</param>
+        /// <param name="addressId">Unique id of the <see cref="Entities.Address"/> where the Adventure takes place or
+        /// where it starts from.</param>
+        /// <param name="address"><see cref="Address"/> attached to the Adventure.</param>
+        /// <param name="insurenceMinimalAmount">Minimal insurence value required by the Adventure Provider.</param>
+        /// <param name="providerId">Unique id of the Adventure's <see cref="Entities.Provider"/>.</param>
+        /// <param name="provider"><see cref="Provider"/> attached to the Adventure.</param>
+        /// <param name="availabilities">Adventure's collection of <see cref="Availability"/>.</param>
+        /// <param name="userId">Unique id of the ApplicationUser attached to the Adventure.</param>
+        /// <param name="active">Informs if the Adventure is active in SoT system.</param>
+        /// <returns>See <see cref="Adventure"/>.</returns>
+        public static Adventure FactoryTest(Guid adventureId, string name, Guid categoryId, Category category,
+            Guid cityId, City city, Guid addressId, Address address, decimal? insurenceMinimalAmount, Guid providerId,
+            Provider provider, IEnumerable<Availability> availabilities, Guid userId, bool active)
+        {
+            return new Adventure
+            {
+                AdventureId = adventureId,
+                Name = name,
+                CategoryId = categoryId,
+                Category = category,
+                CityId = cityId,
+                City = city,
+                AddressId = addressId,
+                Address = address,
+                InsurenceMinimalAmount = insurenceMinimalAmount,
+                ProviderId = providerId,
+                Provider = provider,
+                Availabilities = availabilities,
+                UserId = userId,
+                Active = active
+            };
+        }
     }
 }

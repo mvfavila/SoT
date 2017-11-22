@@ -104,5 +104,30 @@ namespace SoT.Domain.Entities
         {
             return new Address(street01, complement, postcode, adventureId);
         }
+
+        /// <summary>
+        /// Factory used for Address's Unit Tests.
+        /// </summary>
+        /// <param name="addressId">Address Unique Id.</param>
+        /// <param name="street01">Street's Address.</param>
+        /// <param name="complement">Street's Address' Complement.</param>
+        /// <param name="postcode">Address' Postcode.</param>
+        /// <param name="adventureId">Unique id of the <see cref="Entities.Adventure"/> to which the Address belongs.
+        /// </param>
+        /// <param name="adventure"><see cref="Adventure"/> attached to the Address.</param>
+        /// <returns>See <see cref="Address"/>.</returns>
+        public static Address FactoryTest(Guid addressId, string street01, string complement, string postcode,
+            Guid adventureId, Adventure adventure)
+        {
+            return new Address
+            {
+                AddressId = addressId,
+                Street01 = street01,
+                Complement = complement,
+                Postcode = postcode,
+                AdventureId = adventureId,
+                Adventure = adventure
+            };
+        }
     }
 }
