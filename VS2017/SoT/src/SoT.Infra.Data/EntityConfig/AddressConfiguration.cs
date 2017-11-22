@@ -24,10 +24,6 @@ namespace SoT.Infra.Data.EntityConfig
             Property(a => a.AdventureId)
                 .IsRequired();
 
-            HasRequired(s => s.Adventure)
-                .WithMany()
-                .HasForeignKey(s => s.AdventureId);
-
             Ignore(s => s.ValidationResult);
         }
     }

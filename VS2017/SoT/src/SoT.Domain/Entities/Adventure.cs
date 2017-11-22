@@ -138,7 +138,7 @@ namespace SoT.Domain.Entities
         /// <param name="address">See <see cref="Entities.Address"/>.</param>
         public void AddAddress(Address address)
         {
-            address.AttachAdventure(this);
+            address.AttachAdventure(AdventureId);
 
             Address = address;
             AddressId = address.AddressId;

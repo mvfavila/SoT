@@ -15,8 +15,7 @@ namespace SoT.Domain.Tests.Validation.Address
                 TestConstants.STREET01_VALID,
                 TestConstants.COMPLEMENT_VALID,
                 TestConstants.POSTCODE_VALID_EDGE,
-                TestConstants.ADVENTURE_ID_VALID,
-                TestConstants.ADVENTURE_VALID
+                TestConstants.ADVENTURE_ID_VALID
                 );
 
             var isValid = address.IsValid();
@@ -26,15 +25,14 @@ namespace SoT.Domain.Tests.Validation.Address
         }
 
         [Test]
-        public void AddressStreet01MustBeNotNull()
+        public void AddressStreet01MustNotBeNull()
         {
             var address = Domain.Entities.Address.FactoryTest(
                 TestConstants.ADDRESS_ID_VALID,
                 TestConstants.STREET01_INVALID_NULL,
                 TestConstants.COMPLEMENT_VALID,
                 TestConstants.POSTCODE_VALID_EDGE,
-                TestConstants.ADVENTURE_ID_VALID,
-                TestConstants.ADVENTURE_VALID
+                TestConstants.ADVENTURE_ID_VALID
                 );
 
             var isValid = address.IsValid();
@@ -45,15 +43,14 @@ namespace SoT.Domain.Tests.Validation.Address
         }
 
         [Test]
-        public void AddressStreet01MustBeNotEmpty()
+        public void AddressStreet01MustNotBeEmpty()
         {
             var address = Domain.Entities.Address.FactoryTest(
                 TestConstants.ADDRESS_ID_VALID,
                 TestConstants.STREET01_INVALID_EMPTY,
                 TestConstants.COMPLEMENT_VALID,
                 TestConstants.POSTCODE_VALID_EDGE,
-                TestConstants.ADVENTURE_ID_VALID,
-                TestConstants.ADVENTURE_VALID
+                TestConstants.ADVENTURE_ID_VALID
                 );
 
             var isValid = address.IsValid();
@@ -64,15 +61,14 @@ namespace SoT.Domain.Tests.Validation.Address
         }
 
         [Test]
-        public void AddressStreet01MustBeNotEmptySpaces()
+        public void AddressStreet01MustNotBeEmptySpaces()
         {
             var address = Domain.Entities.Address.FactoryTest(
                 TestConstants.ADDRESS_ID_VALID,
                 TestConstants.STREET01_INVALID_EMPTY_SPACES,
                 TestConstants.COMPLEMENT_VALID,
                 TestConstants.POSTCODE_VALID_EDGE,
-                TestConstants.ADVENTURE_ID_VALID,
-                TestConstants.ADVENTURE_VALID
+                TestConstants.ADVENTURE_ID_VALID
                 );
 
             var isValid = address.IsValid();

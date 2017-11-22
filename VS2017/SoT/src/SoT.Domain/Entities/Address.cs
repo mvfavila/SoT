@@ -55,14 +55,9 @@ namespace SoT.Domain.Entities
         public string Postcode { get; private set; }
 
         /// <summary>
-        /// Unique id of the <see cref="Entities.Adventure"/> to which the Address belongs.
+        /// Unique id of the <see cref="Adventure"/> to which the Address belongs.
         /// </summary>
         public Guid AdventureId { get; private set; }
-
-        /// <summary>
-        /// <see cref="Adventure"/> attached to the Address.
-        /// </summary>
-        public virtual Adventure Adventure { get; private set; }
 
         /// <summary>
         /// See <see cref="ValueObjects.ValidationResult"/>.
@@ -84,11 +79,10 @@ namespace SoT.Domain.Entities
         /// <summary>
         /// Method used internally to attach the Adventure to the current Address.
         /// </summary>
-        /// <param name="adventure">See <see cref="Entities.Adventure"/>.</param>
-        internal void AttachAdventure(Adventure adventure)
+        /// <param name="adventureId">Unique id of the <see cref="Adventure"/> to which the Address belongs.</param>
+        internal void AttachAdventure(Guid adventureId)
         {
-            Adventure = adventure;
-            AdventureId = adventure.AdventureId;
+            AdventureId = adventureId;
         }
 
         /// <summary>
@@ -114,10 +108,9 @@ namespace SoT.Domain.Entities
         /// <param name="postcode">Address' Postcode.</param>
         /// <param name="adventureId">Unique id of the <see cref="Entities.Adventure"/> to which the Address belongs.
         /// </param>
-        /// <param name="adventure"><see cref="Adventure"/> attached to the Address.</param>
         /// <returns>See <see cref="Address"/>.</returns>
         public static Address FactoryTest(Guid addressId, string street01, string complement, string postcode,
-            Guid adventureId, Adventure adventure)
+            Guid adventureId)
         {
             return new Address
             {
@@ -125,8 +118,7 @@ namespace SoT.Domain.Entities
                 Street01 = street01,
                 Complement = complement,
                 Postcode = postcode,
-                AdventureId = adventureId,
-                Adventure = adventure
+                AdventureId = adventureId
             };
         }
     }

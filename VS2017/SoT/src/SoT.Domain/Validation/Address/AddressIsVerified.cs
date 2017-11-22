@@ -12,7 +12,6 @@ namespace SoT.Domain.Validation.Address
             var isComplementValidLength = new AddressIsComplementValidLength();
             var isPostcodeValidLength = new AddressIsPostcodeValidLength();
             var isAdventureIdNotNull = new AddressIsAdventureIdNotNull();
-            var isAdventureNotNull = new AddressIsAdventureNotNull();
 
             base.AddRule("IsStreet01NotNullAndNotEmpty", new Rule<Entities.Address>(isStreet01NotNullAndNotEmpty,
                 $"{nameof(Entities.Address.Street01)} is required"));
@@ -24,8 +23,6 @@ namespace SoT.Domain.Validation.Address
                 $"{nameof(Entities.Address.Postcode)} can not have more than 30 chars"));
             base.AddRule("IsAdventureIdNotNull", new Rule<Entities.Address>(isAdventureIdNotNull,
                 $"{nameof(Entities.Address.AdventureId)} is required"));
-            base.AddRule("IsAdventureNotNull", new Rule<Entities.Address>(isAdventureNotNull,
-                $"{nameof(Entities.Address.Adventure)} is required"));
         }
     }
 }
