@@ -2,11 +2,11 @@
 
 namespace SoT.Domain.Specification.Address
 {
-    public class AddressIsAttachedToAdventure : ISpecification<Entities.Address>
+    public class AddressIsAdventureNotNull : ISpecification<Entities.Address>
     {
         public bool IsSatisfiedBy(Entities.Address address)
         {
-            return address.AdventureId != null;
+            return address.Adventure != null;
         }
     }
 }
