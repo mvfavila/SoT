@@ -1,5 +1,5 @@
 ﻿using SoT.Domain.Interfaces.Validation;
-using SoT.Domain.Validation;
+using SoT.Domain.Validation.Address;
 using SoT.Domain.ValueObjects;
 using System;
 

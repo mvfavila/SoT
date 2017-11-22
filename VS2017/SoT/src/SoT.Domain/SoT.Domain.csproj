@@ -102,7 +102,7 @@
     <Compile Include="Specification\Example\ExampleIsActiveSpecification.cs" />
     <Compile Include="Specification\Example\ExampleIsUniqueEntrySpecification.cs" />
     <Compile Include="Specification\SubExample\SubExampleHasPositiveCalculatedPropertyNameSpecification.cs" />
-    <Compile Include="Validation\AddressIsVerified.cs" />
+    <Compile Include="Validation\Address\AddressIsVerified.cs" />
     <Compile Include="Validation\Adventure\AdventureIsVerifiedForRegistration.cs" />
     <Compile Include="Validation\Availability\AvailabilityIsVerifiedForRegistration.cs" />
     <Compile Include="Validation\Base\BaseSupervisor.cs" />
