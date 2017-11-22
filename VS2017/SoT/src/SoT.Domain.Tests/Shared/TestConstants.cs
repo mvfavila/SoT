@@ -13,15 +13,17 @@ namespace SoT.Domain.Tests.Shared
         internal static readonly string STREET01_INVALID_NULL;
         internal static readonly string STREET01_INVALID_EMPTY = "";
         internal static readonly string STREET01_INVALID_EMPTY_SPACES = " ";
+        internal static readonly string STREET01_VALID_LENGTH_EDGE = new string('A', 300);
+        internal static readonly string STREET01_INVALID_LENGTH = new string('A', 301);
 
         internal static readonly string COMPLEMENT_VALID = "Close to the T junction";
-        internal static readonly string COMPLEMENT_INVALID_NULL;
-        internal static readonly string COMPLEMENT_INVALID_EMPTY = "";
-        internal static readonly string COMPLEMENT_INVALID_EMPTY_SPACES = " ";
+        internal static readonly string COMPLEMENT_VALID_NULL;
+        internal static readonly string COMPLEMENT_VALID_LENGTH_EDGE = new string('A', 300);
+        internal static readonly string COMPLEMENT_INVALID_LENGTH = new string('A', 301);
 
         internal static readonly string POSTCODE_VALID_EMPTY = "";
-        internal static readonly string POSTCODE_VALID_EDGE = "123456789012345678901234567890";
-        internal static readonly string POSTCODE_INVALID_TOO_BIG = "1234567890123456789012345678901";
+        internal static readonly string POSTCODE_VALID_EDGE = new string('A', 30);
+        internal static readonly string POSTCODE_INVALID_TOO_BIG = new string('A', 31);
 
         internal static readonly Guid ADVENTURE_ID_VALID = Guid.Parse("08f1e473-016d-46ef-8393-5b806c3752fe");
         internal static readonly Guid ADVENTURE_ID_INVALID = Guid.Parse("00000000-0000-0000-0000-000000000000");

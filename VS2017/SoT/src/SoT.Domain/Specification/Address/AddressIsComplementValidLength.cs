@@ -8,6 +8,9 @@ namespace SoT.Domain.Specification.Address
 
         public bool IsSatisfiedBy(Entities.Address address)
         {
+            if (address.Complement == null)
+                return true;
+
             return address.Complement.Length <= COMPLEMENT_MAX_LENGTH;
         }
     }
