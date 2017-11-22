@@ -82,6 +82,10 @@
     <Compile Include="Interfaces\IContextManager.cs" />
     <Compile Include="Interfaces\IDbContext.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
+    <Compile Include="Migrations\201711222322182_20171123_922.cs" />
+    <Compile Include="Migrations\201711222322182_20171123_922.Designer.cs">
+      <DependentUpon>201711222322182_20171123_922.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AdventureRepository.cs" />
@@ -119,6 +123,11 @@
       <Project>{71DCA81A-C687-4568-BB2D-78972C8B7B15}</Project>
       <Name>SoT.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201711222322182_20171123_922.resx">
+      <DependentUpon>201711222322182_20171123_922.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
