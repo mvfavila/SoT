@@ -8,6 +8,9 @@ namespace SoT.Domain.Specification.Address
 
         public bool IsSatisfiedBy(Entities.Address address)
         {
+            if (address.Postcode == null)
+                return true;
+
             return address.Postcode.Length <= POSTCODE_MAX_LENGTH;
         }
     }
