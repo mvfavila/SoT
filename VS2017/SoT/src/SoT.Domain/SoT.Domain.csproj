@@ -89,6 +89,7 @@
     <Compile Include="Services\SubExampleService.cs" />
     <Compile Include="Specification\Address\AddressIsAdventureIdNotNull.cs" />
     <Compile Include="Specification\Address\AddressIsComplementValidLength.cs" />
+    <Compile Include="Specification\Address\AddressIsKeyNotNull.cs" />
     <Compile Include="Specification\Address\AddressIsPostcodeValidLength.cs" />
     <Compile Include="Specification\Address\AddressIsStreet01ValidLength.cs" />
     <Compile Include="Specification\Address\AddressIsStreet01NotNullAndNotEmpty.cs" />

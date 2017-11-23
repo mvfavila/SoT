@@ -7,12 +7,15 @@ namespace SoT.Domain.Validation.Address
     {
         public AddressIsVerified()
         {
+            var isKeyNotNull = new AddressIsKeyNotNull();
             var isStreet01NotNullAndNotEmpty = new AddressIsStreet01NotNullAndNotEmpty();
             var isStreet01ValidLength = new AddressIsStreet01ValidLength();
             var isComplementValidLength = new AddressIsComplementValidLength();
             var isPostcodeValidLength = new AddressIsPostcodeValidLength();
             var isAdventureIdNotNull = new AddressIsAdventureIdNotNull();
 
+            base.AddRule("IsKeyNotNull", new Rule<Entities.Address>(isKeyNotNull,
+                $"{nameof(Entities.Address.AddressId)} is required"));
             base.AddRule("IsStreet01NotNullAndNotEmpty", new Rule<Entities.Address>(isStreet01NotNullAndNotEmpty,
                 $"{nameof(Entities.Address.Street01)} is required"));
             base.AddRule("IsStreet01ValidLength", new Rule<Entities.Address>(isStreet01ValidLength,
