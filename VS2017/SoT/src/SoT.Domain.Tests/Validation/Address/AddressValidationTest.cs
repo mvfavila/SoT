@@ -25,6 +25,24 @@ namespace SoT.Domain.Tests.Validation.Address
         }
 
         [Test]
+        public void AddressKeyMustNotBeNull()
+        {
+            var address = Domain.Entities.Address.FactoryTest(
+                TestConstants.ADDRESS_ID_INVALID,
+                TestConstants.STREET01_VALID,
+                TestConstants.COMPLEMENT_VALID,
+                TestConstants.POSTCODE_VALID,
+                TestConstants.ADVENTURE_ID_VALID
+                );
+
+            var isValid = address.IsValid();
+
+            Assert.IsFalse(isValid);
+            Assert.Contains($"{nameof(Domain.Entities.Address.AddressId)} is required",
+                address.ValidationResult.Errors.Select(error => error.Message).ToList());
+        }
+
+        [Test]
         public void AddressStreet01MustNotBeNull()
         {
             var address = Domain.Entities.Address.FactoryTest(
