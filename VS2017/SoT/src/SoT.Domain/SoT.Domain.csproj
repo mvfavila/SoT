@@ -115,6 +115,10 @@
     <Compile Include="Specification\City\CityIsKeyNotNull.cs" />
     <Compile Include="Specification\City\CityIsNameNotNullAndNotEmpty.cs" />
     <Compile Include="Specification\City\CityIsNameValidLength.cs" />
+    <Compile Include="Specification\Country\CountryIsKeyNotNull.cs" />
+    <Compile Include="Specification\Country\CountryIsNameNotNullAndNotEmpty.cs" />
+    <Compile Include="Specification\Country\CountryIsNameValidLength.cs" />
+    <Compile Include="Specification\Country\CountryIsRegionNotNull.cs" />
     <Compile Include="Specification\Example\ExampleIsRecentDateSpecification.cs" />
     <Compile Include="Specification\Example\ExampleHasSubExampleSpecification.cs" />
     <Compile Include="Specification\Example\ExampleIsActiveSpecification.cs" />
