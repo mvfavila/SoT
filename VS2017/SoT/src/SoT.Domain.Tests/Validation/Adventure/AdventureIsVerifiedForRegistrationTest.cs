@@ -269,5 +269,173 @@ namespace SoT.Domain.Tests.Validation.Adventure
             Assert.Contains($"{nameof(Domain.Entities.Adventure.Address)} is required",
                 adventure.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
+
+        [Test]
+        public void AdventureInsurenceMinimalAmountMustBeHigherThanZero()
+        {
+            var adventure = Domain.Entities.Adventure.FactoryTest(
+                TestConstants.ADVENTURE_ID_VALID,
+                TestConstants.ADVENTURE_NAME_VALID,
+                TestConstants.CATEGORY_ID_VALID,
+                TestConstants.CATEGORY_VALID,
+                TestConstants.CITY_ID_VALID,
+                TestConstants.CITY_VALID,
+                TestConstants.ADDRESS_ID_VALID,
+                TestConstants.ADDRESS_VALID,
+                TestConstants.INSURANCE_MINIMAL_INVALID_NEGATIVE,
+                TestConstants.PROVIDER_ID_VALID,
+                TestConstants.PROVIDER_VALID,
+                TestConstants.AVAILABILITIES_VALID,
+                TestConstants.USER_ID_VALID,
+                TestConstants.ACTIVE
+                );
+
+            var isValid = adventure.IsValid();
+
+            Assert.IsFalse(isValid);
+            Assert.Contains(
+                $"{nameof(Domain.Entities.Adventure.InsurenceMinimalAmount)} has to be higher than 0(zero)",
+                adventure.ValidationResult.Errors.Select(error => error.Message).ToList());
+        }
+
+        [Test]
+        public void AdventureInsurenceMinimalAmountMustBeLessThanMaxValue()
+        {
+            var adventure = Domain.Entities.Adventure.FactoryTest(
+                TestConstants.ADVENTURE_ID_VALID,
+                TestConstants.ADVENTURE_NAME_VALID,
+                TestConstants.CATEGORY_ID_VALID,
+                TestConstants.CATEGORY_VALID,
+                TestConstants.CITY_ID_VALID,
+                TestConstants.CITY_VALID,
+                TestConstants.ADDRESS_ID_VALID,
+                TestConstants.ADDRESS_VALID,
+                TestConstants.INSURANCE_MINIMAL_VALID_EDGE,
+                TestConstants.PROVIDER_ID_VALID,
+                TestConstants.PROVIDER_VALID,
+                TestConstants.AVAILABILITIES_VALID,
+                TestConstants.USER_ID_VALID,
+                TestConstants.ACTIVE
+                );
+
+            var isValid = adventure.IsValid();
+
+            Assert.IsTrue(isValid);
+
+            adventure = Domain.Entities.Adventure.FactoryTest(
+                TestConstants.ADVENTURE_ID_VALID,
+                TestConstants.ADVENTURE_NAME_VALID,
+                TestConstants.CATEGORY_ID_VALID,
+                TestConstants.CATEGORY_VALID,
+                TestConstants.CITY_ID_VALID,
+                TestConstants.CITY_VALID,
+                TestConstants.ADDRESS_ID_VALID,
+                TestConstants.ADDRESS_VALID,
+                TestConstants.INSURANCE_MINIMAL_INVALID_HIGHER_THAN_MAX_VALUE,
+                TestConstants.PROVIDER_ID_VALID,
+                TestConstants.PROVIDER_VALID,
+                TestConstants.AVAILABILITIES_VALID,
+                TestConstants.USER_ID_VALID,
+                TestConstants.ACTIVE
+                );
+
+            isValid = adventure.IsValid();
+
+            Assert.IsFalse(isValid);
+            Assert.Contains(
+                $"{nameof(Domain.Entities.Adventure.InsurenceMinimalAmount)} can not be higher than 9999999.99",
+                adventure.ValidationResult.Errors.Select(error => error.Message).ToList());
+        }
+
+        [Test]
+        public void AdventureInsurenceMinimalAmountMustHaveTwoOrLessDecimalPlaces()
+        {
+            var adventure = Domain.Entities.Adventure.FactoryTest(
+                TestConstants.ADVENTURE_ID_VALID,
+                TestConstants.ADVENTURE_NAME_VALID,
+                TestConstants.CATEGORY_ID_VALID,
+                TestConstants.CATEGORY_VALID,
+                TestConstants.CITY_ID_VALID,
+                TestConstants.CITY_VALID,
+                TestConstants.ADDRESS_ID_VALID,
+                TestConstants.ADDRESS_VALID,
+                TestConstants.INSURANCE_MINIMAL_VALID_NO_DECIMAL_PLACES,
+                TestConstants.PROVIDER_ID_VALID,
+                TestConstants.PROVIDER_VALID,
+                TestConstants.AVAILABILITIES_VALID,
+                TestConstants.USER_ID_VALID,
+                TestConstants.ACTIVE
+                );
+
+            var isValid = adventure.IsValid();
+
+            Assert.IsTrue(isValid);
+
+            adventure = Domain.Entities.Adventure.FactoryTest(
+                TestConstants.ADVENTURE_ID_VALID,
+                TestConstants.ADVENTURE_NAME_VALID,
+                TestConstants.CATEGORY_ID_VALID,
+                TestConstants.CATEGORY_VALID,
+                TestConstants.CITY_ID_VALID,
+                TestConstants.CITY_VALID,
+                TestConstants.ADDRESS_ID_VALID,
+                TestConstants.ADDRESS_VALID,
+                TestConstants.INSURANCE_MINIMAL_VALID_ONE_DECIMAL_PLACES,
+                TestConstants.PROVIDER_ID_VALID,
+                TestConstants.PROVIDER_VALID,
+                TestConstants.AVAILABILITIES_VALID,
+                TestConstants.USER_ID_VALID,
+                TestConstants.ACTIVE
+                );
+
+            isValid = adventure.IsValid();
+
+            Assert.IsTrue(isValid);
+
+            adventure = Domain.Entities.Adventure.FactoryTest(
+                TestConstants.ADVENTURE_ID_VALID,
+                TestConstants.ADVENTURE_NAME_VALID,
+                TestConstants.CATEGORY_ID_VALID,
+                TestConstants.CATEGORY_VALID,
+                TestConstants.CITY_ID_VALID,
+                TestConstants.CITY_VALID,
+                TestConstants.ADDRESS_ID_VALID,
+                TestConstants.ADDRESS_VALID,
+                TestConstants.INSURANCE_MINIMAL_VALID_TWO_DECIMAL_PLACES,
+                TestConstants.PROVIDER_ID_VALID,
+                TestConstants.PROVIDER_VALID,
+                TestConstants.AVAILABILITIES_VALID,
+                TestConstants.USER_ID_VALID,
+                TestConstants.ACTIVE
+                );
+
+            isValid = adventure.IsValid();
+
+            Assert.IsTrue(isValid);
+
+            adventure = Domain.Entities.Adventure.FactoryTest(
+                TestConstants.ADVENTURE_ID_VALID,
+                TestConstants.ADVENTURE_NAME_VALID,
+                TestConstants.CATEGORY_ID_VALID,
+                TestConstants.CATEGORY_VALID,
+                TestConstants.CITY_ID_VALID,
+                TestConstants.CITY_VALID,
+                TestConstants.ADDRESS_ID_VALID,
+                TestConstants.ADDRESS_VALID,
+                TestConstants.INSURANCE_MINIMAL_INVALID_THREE_DECIMAL_PLACES,
+                TestConstants.PROVIDER_ID_VALID,
+                TestConstants.PROVIDER_VALID,
+                TestConstants.AVAILABILITIES_VALID,
+                TestConstants.USER_ID_VALID,
+                TestConstants.ACTIVE
+                );
+
+            isValid = adventure.IsValid();
+
+            Assert.IsFalse(isValid);
+            Assert.Contains(
+                $"{nameof(Domain.Entities.Adventure.InsurenceMinimalAmount)} can not have more than 2 decimal places",
+                adventure.ValidationResult.Errors.Select(error => error.Message).ToList());
+        }
     }
 }

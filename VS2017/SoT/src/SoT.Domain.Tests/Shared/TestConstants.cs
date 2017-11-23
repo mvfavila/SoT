@@ -49,6 +49,13 @@ namespace SoT.Domain.Tests.Shared
         internal static readonly decimal? INSURANCE_MINIMAL_VALID = 1.23M;
         internal static readonly decimal? INSURANCE_MINIMAL_VALID_NULL;
         internal static readonly decimal? INSURANCE_MINIMAL_INVALID_NEGATIVE = -0.01M;
+        internal static readonly decimal? INSURANCE_MINIMAL_VALID_EDGE = 9999999.99M;
+        internal static readonly decimal? INSURANCE_MINIMAL_INVALID_HIGHER_THAN_MAX_VALUE =
+            INSURANCE_MINIMAL_VALID_EDGE + 0.01M;
+        internal static readonly decimal? INSURANCE_MINIMAL_VALID_NO_DECIMAL_PLACES = 123M;
+        internal static readonly decimal? INSURANCE_MINIMAL_VALID_ONE_DECIMAL_PLACES = 1.2M;
+        internal static readonly decimal? INSURANCE_MINIMAL_VALID_TWO_DECIMAL_PLACES = 1.23M;
+        internal static readonly decimal? INSURANCE_MINIMAL_INVALID_THREE_DECIMAL_PLACES = 1.234M;
 
         internal static readonly Guid PROVIDER_ID_VALID = Guid.Parse("53135957-c223-4c80-8104-c0e25afc8d8c");
 
