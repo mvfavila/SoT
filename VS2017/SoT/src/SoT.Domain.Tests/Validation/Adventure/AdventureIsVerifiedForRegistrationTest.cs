@@ -142,7 +142,7 @@ namespace SoT.Domain.Tests.Validation.Adventure
         }
 
         [Test]
-        public void AddressStreet01MustHaveValidLength()
+        public void AdventureNameMustHaveValidLength()
         {
             var adventure = Domain.Entities.Adventure.FactoryTest(
                 TestConstants.ADVENTURE_ID_VALID,

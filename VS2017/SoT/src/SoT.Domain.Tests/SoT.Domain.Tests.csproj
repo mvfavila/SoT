@@ -52,7 +52,7 @@
     <Compile Include="Shared\TestConstants.cs" />
     <Compile Include="Validation\Address\AddressValidationTest.cs" />
     <Compile Include="Validation\Adventure\AdventureIsVerifiedForRegistrationTest.cs" />
-    <Compile Include="Validation\Category\CategoryIsVerifiedForRegistration.cs" />
+    <Compile Include="Validation\Category\CategoryIsVerifiedForRegistrationTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

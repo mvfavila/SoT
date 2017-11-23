@@ -77,5 +77,22 @@ namespace SoT.Domain.Entities
                 Active = active
             };
         }
+
+        /// <summary>
+        /// Factory used for Element's Unit Tests.
+        /// </summary>
+        /// <param name="elementId">Element Unique Id.</param>
+        /// <param name="name">Name of the Element.</param>
+        /// <param name="active">Informs if the Element is active in SoT system.</param>
+        /// <returns>See <see cref="Element"/>.</returns>
+        public static Element FactoryTest(Guid elementId, string name, bool active)
+        {
+            return new Element
+            {
+                ElementId = elementId,
+                Name = name,
+                Active = active
+            };
+        }
     }
 }

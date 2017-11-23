@@ -39,6 +39,23 @@ namespace SoT.Domain.Tests.Shared
         internal static readonly Guid CATEGORY_ID_VALID = Guid.Parse("f911ed32-bd96-4c40-af77-45d2419c09f9");
         internal static readonly Guid CATEGORY_ID_INVALID = Guid.Parse("00000000-0000-0000-0000-000000000000");
 
+        internal static readonly string CATEGORY_NAME_VALID = "Kayaking";
+        internal static readonly string CATEGORY_NAME_INVALID_NULL;
+        internal static readonly string CATEGORY_NAME_INVALID_EMPTY = "";
+        internal static readonly string CATEGORY_NAME_INVALID_EMPTY_SPACES = " ";
+        internal static readonly string CATEGORY_NAME_VALID_LENGTH_EDGE = new string('A', 100);
+        internal static readonly string CATEGORY_NAME_INVALID_LENGTH = new string('A', 101);
+
+        internal static readonly Guid ELEMENT_ID_VALID = Guid.Parse("f0b9bcfb-3c20-4c89-a3a0-082f3a57590c");
+
+        internal static readonly string ELEMENT_NAME_VALID = "Water";
+
+        internal static readonly Element ELEMENT_VALID = Element.FactoryTest(
+            ELEMENT_ID_VALID,
+            ELEMENT_NAME_VALID,
+            ACTIVE
+            );
+
         internal static readonly Category CATEGORY_VALID = null;
 
         internal static readonly Guid CITY_ID_VALID = Guid.Parse("0f1b497c-d943-4334-bf64-bb3bd9b2047c");

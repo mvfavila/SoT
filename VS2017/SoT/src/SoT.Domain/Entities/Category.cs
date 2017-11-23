@@ -56,7 +56,7 @@ namespace SoT.Domain.Entities
         public virtual Element Element { get; private set; }
 
         /// <summary>
-        /// See <see cref="SoT.Domain.ValueObjects.ValidationResult"/>.
+        /// See <see cref="ValueObjects.ValidationResult"/>.
         /// </summary>
         public ValidationResult ValidationResult { get; private set; }
 
@@ -100,6 +100,28 @@ namespace SoT.Domain.Entities
                 Name = name,
                 Active = active,
                 ElementId = elementId
+            };
+        }
+
+        /// <summary>
+        /// Factory used for Category's Unit Tests.
+        /// </summary>
+        /// <param name="categoryId">Category Unique Id.</param>
+        /// <param name="name">Name of the Category.</param>
+        /// <param name="active">Informs if the Category is active in SoT system.</param>
+        /// <param name="elementId">Unique id of the <see cref="Entities.Element"/> attached to the Category.</param>
+        /// <param name="element"><see cref="Entities.Element"/> attached to the Category.</param>
+        /// <returns>>See <see cref="Category"/>.</returns>
+        public static Category FactoryTest(Guid categoryId, string name, bool active, Guid elementId,
+            Element element)
+        {
+            return new Category
+            {
+                CategoryId = categoryId,
+                Name = name,
+                Active = active,
+                ElementId = elementId,
+                Element = element
             };
         }
     }
