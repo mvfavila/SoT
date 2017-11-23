@@ -93,6 +93,16 @@
     <Compile Include="Specification\Address\AddressIsPostcodeValidLength.cs" />
     <Compile Include="Specification\Address\AddressIsStreet01ValidLength.cs" />
     <Compile Include="Specification\Address\AddressIsStreet01NotNullAndNotEmpty.cs" />
+    <Compile Include="Specification\Adventure\AdventureIsAddressNotNull.cs" />
+    <Compile Include="Specification\Adventure\AdventureIsCategoryNotNull.cs" />
+    <Compile Include="Specification\Adventure\AdventureIsCityNotNull.cs" />
+    <Compile Include="Specification\Adventure\AdventureIsInsurenceMinimalAmountHigherThenZero.cs" />
+    <Compile Include="Specification\Adventure\AdventureIsInsurenceMinimalAmountLowerThanMaxValue.cs" />
+    <Compile Include="Specification\Adventure\AdventureisInsurenceMinimalAmountTwoDecimalPlaces.cs" />
+    <Compile Include="Specification\Adventure\AdventureIsKeyNotNull.cs" />
+    <Compile Include="Specification\Adventure\AdventureIsNameNotNullAndNotEmpty.cs" />
+    <Compile Include="Specification\Adventure\AdventureIsNameValidLength.cs" />
+    <Compile Include="Specification\Adventure\AdventureIsProviderNotNull.cs" />
     <Compile Include="Specification\Availability\AvailabilityIsActiveSpecification.cs" />
     <Compile Include="Specification\Availability\AvailabilityIsCapacityHigherThanZeroSpecification.cs" />
     <Compile Include="Specification\Availability\AvailabilityIsFutureDateSpecification.cs" />
