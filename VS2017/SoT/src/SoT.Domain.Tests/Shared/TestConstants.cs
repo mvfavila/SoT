@@ -37,10 +37,12 @@ namespace SoT.Domain.Tests.Shared
         internal static readonly string ADVENTURE_NAME_INVALID_LENGTH = new string('A', 251);
 
         internal static readonly Guid CATEGORY_ID_VALID = Guid.Parse("f911ed32-bd96-4c40-af77-45d2419c09f9");
+        internal static readonly Guid CATEGORY_ID_INVALID = Guid.Parse("00000000-0000-0000-0000-000000000000");
 
         internal static readonly Category CATEGORY_VALID = null;
 
         internal static readonly Guid CITY_ID_VALID = Guid.Parse("0f1b497c-d943-4334-bf64-bb3bd9b2047c");
+        internal static readonly Guid CITY_ID_INVALID = Guid.Parse("00000000-0000-0000-0000-000000000000");
 
         internal static readonly City CITY_VALID = null;
 
