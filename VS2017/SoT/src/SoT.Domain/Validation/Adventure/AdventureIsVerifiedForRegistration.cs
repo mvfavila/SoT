@@ -22,7 +22,7 @@ namespace SoT.Domain.Validation.Adventure
                 $"{nameof(Entities.Adventure.AdventureId)} is required"));
 
             base.AddRule("IsNameNotNullAndNotEmpty", new Rule<Entities.Adventure>(isNameNotNullAndNotEmpty,
-                $"{nameof(Entities.Adventure.AdventureId)} is required"));
+                $"{nameof(Entities.Adventure.Name)} is required"));
 
             base.AddRule("IsNameValidLength", new Rule<Entities.Adventure>(isNameValidLength,
                 $"{nameof(Entities.Adventure.Name)} can not have more than 250 chars"));

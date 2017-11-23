@@ -30,6 +30,11 @@ namespace SoT.Domain.Tests.Shared
         internal static readonly Guid ADVENTURE_ID_INVALID = Guid.Parse("00000000-0000-0000-0000-000000000000");
 
         internal static readonly string ADVENTURE_NAME_VALID = "Kayaking with the wales in Lisbon";
+        internal static readonly string ADVENTURE_NAME_INVALID_NULL;
+        internal static readonly string ADVENTURE_NAME_INVALID_EMPTY = "";
+        internal static readonly string ADVENTURE_NAME_INVALID_EMPTY_SPACES = " ";
+        internal static readonly string ADVENTURE_NAME_VALID_LENGTH_EDGE = new string('A', 250);
+        internal static readonly string ADVENTURE_NAME_INVALID_LENGTH = new string('A', 251);
 
         internal static readonly Guid CATEGORY_ID_VALID = Guid.Parse("f911ed32-bd96-4c40-af77-45d2419c09f9");
 
@@ -39,7 +44,7 @@ namespace SoT.Domain.Tests.Shared
 
         internal static readonly City CITY_VALID = null;
 
-        internal static readonly decimal? INSURANCE_MINIMAL_VALID = 1.00M;
+        internal static readonly decimal? INSURANCE_MINIMAL_VALID = 1.23M;
         internal static readonly decimal? INSURANCE_MINIMAL_VALID_NULL;
         internal static readonly decimal? INSURANCE_MINIMAL_INVALID_NEGATIVE = -0.01M;
 
@@ -71,6 +76,14 @@ namespace SoT.Domain.Tests.Shared
             AVAILABILITIES_VALID,
             USER_ID_VALID,
             ACTIVE
+            );
+
+        internal static readonly Address ADDRESS_VALID = Address.FactoryTest(
+            ADDRESS_ID_VALID,
+            STREET01_VALID,
+            COMPLEMENT_VALID,
+            POSTCODE_VALID,
+            ADVENTURE_ID_VALID
             );
     }
 }
