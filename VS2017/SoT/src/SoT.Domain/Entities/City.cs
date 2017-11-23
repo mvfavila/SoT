@@ -102,5 +102,26 @@ namespace SoT.Domain.Entities
                 CountryId = countryId
             };
         }
+
+        /// <summary>
+        /// Factory used for City's Unit Tests.
+        /// </summary>
+        /// <param name="cityId">City Unique Id.</param>
+        /// <param name="name">Name of the City.</param>
+        /// <param name="active">Informs if the City is active in SoT system.</param>
+        /// <param name="countryId">Unique id of the <see cref="Entities.Country"/> where the City is located.</param>
+        /// <param name="country"><see cref="Country"/> attached to the City.</param>
+        /// <returns>See <see cref="City"/>.</returns>
+        public static City FactoryTest(Guid cityId, string name, bool active, Guid countryId, Country country)
+        {
+            return new City
+            {
+                CityId = cityId,
+                Name = name,
+                Active = active,
+                CountryId = countryId,
+                Country = country
+            };
+        }
     }
 }

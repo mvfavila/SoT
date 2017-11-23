@@ -58,8 +58,19 @@ namespace SoT.Domain.Tests.Shared
 
         internal static readonly Category CATEGORY_VALID = null;
 
+        internal static readonly Guid COUNTY_ID_VALID = Guid.Parse("4ec1c433-acdc-4647-9a12-de664aa003e6");
+
+        internal static readonly Country COUNTRY_VALID = null;
+
         internal static readonly Guid CITY_ID_VALID = Guid.Parse("0f1b497c-d943-4334-bf64-bb3bd9b2047c");
         internal static readonly Guid CITY_ID_INVALID = Guid.Parse("00000000-0000-0000-0000-000000000000");
+
+        internal static readonly string CITY_NAME_VALID = "Lisbon";
+        internal static readonly string CITY_NAME_INVALID_NULL;
+        internal static readonly string CITY_NAME_INVALID_EMPTY = "";
+        internal static readonly string CITY_NAME_INVALID_EMPTY_SPACES = " ";
+        internal static readonly string CITY_NAME_VALID_LENGTH_EDGE = new string('A', 100);
+        internal static readonly string CITY_NAME_INVALID_LENGTH = new string('A', 101);
 
         internal static readonly City CITY_VALID = null;
 

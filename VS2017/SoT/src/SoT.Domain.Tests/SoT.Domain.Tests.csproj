@@ -53,6 +53,7 @@
     <Compile Include="Validation\Address\AddressValidationTest.cs" />
     <Compile Include="Validation\Adventure\AdventureIsVerifiedForRegistrationTest.cs" />
     <Compile Include="Validation\Category\CategoryIsVerifiedForRegistrationTest.cs" />
+    <Compile Include="Validation\City\CityIsVerifiedForRegistrationTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

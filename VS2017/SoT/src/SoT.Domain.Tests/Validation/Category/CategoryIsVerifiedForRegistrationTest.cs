@@ -43,7 +43,7 @@ namespace SoT.Domain.Tests.Validation.Category
         }
 
         [Test]
-        public void AdventureNameMustNotBeNull()
+        public void CategoryNameMustNotBeNull()
         {
             var category = Domain.Entities.Category.FactoryTest(
                 TestConstants.CATEGORY_ID_VALID,
@@ -61,7 +61,7 @@ namespace SoT.Domain.Tests.Validation.Category
         }
 
         [Test]
-        public void AdventureNameMustNotBeEmpty()
+        public void CategoryNameMustNotBeEmpty()
         {
             var category = Domain.Entities.Category.FactoryTest(
                 TestConstants.CATEGORY_ID_VALID,
@@ -79,7 +79,7 @@ namespace SoT.Domain.Tests.Validation.Category
         }
 
         [Test]
-        public void AdventureNameMustNotBeEmptySpaces()
+        public void CategoryNameMustNotBeEmptySpaces()
         {
             var category = Domain.Entities.Category.FactoryTest(
                 TestConstants.CATEGORY_ID_VALID,
@@ -97,7 +97,7 @@ namespace SoT.Domain.Tests.Validation.Category
         }
 
         [Test]
-        public void AddressStreet01MustHaveValidLength()
+        public void CategoryNameMustHaveValidLength()
         {
             var category = Domain.Entities.Category.FactoryTest(
                 TestConstants.CATEGORY_ID_VALID,
