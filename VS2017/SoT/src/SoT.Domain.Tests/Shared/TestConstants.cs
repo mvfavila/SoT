@@ -58,6 +58,7 @@ namespace SoT.Domain.Tests.Shared
         internal static readonly decimal? INSURANCE_MINIMAL_INVALID_THREE_DECIMAL_PLACES = 1.234M;
 
         internal static readonly Guid PROVIDER_ID_VALID = Guid.Parse("53135957-c223-4c80-8104-c0e25afc8d8c");
+        internal static readonly Guid PROVIDER_ID_INVALID = Guid.Parse("00000000-0000-0000-0000-000000000000");
 
         internal static readonly Provider PROVIDER_VALID = null;
 

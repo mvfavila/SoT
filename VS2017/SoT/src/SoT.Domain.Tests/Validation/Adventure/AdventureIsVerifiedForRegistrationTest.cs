@@ -437,5 +437,32 @@ namespace SoT.Domain.Tests.Validation.Adventure
                 $"{nameof(Domain.Entities.Adventure.InsurenceMinimalAmount)} can not have more than 2 decimal places",
                 adventure.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
+
+        [Test]
+        public void AdventureProviderMustNotBeNull()
+        {
+            var adventure = Domain.Entities.Adventure.FactoryTest(
+                TestConstants.ADVENTURE_ID_VALID,
+                TestConstants.ADVENTURE_NAME_VALID,
+                TestConstants.CATEGORY_ID_VALID,
+                TestConstants.CATEGORY_VALID,
+                TestConstants.CITY_ID_VALID,
+                TestConstants.CITY_VALID,
+                TestConstants.ADDRESS_ID_VALID,
+                TestConstants.ADDRESS_VALID,
+                TestConstants.INSURANCE_MINIMAL_VALID,
+                TestConstants.PROVIDER_ID_INVALID,
+                TestConstants.PROVIDER_VALID,
+                TestConstants.AVAILABILITIES_VALID,
+                TestConstants.USER_ID_VALID,
+                TestConstants.ACTIVE
+                );
+
+            var isValid = adventure.IsValid();
+
+            Assert.IsFalse(isValid);
+            Assert.Contains($"{nameof(Domain.Entities.Adventure.Provider)} is required",
+                adventure.ValidationResult.Errors.Select(error => error.Message).ToList());
+        }
     }
 }
