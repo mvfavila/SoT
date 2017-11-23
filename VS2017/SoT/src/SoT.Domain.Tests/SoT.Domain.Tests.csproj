@@ -55,6 +55,7 @@
     <Compile Include="Validation\Category\CategoryIsVerifiedForRegistrationTest.cs" />
     <Compile Include="Validation\City\CityIsVerifiedForRegistrationTest.cs" />
     <Compile Include="Validation\Country\CountryIsVerifiedForRegistrationTest.cs" />
+    <Compile Include="Validation\Employee\EmployeeIsVerifiedForRegistrationTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

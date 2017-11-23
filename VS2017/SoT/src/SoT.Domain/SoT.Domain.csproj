@@ -122,6 +122,7 @@
     <Compile Include="Specification\Employee\EmployeeIsEmployeeOlderThan18.cs" />
     <Compile Include="Specification\Employee\EmployeeIsKeyNotNull.cs" />
     <Compile Include="Specification\Employee\EmployeeIsProviderNotNull.cs" />
+    <Compile Include="Specification\Employee\EmployeeIsUserNotNull.cs" />
     <Compile Include="Specification\Example\ExampleIsRecentDateSpecification.cs" />
     <Compile Include="Specification\Example\ExampleHasSubExampleSpecification.cs" />
     <Compile Include="Specification\Example\ExampleIsActiveSpecification.cs" />

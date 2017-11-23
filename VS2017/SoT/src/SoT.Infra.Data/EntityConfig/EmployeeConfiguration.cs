@@ -14,6 +14,9 @@ namespace SoT.Infra.Data.EntityConfig
                 .WithMany()
                 .HasForeignKey(c => c.ProviderId);
 
+            Property(c => c.UserId)
+                .IsRequired();
+
             Ignore(e => e.ValidationResult);
         }
     }

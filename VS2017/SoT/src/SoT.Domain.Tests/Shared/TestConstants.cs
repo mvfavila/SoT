@@ -98,6 +98,13 @@ namespace SoT.Domain.Tests.Shared
         internal static readonly decimal? INSURANCE_MINIMAL_VALID_TWO_DECIMAL_PLACES = 1.23M;
         internal static readonly decimal? INSURANCE_MINIMAL_INVALID_THREE_DECIMAL_PLACES = 1.234M;
 
+        internal static readonly Guid EMPLOYEE_ID_VALID = Guid.Parse("6ade1b3f-dcec-4364-a191-a62278c3094f");
+        internal static readonly Guid EMPLOYEE_ID_INVALID = Guid.Parse("00000000-0000-0000-0000-000000000000");
+
+        internal static readonly DateTime EMPLOYEE_DATE_OF_BIRTH_VALID = DateTime.Today.AddYears(-30);
+        internal static readonly DateTime EMPLOYEE_DATE_OF_BIRTH_VALID_EDGE = DateTime.Today.AddYears(-18);
+        internal static readonly DateTime EMPLOYEE_DATE_OF_BIRTH_INVALID = DateTime.Today.AddYears(-18).AddDays(1);
+
         internal static readonly Guid PROVIDER_ID_VALID = Guid.Parse("53135957-c223-4c80-8104-c0e25afc8d8c");
         internal static readonly Guid PROVIDER_ID_INVALID = Guid.Parse("00000000-0000-0000-0000-000000000000");
 
@@ -109,6 +116,7 @@ namespace SoT.Domain.Tests.Shared
         };
 
         internal static readonly Guid USER_ID_VALID = Guid.Parse("2f3b2f1d-a8c5-4a3a-a468-7e2940a0095c");
+        internal static readonly Guid USER_ID_INVALID = Guid.Parse("00000000-0000-0000-0000-000000000000");
 
         internal static readonly bool ACTIVE = true;
 

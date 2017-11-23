@@ -108,5 +108,28 @@ namespace SoT.Domain.Entities
                 UserId = userId
             };
         }
+
+        /// <summary>
+        /// Factory used for Country's Unit Tests.
+        /// </summary>
+        /// <param name="employeeId">Employee's Unique Id.</param>
+        /// <param name="birthDate">Employee's birth date.</param>
+        /// <param name="providerId">Unique id of the <see cref="Provider"/> attached to the Employee.</param>
+        /// <param name="provider"><see cref="Entities.Provider"/> where the Employee works or which is owned by the
+        /// Employee.</param>
+        /// <param name="userId">Unique id of the <see cref="Entities.User"/> attached to the Employee.</param>
+        /// <returns>See <see cref="Employee"/>.</returns>
+        public static Employee FactoryTest(Guid employeeId, DateTime birthDate, Guid providerId, Provider provider,
+            Guid userId)
+        {
+            return new Employee
+            {
+                EmployeeId = employeeId,
+                BirthDate = birthDate,
+                ProviderId = providerId,
+                Provider = provider,
+                UserId = userId
+            };
+        }
     }
 }

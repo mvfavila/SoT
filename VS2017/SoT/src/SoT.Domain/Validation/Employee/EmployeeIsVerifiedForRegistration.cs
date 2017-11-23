@@ -10,6 +10,7 @@ namespace SoT.Domain.Validation.Employee
             var isKeyNotNull = new EmployeeIsKeyNotNull();
             var isEmployeeOlderThan18 = new EmployeeIsEmployeeOlderThan18();
             var isProviderNotNull = new EmployeeIsProviderNotNull();
+            var isUserNotNull = new EmployeeIsUserNotNull();
 
             base.AddRule("IsKeyNotNull", new Rule<Entities.Employee>(isKeyNotNull,
                 $"{nameof(Entities.Employee.EmployeeId)} is required"));
@@ -17,6 +18,8 @@ namespace SoT.Domain.Validation.Employee
                 $"To register as an {nameof(Entities.Employee)} must be over 18 years of age"));
             base.AddRule("IsProviderNotNull", new Rule<Entities.Employee>(isProviderNotNull,
                 $"{nameof(Entities.Employee.Provider)} is required"));
+            base.AddRule("IsUserNotNull", new Rule<Entities.Employee>(isUserNotNull,
+                $"{nameof(Entities.Employee.UserId)} is required"));
         }
     }
 }
