@@ -127,6 +127,9 @@
     <Compile Include="Specification\Example\ExampleHasSubExampleSpecification.cs" />
     <Compile Include="Specification\Example\ExampleIsActiveSpecification.cs" />
     <Compile Include="Specification\Example\ExampleIsUniqueEntrySpecification.cs" />
+    <Compile Include="Specification\Provider\ProviderIsCompanyNameNotNullAndNotEmpty.cs" />
+    <Compile Include="Specification\Provider\ProviderIsCompanyNameValidLength.cs" />
+    <Compile Include="Specification\Provider\ProviderIsKeyNotNull.cs" />
     <Compile Include="Specification\SubExample\SubExampleHasPositiveCalculatedPropertyNameSpecification.cs" />
     <Compile Include="Validation\Address\AddressIsVerified.cs" />
     <Compile Include="Validation\Adventure\AdventureIsVerifiedForRegistration.cs" />
