@@ -195,5 +195,23 @@ namespace SoT.Domain.Tests.Validation.Address
 
             var isValid = address.IsValid();
         }
+
+        [Test]
+        public void AddressAdventureIdMustNotBeEmpty()
+        {
+            var address = Domain.Entities.Address.FactoryTest(
+                TestConstants.ADDRESS_ID_VALID,
+                TestConstants.STREET01_VALID,
+                TestConstants.COMPLEMENT_VALID,
+                TestConstants.POSTCODE_VALID,
+                TestConstants.ADVENTURE_ID_INVALID
+                );
+
+            var isValid = address.IsValid();
+
+            Assert.IsFalse(isValid);
+            Assert.Contains($"{nameof(Domain.Entities.Address.AdventureId)} is required",
+                address.ValidationResult.Errors.Select(error => error.Message).ToList());
+        }
     }
 }
