@@ -107,6 +107,10 @@
     <Compile Include="Specification\Availability\AvailabilityIsCapacityHigherThanZeroSpecification.cs" />
     <Compile Include="Specification\Availability\AvailabilityIsFutureDateSpecification.cs" />
     <Compile Include="Specification\Availability\AvailabilityIsMinimumDurationLowerOrEqualToMaximumDurationSpecification.cs" />
+    <Compile Include="Specification\Category\CategoryIsElementNotNull.cs" />
+    <Compile Include="Specification\Category\CategoryIsKeyNotNull.cs" />
+    <Compile Include="Specification\Category\CategoryIsNameNotNullAndNotEmpty.cs" />
+    <Compile Include="Specification\Category\CategoryIsNameValidLength.cs" />
     <Compile Include="Specification\Example\ExampleIsRecentDateSpecification.cs" />
     <Compile Include="Specification\Example\ExampleHasSubExampleSpecification.cs" />
     <Compile Include="Specification\Example\ExampleIsActiveSpecification.cs" />
