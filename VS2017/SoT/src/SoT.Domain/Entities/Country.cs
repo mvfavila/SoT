@@ -112,5 +112,26 @@ namespace SoT.Domain.Entities
                 RegionId = regionId
             };
         }
+
+        /// <summary>
+        /// Factory used for Country's Unit Tests.
+        /// </summary>
+        /// <param name="countryId">Country Unique Id.</param>
+        /// <param name="name">Name of the Country.</param>
+        /// <param name="active">Informs if the Country is active in SoT system.</param>
+        /// <param name="regionId">Unique id of the <see cref="Entities.Region"/> attached to the Country.</param>
+        /// <param name="region"><see cref="Entities.Region"/> attached to the Country.</param>
+        /// <returns>See <see cref="Country"/>.</returns>
+        public static Country FactoryTest(Guid countryId, string name, bool active, Guid regionId, Region region)
+        {
+            return new Country
+            {
+                CountryId = countryId,
+                Name = name,
+                Active = active,
+                RegionId = regionId,
+                Region = region
+            };
+        }
     }
 }

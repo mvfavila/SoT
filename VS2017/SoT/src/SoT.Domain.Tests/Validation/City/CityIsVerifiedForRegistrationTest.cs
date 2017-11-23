@@ -14,7 +14,7 @@ namespace SoT.Domain.Tests.Validation.City
                 TestConstants.CITY_ID_VALID,
                 TestConstants.CITY_NAME_VALID,
                 TestConstants.ACTIVE,
-                TestConstants.COUNTY_ID_VALID,
+                TestConstants.COUNTRY_ID_VALID,
                 TestConstants.COUNTRY_VALID
                 );
 
@@ -31,7 +31,7 @@ namespace SoT.Domain.Tests.Validation.City
                 TestConstants.CITY_ID_VALID,
                 TestConstants.CITY_NAME_INVALID_NULL,
                 TestConstants.ACTIVE,
-                TestConstants.COUNTY_ID_VALID,
+                TestConstants.COUNTRY_ID_VALID,
                 TestConstants.COUNTRY_VALID
                 );
 
@@ -49,7 +49,7 @@ namespace SoT.Domain.Tests.Validation.City
                 TestConstants.CITY_ID_VALID,
                 TestConstants.CITY_NAME_INVALID_EMPTY,
                 TestConstants.ACTIVE,
-                TestConstants.COUNTY_ID_VALID,
+                TestConstants.COUNTRY_ID_VALID,
                 TestConstants.COUNTRY_VALID
                 );
 
@@ -67,7 +67,7 @@ namespace SoT.Domain.Tests.Validation.City
                 TestConstants.CITY_ID_VALID,
                 TestConstants.CITY_NAME_INVALID_EMPTY_SPACES,
                 TestConstants.ACTIVE,
-                TestConstants.COUNTY_ID_VALID,
+                TestConstants.COUNTRY_ID_VALID,
                 TestConstants.COUNTRY_VALID
                 );
 
@@ -85,7 +85,7 @@ namespace SoT.Domain.Tests.Validation.City
                 TestConstants.CITY_ID_VALID,
                 TestConstants.CITY_NAME_VALID_LENGTH_EDGE,
                 TestConstants.ACTIVE,
-                TestConstants.COUNTY_ID_VALID,
+                TestConstants.COUNTRY_ID_VALID,
                 TestConstants.COUNTRY_VALID
                 );
 
@@ -97,7 +97,7 @@ namespace SoT.Domain.Tests.Validation.City
                 TestConstants.CITY_ID_VALID,
                 TestConstants.CITY_NAME_INVALID_LENGTH,
                 TestConstants.ACTIVE,
-                TestConstants.COUNTY_ID_VALID,
+                TestConstants.COUNTRY_ID_VALID,
                 TestConstants.COUNTRY_VALID
                 );
 
@@ -105,6 +105,24 @@ namespace SoT.Domain.Tests.Validation.City
 
             Assert.IsFalse(isValid);
             Assert.Contains($"{nameof(Domain.Entities.City.Name)} can not have more than 100 chars",
+                city.ValidationResult.Errors.Select(error => error.Message).ToList());
+        }
+
+        [Test]
+        public void CItyCountryMustNotBeNull()
+        {
+            var city = Domain.Entities.City.FactoryTest(
+                TestConstants.CITY_ID_VALID,
+                TestConstants.CITY_NAME_VALID,
+                TestConstants.ACTIVE,
+                TestConstants.COUNTRY_ID_INVALID,
+                TestConstants.COUNTRY_VALID
+                );
+
+            var isValid = city.IsValid();
+
+            Assert.IsFalse(isValid);
+            Assert.Contains($"{nameof(Domain.Entities.City.Country)} is required",
                 city.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
     }
