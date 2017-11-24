@@ -83,6 +83,22 @@ namespace SoT.Domain.Entities
         }
 
         /// <summary>
+        /// Adds a new Employee to the Adventure Provider.
+        /// </summary>
+        /// <param name="employee">See <see cref="Employee"/>.</param>
+        public void AddEmployee(Employee employee)
+        {
+            if (Employees == null)
+                Employees = new List<Employee>();
+
+            employee.AttachProvider(this);
+
+            var list = Employees.ToList();
+            list.Add(employee);
+            Employees = list;
+        }
+
+        /// <summary>
         /// Factory used when a new Provider is being added to the database context.
         /// </summary>
         /// <param name="companyName">Adventure Provider's company name.</param>
@@ -118,19 +134,25 @@ namespace SoT.Domain.Entities
         }
 
         /// <summary>
-        /// Adds a new Employee to the Adventure Provider.
+        /// Factory used for Provider's Unit Tests.
         /// </summary>
-        /// <param name="employee">See <see cref="Employee"/>.</param>
-        public void AddEmployee(Employee employee)
+        /// <param name="providerId">Provider Unique Id.</param>
+        /// <param name="companyName">Adventure Provider's company name.</param>
+        /// <param name="adventures">Collection of <see cref="Adventure"/> attached to the Provider.</param>
+        /// <param name="employees">Collection of <see cref="Employee"/> attached to the Provider.</param>
+        /// <param name="active">Informs if the Provider is active in SoT system.</param>
+        /// <returns>See <see cref="Provider"/>.</returns>
+        public static Provider FactoryTest(Guid providerId, string companyName, ICollection<Adventure> adventures,
+            ICollection<Employee> employees, bool active)
         {
-            if (Employees == null)
-                Employees = new List<Employee>();
-
-            employee.AttachProvider(this);
-
-            var list = Employees.ToList();
-            list.Add(employee);
-            Employees = list;
+            return new Provider
+            {
+                ProviderId = providerId,
+                CompanyName = companyName,
+                Adventures = adventures,
+                Employees = employees,
+                Active = active
+            };
         }
     }
 }

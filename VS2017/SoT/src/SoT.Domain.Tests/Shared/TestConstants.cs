@@ -108,6 +108,23 @@ namespace SoT.Domain.Tests.Shared
         internal static readonly Guid PROVIDER_ID_VALID = Guid.Parse("53135957-c223-4c80-8104-c0e25afc8d8c");
         internal static readonly Guid PROVIDER_ID_INVALID = Guid.Parse("00000000-0000-0000-0000-000000000000");
 
+        internal static readonly string PROVIDER_COMPANY_NAME_VALID = "Lisbon";
+        internal static readonly string PROVIDER_COMPANY_NAME_INVALID_NULL;
+        internal static readonly string PROVIDER_COMPANY_NAME_INVALID_EMPTY = "";
+        internal static readonly string PROVIDER_COMPANY_NAME_INVALID_EMPTY_SPACES = " ";
+        internal static readonly string PROVIDER_COMPANY_NAME_VALID_LENGTH_EDGE = new string('A', 400);
+        internal static readonly string PROVIDER_COMPANY_NAME_INVALID_LENGTH = new string('A', 401);
+
+        internal static readonly ICollection<Adventure> PROVIDER_ADVENTURES_VALID = new List<Adventure>
+        {
+            null
+        };
+
+        internal static readonly ICollection<Employee> PROVIDER_EMPLOYEES_VALID = new List<Employee>
+        {
+            null
+        };
+
         internal static readonly Provider PROVIDER_VALID = null;
 
         internal static readonly List<Availability> AVAILABILITIES_VALID = new List<Availability>
