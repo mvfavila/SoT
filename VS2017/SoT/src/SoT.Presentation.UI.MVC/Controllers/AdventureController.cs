@@ -43,7 +43,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
         // GET: Adventure/Create
         public ActionResult Create()
         {
-            var categories = categoryAppService.GetAll();
+            var categories = categoryAppService.GetAllActive();
             var countries = countryAppService.GetAll();
             var cities = cityAppService.GetAll();
 

@@ -23,6 +23,19 @@ namespace SoT.Infra.Data.Repositories.ReadOnly
             }
         }
 
+        public IEnumerable<Category> GetAllBySituation(bool situation)
+        {
+            using (var connection = Connection)
+            {
+                connection.Open();
+
+                var categories = connection.Query<Category>(CategoryQuery.GET_ALL_BY_SITUATION,
+                    new { SITUATION = situation });
+
+                return categories;
+            }
+        }
+
         public override Category GetById(Guid id)
         {
             using (var connection = Connection)

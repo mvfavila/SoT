@@ -1,4 +1,5 @@
-﻿using SoT.Domain.Entities;
+﻿using System.Collections.Generic;
+using SoT.Domain.Entities;
 using SoT.Domain.Interfaces.Repository;
 using SoT.Domain.Interfaces.Repository.ReadOnly;
 using SoT.Domain.Interfaces.Services;
@@ -16,6 +17,13 @@ namespace SoT.Domain.Services
         {
             this.categoryRepository = categoryRepository;
             this.categoryReadOnlyRepository = categoryReadOnlyRepository;
+        }
+
+        public IEnumerable<Category> GetAllActive()
+        {
+            const bool ACTIVE = true;
+
+            return categoryReadOnlyRepository.GetAllBySituation(ACTIVE);
         }
     }
 }

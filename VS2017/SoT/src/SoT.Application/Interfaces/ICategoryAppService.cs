@@ -7,5 +7,7 @@ namespace SoT.Application.Interfaces
     public interface ICategoryAppService : IDisposable
     {
         IEnumerable<CategoryViewModel> GetAll();
+
+        IEnumerable<CategoryViewModel> GetAllActive();
     }
 }

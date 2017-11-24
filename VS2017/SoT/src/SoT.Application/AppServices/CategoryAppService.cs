@@ -23,6 +23,13 @@ namespace SoT.Application.AppServices
             return Mapping.CategoryMapper.FromDomainToViewModel(categories);
         }
 
+        public IEnumerable<CategoryViewModel> GetAllActive()
+        {
+            var categories = categoryService.GetAllActive();
+
+            return Mapping.CategoryMapper.FromDomainToViewModel(categories);
+        }
+
         public void Dispose()
         {
             categoryService.Dispose();
