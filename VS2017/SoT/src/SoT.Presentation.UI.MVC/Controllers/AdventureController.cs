@@ -2,6 +2,7 @@
 using SoT.Application.Interfaces;
 using SoT.Application.ViewModels;
 using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Web.Mvc;
 
@@ -45,7 +46,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
         {
             var categories = categoryAppService.GetAllActive();
             var countries = countryAppService.GetAllActive();
-            var cities = cityAppService.GetAll();
+            var cities = new List<CityViewModel>();
 
             ViewBag.CategoryId = new SelectList(categories, "CategoryId", "Name");
             ViewBag.CountryId = new SelectList(countries, "CountryId", "Name");
