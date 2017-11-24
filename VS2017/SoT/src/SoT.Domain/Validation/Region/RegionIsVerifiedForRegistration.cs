@@ -22,7 +22,7 @@ namespace SoT.Domain.Validation.Region
                 $"{nameof(Entities.Region.Name)} can not have more than 100 chars"));
 
             base.AddRule("IsContinentNotNull", new Rule<Entities.Region>(isContinentNotNull,
-                $"{nameof(Entities.Region.ContinentId)} is required"));
+                $"{nameof(Entities.Region.Continent)} is required"));
         }
     }
 }

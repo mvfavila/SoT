@@ -115,5 +115,28 @@ namespace SoT.Domain.Entities
                 ContinentId = continentId
             };
         }
+
+        /// <summary>
+        /// Factory used for Region's Unit Tests.
+        /// </summary>
+        /// <param name="regionId">Region Unique Id.</param>
+        /// <param name="name">Name of the Region.</param>
+        /// <param name="active">Informs if the Region is active in SoT system.</param>
+        /// <param name="continentId">Unique id of the <see cref="Entities.Continent"/> where the Region is located.
+        /// </param>
+        /// <param name="continent"><see cref="Entities.Continent"/> attached to the Region.</param>
+        /// <returns>See <see cref="Region"/>.</returns>
+        public static Region FactoryTest(Guid regionId, string name, bool active, Guid continentId,
+            Continent continent)
+        {
+            return new Region
+            {
+                RegionId = regionId,
+                Name = name,
+                Active = active,
+                ContinentId = continentId,
+                Continent = continent
+            };
+        }
     }
 }

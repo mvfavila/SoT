@@ -58,8 +58,20 @@ namespace SoT.Domain.Tests.Shared
 
         internal static readonly Category CATEGORY_VALID = null;
 
+        internal static readonly Guid CONTINENT_ID_VALID = Guid.Parse("843c9105-77b1-4a54-97f3-28a0ce797358");
+        internal static readonly Guid CONTINENT_ID_INVALID = Guid.Parse("00000000-0000-0000-0000-000000000000");
+
+        internal static readonly Continent CONTINENT_VALID = null;
+
         internal static readonly Guid REGION_ID_VALID = Guid.Parse("4f30cc60-f482-4fa9-8318-503e047276b4");
         internal static readonly Guid REGION_ID_INVALID = Guid.Parse("00000000-0000-0000-0000-000000000000");
+
+        internal static readonly string REGION_NAME_VALID = "Westesrn europe";
+        internal static readonly string REGION_NAME_INVALID_NULL;
+        internal static readonly string REGION_NAME_INVALID_EMPTY = "";
+        internal static readonly string REGION_NAME_INVALID_EMPTY_SPACES = " ";
+        internal static readonly string REGION_NAME_VALID_LENGTH_EDGE = new string('A', 100);
+        internal static readonly string REGION_NAME_INVALID_LENGTH = new string('A', 101);
 
         internal static readonly Region REGION_VALID = null;
 
