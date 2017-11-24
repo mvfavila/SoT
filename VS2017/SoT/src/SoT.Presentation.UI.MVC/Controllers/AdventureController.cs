@@ -61,18 +61,21 @@ namespace SoT.Presentation.UI.MVC.Controllers
             [Bind(Include = "AdventureId,Name,CategoryId,CityId,AddressId,InsurenceMinimalAmount,ProviderId,Active")]
             AdventureAddressViewModel adventureAddressViewModel)
         {
-            //if (ModelState.IsValid)
-            //{
-            //    adventureAddressViewModel.AdventureId = Guid.NewGuid();
-            //    db.Adventures.Add(adventureAddressViewModel);
-            //    db.SaveChanges();
-            //    return RedirectToAction("Index");
-            //}
+            if (ModelState.IsValid)
+            {
+                var result = adventureAppService.Add(adventureAddressViewModel);
+                if (!result.IsValid)
+                {
+                    foreach (var validationAppError in result.Errors)
+                    {
+                        ModelState.AddModelError(string.Empty, validationAppError.Message);
+                    }
+                    return View(adventureAddressViewModel);
+                }
 
-            //ViewBag.AddressId = new SelectList(db.Addresses, "AddressId", "Street01", adventureAddressViewModel.AddressId);
-            //ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Name", adventureAddressViewModel.CategoryId);
-            //ViewBag.CityId = new SelectList(db.Cities, "CityId", "Name", adventureAddressViewModel.CityId);
-            //ViewBag.ProviderId = new SelectList(db.Providers, "ProviderId", "CompanyName", adventureAddressViewModel.ProviderId);
+                return RedirectToAction($"Details", "Provider");
+            }
+
             return View(adventureAddressViewModel);
         }
 
