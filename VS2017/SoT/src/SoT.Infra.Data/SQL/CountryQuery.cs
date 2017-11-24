@@ -6,6 +6,11 @@
             SELECT *
             FROM Country c";
 
+        public static readonly string GET_ALL_BY_SITUATION = @"
+            SELECT *
+            FROM Country c
+            WHERE c.ACTIVE = @SITUATION";
+
         public static readonly string GET_BY_ID = @"
             SELECT *
             FROM Country c

@@ -6,5 +6,6 @@ namespace SoT.Domain.Interfaces.Repository.ReadOnly
 {
     public interface ICountryReadOnlyRepository : IBaseReadOnlyRepository<Country>
     {
+        IEnumerable<Country> GetAllBySituation(bool situation);
     }
 }

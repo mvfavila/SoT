@@ -45,7 +45,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
         // GET: City/Create
         public ActionResult Create()
         {
-            var countries = countryAppService.GetAll();
+            var countries = countryAppService.GetAllActive();
             ViewBag.CountryId = new SelectList(countries, "CountryId", "Name");
             return View();
         }
@@ -81,7 +81,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
             {
                 return HttpNotFound();
             }
-            var countries = countryAppService.GetAll();
+            var countries = countryAppService.GetAllActive();
             ViewBag.CountryId = new SelectList(countries, "CountryId", "Name", cityViewModel.CountryId);
             return View(cityViewModel);
         }

@@ -1,4 +1,5 @@
-﻿using SoT.Domain.Entities;
+﻿using System.Collections.Generic;
+using SoT.Domain.Entities;
 using SoT.Domain.ValueObjects;
 
 namespace SoT.Domain.Interfaces.Services
@@ -8,5 +9,7 @@ namespace SoT.Domain.Interfaces.Services
         new ValidationResult Add(Country country);
 
         new ValidationResult Update(Country country);
+
+        IEnumerable<Country> GetAllActive();
     }
 }

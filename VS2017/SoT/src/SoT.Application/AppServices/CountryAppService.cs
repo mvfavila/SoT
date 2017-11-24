@@ -33,6 +33,11 @@ namespace SoT.Application.AppServices
             return CountryMapper.FromDomainToViewModel(countryService.GetAll());
         }
 
+        public IEnumerable<CountryViewModel> GetAllActive()
+        {
+            return CountryMapper.FromDomainToViewModel(countryService.GetAllActive());
+        }
+
         public ValidationAppResult Update(CountryViewModel countryViewModel)
         {
             throw new NotImplementedException();

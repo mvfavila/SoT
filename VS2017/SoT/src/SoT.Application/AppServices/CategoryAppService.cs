@@ -16,13 +16,6 @@ namespace SoT.Application.AppServices
             this.categoryService = categoryService;
         }
 
-        public IEnumerable<CategoryViewModel> GetAll()
-        {
-            var categories = categoryService.GetAll();
-
-            return Mapping.CategoryMapper.FromDomainToViewModel(categories);
-        }
-
         public IEnumerable<CategoryViewModel> GetAllActive()
         {
             var categories = categoryService.GetAllActive();

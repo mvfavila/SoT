@@ -23,6 +23,19 @@ namespace SoT.Infra.Data.Repositories.ReadOnly
             }
         }
 
+        public IEnumerable<Country> GetAllBySituation(bool situation)
+        {
+            using (var connection = Connection)
+            {
+                connection.Open();
+
+                var countries = connection.Query<Country>(CountryQuery.GET_ALL_BY_SITUATION,
+                    new { SITUATION = situation });
+
+                return countries;
+            }
+        }
+
         public override Country GetById(Guid id)
         {
             using (var connection = Connection)

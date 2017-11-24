@@ -21,6 +21,13 @@ namespace SoT.Domain.Services
             this.countryReadOnlyRepository = countryReadOnlyRepository;
         }
 
+        public IEnumerable<Country> GetAllActive()
+        {
+            const bool ACTIVE = true;
+
+            return countryReadOnlyRepository.GetAllBySituation(ACTIVE);
+        }
+
         ValidationResult ICountryService.Add(Country country)
         {
             throw new NotImplementedException();

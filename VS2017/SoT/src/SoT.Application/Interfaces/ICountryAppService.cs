@@ -12,7 +12,7 @@ namespace SoT.Application.Interfaces
         ValidationAppResult Add(CountryViewModel countryViewModel);
 
         ValidationAppResult Update(CountryViewModel countryViewModel);
-
-        IEnumerable<CountryViewModel> GetAll();
+        
+        IEnumerable<CountryViewModel> GetAllActive();
     }
 }

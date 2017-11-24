@@ -44,7 +44,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
         public ActionResult Create()
         {
             var categories = categoryAppService.GetAllActive();
-            var countries = countryAppService.GetAll();
+            var countries = countryAppService.GetAllActive();
             var cities = cityAppService.GetAll();
 
             ViewBag.CategoryId = new SelectList(categories, "CategoryId", "Name");
