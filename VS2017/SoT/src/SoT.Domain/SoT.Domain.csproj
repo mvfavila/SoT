@@ -130,6 +130,10 @@
     <Compile Include="Specification\Provider\ProviderIsCompanyNameNotNullAndNotEmpty.cs" />
     <Compile Include="Specification\Provider\ProviderIsCompanyNameValidLength.cs" />
     <Compile Include="Specification\Provider\ProviderIsKeyNotNull.cs" />
+    <Compile Include="Specification\Region\RegionIsKeyNotNull.cs" />
+    <Compile Include="Specification\Region\RegionIsNameNotNullAndNotEmpty.cs" />
+    <Compile Include="Specification\Region\RegionIsNameValidLength.cs" />
+    <Compile Include="Specification\Region\RegionIsRegionNotNull.cs" />
     <Compile Include="Specification\SubExample\SubExampleHasPositiveCalculatedPropertyNameSpecification.cs" />
     <Compile Include="Validation\Address\AddressIsVerified.cs" />
     <Compile Include="Validation\Adventure\AdventureIsVerifiedForRegistration.cs" />
