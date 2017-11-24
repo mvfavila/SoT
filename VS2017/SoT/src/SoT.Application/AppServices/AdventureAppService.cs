@@ -3,6 +3,7 @@ using SoT.Application.ViewModels;
 using SoT.Domain.Interfaces.Services;
 using SoT.Infra.Data.Context;
 using System;
+using SoT.Application.Validation;
 
 namespace SoT.Application.AppServices
 {
@@ -20,6 +21,11 @@ namespace SoT.Application.AppServices
             var adventure = adventureService.GetWithAddressById(adventureId, userId);
 
             return Mapping.AdventureMapper.FromDomainToViewModel(adventure);
+        }
+
+        public ValidationAppResult Add(AdventureAddressViewModel adventureAddressViewModel)
+        {
+            throw new NotImplementedException();
         }
 
         public void Dispose()
