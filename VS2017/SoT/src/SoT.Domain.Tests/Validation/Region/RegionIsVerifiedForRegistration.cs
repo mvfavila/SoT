@@ -1,13 +1,12 @@
-﻿using NUnit.Framework;
-using SoT.Domain.Tests.Shared;
+﻿using SoT.Domain.Tests.Shared;
 using System.Linq;
+using Xunit;
 
 namespace SoT.Domain.Tests.Validation.Region
 {
-    [TestFixture]
     public class RegionIsVerifiedForRegistration
     {
-        [Test]
+        [Fact]
         public void RegionMustBeValid()
         {
             var region = Domain.Entities.Region.FactoryTest(
@@ -20,11 +19,11 @@ namespace SoT.Domain.Tests.Validation.Region
 
             var isValid = region.IsValid();
 
-            Assert.IsTrue(isValid);
-            Assert.IsFalse(region.ValidationResult.Errors.Any());
+            Assert.True(isValid);
+            Assert.False(region.ValidationResult.Errors.Any());
         }
 
-        [Test]
+        [Fact]
         public void RegionNameMustNotBeNull()
         {
             var region = Domain.Entities.Region.FactoryTest(
@@ -37,12 +36,12 @@ namespace SoT.Domain.Tests.Validation.Region
 
             var isValid = region.IsValid();
 
-            Assert.IsFalse(isValid);
+            Assert.False(isValid);
             Assert.Contains($"{nameof(Domain.Entities.Region.Name)} is required",
                 region.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Test]
+        [Fact]
         public void RegionNameMustNotBeEmpty()
         {
             var region = Domain.Entities.Region.FactoryTest(
@@ -55,12 +54,12 @@ namespace SoT.Domain.Tests.Validation.Region
 
             var isValid = region.IsValid();
 
-            Assert.IsFalse(isValid);
+            Assert.False(isValid);
             Assert.Contains($"{nameof(Domain.Entities.Region.Name)} is required",
                 region.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Test]
+        [Fact]
         public void RegionNameMustNotBeEmptySpaces()
         {
             var region = Domain.Entities.Region.FactoryTest(
@@ -73,12 +72,12 @@ namespace SoT.Domain.Tests.Validation.Region
 
             var isValid = region.IsValid();
 
-            Assert.IsFalse(isValid);
+            Assert.False(isValid);
             Assert.Contains($"{nameof(Domain.Entities.Region.Name)} is required",
                 region.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Test]
+        [Fact]
         public void RegionNameMustHaveValidLength()
         {
             var region = Domain.Entities.Region.FactoryTest(
@@ -91,7 +90,7 @@ namespace SoT.Domain.Tests.Validation.Region
 
             var isValid = region.IsValid();
 
-            Assert.IsTrue(isValid);
+            Assert.True(isValid);
 
             region = Domain.Entities.Region.FactoryTest(
                 TestConstants.REGION_ID_VALID,
@@ -103,12 +102,12 @@ namespace SoT.Domain.Tests.Validation.Region
 
             isValid = region.IsValid();
 
-            Assert.IsFalse(isValid);
+            Assert.False(isValid);
             Assert.Contains($"{nameof(Domain.Entities.Region.Name)} can not have more than 100 chars",
                 region.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Test]
+        [Fact]
         public void RegionContinentMustNotBeNull()
         {
             var region = Domain.Entities.Region.FactoryTest(
@@ -121,7 +120,7 @@ namespace SoT.Domain.Tests.Validation.Region
 
             var isValid = region.IsValid();
 
-            Assert.IsFalse(isValid);
+            Assert.False(isValid);
             Assert.Contains($"{nameof(Domain.Entities.Region.Continent)} is required",
                 region.ValidationResult.Errors.Select(error => error.Message).ToList());
         }

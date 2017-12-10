@@ -1,15 +1,14 @@
 ﻿using System;
-using NUnit.Framework;
 using System.Linq;
+using Xunit;
 
 namespace SoT.Domain.Tests.Entities.Example
 {
-    [TestFixture]
     public class ExampleTest
     {
         private Domain.Entities.Example.Example example;
 
-        [Test]
+        [Fact]
         public void MustNotAcceptExampleWithoutSubExample()
         {
             example = new Domain.Entities.Example.Example
@@ -18,7 +17,7 @@ namespace SoT.Domain.Tests.Entities.Example
                 DatePropertyName = DateTime.Now
             };
 
-            Assert.IsFalse(example.IsValid());
+            Assert.False(example.IsValid());
             Assert.Contains("Example must have a SubExample", example.ValidationResult.Errors
                 .Select(error => error.Message).ToList());
         }

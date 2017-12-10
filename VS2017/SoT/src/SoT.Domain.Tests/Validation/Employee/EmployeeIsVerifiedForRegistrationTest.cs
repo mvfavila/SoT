@@ -1,13 +1,12 @@
-﻿using NUnit.Framework;
-using SoT.Domain.Tests.Shared;
+﻿using SoT.Domain.Tests.Shared;
 using System.Linq;
+using Xunit;
 
 namespace SoT.Domain.Tests.Validation.Employee
 {
-    [TestFixture]
     public class EmployeeIsVerifiedForRegistrationTest
     {
-        [Test]
+        [Fact]
         public void EmployeeMustBeValid()
         {
             var employee = Domain.Entities.Employee.FactoryTest(
@@ -20,11 +19,11 @@ namespace SoT.Domain.Tests.Validation.Employee
 
             var isValid = employee.IsValid();
 
-            Assert.IsTrue(isValid);
-            Assert.IsFalse(employee.ValidationResult.Errors.Any());
+            Assert.True(isValid);
+            Assert.False(employee.ValidationResult.Errors.Any());
         }
 
-        [Test]
+        [Fact]
         public void EmployeeMustBeOver18()
         {
             var employee = Domain.Entities.Employee.FactoryTest(
@@ -37,8 +36,8 @@ namespace SoT.Domain.Tests.Validation.Employee
 
             var isValid = employee.IsValid();
 
-            Assert.IsTrue(isValid);
-            Assert.IsFalse(employee.ValidationResult.Errors.Any());
+            Assert.True(isValid);
+            Assert.False(employee.ValidationResult.Errors.Any());
 
             employee = Domain.Entities.Employee.FactoryTest(
                 TestConstants.EMPLOYEE_ID_VALID,
@@ -50,12 +49,12 @@ namespace SoT.Domain.Tests.Validation.Employee
 
             isValid = employee.IsValid();
 
-            Assert.IsFalse(isValid);
+            Assert.False(isValid);
             Assert.Contains($"To register as an {nameof(Domain.Entities.Employee)} must be over 18 years of age",
                 employee.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Test]
+        [Fact]
         public void EmployeeProviderMustNotBeNull()
         {
             var employee = Domain.Entities.Employee.FactoryTest(
@@ -68,12 +67,12 @@ namespace SoT.Domain.Tests.Validation.Employee
 
             var isValid = employee.IsValid();
 
-            Assert.IsFalse(isValid);
+            Assert.False(isValid);
             Assert.Contains($"{nameof(Domain.Entities.Employee.Provider)} is required",
                 employee.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Test]
+        [Fact]
         public void EmployeeUserMustNotBeNull()
         {
             var employee = Domain.Entities.Employee.FactoryTest(
@@ -86,7 +85,7 @@ namespace SoT.Domain.Tests.Validation.Employee
 
             var isValid = employee.IsValid();
 
-            Assert.IsFalse(isValid);
+            Assert.False(isValid);
             Assert.Contains($"{nameof(Domain.Entities.Employee.UserId)} is required",
                 employee.ValidationResult.Errors.Select(error => error.Message).ToList());
         }

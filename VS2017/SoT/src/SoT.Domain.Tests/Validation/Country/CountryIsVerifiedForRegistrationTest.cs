@@ -1,13 +1,12 @@
-﻿using NUnit.Framework;
-using SoT.Domain.Tests.Shared;
+﻿using SoT.Domain.Tests.Shared;
 using System.Linq;
+using Xunit;
 
 namespace SoT.Domain.Tests.Validation.Country
 {
-    [TestFixture]
     public class CountryIsVerifiedForRegistrationTest
     {
-        [Test]
+        [Fact]
         public void CountryMustBeValid()
         {
             var country = Domain.Entities.Country.FactoryTest(
@@ -20,11 +19,11 @@ namespace SoT.Domain.Tests.Validation.Country
 
             var isValid = country.IsValid();
 
-            Assert.IsTrue(isValid);
-            Assert.IsFalse(country.ValidationResult.Errors.Any());
+            Assert.True(isValid);
+            Assert.False(country.ValidationResult.Errors.Any());
         }
 
-        [Test]
+        [Fact]
         public void CountryNameMustNotBeNull()
         {
             var country = Domain.Entities.Country.FactoryTest(
@@ -37,12 +36,12 @@ namespace SoT.Domain.Tests.Validation.Country
 
             var isValid = country.IsValid();
 
-            Assert.IsFalse(isValid);
+            Assert.False(isValid);
             Assert.Contains($"{nameof(Domain.Entities.Country.Name)} is required",
                 country.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Test]
+        [Fact]
         public void CountryNameMustNotBeEmpty()
         {
             var country = Domain.Entities.Country.FactoryTest(
@@ -55,12 +54,12 @@ namespace SoT.Domain.Tests.Validation.Country
 
             var isValid = country.IsValid();
 
-            Assert.IsFalse(isValid);
+            Assert.False(isValid);
             Assert.Contains($"{nameof(Domain.Entities.Country.Name)} is required",
                 country.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Test]
+        [Fact]
         public void CountryNameMustNotBeEmptySpaces()
         {
             var country = Domain.Entities.Country.FactoryTest(
@@ -73,12 +72,12 @@ namespace SoT.Domain.Tests.Validation.Country
 
             var isValid = country.IsValid();
 
-            Assert.IsFalse(isValid);
+            Assert.False(isValid);
             Assert.Contains($"{nameof(Domain.Entities.Country.Name)} is required",
                 country.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Test]
+        [Fact]
         public void CountryNameMustHaveValidLength()
         {
             var country = Domain.Entities.Country.FactoryTest(
@@ -91,7 +90,7 @@ namespace SoT.Domain.Tests.Validation.Country
 
             var isValid = country.IsValid();
 
-            Assert.IsTrue(isValid);
+            Assert.True(isValid);
 
             country = Domain.Entities.Country.FactoryTest(
                 TestConstants.COUNTRY_ID_VALID,
@@ -103,12 +102,12 @@ namespace SoT.Domain.Tests.Validation.Country
 
             isValid = country.IsValid();
 
-            Assert.IsFalse(isValid);
+            Assert.False(isValid);
             Assert.Contains($"{nameof(Domain.Entities.Country.Name)} can not have more than 70 chars",
                 country.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Test]
+        [Fact]
         public void CountryrRegionMustNotBeNull()
         {
             var country = Domain.Entities.Country.FactoryTest(
@@ -121,7 +120,7 @@ namespace SoT.Domain.Tests.Validation.Country
 
             var isValid = country.IsValid();
 
-            Assert.IsFalse(isValid);
+            Assert.False(isValid);
             Assert.Contains($"{nameof(Domain.Entities.Country.Region)} is required",
                 country.ValidationResult.Errors.Select(error => error.Message).ToList());
         }

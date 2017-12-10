@@ -1,13 +1,12 @@
-﻿using NUnit.Framework;
-using SoT.Domain.Tests.Shared;
+﻿using SoT.Domain.Tests.Shared;
 using System.Linq;
+using Xunit;
 
 namespace SoT.Domain.Tests.Validation.Category
 {
-    [TestFixture]
     public class CategoryIsVerifiedForRegistrationTest
     {
-        [Test]
+        [Fact]
         public void CategoryMustBeValid()
         {
             var category = Domain.Entities.Category.FactoryTest(
@@ -20,11 +19,11 @@ namespace SoT.Domain.Tests.Validation.Category
 
             var isValid = category.IsValid();
 
-            Assert.IsTrue(isValid);
-            Assert.IsFalse(category.ValidationResult.Errors.Any());
+            Assert.True(isValid);
+            Assert.False(category.ValidationResult.Errors.Any());
         }
 
-        [Test]
+        [Fact]
         public void CategoryKeyMustNotBeNull()
         {
             var category = Domain.Entities.Category.FactoryTest(
@@ -37,12 +36,12 @@ namespace SoT.Domain.Tests.Validation.Category
 
             var isValid = category.IsValid();
 
-            Assert.IsFalse(isValid);
+            Assert.False(isValid);
             Assert.Contains($"{nameof(Domain.Entities.Category.CategoryId)} is required",
                 category.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Test]
+        [Fact]
         public void CategoryNameMustNotBeNull()
         {
             var category = Domain.Entities.Category.FactoryTest(
@@ -55,12 +54,12 @@ namespace SoT.Domain.Tests.Validation.Category
 
             var isValid = category.IsValid();
 
-            Assert.IsFalse(isValid);
+            Assert.False(isValid);
             Assert.Contains($"{nameof(Domain.Entities.Category.Name)} is required",
                 category.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Test]
+        [Fact]
         public void CategoryNameMustNotBeEmpty()
         {
             var category = Domain.Entities.Category.FactoryTest(
@@ -73,12 +72,12 @@ namespace SoT.Domain.Tests.Validation.Category
 
             var isValid = category.IsValid();
 
-            Assert.IsFalse(isValid);
+            Assert.False(isValid);
             Assert.Contains($"{nameof(Domain.Entities.Category.Name)} is required",
                 category.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Test]
+        [Fact]
         public void CategoryNameMustNotBeEmptySpaces()
         {
             var category = Domain.Entities.Category.FactoryTest(
@@ -91,12 +90,12 @@ namespace SoT.Domain.Tests.Validation.Category
 
             var isValid = category.IsValid();
 
-            Assert.IsFalse(isValid);
+            Assert.False(isValid);
             Assert.Contains($"{nameof(Domain.Entities.Category.Name)} is required",
                 category.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Test]
+        [Fact]
         public void CategoryNameMustHaveValidLength()
         {
             var category = Domain.Entities.Category.FactoryTest(
@@ -109,7 +108,7 @@ namespace SoT.Domain.Tests.Validation.Category
 
             var isValid = category.IsValid();
 
-            Assert.IsTrue(isValid);
+            Assert.True(isValid);
 
             category = Domain.Entities.Category.FactoryTest(
                 TestConstants.CATEGORY_ID_VALID,
@@ -121,7 +120,7 @@ namespace SoT.Domain.Tests.Validation.Category
 
             isValid = category.IsValid();
 
-            Assert.IsFalse(isValid);
+            Assert.False(isValid);
             Assert.Contains($"{nameof(Domain.Entities.Category.Name)} can not have more than 100 chars",
                 category.ValidationResult.Errors.Select(error => error.Message).ToList());
         }

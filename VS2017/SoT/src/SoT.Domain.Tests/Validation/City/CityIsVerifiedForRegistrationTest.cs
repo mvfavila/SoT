@@ -1,13 +1,12 @@
-﻿using NUnit.Framework;
-using SoT.Domain.Tests.Shared;
+﻿using SoT.Domain.Tests.Shared;
 using System.Linq;
+using Xunit;
 
 namespace SoT.Domain.Tests.Validation.City
 {
-    [TestFixture]
     public class CityIsVerifiedForRegistrationTest
     {
-        [Test]
+        [Fact]
         public void CityMustBeValid()
         {
             var city = Domain.Entities.City.FactoryTest(
@@ -20,11 +19,11 @@ namespace SoT.Domain.Tests.Validation.City
 
             var isValid = city.IsValid();
 
-            Assert.IsTrue(isValid);
-            Assert.IsFalse(city.ValidationResult.Errors.Any());
+            Assert.True(isValid);
+            Assert.False(city.ValidationResult.Errors.Any());
         }
 
-        [Test]
+        [Fact]
         public void CityNameMustNotBeNull()
         {
             var city = Domain.Entities.City.FactoryTest(
@@ -37,12 +36,12 @@ namespace SoT.Domain.Tests.Validation.City
 
             var isValid = city.IsValid();
 
-            Assert.IsFalse(isValid);
+            Assert.False(isValid);
             Assert.Contains($"{nameof(Domain.Entities.City.Name)} is required",
                 city.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Test]
+        [Fact]
         public void CityNameMustNotBeEmpty()
         {
             var city = Domain.Entities.City.FactoryTest(
@@ -55,12 +54,12 @@ namespace SoT.Domain.Tests.Validation.City
 
             var isValid = city.IsValid();
 
-            Assert.IsFalse(isValid);
+            Assert.False(isValid);
             Assert.Contains($"{nameof(Domain.Entities.City.Name)} is required",
                 city.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Test]
+        [Fact]
         public void CityNameMustNotBeEmptySpaces()
         {
             var city = Domain.Entities.City.FactoryTest(
@@ -73,12 +72,12 @@ namespace SoT.Domain.Tests.Validation.City
 
             var isValid = city.IsValid();
 
-            Assert.IsFalse(isValid);
+            Assert.False(isValid);
             Assert.Contains($"{nameof(Domain.Entities.City.Name)} is required",
                 city.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Test]
+        [Fact]
         public void CityNameMustHaveValidLength()
         {
             var city = Domain.Entities.City.FactoryTest(
@@ -91,7 +90,7 @@ namespace SoT.Domain.Tests.Validation.City
 
             var isValid = city.IsValid();
 
-            Assert.IsTrue(isValid);
+            Assert.True(isValid);
 
             city = Domain.Entities.City.FactoryTest(
                 TestConstants.CITY_ID_VALID,
@@ -103,12 +102,12 @@ namespace SoT.Domain.Tests.Validation.City
 
             isValid = city.IsValid();
 
-            Assert.IsFalse(isValid);
+            Assert.False(isValid);
             Assert.Contains($"{nameof(Domain.Entities.City.Name)} can not have more than 100 chars",
                 city.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Test]
+        [Fact]
         public void CItyCountryMustNotBeNull()
         {
             var city = Domain.Entities.City.FactoryTest(
@@ -121,7 +120,7 @@ namespace SoT.Domain.Tests.Validation.City
 
             var isValid = city.IsValid();
 
-            Assert.IsFalse(isValid);
+            Assert.False(isValid);
             Assert.Contains($"{nameof(Domain.Entities.City.Country)} is required",
                 city.ValidationResult.Errors.Select(error => error.Message).ToList());
         }

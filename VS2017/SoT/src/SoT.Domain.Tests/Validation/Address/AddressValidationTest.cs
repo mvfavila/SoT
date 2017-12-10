@@ -1,13 +1,12 @@
-﻿using NUnit.Framework;
-using SoT.Domain.Tests.Shared;
+﻿using SoT.Domain.Tests.Shared;
 using System.Linq;
+using Xunit;
 
 namespace SoT.Domain.Tests.Validation.Address
 {
-    [TestFixture]
     public class AddressValidationTest
     {
-        [Test]
+        [Fact]
         public void AddressMustBeValid()
         {
             var address = Domain.Entities.Address.FactoryTest(
@@ -20,11 +19,11 @@ namespace SoT.Domain.Tests.Validation.Address
 
             var isValid = address.IsValid();
 
-            Assert.IsTrue(isValid);
-            Assert.IsFalse(address.ValidationResult.Errors.Any());
+            Assert.True(isValid);
+            Assert.False(address.ValidationResult.Errors.Any());
         }
 
-        [Test]
+        [Fact]
         public void AddressKeyMustNotBeNull()
         {
             var address = Domain.Entities.Address.FactoryTest(
@@ -37,12 +36,12 @@ namespace SoT.Domain.Tests.Validation.Address
 
             var isValid = address.IsValid();
 
-            Assert.IsFalse(isValid);
+            Assert.False(isValid);
             Assert.Contains($"{nameof(Domain.Entities.Address.AddressId)} is required",
                 address.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Test]
+        [Fact]
         public void AddressStreet01MustNotBeNull()
         {
             var address = Domain.Entities.Address.FactoryTest(
@@ -55,12 +54,12 @@ namespace SoT.Domain.Tests.Validation.Address
 
             var isValid = address.IsValid();
 
-            Assert.IsFalse(isValid);
+            Assert.False(isValid);
             Assert.Contains($"{nameof(Domain.Entities.Address.Street01)} is required",
                 address.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Test]
+        [Fact]
         public void AddressStreet01MustNotBeEmpty()
         {
             var address = Domain.Entities.Address.FactoryTest(
@@ -73,12 +72,12 @@ namespace SoT.Domain.Tests.Validation.Address
 
             var isValid = address.IsValid();
 
-            Assert.IsFalse(isValid);
+            Assert.False(isValid);
             Assert.Contains($"{nameof(Domain.Entities.Address.Street01)} is required",
                 address.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Test]
+        [Fact]
         public void AddressStreet01MustNotBeEmptySpaces()
         {
             var address = Domain.Entities.Address.FactoryTest(
@@ -91,12 +90,12 @@ namespace SoT.Domain.Tests.Validation.Address
 
             var isValid = address.IsValid();
 
-            Assert.IsFalse(isValid);
+            Assert.False(isValid);
             Assert.Contains($"{nameof(Domain.Entities.Address.Street01)} is required",
                 address.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Test]
+        [Fact]
         public void AddressStreet01MustHaveValidLength()
         {
             var address = Domain.Entities.Address.FactoryTest(
@@ -109,7 +108,7 @@ namespace SoT.Domain.Tests.Validation.Address
 
             var isValid = address.IsValid();
 
-            Assert.IsTrue(isValid);
+            Assert.True(isValid);
 
             address = Domain.Entities.Address.FactoryTest(
                 TestConstants.ADDRESS_ID_VALID,
@@ -121,12 +120,12 @@ namespace SoT.Domain.Tests.Validation.Address
 
             isValid = address.IsValid();
 
-            Assert.IsFalse(isValid);
+            Assert.False(isValid);
             Assert.Contains($"{nameof(Domain.Entities.Address.Street01)} can not have more than 300 chars",
                 address.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Test]
+        [Fact]
         public void AddressComplementMustHaveValidLength()
         {
             var address = Domain.Entities.Address.FactoryTest(
@@ -139,7 +138,7 @@ namespace SoT.Domain.Tests.Validation.Address
 
             var isValid = address.IsValid();
 
-            Assert.IsTrue(isValid);
+            Assert.True(isValid);
 
             address = Domain.Entities.Address.FactoryTest(
                 TestConstants.ADDRESS_ID_VALID,
@@ -151,12 +150,12 @@ namespace SoT.Domain.Tests.Validation.Address
 
             isValid = address.IsValid();
 
-            Assert.IsFalse(isValid);
+            Assert.False(isValid);
             Assert.Contains($"{nameof(Domain.Entities.Address.Complement)} can not have more than 300 chars",
                 address.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Test]
+        [Fact]
         public void AddressComplementMustBeValidOptional()
         {
             var address = Domain.Entities.Address.FactoryTest(
@@ -168,9 +167,11 @@ namespace SoT.Domain.Tests.Validation.Address
                 );
 
             var isValid = address.IsValid();
+
+            Assert.True(isValid);
         }
 
-        [Test]
+        [Fact]
         public void AddressPostcodeMustHaveValidLength()
         {
             var address = Domain.Entities.Address.FactoryTest(
@@ -183,7 +184,7 @@ namespace SoT.Domain.Tests.Validation.Address
 
             var isValid = address.IsValid();
 
-            Assert.IsTrue(isValid);
+            Assert.True(isValid);
 
             address = Domain.Entities.Address.FactoryTest(
                 TestConstants.ADDRESS_ID_VALID,
@@ -195,12 +196,12 @@ namespace SoT.Domain.Tests.Validation.Address
 
             isValid = address.IsValid();
 
-            Assert.IsFalse(isValid);
+            Assert.False(isValid);
             Assert.Contains($"{nameof(Domain.Entities.Address.Postcode)} can not have more than 30 chars",
                 address.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Test]
+        [Fact]
         public void AddressPostcodeMustBeValidOptional()
         {
             var address = Domain.Entities.Address.FactoryTest(
@@ -212,9 +213,11 @@ namespace SoT.Domain.Tests.Validation.Address
                 );
 
             var isValid = address.IsValid();
+            
+            Assert.True(isValid);
         }
 
-        [Test]
+        [Fact]
         public void AddressAdventureIdMustNotBeEmpty()
         {
             var address = Domain.Entities.Address.FactoryTest(
@@ -227,7 +230,7 @@ namespace SoT.Domain.Tests.Validation.Address
 
             var isValid = address.IsValid();
 
-            Assert.IsFalse(isValid);
+            Assert.False(isValid);
             Assert.Contains($"{nameof(Domain.Entities.Address.AdventureId)} is required",
                 address.ValidationResult.Errors.Select(error => error.Message).ToList());
         }

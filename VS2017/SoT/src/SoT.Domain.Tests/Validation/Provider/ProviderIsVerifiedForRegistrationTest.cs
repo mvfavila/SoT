@@ -1,13 +1,12 @@
-﻿using NUnit.Framework;
-using SoT.Domain.Tests.Shared;
+﻿using SoT.Domain.Tests.Shared;
 using System.Linq;
+using Xunit;
 
 namespace SoT.Domain.Tests.Validation.Provider
 {
-    [TestFixture]
     public class ProviderIsVerifiedForRegistrationTest
     {
-        [Test]
+        [Fact]
         public void ProviderMustBeValid()
         {
             var provider = Domain.Entities.Provider.FactoryTest(
@@ -20,11 +19,11 @@ namespace SoT.Domain.Tests.Validation.Provider
 
             var isValid = provider.IsValid();
 
-            Assert.IsTrue(isValid);
-            Assert.IsFalse(provider.ValidationResult.Errors.Any());
+            Assert.True(isValid);
+            Assert.False(provider.ValidationResult.Errors.Any());
         }
 
-        [Test]
+        [Fact]
         public void ProviderIdMustNotBeNull()
         {
             var provider = Domain.Entities.Provider.FactoryTest(
@@ -37,12 +36,12 @@ namespace SoT.Domain.Tests.Validation.Provider
 
             var isValid = provider.IsValid();
 
-            Assert.IsFalse(isValid);
+            Assert.False(isValid);
             Assert.Contains($"{nameof(Domain.Entities.Provider.ProviderId)} is required",
                 provider.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Test]
+        [Fact]
         public void ProviderCompanyNameMustNotBeNull()
         {
             var provider = Domain.Entities.Provider.FactoryTest(
@@ -55,12 +54,12 @@ namespace SoT.Domain.Tests.Validation.Provider
 
             var isValid = provider.IsValid();
 
-            Assert.IsFalse(isValid);
+            Assert.False(isValid);
             Assert.Contains($"{nameof(Domain.Entities.Provider.CompanyName)} is required",
                 provider.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Test]
+        [Fact]
         public void ProviderCompanyNameMustNotBeEmpty()
         {
             var provider = Domain.Entities.Provider.FactoryTest(
@@ -73,12 +72,12 @@ namespace SoT.Domain.Tests.Validation.Provider
 
             var isValid = provider.IsValid();
 
-            Assert.IsFalse(isValid);
+            Assert.False(isValid);
             Assert.Contains($"{nameof(Domain.Entities.Provider.CompanyName)} is required",
                 provider.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Test]
+        [Fact]
         public void ProviderCompanyNameMustNotBeEmptySpaces()
         {
             var provider = Domain.Entities.Provider.FactoryTest(
@@ -91,12 +90,12 @@ namespace SoT.Domain.Tests.Validation.Provider
 
             var isValid = provider.IsValid();
 
-            Assert.IsFalse(isValid);
+            Assert.False(isValid);
             Assert.Contains($"{nameof(Domain.Entities.Provider.CompanyName)} is required",
                 provider.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Test]
+        [Fact]
         public void ProviderCompanyNameMustHaveValidLength()
         {
             var provider = Domain.Entities.Provider.FactoryTest(
@@ -109,7 +108,7 @@ namespace SoT.Domain.Tests.Validation.Provider
 
             var isValid = provider.IsValid();
 
-            Assert.IsTrue(isValid);
+            Assert.True(isValid);
 
             provider = Domain.Entities.Provider.FactoryTest(
                 TestConstants.PROVIDER_ID_VALID,
@@ -121,7 +120,7 @@ namespace SoT.Domain.Tests.Validation.Provider
 
             isValid = provider.IsValid();
 
-            Assert.IsFalse(isValid);
+            Assert.False(isValid);
             Assert.Contains($"{nameof(Domain.Entities.Provider.CompanyName)} can not have more than 400 chars",
                 provider.ValidationResult.Errors.Select(error => error.Message).ToList());
         }

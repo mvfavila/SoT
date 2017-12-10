@@ -1,13 +1,12 @@
-﻿using NUnit.Framework;
-using SoT.Domain.Tests.Shared;
+﻿using SoT.Domain.Tests.Shared;
 using System.Linq;
+using Xunit;
 
 namespace SoT.Domain.Tests.Validation.Adventure
 {
-    [TestFixture]
     public class AdventureIsVerifiedForRegistrationTest
     {
-        [Test]
+        [Fact]
         public void AdventureMustBeValid()
         {
             var adventure = Domain.Entities.Adventure.FactoryTest(
@@ -29,11 +28,11 @@ namespace SoT.Domain.Tests.Validation.Adventure
 
             var isValid = adventure.IsValid();
 
-            Assert.IsTrue(isValid);
-            Assert.IsFalse(adventure.ValidationResult.Errors.Any());
+            Assert.True(isValid);
+            Assert.False(adventure.ValidationResult.Errors.Any());
         }
 
-        [Test]
+        [Fact]
         public void AdventureKeyMustNotBeNull()
         {
             var adventure = Domain.Entities.Adventure.FactoryTest(
@@ -55,12 +54,12 @@ namespace SoT.Domain.Tests.Validation.Adventure
 
             var isValid = adventure.IsValid();
 
-            Assert.IsFalse(isValid);
+            Assert.False(isValid);
             Assert.Contains($"{nameof(Domain.Entities.Adventure.AdventureId)} is required",
                 adventure.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Test]
+        [Fact]
         public void AdventureNameMustNotBeNull()
         {
             var adventure = Domain.Entities.Adventure.FactoryTest(
@@ -82,12 +81,12 @@ namespace SoT.Domain.Tests.Validation.Adventure
 
             var isValid = adventure.IsValid();
 
-            Assert.IsFalse(isValid);
+            Assert.False(isValid);
             Assert.Contains($"{nameof(Domain.Entities.Adventure.Name)} is required",
                 adventure.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Test]
+        [Fact]
         public void AdventureNameMustNotBeEmpty()
         {
             var adventure = Domain.Entities.Adventure.FactoryTest(
@@ -109,12 +108,12 @@ namespace SoT.Domain.Tests.Validation.Adventure
 
             var isValid = adventure.IsValid();
 
-            Assert.IsFalse(isValid);
+            Assert.False(isValid);
             Assert.Contains($"{nameof(Domain.Entities.Adventure.Name)} is required",
                 adventure.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Test]
+        [Fact]
         public void AdventureNameMustNotBeEmptySpaces()
         {
             var adventure = Domain.Entities.Adventure.FactoryTest(
@@ -136,12 +135,12 @@ namespace SoT.Domain.Tests.Validation.Adventure
 
             var isValid = adventure.IsValid();
 
-            Assert.IsFalse(isValid);
+            Assert.False(isValid);
             Assert.Contains($"{nameof(Domain.Entities.Adventure.Name)} is required",
                 adventure.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Test]
+        [Fact]
         public void AdventureNameMustHaveValidLength()
         {
             var adventure = Domain.Entities.Adventure.FactoryTest(
@@ -163,7 +162,7 @@ namespace SoT.Domain.Tests.Validation.Adventure
 
             var isValid = adventure.IsValid();
 
-            Assert.IsTrue(isValid);
+            Assert.True(isValid);
 
             adventure = Domain.Entities.Adventure.FactoryTest(
                 TestConstants.ADVENTURE_ID_VALID,
@@ -184,12 +183,12 @@ namespace SoT.Domain.Tests.Validation.Adventure
 
             isValid = adventure.IsValid();
 
-            Assert.IsFalse(isValid);
+            Assert.False(isValid);
             Assert.Contains($"{nameof(Domain.Entities.Adventure.Name)} can not have more than 250 chars",
                 adventure.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Test]
+        [Fact]
         public void AdventureCategoryMustNotBeNull()
         {
             var adventure = Domain.Entities.Adventure.FactoryTest(
@@ -211,12 +210,12 @@ namespace SoT.Domain.Tests.Validation.Adventure
 
             var isValid = adventure.IsValid();
 
-            Assert.IsFalse(isValid);
+            Assert.False(isValid);
             Assert.Contains($"{nameof(Domain.Entities.Adventure.Category)} is required",
                 adventure.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Test]
+        [Fact]
         public void AdventureCityMustNotBeNull()
         {
             var adventure = Domain.Entities.Adventure.FactoryTest(
@@ -238,12 +237,12 @@ namespace SoT.Domain.Tests.Validation.Adventure
 
             var isValid = adventure.IsValid();
 
-            Assert.IsFalse(isValid);
+            Assert.False(isValid);
             Assert.Contains($"{nameof(Domain.Entities.Adventure.City)} is required",
                 adventure.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Test]
+        [Fact]
         public void AdventureAddressMustNotBeNull()
         {
             var adventure = Domain.Entities.Adventure.FactoryTest(
@@ -265,12 +264,12 @@ namespace SoT.Domain.Tests.Validation.Adventure
 
             var isValid = adventure.IsValid();
 
-            Assert.IsFalse(isValid);
+            Assert.False(isValid);
             Assert.Contains($"{nameof(Domain.Entities.Adventure.Address)} is required",
                 adventure.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Test]
+        [Fact]
         public void AdventureInsurenceMinimalAmountMustBeHigherThanZero()
         {
             var adventure = Domain.Entities.Adventure.FactoryTest(
@@ -292,13 +291,13 @@ namespace SoT.Domain.Tests.Validation.Adventure
 
             var isValid = adventure.IsValid();
 
-            Assert.IsFalse(isValid);
+            Assert.False(isValid);
             Assert.Contains(
                 $"{nameof(Domain.Entities.Adventure.InsurenceMinimalAmount)} has to be higher than 0(zero)",
                 adventure.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Test]
+        [Fact]
         public void AdventureInsurenceMinimalAmountMustBeLessThanMaxValue()
         {
             var adventure = Domain.Entities.Adventure.FactoryTest(
@@ -320,7 +319,7 @@ namespace SoT.Domain.Tests.Validation.Adventure
 
             var isValid = adventure.IsValid();
 
-            Assert.IsTrue(isValid);
+            Assert.True(isValid);
 
             adventure = Domain.Entities.Adventure.FactoryTest(
                 TestConstants.ADVENTURE_ID_VALID,
@@ -341,13 +340,13 @@ namespace SoT.Domain.Tests.Validation.Adventure
 
             isValid = adventure.IsValid();
 
-            Assert.IsFalse(isValid);
+            Assert.False(isValid);
             Assert.Contains(
                 $"{nameof(Domain.Entities.Adventure.InsurenceMinimalAmount)} can not be higher than 9999999.99",
                 adventure.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Test]
+        [Fact]
         public void AdventureInsurenceMinimalAmountMustHaveTwoOrLessDecimalPlaces()
         {
             var adventure = Domain.Entities.Adventure.FactoryTest(
@@ -369,7 +368,7 @@ namespace SoT.Domain.Tests.Validation.Adventure
 
             var isValid = adventure.IsValid();
 
-            Assert.IsTrue(isValid);
+            Assert.True(isValid);
 
             adventure = Domain.Entities.Adventure.FactoryTest(
                 TestConstants.ADVENTURE_ID_VALID,
@@ -390,7 +389,7 @@ namespace SoT.Domain.Tests.Validation.Adventure
 
             isValid = adventure.IsValid();
 
-            Assert.IsTrue(isValid);
+            Assert.True(isValid);
 
             adventure = Domain.Entities.Adventure.FactoryTest(
                 TestConstants.ADVENTURE_ID_VALID,
@@ -411,7 +410,7 @@ namespace SoT.Domain.Tests.Validation.Adventure
 
             isValid = adventure.IsValid();
 
-            Assert.IsTrue(isValid);
+            Assert.True(isValid);
 
             adventure = Domain.Entities.Adventure.FactoryTest(
                 TestConstants.ADVENTURE_ID_VALID,
@@ -432,13 +431,13 @@ namespace SoT.Domain.Tests.Validation.Adventure
 
             isValid = adventure.IsValid();
 
-            Assert.IsFalse(isValid);
+            Assert.False(isValid);
             Assert.Contains(
                 $"{nameof(Domain.Entities.Adventure.InsurenceMinimalAmount)} can not have more than 2 decimal places",
                 adventure.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Test]
+        [Fact]
         public void AdventureProviderMustNotBeNull()
         {
             var adventure = Domain.Entities.Adventure.FactoryTest(
@@ -460,7 +459,7 @@ namespace SoT.Domain.Tests.Validation.Adventure
 
             var isValid = adventure.IsValid();
 
-            Assert.IsFalse(isValid);
+            Assert.False(isValid);
             Assert.Contains($"{nameof(Domain.Entities.Adventure.Provider)} is required",
                 adventure.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
