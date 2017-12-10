@@ -7,7 +7,7 @@ namespace SoT.Domain.Tests.Validation.City
     public class CityIsVerifiedForRegistrationTest
     {
         [Fact]
-        public void CityMustBeValid()
+        public void City_Instantiate_MustBeValid()
         {
             var city = Domain.Entities.City.FactoryTest(
                 TestConstants.CITY_ID_VALID,
@@ -24,7 +24,7 @@ namespace SoT.Domain.Tests.Validation.City
         }
 
         [Fact]
-        public void CityNameMustNotBeNull()
+        public void City_Instantiate_NameMustNotBeNull()
         {
             var city = Domain.Entities.City.FactoryTest(
                 TestConstants.CITY_ID_VALID,
@@ -42,7 +42,7 @@ namespace SoT.Domain.Tests.Validation.City
         }
 
         [Fact]
-        public void CityNameMustNotBeEmpty()
+        public void City_Instantiate_NameMustNotBeEmpty()
         {
             var city = Domain.Entities.City.FactoryTest(
                 TestConstants.CITY_ID_VALID,
@@ -60,7 +60,7 @@ namespace SoT.Domain.Tests.Validation.City
         }
 
         [Fact]
-        public void CityNameMustNotBeEmptySpaces()
+        public void City_Instantiate_NameMustNotBeEmptySpaces()
         {
             var city = Domain.Entities.City.FactoryTest(
                 TestConstants.CITY_ID_VALID,
@@ -78,7 +78,7 @@ namespace SoT.Domain.Tests.Validation.City
         }
 
         [Fact]
-        public void CityNameMustHaveValidLength()
+        public void City_Instantiate_NameMustHaveValidLength()
         {
             var city = Domain.Entities.City.FactoryTest(
                 TestConstants.CITY_ID_VALID,
@@ -108,7 +108,7 @@ namespace SoT.Domain.Tests.Validation.City
         }
 
         [Fact]
-        public void CItyCountryMustNotBeNull()
+        public void City_Instantiate_CountryMustNotBeNull()
         {
             var city = Domain.Entities.City.FactoryTest(
                 TestConstants.CITY_ID_VALID,

@@ -7,7 +7,7 @@ namespace SoT.Domain.Tests.Validation.Region
     public class RegionIsVerifiedForRegistration
     {
         [Fact]
-        public void RegionMustBeValid()
+        public void Region_Instantiate_MustBeValid()
         {
             var region = Domain.Entities.Region.FactoryTest(
                 TestConstants.REGION_ID_VALID,
@@ -24,7 +24,7 @@ namespace SoT.Domain.Tests.Validation.Region
         }
 
         [Fact]
-        public void RegionNameMustNotBeNull()
+        public void Region_Instantiate_NameMustNotBeNull()
         {
             var region = Domain.Entities.Region.FactoryTest(
                 TestConstants.REGION_ID_VALID,
@@ -42,7 +42,7 @@ namespace SoT.Domain.Tests.Validation.Region
         }
 
         [Fact]
-        public void RegionNameMustNotBeEmpty()
+        public void Region_Instantiate_NameMustNotBeEmpty()
         {
             var region = Domain.Entities.Region.FactoryTest(
                 TestConstants.REGION_ID_VALID,
@@ -60,7 +60,7 @@ namespace SoT.Domain.Tests.Validation.Region
         }
 
         [Fact]
-        public void RegionNameMustNotBeEmptySpaces()
+        public void Region_Instantiate_NameMustNotBeEmptySpaces()
         {
             var region = Domain.Entities.Region.FactoryTest(
                 TestConstants.REGION_ID_VALID,
@@ -78,7 +78,7 @@ namespace SoT.Domain.Tests.Validation.Region
         }
 
         [Fact]
-        public void RegionNameMustHaveValidLength()
+        public void Region_Instantiate_NameMustHaveValidLength()
         {
             var region = Domain.Entities.Region.FactoryTest(
                 TestConstants.REGION_ID_VALID,
@@ -108,7 +108,7 @@ namespace SoT.Domain.Tests.Validation.Region
         }
 
         [Fact]
-        public void RegionContinentMustNotBeNull()
+        public void Region_Instantiate_ContinentMustNotBeNull()
         {
             var region = Domain.Entities.Region.FactoryTest(
                 TestConstants.REGION_ID_VALID,

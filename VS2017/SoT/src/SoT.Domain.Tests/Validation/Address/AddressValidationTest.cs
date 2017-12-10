@@ -7,7 +7,7 @@ namespace SoT.Domain.Tests.Validation.Address
     public class AddressValidationTest
     {
         [Fact]
-        public void AddressMustBeValid()
+        public void Address_Instantiate_MustBeValid()
         {
             var address = Domain.Entities.Address.FactoryTest(
                 TestConstants.ADDRESS_ID_VALID,
@@ -24,7 +24,7 @@ namespace SoT.Domain.Tests.Validation.Address
         }
 
         [Fact]
-        public void AddressKeyMustNotBeNull()
+        public void Address_Instantiate_KeyMustNotBeNull()
         {
             var address = Domain.Entities.Address.FactoryTest(
                 TestConstants.ADDRESS_ID_INVALID,
@@ -42,7 +42,7 @@ namespace SoT.Domain.Tests.Validation.Address
         }
 
         [Fact]
-        public void AddressStreet01MustNotBeNull()
+        public void Address_Instantiate_Street01MustNotBeNull()
         {
             var address = Domain.Entities.Address.FactoryTest(
                 TestConstants.ADDRESS_ID_VALID,
@@ -60,7 +60,7 @@ namespace SoT.Domain.Tests.Validation.Address
         }
 
         [Fact]
-        public void AddressStreet01MustNotBeEmpty()
+        public void Address_Instantiate_Street01MustNotBeEmpty()
         {
             var address = Domain.Entities.Address.FactoryTest(
                 TestConstants.ADDRESS_ID_VALID,
@@ -78,7 +78,7 @@ namespace SoT.Domain.Tests.Validation.Address
         }
 
         [Fact]
-        public void AddressStreet01MustNotBeEmptySpaces()
+        public void Address_Instantiate_Street01MustNotBeEmptySpaces()
         {
             var address = Domain.Entities.Address.FactoryTest(
                 TestConstants.ADDRESS_ID_VALID,
@@ -96,7 +96,7 @@ namespace SoT.Domain.Tests.Validation.Address
         }
 
         [Fact]
-        public void AddressStreet01MustHaveValidLength()
+        public void Address_Instantiate_Street01MustHaveValidLength()
         {
             var address = Domain.Entities.Address.FactoryTest(
                 TestConstants.ADDRESS_ID_VALID,
@@ -126,7 +126,7 @@ namespace SoT.Domain.Tests.Validation.Address
         }
 
         [Fact]
-        public void AddressComplementMustHaveValidLength()
+        public void Address_Instantiate_ComplementMustHaveValidLength()
         {
             var address = Domain.Entities.Address.FactoryTest(
                 TestConstants.ADDRESS_ID_VALID,
@@ -156,7 +156,7 @@ namespace SoT.Domain.Tests.Validation.Address
         }
 
         [Fact]
-        public void AddressComplementMustBeValidOptional()
+        public void Address_Instantiate_ComplementMustBeValidOptional()
         {
             var address = Domain.Entities.Address.FactoryTest(
                 TestConstants.ADDRESS_ID_VALID,
@@ -172,7 +172,7 @@ namespace SoT.Domain.Tests.Validation.Address
         }
 
         [Fact]
-        public void AddressPostcodeMustHaveValidLength()
+        public void Address_Instantiate_PostcodeMustHaveValidLength()
         {
             var address = Domain.Entities.Address.FactoryTest(
                 TestConstants.ADDRESS_ID_VALID,
@@ -202,7 +202,7 @@ namespace SoT.Domain.Tests.Validation.Address
         }
 
         [Fact]
-        public void AddressPostcodeMustBeValidOptional()
+        public void Address_Instantiate_PostcodeMustBeValidOptional()
         {
             var address = Domain.Entities.Address.FactoryTest(
                 TestConstants.ADDRESS_ID_VALID,
@@ -218,7 +218,7 @@ namespace SoT.Domain.Tests.Validation.Address
         }
 
         [Fact]
-        public void AddressAdventureIdMustNotBeEmpty()
+        public void Address_Instantiate_AdventureIdMustNotBeEmpty()
         {
             var address = Domain.Entities.Address.FactoryTest(
                 TestConstants.ADDRESS_ID_VALID,

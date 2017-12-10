@@ -7,7 +7,7 @@ namespace SoT.Domain.Tests.Validation.Employee
     public class EmployeeIsVerifiedForRegistrationTest
     {
         [Fact]
-        public void EmployeeMustBeValid()
+        public void Employee_Instantiate_MustBeValid()
         {
             var employee = Domain.Entities.Employee.FactoryTest(
                 TestConstants.EMPLOYEE_ID_VALID,
@@ -24,7 +24,7 @@ namespace SoT.Domain.Tests.Validation.Employee
         }
 
         [Fact]
-        public void EmployeeMustBeOver18()
+        public void Employee_Instantiate_MustBeOver18()
         {
             var employee = Domain.Entities.Employee.FactoryTest(
                 TestConstants.EMPLOYEE_ID_VALID,
@@ -55,7 +55,7 @@ namespace SoT.Domain.Tests.Validation.Employee
         }
 
         [Fact]
-        public void EmployeeProviderMustNotBeNull()
+        public void Employee_Instantiate_ProviderMustNotBeNull()
         {
             var employee = Domain.Entities.Employee.FactoryTest(
                 TestConstants.EMPLOYEE_ID_VALID,
@@ -73,7 +73,7 @@ namespace SoT.Domain.Tests.Validation.Employee
         }
 
         [Fact]
-        public void EmployeeUserMustNotBeNull()
+        public void Employee_Instantiate_UserMustNotBeNull()
         {
             var employee = Domain.Entities.Employee.FactoryTest(
                 TestConstants.EMPLOYEE_ID_VALID,

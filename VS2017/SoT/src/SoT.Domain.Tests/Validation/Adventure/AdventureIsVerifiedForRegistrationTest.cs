@@ -7,7 +7,7 @@ namespace SoT.Domain.Tests.Validation.Adventure
     public class AdventureIsVerifiedForRegistrationTest
     {
         [Fact]
-        public void AdventureMustBeValid()
+        public void Adventure_Instantiate_MustBeValid()
         {
             var adventure = Domain.Entities.Adventure.FactoryTest(
                 TestConstants.ADVENTURE_ID_VALID,
@@ -33,7 +33,7 @@ namespace SoT.Domain.Tests.Validation.Adventure
         }
 
         [Fact]
-        public void AdventureKeyMustNotBeNull()
+        public void Adventure_Instantiate_KeyMustNotBeNull()
         {
             var adventure = Domain.Entities.Adventure.FactoryTest(
                 TestConstants.ADVENTURE_ID_INVALID,
@@ -60,7 +60,7 @@ namespace SoT.Domain.Tests.Validation.Adventure
         }
 
         [Fact]
-        public void AdventureNameMustNotBeNull()
+        public void Adventure_Instantiate_NameMustNotBeNull()
         {
             var adventure = Domain.Entities.Adventure.FactoryTest(
                 TestConstants.ADVENTURE_ID_VALID,
@@ -87,7 +87,7 @@ namespace SoT.Domain.Tests.Validation.Adventure
         }
 
         [Fact]
-        public void AdventureNameMustNotBeEmpty()
+        public void Adventure_Instantiate_NameMustNotBeEmpty()
         {
             var adventure = Domain.Entities.Adventure.FactoryTest(
                 TestConstants.ADVENTURE_ID_VALID,
@@ -114,7 +114,7 @@ namespace SoT.Domain.Tests.Validation.Adventure
         }
 
         [Fact]
-        public void AdventureNameMustNotBeEmptySpaces()
+        public void Adventure_Instantiate_NameMustNotBeEmptySpaces()
         {
             var adventure = Domain.Entities.Adventure.FactoryTest(
                 TestConstants.ADVENTURE_ID_VALID,
@@ -141,7 +141,7 @@ namespace SoT.Domain.Tests.Validation.Adventure
         }
 
         [Fact]
-        public void AdventureNameMustHaveValidLength()
+        public void Adventure_Instantiate_NameMustHaveValidLength()
         {
             var adventure = Domain.Entities.Adventure.FactoryTest(
                 TestConstants.ADVENTURE_ID_VALID,
@@ -189,7 +189,7 @@ namespace SoT.Domain.Tests.Validation.Adventure
         }
 
         [Fact]
-        public void AdventureCategoryMustNotBeNull()
+        public void Adventure_Instantiate_CategoryMustNotBeNull()
         {
             var adventure = Domain.Entities.Adventure.FactoryTest(
                 TestConstants.ADVENTURE_ID_VALID,
@@ -216,7 +216,7 @@ namespace SoT.Domain.Tests.Validation.Adventure
         }
 
         [Fact]
-        public void AdventureCityMustNotBeNull()
+        public void Adventure_Instantiate_CityMustNotBeNull()
         {
             var adventure = Domain.Entities.Adventure.FactoryTest(
                 TestConstants.ADVENTURE_ID_VALID,
@@ -243,7 +243,7 @@ namespace SoT.Domain.Tests.Validation.Adventure
         }
 
         [Fact]
-        public void AdventureAddressMustNotBeNull()
+        public void Adventure_Instantiate_AddressMustNotBeNull()
         {
             var adventure = Domain.Entities.Adventure.FactoryTest(
                 TestConstants.ADVENTURE_ID_VALID,
@@ -270,7 +270,7 @@ namespace SoT.Domain.Tests.Validation.Adventure
         }
 
         [Fact]
-        public void AdventureInsurenceMinimalAmountMustBeHigherThanZero()
+        public void Adventure_Instantiate_InsurenceMinimalAmountMustBeHigherThanZero()
         {
             var adventure = Domain.Entities.Adventure.FactoryTest(
                 TestConstants.ADVENTURE_ID_VALID,
@@ -298,7 +298,7 @@ namespace SoT.Domain.Tests.Validation.Adventure
         }
 
         [Fact]
-        public void AdventureInsurenceMinimalAmountMustBeLessThanMaxValue()
+        public void Adventure_Instantiate_InsurenceMinimalAmountMustBeLessThanMaxValue()
         {
             var adventure = Domain.Entities.Adventure.FactoryTest(
                 TestConstants.ADVENTURE_ID_VALID,
@@ -347,7 +347,7 @@ namespace SoT.Domain.Tests.Validation.Adventure
         }
 
         [Fact]
-        public void AdventureInsurenceMinimalAmountMustHaveTwoOrLessDecimalPlaces()
+        public void Adventure_Instantiate_InsurenceMinimalAmountMustHaveTwoOrLessDecimalPlaces()
         {
             var adventure = Domain.Entities.Adventure.FactoryTest(
                 TestConstants.ADVENTURE_ID_VALID,
@@ -438,7 +438,7 @@ namespace SoT.Domain.Tests.Validation.Adventure
         }
 
         [Fact]
-        public void AdventureProviderMustNotBeNull()
+        public void Adventure_Instantiate_ProviderMustNotBeNull()
         {
             var adventure = Domain.Entities.Adventure.FactoryTest(
                 TestConstants.ADVENTURE_ID_VALID,

@@ -7,7 +7,7 @@ namespace SoT.Domain.Tests.Validation.Country
     public class CountryIsVerifiedForRegistrationTest
     {
         [Fact]
-        public void CountryMustBeValid()
+        public void Country_Instantiate_MustBeValid()
         {
             var country = Domain.Entities.Country.FactoryTest(
                 TestConstants.COUNTRY_ID_VALID,
@@ -24,7 +24,7 @@ namespace SoT.Domain.Tests.Validation.Country
         }
 
         [Fact]
-        public void CountryNameMustNotBeNull()
+        public void Country_Instantiate_NameMustNotBeNull()
         {
             var country = Domain.Entities.Country.FactoryTest(
                 TestConstants.COUNTRY_ID_VALID,
@@ -42,7 +42,7 @@ namespace SoT.Domain.Tests.Validation.Country
         }
 
         [Fact]
-        public void CountryNameMustNotBeEmpty()
+        public void Country_Instantiate_NameMustNotBeEmpty()
         {
             var country = Domain.Entities.Country.FactoryTest(
                 TestConstants.COUNTRY_ID_VALID,
@@ -60,7 +60,7 @@ namespace SoT.Domain.Tests.Validation.Country
         }
 
         [Fact]
-        public void CountryNameMustNotBeEmptySpaces()
+        public void Country_Instantiate_NameMustNotBeEmptySpaces()
         {
             var country = Domain.Entities.Country.FactoryTest(
                 TestConstants.COUNTRY_ID_VALID,
@@ -78,7 +78,7 @@ namespace SoT.Domain.Tests.Validation.Country
         }
 
         [Fact]
-        public void CountryNameMustHaveValidLength()
+        public void Country_Instantiate_NameMustHaveValidLength()
         {
             var country = Domain.Entities.Country.FactoryTest(
                 TestConstants.COUNTRY_ID_VALID,
@@ -108,7 +108,7 @@ namespace SoT.Domain.Tests.Validation.Country
         }
 
         [Fact]
-        public void CountryrRegionMustNotBeNull()
+        public void Country_Instantiate_rRegionMustNotBeNull()
         {
             var country = Domain.Entities.Country.FactoryTest(
                 TestConstants.COUNTRY_ID_VALID,

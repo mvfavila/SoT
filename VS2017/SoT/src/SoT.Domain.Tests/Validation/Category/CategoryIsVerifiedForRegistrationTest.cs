@@ -7,7 +7,7 @@ namespace SoT.Domain.Tests.Validation.Category
     public class CategoryIsVerifiedForRegistrationTest
     {
         [Fact]
-        public void CategoryMustBeValid()
+        public void Category_Instantiate_MustBeValid()
         {
             var category = Domain.Entities.Category.FactoryTest(
                 TestConstants.CATEGORY_ID_VALID,
@@ -24,7 +24,7 @@ namespace SoT.Domain.Tests.Validation.Category
         }
 
         [Fact]
-        public void CategoryKeyMustNotBeNull()
+        public void Category_Instantiate_KeyMustNotBeNull()
         {
             var category = Domain.Entities.Category.FactoryTest(
                 TestConstants.CATEGORY_ID_INVALID,
@@ -42,7 +42,7 @@ namespace SoT.Domain.Tests.Validation.Category
         }
 
         [Fact]
-        public void CategoryNameMustNotBeNull()
+        public void Category_Instantiate_NameMustNotBeNull()
         {
             var category = Domain.Entities.Category.FactoryTest(
                 TestConstants.CATEGORY_ID_VALID,
@@ -60,7 +60,7 @@ namespace SoT.Domain.Tests.Validation.Category
         }
 
         [Fact]
-        public void CategoryNameMustNotBeEmpty()
+        public void Category_Instantiate_NameMustNotBeEmpty()
         {
             var category = Domain.Entities.Category.FactoryTest(
                 TestConstants.CATEGORY_ID_VALID,
@@ -78,7 +78,7 @@ namespace SoT.Domain.Tests.Validation.Category
         }
 
         [Fact]
-        public void CategoryNameMustNotBeEmptySpaces()
+        public void Category_Instantiate_NameMustNotBeEmptySpaces()
         {
             var category = Domain.Entities.Category.FactoryTest(
                 TestConstants.CATEGORY_ID_VALID,
@@ -96,7 +96,7 @@ namespace SoT.Domain.Tests.Validation.Category
         }
 
         [Fact]
-        public void CategoryNameMustHaveValidLength()
+        public void Category_Instantiate_NameMustHaveValidLength()
         {
             var category = Domain.Entities.Category.FactoryTest(
                 TestConstants.CATEGORY_ID_VALID,

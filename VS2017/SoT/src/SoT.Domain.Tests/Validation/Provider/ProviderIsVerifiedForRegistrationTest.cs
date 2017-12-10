@@ -7,7 +7,7 @@ namespace SoT.Domain.Tests.Validation.Provider
     public class ProviderIsVerifiedForRegistrationTest
     {
         [Fact]
-        public void ProviderMustBeValid()
+        public void Provider_Instantiate_MustBeValid()
         {
             var provider = Domain.Entities.Provider.FactoryTest(
                 TestConstants.PROVIDER_ID_VALID,
@@ -24,7 +24,7 @@ namespace SoT.Domain.Tests.Validation.Provider
         }
 
         [Fact]
-        public void ProviderIdMustNotBeNull()
+        public void Provider_Instantiate_IdMustNotBeNull()
         {
             var provider = Domain.Entities.Provider.FactoryTest(
                 TestConstants.PROVIDER_ID_INVALID,
@@ -42,7 +42,7 @@ namespace SoT.Domain.Tests.Validation.Provider
         }
 
         [Fact]
-        public void ProviderCompanyNameMustNotBeNull()
+        public void Provider_Instantiate_CompanyNameMustNotBeNull()
         {
             var provider = Domain.Entities.Provider.FactoryTest(
                 TestConstants.PROVIDER_ID_VALID,
@@ -60,7 +60,7 @@ namespace SoT.Domain.Tests.Validation.Provider
         }
 
         [Fact]
-        public void ProviderCompanyNameMustNotBeEmpty()
+        public void Provider_Instantiate_CompanyNameMustNotBeEmpty()
         {
             var provider = Domain.Entities.Provider.FactoryTest(
                 TestConstants.PROVIDER_ID_VALID,
@@ -78,7 +78,7 @@ namespace SoT.Domain.Tests.Validation.Provider
         }
 
         [Fact]
-        public void ProviderCompanyNameMustNotBeEmptySpaces()
+        public void Provider_Instantiate_CompanyNameMustNotBeEmptySpaces()
         {
             var provider = Domain.Entities.Provider.FactoryTest(
                 TestConstants.PROVIDER_ID_VALID,
@@ -96,7 +96,7 @@ namespace SoT.Domain.Tests.Validation.Provider
         }
 
         [Fact]
-        public void ProviderCompanyNameMustHaveValidLength()
+        public void Provider_Instantiate_CompanyNameMustHaveValidLength()
         {
             var provider = Domain.Entities.Provider.FactoryTest(
                 TestConstants.PROVIDER_ID_VALID,
