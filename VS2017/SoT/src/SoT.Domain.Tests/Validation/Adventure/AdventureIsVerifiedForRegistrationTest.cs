@@ -6,7 +6,8 @@ namespace SoT.Domain.Tests.Validation.Adventure
 {
     public class AdventureIsVerifiedForRegistrationTest
     {
-        [Fact]
+        [Fact(DisplayName = "Valid instance")]
+        [Trait(nameof(Adventure), "Instantiation")]
         public void Adventure_Instantiate_MustBeValid()
         {
             var adventure = Domain.Entities.Adventure.FactoryTest(
@@ -32,7 +33,8 @@ namespace SoT.Domain.Tests.Validation.Adventure
             Assert.False(adventure.ValidationResult.Errors.Any());
         }
 
-        [Fact]
+        [Fact(DisplayName = "Id is required")]
+        [Trait(nameof(Adventure), "Instantiation")]
         public void Adventure_Instantiate_KeyMustNotBeNull()
         {
             var adventure = Domain.Entities.Adventure.FactoryTest(
@@ -59,7 +61,8 @@ namespace SoT.Domain.Tests.Validation.Adventure
                 adventure.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Fact]
+        [Fact(DisplayName = "Name is required (Not null)")]
+        [Trait(nameof(Adventure), "Instantiation")]
         public void Adventure_Instantiate_NameMustNotBeNull()
         {
             var adventure = Domain.Entities.Adventure.FactoryTest(
@@ -86,7 +89,8 @@ namespace SoT.Domain.Tests.Validation.Adventure
                 adventure.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Fact]
+        [Fact(DisplayName = "Name is required (Not empty)")]
+        [Trait(nameof(Adventure), "Instantiation")]
         public void Adventure_Instantiate_NameMustNotBeEmpty()
         {
             var adventure = Domain.Entities.Adventure.FactoryTest(
@@ -113,7 +117,8 @@ namespace SoT.Domain.Tests.Validation.Adventure
                 adventure.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Fact]
+        [Fact(DisplayName = "Name is required (Not empty spaces)")]
+        [Trait(nameof(Adventure), "Instantiation")]
         public void Adventure_Instantiate_NameMustNotBeEmptySpaces()
         {
             var adventure = Domain.Entities.Adventure.FactoryTest(
@@ -140,7 +145,8 @@ namespace SoT.Domain.Tests.Validation.Adventure
                 adventure.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Fact]
+        [Fact(DisplayName = "Name must have 250 chars or less")]
+        [Trait(nameof(Adventure), "Instantiation")]
         public void Adventure_Instantiate_NameMustHaveValidLength()
         {
             var adventure = Domain.Entities.Adventure.FactoryTest(
@@ -188,7 +194,8 @@ namespace SoT.Domain.Tests.Validation.Adventure
                 adventure.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Fact]
+        [Fact(DisplayName = "Category Id is required")]
+        [Trait(nameof(Adventure), "Instantiation")]
         public void Adventure_Instantiate_CategoryMustNotBeNull()
         {
             var adventure = Domain.Entities.Adventure.FactoryTest(
@@ -215,7 +222,8 @@ namespace SoT.Domain.Tests.Validation.Adventure
                 adventure.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Fact]
+        [Fact(DisplayName = "City Id is required")]
+        [Trait(nameof(Adventure), "Instantiation")]
         public void Adventure_Instantiate_CityMustNotBeNull()
         {
             var adventure = Domain.Entities.Adventure.FactoryTest(
@@ -242,7 +250,8 @@ namespace SoT.Domain.Tests.Validation.Adventure
                 adventure.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Fact]
+        [Fact(DisplayName = "Address Id is required")]
+        [Trait(nameof(Adventure), "Instantiation")]
         public void Adventure_Instantiate_AddressMustNotBeNull()
         {
             var adventure = Domain.Entities.Adventure.FactoryTest(
@@ -269,7 +278,8 @@ namespace SoT.Domain.Tests.Validation.Adventure
                 adventure.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Fact]
+        [Fact(DisplayName = "Insurance Minimal Amount must be higher than 0 (zero)")]
+        [Trait(nameof(Adventure), "Instantiation")]
         public void Adventure_Instantiate_InsurenceMinimalAmountMustBeHigherThanZero()
         {
             var adventure = Domain.Entities.Adventure.FactoryTest(
@@ -297,7 +307,8 @@ namespace SoT.Domain.Tests.Validation.Adventure
                 adventure.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Fact]
+        [Fact(DisplayName = "Insurance Minimal Amount must be 9,999,999.99 or less")]
+        [Trait(nameof(Adventure), "Instantiation")]
         public void Adventure_Instantiate_InsurenceMinimalAmountMustBeLessThanMaxValue()
         {
             var adventure = Domain.Entities.Adventure.FactoryTest(
@@ -346,7 +357,8 @@ namespace SoT.Domain.Tests.Validation.Adventure
                 adventure.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Fact]
+        [Fact(DisplayName = "Insurance Minimal Amount must 2 (two) or less decimal places")]
+        [Trait(nameof(Adventure), "Instantiation")]
         public void Adventure_Instantiate_InsurenceMinimalAmountMustHaveTwoOrLessDecimalPlaces()
         {
             var adventure = Domain.Entities.Adventure.FactoryTest(
@@ -437,7 +449,8 @@ namespace SoT.Domain.Tests.Validation.Adventure
                 adventure.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Fact]
+        [Fact(DisplayName = "Provider Id is required")]
+        [Trait(nameof(Adventure), "Instantiation")]
         public void Adventure_Instantiate_ProviderMustNotBeNull()
         {
             var adventure = Domain.Entities.Adventure.FactoryTest(
