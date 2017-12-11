@@ -6,7 +6,8 @@ namespace SoT.Domain.Tests.Validation.Country
 {
     public class CountryIsVerifiedForRegistrationTest
     {
-        [Fact]
+        [Fact(DisplayName = "Valid instance")]
+        [Trait(nameof(Country), "Instantiation")]
         public void Country_Instantiate_MustBeValid()
         {
             var country = Domain.Entities.Country.FactoryTest(
@@ -23,7 +24,27 @@ namespace SoT.Domain.Tests.Validation.Country
             Assert.False(country.ValidationResult.Errors.Any());
         }
 
-        [Fact]
+        [Fact(DisplayName = "Id is required")]
+        [Trait(nameof(Country), "Instantiation")]
+        public void Country_Instantiate_KeyMustNotBeNull()
+        {
+            var country = Domain.Entities.Country.FactoryTest(
+                TestConstants.COUNTRY_ID_INVALID,
+                TestConstants.COUNTRY_NAME_VALID,
+                TestConstants.ACTIVE,
+                TestConstants.REGION_ID_VALID,
+                TestConstants.REGION_VALID
+                );
+
+            var isValid = country.IsValid();
+
+            Assert.False(isValid);
+            Assert.Contains($"{nameof(Domain.Entities.Country.CountryId)} is required",
+                country.ValidationResult.Errors.Select(error => error.Message).ToList());
+        }
+
+        [Fact(DisplayName = "Name is required (Not null)")]
+        [Trait(nameof(Country), "Instantiation")]
         public void Country_Instantiate_NameMustNotBeNull()
         {
             var country = Domain.Entities.Country.FactoryTest(
@@ -41,7 +62,8 @@ namespace SoT.Domain.Tests.Validation.Country
                 country.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Fact]
+        [Fact(DisplayName = "Name is required (Not empty)")]
+        [Trait(nameof(Country), "Instantiation")]
         public void Country_Instantiate_NameMustNotBeEmpty()
         {
             var country = Domain.Entities.Country.FactoryTest(
@@ -59,7 +81,8 @@ namespace SoT.Domain.Tests.Validation.Country
                 country.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Fact]
+        [Fact(DisplayName = "Name is required (Not empty spaces)")]
+        [Trait(nameof(Country), "Instantiation")]
         public void Country_Instantiate_NameMustNotBeEmptySpaces()
         {
             var country = Domain.Entities.Country.FactoryTest(
@@ -77,7 +100,8 @@ namespace SoT.Domain.Tests.Validation.Country
                 country.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Fact]
+        [Fact(DisplayName = "Name must have 70 chars or less")]
+        [Trait(nameof(Country), "Instantiation")]
         public void Country_Instantiate_NameMustHaveValidLength()
         {
             var country = Domain.Entities.Country.FactoryTest(
@@ -107,8 +131,9 @@ namespace SoT.Domain.Tests.Validation.Country
                 country.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Fact]
-        public void Country_Instantiate_rRegionMustNotBeNull()
+        [Fact(DisplayName = "Region Id is required")]
+        [Trait(nameof(Country), "Instantiation")]
+        public void Country_Instantiate_RegionMustNotBeNull()
         {
             var country = Domain.Entities.Country.FactoryTest(
                 TestConstants.COUNTRY_ID_VALID,
