@@ -26,7 +26,7 @@ namespace SoT.Domain.Services
             return providerReadOnlyRepository.GetWithEmployeeById(userId);
         }
 
-        ValidationResult IProviderService.Add(Provider provider)
+        public new ValidationResult Add(Provider provider)
         {
             var validationResult = new ValidationResult();
 
@@ -49,7 +49,7 @@ namespace SoT.Domain.Services
             return validationResult;
         }
 
-        ValidationResult IProviderService.Update(Provider provider)
+        public new ValidationResult Update(Provider provider)
         {
             var validationResult = new ValidationResult();
 
