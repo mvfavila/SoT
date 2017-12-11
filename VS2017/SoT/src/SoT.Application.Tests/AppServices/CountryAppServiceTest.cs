@@ -65,7 +65,7 @@ namespace SoT.Application.Tests.AppServices
                     Guid.NewGuid(),
                     null));
 
-            mocker.Create<CityAppService>();
+            mocker.Create<CountryAppService>();
             var countryAppService = mocker.Resolve<CountryAppService>();
             var countryService = mocker.GetMock<ICountryService>();
             countryService
@@ -77,6 +77,33 @@ namespace SoT.Application.Tests.AppServices
 
             // Assert
             countryService.Verify(c => c.GetAll(), Times.Once());
+        }
+
+        [Fact(DisplayName = "Get all active Countries")]
+        [Trait(nameof(Country), "App Service")]
+        public void Country_GetAllActive_Sucess()
+        {
+            // Arrange
+            var countryFaker = new Faker<Country>()
+                .CustomInstantiator(c => Country.FactoryTest(
+                    Guid.NewGuid(),
+                    c.Address.Country(),
+                    c.Random.Bool(),
+                    Guid.NewGuid(),
+                    null));
+
+            mocker.Create<CountryAppService>();
+            var countryAppService = mocker.Resolve<CountryAppService>();
+            var countryService = mocker.GetMock<ICountryService>();
+            countryService
+                .Setup(c => c.GetAllActive())
+                .Returns(countryFaker.Generate(5000));
+
+            // Act
+            countryAppService.GetAllActive();
+
+            // Assert
+            countryService.Verify(c => c.GetAllActive(), Times.Once());
         }
     }
 }
