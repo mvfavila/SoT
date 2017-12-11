@@ -6,7 +6,8 @@ namespace SoT.Domain.Tests.Validation.Address
 {
     public class AddressValidationTest
     {
-        [Fact]
+        [Fact(DisplayName = "Valid instance")]
+        [Trait(nameof(Address), "Instantiation")]
         public void Address_Instantiate_MustBeValid()
         {
             var address = Domain.Entities.Address.FactoryTest(
@@ -23,7 +24,8 @@ namespace SoT.Domain.Tests.Validation.Address
             Assert.False(address.ValidationResult.Errors.Any());
         }
 
-        [Fact]
+        [Fact(DisplayName = "Id is required")]
+        [Trait(nameof(Address), "Instantiation")]
         public void Address_Instantiate_KeyMustNotBeNull()
         {
             var address = Domain.Entities.Address.FactoryTest(
@@ -41,7 +43,8 @@ namespace SoT.Domain.Tests.Validation.Address
                 address.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Fact]
+        [Fact(DisplayName = "Street01 is required (Not null)")]
+        [Trait(nameof(Address), "Instantiation")]
         public void Address_Instantiate_Street01MustNotBeNull()
         {
             var address = Domain.Entities.Address.FactoryTest(
@@ -59,7 +62,8 @@ namespace SoT.Domain.Tests.Validation.Address
                 address.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Fact]
+        [Fact(DisplayName = "Street01 is required (Not empty)")]
+        [Trait(nameof(Address), "Instantiation")]
         public void Address_Instantiate_Street01MustNotBeEmpty()
         {
             var address = Domain.Entities.Address.FactoryTest(
@@ -77,7 +81,8 @@ namespace SoT.Domain.Tests.Validation.Address
                 address.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Fact]
+        [Fact(DisplayName = "Street01 is required (Not empty spaces)")]
+        [Trait(nameof(Address), "Instantiation")]
         public void Address_Instantiate_Street01MustNotBeEmptySpaces()
         {
             var address = Domain.Entities.Address.FactoryTest(
@@ -95,7 +100,8 @@ namespace SoT.Domain.Tests.Validation.Address
                 address.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Fact]
+        [Fact(DisplayName = "Street01 must have 300 chars or less")]
+        [Trait(nameof(Address), "Instantiation")]
         public void Address_Instantiate_Street01MustHaveValidLength()
         {
             var address = Domain.Entities.Address.FactoryTest(
@@ -125,7 +131,8 @@ namespace SoT.Domain.Tests.Validation.Address
                 address.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Fact]
+        [Fact(DisplayName = "Complement must have 300 chars or less")]
+        [Trait(nameof(Address), "Instantiation")]
         public void Address_Instantiate_ComplementMustHaveValidLength()
         {
             var address = Domain.Entities.Address.FactoryTest(
@@ -155,7 +162,8 @@ namespace SoT.Domain.Tests.Validation.Address
                 address.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Fact]
+        [Fact(DisplayName = "Complement must accept null")]
+        [Trait(nameof(Address), "Instantiation")]
         public void Address_Instantiate_ComplementMustBeValidOptional()
         {
             var address = Domain.Entities.Address.FactoryTest(
@@ -171,7 +179,8 @@ namespace SoT.Domain.Tests.Validation.Address
             Assert.True(isValid);
         }
 
-        [Fact]
+        [Fact(DisplayName = "Postcode must have 30 chars or less")]
+        [Trait(nameof(Address), "Instantiation")]
         public void Address_Instantiate_PostcodeMustHaveValidLength()
         {
             var address = Domain.Entities.Address.FactoryTest(
@@ -201,7 +210,8 @@ namespace SoT.Domain.Tests.Validation.Address
                 address.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Fact]
+        [Fact(DisplayName = "Postcode must accept null")]
+        [Trait(nameof(Address), "Instantiation")]
         public void Address_Instantiate_PostcodeMustBeValidOptional()
         {
             var address = Domain.Entities.Address.FactoryTest(
@@ -213,11 +223,12 @@ namespace SoT.Domain.Tests.Validation.Address
                 );
 
             var isValid = address.IsValid();
-            
+
             Assert.True(isValid);
         }
 
-        [Fact]
+        [Fact(DisplayName = "Adventure Id is required")]
+        [Trait(nameof(Address), "Instantiation")]
         public void Address_Instantiate_AdventureIdMustNotBeEmpty()
         {
             var address = Domain.Entities.Address.FactoryTest(
