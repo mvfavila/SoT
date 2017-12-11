@@ -79,6 +79,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AdventureServiceTest.cs" />
     <Compile Include="Services\CategoryServiceTest.cs" />
+    <Compile Include="Services\CityServiceTest.cs" />
     <Compile Include="Shared\TestConstants.cs" />
     <Compile Include="Validation\Address\AddressValidationTest.cs" />
     <Compile Include="Validation\Adventure\AdventureIsVerifiedForRegistrationTest.cs" />
