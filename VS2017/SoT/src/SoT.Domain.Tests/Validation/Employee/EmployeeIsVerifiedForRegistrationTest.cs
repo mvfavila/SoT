@@ -6,7 +6,8 @@ namespace SoT.Domain.Tests.Validation.Employee
 {
     public class EmployeeIsVerifiedForRegistrationTest
     {
-        [Fact]
+        [Fact(DisplayName = "Valid instance")]
+        [Trait(nameof(Employee), "Instantiation")]
         public void Employee_Instantiate_MustBeValid()
         {
             var employee = Domain.Entities.Employee.FactoryTest(
@@ -23,7 +24,27 @@ namespace SoT.Domain.Tests.Validation.Employee
             Assert.False(employee.ValidationResult.Errors.Any());
         }
 
-        [Fact]
+        [Fact(DisplayName = "Id is required")]
+        [Trait(nameof(Employee), "Instantiation")]
+        public void Address_Instantiate_KeyMustNotBeNull()
+        {
+            var employee = Domain.Entities.Employee.FactoryTest(
+                TestConstants.EMPLOYEE_ID_INVALID,
+                TestConstants.EMPLOYEE_DATE_OF_BIRTH_VALID,
+                TestConstants.PROVIDER_ID_VALID,
+                TestConstants.PROVIDER_VALID,
+                TestConstants.USER_ID_VALID
+                );
+
+            var isValid = employee.IsValid();
+
+            Assert.False(isValid);
+            Assert.Contains($"{nameof(Domain.Entities.Employee.EmployeeId)} is required",
+                employee.ValidationResult.Errors.Select(error => error.Message).ToList());
+        }
+
+        [Fact(DisplayName = "Employee must be over 18 years old")]
+        [Trait(nameof(Employee), "Instantiation")]
         public void Employee_Instantiate_MustBeOver18()
         {
             var employee = Domain.Entities.Employee.FactoryTest(
@@ -54,7 +75,8 @@ namespace SoT.Domain.Tests.Validation.Employee
                 employee.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Fact]
+        [Fact(DisplayName = "Provider Id is required")]
+        [Trait(nameof(Employee), "Instantiation")]
         public void Employee_Instantiate_ProviderMustNotBeNull()
         {
             var employee = Domain.Entities.Employee.FactoryTest(
@@ -72,7 +94,8 @@ namespace SoT.Domain.Tests.Validation.Employee
                 employee.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Fact]
+        [Fact(DisplayName = "User Id is required")]
+        [Trait(nameof(Employee), "Instantiation")]
         public void Employee_Instantiate_UserMustNotBeNull()
         {
             var employee = Domain.Entities.Employee.FactoryTest(
