@@ -51,5 +51,32 @@ namespace SoT.Application.Tests.AppServices
             // Assert
             countryService.Verify(c => c.GetById(It.IsAny<Guid>()), Times.Once());
         }
+
+        [Fact(DisplayName = "Get all Countries")]
+        [Trait(nameof(Country), "App Service")]
+        public void Country_GetAll_Sucess()
+        {
+            // Arrange
+            var countryFaker = new Faker<Country>()
+                .CustomInstantiator(c => Country.FactoryTest(
+                    Guid.NewGuid(),
+                    c.Address.Country(),
+                    c.Random.Bool(),
+                    Guid.NewGuid(),
+                    null));
+
+            mocker.Create<CityAppService>();
+            var countryAppService = mocker.Resolve<CountryAppService>();
+            var countryService = mocker.GetMock<ICountryService>();
+            countryService
+                .Setup(c => c.GetAll())
+                .Returns(countryFaker.Generate(50000));
+
+            // Act
+            countryAppService.GetAll();
+
+            // Assert
+            countryService.Verify(c => c.GetAll(), Times.Once());
+        }
     }
 }
