@@ -48,5 +48,35 @@ namespace SoT.Domain.Tests.Services
             Assert.True(validationResult.IsValid);
             Assert.Empty(validationResult.Errors);
         }
+
+        [Fact(DisplayName = "Update Provider Sucess")]
+        [Trait(nameof(Provider), "Domain Service")]
+        public void Provider_Update_Sucess()
+        {
+            // Arrange
+            mocker.Create<ProviderService>();
+
+            var providerService = mocker.Resolve<ProviderService>();
+            var providerRepository = mocker.GetMock<IProviderRepository>();
+
+            var providerFaker = new Faker<Provider>()
+                .CustomInstantiator(p => Provider.FactoryTest(
+                    Guid.NewGuid(),
+                    p.Company.CompanyName(),
+                    new List<Adventure>(),
+                    new List<Employee>(),
+                    true
+                    ));
+
+            var provider = providerFaker.Generate();
+
+            // Act
+            var validationResult = providerService.Update(provider);
+
+            // Assert
+            providerRepository.Verify(e => e.Update(provider), Times.Once());
+            Assert.True(validationResult.IsValid);
+            Assert.Empty(validationResult.Errors);
+        }
     }
 }
