@@ -42,6 +42,10 @@
     <Reference Include="AutoMoq, Version=1.8.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\AutoMoq.2.0.0\lib\net45\AutoMoq.dll</HintPath>
     </Reference>
+    <Reference Include="Bogus, Version=21.0.2.0, Culture=neutral, PublicKeyToken=fa1bb3f3f218129a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Bogus.21.0.2\lib\net40\Bogus.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
@@ -81,6 +85,7 @@
     <Compile Include="Services\CategoryServiceTest.cs" />
     <Compile Include="Services\CityServiceTest.cs" />
     <Compile Include="Services\CountryServiceTest.cs" />
+    <Compile Include="Services\EmployeeServiceTest.cs" />
     <Compile Include="Shared\TestConstants.cs" />
     <Compile Include="Validation\Address\AddressValidationTest.cs" />
     <Compile Include="Validation\Adventure\AdventureIsVerifiedForRegistrationTest.cs" />

@@ -20,7 +20,7 @@ namespace SoT.Domain.Services
             this.employeeReadOnlyRepository = employeeReadOnlyRepository;
         }
 
-        ValidationResult IEmployeeService.Add(Employee employee)
+        public new ValidationResult Add(Employee employee)
         {
             var validationResult = new ValidationResult();
 
@@ -43,7 +43,7 @@ namespace SoT.Domain.Services
             return validationResult;
         }
 
-        ValidationResult IEmployeeService.Update(Employee employee)
+        public new ValidationResult Update(Employee employee)
         {
             var validationResult = new ValidationResult();
 
