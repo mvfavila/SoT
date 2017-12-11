@@ -6,7 +6,8 @@ namespace SoT.Domain.Tests.Validation.Category
 {
     public class CategoryIsVerifiedForRegistrationTest
     {
-        [Fact]
+        [Fact(DisplayName = "Valid instance")]
+        [Trait(nameof(Category), "Instantiation")]
         public void Category_Instantiate_MustBeValid()
         {
             var category = Domain.Entities.Category.FactoryTest(
@@ -23,7 +24,8 @@ namespace SoT.Domain.Tests.Validation.Category
             Assert.False(category.ValidationResult.Errors.Any());
         }
 
-        [Fact]
+        [Fact(DisplayName = "Id is required")]
+        [Trait(nameof(Category), "Instantiation")]
         public void Category_Instantiate_KeyMustNotBeNull()
         {
             var category = Domain.Entities.Category.FactoryTest(
@@ -41,7 +43,8 @@ namespace SoT.Domain.Tests.Validation.Category
                 category.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Fact]
+        [Fact(DisplayName = "Name is required (Not null)")]
+        [Trait(nameof(Category), "Instantiation")]
         public void Category_Instantiate_NameMustNotBeNull()
         {
             var category = Domain.Entities.Category.FactoryTest(
@@ -59,7 +62,8 @@ namespace SoT.Domain.Tests.Validation.Category
                 category.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Fact]
+        [Fact(DisplayName = "Name is required (Not empty)")]
+        [Trait(nameof(Category), "Instantiation")]
         public void Category_Instantiate_NameMustNotBeEmpty()
         {
             var category = Domain.Entities.Category.FactoryTest(
@@ -77,7 +81,8 @@ namespace SoT.Domain.Tests.Validation.Category
                 category.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Fact]
+        [Fact(DisplayName = "Name is required (Not empty spaces)")]
+        [Trait(nameof(Category), "Instantiation")]
         public void Category_Instantiate_NameMustNotBeEmptySpaces()
         {
             var category = Domain.Entities.Category.FactoryTest(
@@ -95,7 +100,8 @@ namespace SoT.Domain.Tests.Validation.Category
                 category.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
 
-        [Fact]
+        [Fact(DisplayName = "Name must have 100 chars or less")]
+        [Trait(nameof(Category), "Instantiation")]
         public void Category_Instantiate_NameMustHaveValidLength()
         {
             var category = Domain.Entities.Category.FactoryTest(
