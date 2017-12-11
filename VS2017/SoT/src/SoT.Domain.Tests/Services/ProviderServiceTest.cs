@@ -3,6 +3,7 @@ using Bogus;
 using Moq;
 using SoT.Domain.Entities;
 using SoT.Domain.Interfaces.Repository;
+using SoT.Domain.Interfaces.Repository.ReadOnly;
 using SoT.Domain.Services;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,24 @@ namespace SoT.Domain.Tests.Services
         public ProviderServiceTest()
         {
             mocker = new AutoMoqer();
+        }
+
+        [Fact(DisplayName = "Get Provider and Employee by Provider Id")]
+        [Trait(nameof(Provider), "Domain Service")]
+        public void Provider_GetWithEmployeeById_Sucess()
+        {
+            // Arrange
+            mocker.Create<ProviderService>();
+
+            var providerService = mocker.Resolve<ProviderService>();
+            var providerRepository = mocker.GetMock<IProviderReadOnlyRepository>();
+            var providerId = Guid.NewGuid();
+
+            // Act
+            providerService.GetWithEmployeeById(providerId);
+
+            // Assert
+            providerRepository.Verify(c => c.GetWithEmployeeById(It.IsAny<Guid>()), Times.Once());
         }
 
         [Fact(DisplayName = "Add Provider Sucess")]
