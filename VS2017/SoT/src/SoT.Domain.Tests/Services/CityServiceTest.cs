@@ -2,7 +2,6 @@
 using Moq;
 using SoT.Domain.Interfaces.Repository.ReadOnly;
 using SoT.Domain.Services;
-using SoT.Domain.Tests.Shared;
 using System;
 using Xunit;
 

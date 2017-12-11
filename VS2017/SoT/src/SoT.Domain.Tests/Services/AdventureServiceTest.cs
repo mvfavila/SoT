@@ -2,7 +2,6 @@
 using Moq;
 using SoT.Domain.Interfaces.Repository.ReadOnly;
 using SoT.Domain.Services;
-using SoT.Domain.Tests.Shared;
 using System;
 using Xunit;
 
@@ -26,9 +25,11 @@ namespace SoT.Domain.Tests.Services
 
             var adventureService = mocker.Resolve<AdventureService>();
             var adventureRepository = mocker.GetMock<IAdventureReadOnlyRepository>();
+            var adventureId = Guid.NewGuid();
+            var userId = Guid.NewGuid();
 
             // Act
-            adventureService.GetWithAddressById(TestConstants.ADVENTURE_ID_VALID, TestConstants.USER_ID_VALID);
+            adventureService.GetWithAddressById(adventureId, userId);
 
             // Assert
             adventureRepository.Verify(a => a.GetWithAddressById(It.IsAny<Guid>(), It.IsAny<Guid>()), Times.Once());
