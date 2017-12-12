@@ -40,7 +40,7 @@ namespace SoT.Application.Tests.AppServices
                     Guid.NewGuid()
                     )).Generate();
 
-            var adventureFaker = new Faker<Adventure>()
+            var adventure = new Faker<Adventure>()
                 .CustomInstantiator(a => Adventure.FactoryTest(
                     Guid.NewGuid(),
                     a.Commerce.ProductName(),
@@ -56,10 +56,9 @@ namespace SoT.Application.Tests.AppServices
                     new List<Availability>(),
                     Guid.NewGuid(),
                     true
-                    ));
+                    )).Generate();
 
             mocker.Create<AdventureAppService>();
-            var adventure = adventureFaker.Generate();
             var adventureAppService = mocker.Resolve<AdventureAppService>();
             var adventureService = mocker.GetMock<IAdventureService>();
             adventureService
@@ -69,10 +68,22 @@ namespace SoT.Application.Tests.AppServices
             var userId = Guid.NewGuid();
 
             // Act
-            adventureAppService.GetById(providerId, userId);
+            var adventureAddressViewModel = adventureAppService.GetById(providerId, userId);
 
             // Assert
             adventureService.Verify(a => a.GetWithAddressById(It.IsAny<Guid>(), It.IsAny<Guid>()), Times.Once());
+            Assert.Equal(adventure.AdventureId, adventureAddressViewModel.AdventureId);
+            Assert.Equal(adventure.Name, adventureAddressViewModel.Name);
+            Assert.Equal(adventure.CategoryId, adventureAddressViewModel.CategoryId);
+            Assert.Equal(adventure.CityId, adventureAddressViewModel.CityId);
+            Assert.Equal(adventure.AddressId, adventureAddressViewModel.AddressId);
+            Assert.Equal(adventure.Address.Street01, adventureAddressViewModel.Street01);
+            Assert.Equal(adventure.Address.Complement, adventureAddressViewModel.Complement);
+            Assert.Equal(adventure.Address.Postcode, adventureAddressViewModel.Postcode);
+            Assert.Equal(adventure.InsurenceMinimalAmount, adventureAddressViewModel.InsurenceMinimalAmount);
+            Assert.Equal(adventure.ProviderId, adventureAddressViewModel.ProviderId);
+            Assert.Equal(adventure.UserId, adventureAddressViewModel.UserId);
+            Assert.Equal(adventure.Active, adventureAddressViewModel.Active);
         }
     }
 }
