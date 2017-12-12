@@ -6,6 +6,7 @@ using SoT.Domain.Entities;
 using SoT.Domain.Interfaces.Services;
 using System;
 using System.IO;
+using System.Linq;
 using System.Web;
 using Xunit;
 
@@ -30,26 +31,30 @@ namespace SoT.Application.Tests.AppServices
         public void Country_GetById_Sucess()
         {
             // Arrange
-            var countryFaker = new Faker<Country>()
+            var country = new Faker<Country>()
                 .CustomInstantiator(c => Country.FactoryTest(
                     Guid.NewGuid(),
                     c.Address.Country(),
                     c.Random.Bool(),
                     Guid.NewGuid(),
-                    null));
+                    null)).Generate();
 
             mocker.Create<CountryAppService>();
             var countryAppService = mocker.Resolve<CountryAppService>();
             var countryService = mocker.GetMock<ICountryService>();
             countryService
                 .Setup(c => c.GetById(It.IsAny<Guid>()))
-                .Returns(countryFaker.Generate());
+                .Returns(country);
 
             // Act
-            countryAppService.GetById(It.IsAny<Guid>());
+            var countryViewModel = countryAppService.GetById(It.IsAny<Guid>());
 
             // Assert
             countryService.Verify(c => c.GetById(It.IsAny<Guid>()), Times.Once());
+            Assert.Equal(country.CountryId, countryViewModel.CountryId);
+            Assert.Equal(country.Name, countryViewModel.Name);
+            Assert.Equal(country.Active, countryViewModel.Active);
+            Assert.Equal(country.RegionId, countryViewModel.RegionId);
         }
 
         [Fact(DisplayName = "Get all Countries")]
@@ -57,26 +62,33 @@ namespace SoT.Application.Tests.AppServices
         public void Country_GetAll_Sucess()
         {
             // Arrange
-            var countryFaker = new Faker<Country>()
+            var countries = new Faker<Country>()
                 .CustomInstantiator(c => Country.FactoryTest(
                     Guid.NewGuid(),
                     c.Address.Country(),
                     c.Random.Bool(),
                     Guid.NewGuid(),
-                    null));
+                    null)).Generate(50000);
 
             mocker.Create<CountryAppService>();
             var countryAppService = mocker.Resolve<CountryAppService>();
             var countryService = mocker.GetMock<ICountryService>();
             countryService
                 .Setup(c => c.GetAll())
-                .Returns(countryFaker.Generate(50000));
+                .Returns(countries);
 
             // Act
-            countryAppService.GetAll();
+            var countryViewModels = countryAppService.GetAll().ToList();
 
             // Assert
             countryService.Verify(c => c.GetAll(), Times.Once());
+            for (int i = 0; i < countries.Count; i++)
+            {
+                Assert.Equal(countries[i].CountryId, countryViewModels[i].CountryId);
+                Assert.Equal(countries[i].Name, countryViewModels[i].Name);
+                Assert.Equal(countries[i].Active, countryViewModels[i].Active);
+                Assert.Equal(countries[i].RegionId, countryViewModels[i].RegionId);
+            }
         }
 
         [Fact(DisplayName = "Get all active Countries")]
