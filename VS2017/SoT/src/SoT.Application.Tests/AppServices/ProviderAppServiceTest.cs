@@ -11,6 +11,7 @@ using SoT.Domain.Services;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Web;
 using Xunit;
 
@@ -77,35 +78,43 @@ namespace SoT.Application.Tests.AppServices
         public void Provider_GetById_Sucess()
         {
             // Arrange
-            var employeeFaker = new Faker<Employee>()
+            var providerId = Guid.NewGuid();
+            var employees = new Faker<Employee>()
                 .CustomInstantiator(e => Employee.FactoryTest(
                     Guid.NewGuid(),
                     e.Date.Past(90, DateTime.Now.AddYears(-18)),
-                    Guid.NewGuid(),
+                    providerId,
                     null,
                     Guid.NewGuid()
-                    ));
+                    )).Generate(500);
 
-            var providerFaker = new Faker<Provider>()
+            var provider = new Faker<Provider>()
                 .CustomInstantiator(p => Provider.FactoryTest(
-                    Guid.NewGuid(),
+                    providerId,
                     p.Company.CompanyName(),
                     new List<Adventure>(),
-                    employeeFaker.Generate(500),
-                    true));
+                    employees,
+                    true)).Generate();
 
             mocker.Create<ProviderAppService>();
             var providerAppService = mocker.Resolve<ProviderAppService>();
             var providerService = mocker.GetMock<IProviderService>();
             providerService
-                .Setup(p => p.GetById(It.IsAny<Guid>()))
-                .Returns(providerFaker.Generate());
+                .Setup(p => p.GetWithEmployeeById(It.IsAny<Guid>()))
+                .Returns(provider);
 
             // Act
-            providerAppService.GetByUserId(It.IsAny<Guid>());
+            var employeeProviderViewModel = providerAppService.GetByUserId(It.IsAny<Guid>());
 
             // Assert
             providerService.Verify(p => p.GetWithEmployeeById(It.IsAny<Guid>()), Times.Once());
+            Assert.Equal(provider.ProviderId, employeeProviderViewModel.ProviderId);
+            Assert.Equal(provider.CompanyName, employeeProviderViewModel.CompanyName);
+            var firstEmployee = provider.Employees.FirstOrDefault();
+            Assert.Equal(firstEmployee.EmployeeId, employeeProviderViewModel.EmployeeId);
+            Assert.Equal(firstEmployee.BirthDate, employeeProviderViewModel.BirthDate);
+            Assert.Equal(firstEmployee.ProviderId, employeeProviderViewModel.ProviderId);
+            Assert.Equal(firstEmployee.UserId, employeeProviderViewModel.UserId);
         }
 
         [Fact(DisplayName = "Update Provider")]
