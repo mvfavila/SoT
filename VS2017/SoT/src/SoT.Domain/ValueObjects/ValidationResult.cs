@@ -9,9 +9,17 @@ namespace SoT.Domain.ValueObjects
     public class ValidationResult
     {
         /// <summary>
+        /// Class constructor.
+        /// </summary>
+        public ValidationResult()
+        {
+            errors = new List<ValidationError>();
+        }
+
+        /// <summary>
         /// Errors list generated during validation.
         /// </summary>
-        private readonly List<ValidationError> errors = new List<ValidationError>();
+        private readonly List<ValidationError> errors;
 
         /// <summary>
         /// Error message.

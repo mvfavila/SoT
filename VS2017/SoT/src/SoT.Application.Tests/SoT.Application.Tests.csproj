@@ -100,6 +100,10 @@
       <Project>{71DCA81A-C687-4568-BB2D-78972C8B7B15}</Project>
       <Name>SoT.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SoT.Infra.Data\SoT.Infra.Data.csproj">
+      <Project>{BFDCEB5C-BBF8-4758-B81D-39125116F50A}</Project>
+      <Name>SoT.Infra.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\packages\xunit.analyzers.0.7.0\analyzers\dotnet\cs\xunit.analyzers.dll" />

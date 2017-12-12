@@ -21,7 +21,7 @@ namespace SoT.Application.AppServices
             unitOfWork.BeginTransaction();
         }
 
-        public void Commit()
+        public virtual void Commit()
         {
             unitOfWork.SaveChanges();
         }

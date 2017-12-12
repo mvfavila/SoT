@@ -20,7 +20,7 @@ namespace SoT.Domain.Services
             this.employeeReadOnlyRepository = employeeReadOnlyRepository;
         }
 
-        public new ValidationResult Add(Employee employee)
+        public new virtual ValidationResult Add(Employee employee)
         {
             var validationResult = new ValidationResult();
 

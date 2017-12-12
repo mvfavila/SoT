@@ -2,8 +2,12 @@
 using Bogus;
 using Moq;
 using SoT.Application.AppServices;
+using SoT.Application.ViewModels;
 using SoT.Domain.Entities;
+using SoT.Domain.Interfaces.Repository;
+using SoT.Domain.Interfaces.Repository.ReadOnly;
 using SoT.Domain.Interfaces.Services;
+using SoT.Domain.Services;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,6 +28,48 @@ namespace SoT.Application.Tests.AppServices
                 new HttpRequest("", "http://sumofthis.com", ""),
                 new HttpResponse(new StringWriter())
                 );
+        }
+
+        [Fact(DisplayName = "Add Provider")]
+        [Trait(nameof(Provider), "App Service")]
+        public void Provider_Add_Sucess()
+        {
+            // Arrange
+            var employeeProviderViewModelFaker = new Faker<EmployeeProviderViewModel>()
+                .CustomInstantiator(p => new EmployeeProviderViewModel
+                {
+                    EmployeeId = Guid.NewGuid(),
+                    CompanyName = p.Company.CompanyName(),
+                    BirthDate = p.Date.Past(90, DateTime.Now.AddYears(-18)),
+                    ProviderId = Guid.NewGuid(),
+                    UserId = Guid.NewGuid(),
+                    Active = true
+                });
+
+            var employeeRepository = new Mock<IEmployeeRepository>().Object;
+            var employeeReadOnlyRepository = new Mock<IEmployeeReadOnlyRepository>().Object;
+            var providerRepository = new Mock<IProviderRepository>().Object;
+            var providerReadOnlyRepository = new Mock<IProviderReadOnlyRepository>().Object;
+
+            var employeeService = new Mock<EmployeeService>(employeeRepository, employeeReadOnlyRepository);
+            var providerService = new Mock<ProviderService>(providerRepository, providerReadOnlyRepository);
+
+            var providerAppService = new Mock<ProviderAppService>(employeeService.Object, providerService.Object);
+            providerAppService
+                .Setup(p => p.Commit());
+
+            var result = new Domain.ValueObjects.ValidationResult();
+
+            employeeService
+                .Setup(e => e.Add(It.IsAny<Employee>()))
+                .Returns(result);
+            var employeeProviderViewModel = employeeProviderViewModelFaker.Generate();
+
+            // Act
+            providerAppService.Object.Add(employeeProviderViewModel);
+
+            // Assert
+            employeeService.Verify(p => p.Add(It.IsAny<Employee>()), Times.Once());
         }
 
         [Fact(DisplayName = "Get Provider by User Id")]
