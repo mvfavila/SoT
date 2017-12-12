@@ -107,5 +107,47 @@ namespace SoT.Application.Tests.AppServices
             // Assert
             providerService.Verify(p => p.GetWithEmployeeById(It.IsAny<Guid>()), Times.Once());
         }
+
+        [Fact(DisplayName = "Update Provider")]
+        [Trait(nameof(Provider), "App Service")]
+        public void Provider_Update_Sucess()
+        {
+            // Arrange
+            var employeeProviderViewModelFaker = new Faker<EmployeeProviderViewModel>()
+                .CustomInstantiator(p => new EmployeeProviderViewModel
+                {
+                    EmployeeId = Guid.NewGuid(),
+                    CompanyName = p.Company.CompanyName(),
+                    BirthDate = p.Date.Past(90, DateTime.Now.AddYears(-18)),
+                    ProviderId = Guid.NewGuid(),
+                    UserId = Guid.NewGuid(),
+                    Active = true
+                });
+
+            var employeeRepository = new Mock<IEmployeeRepository>().Object;
+            var employeeReadOnlyRepository = new Mock<IEmployeeReadOnlyRepository>().Object;
+            var providerRepository = new Mock<IProviderRepository>().Object;
+            var providerReadOnlyRepository = new Mock<IProviderReadOnlyRepository>().Object;
+
+            var employeeService = new Mock<EmployeeService>(employeeRepository, employeeReadOnlyRepository);
+            var providerService = new Mock<ProviderService>(providerRepository, providerReadOnlyRepository);
+
+            var providerAppService = new Mock<ProviderAppService>(employeeService.Object, providerService.Object);
+            providerAppService
+                .Setup(p => p.Commit());
+
+            var result = new Domain.ValueObjects.ValidationResult();
+
+            employeeService
+                .Setup(e => e.Update(It.IsAny<Employee>()))
+                .Returns(result);
+            var employeeProviderViewModel = employeeProviderViewModelFaker.Generate();
+
+            // Act
+            providerAppService.Object.Update(employeeProviderViewModel);
+
+            // Assert
+            employeeService.Verify(p => p.Update(It.IsAny<Employee>()), Times.Once());
+        }
     }
 }

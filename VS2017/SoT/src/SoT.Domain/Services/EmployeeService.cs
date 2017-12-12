@@ -43,7 +43,7 @@ namespace SoT.Domain.Services
             return validationResult;
         }
 
-        public new ValidationResult Update(Employee employee)
+        public new virtual ValidationResult Update(Employee employee)
         {
             var validationResult = new ValidationResult();
 
