@@ -6,6 +6,7 @@ using SoT.Domain.Interfaces.Services;
 using SoT.Infra.Data.Context;
 using SoT.Application.Mapping;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SoT.Application.AppServices
 {
