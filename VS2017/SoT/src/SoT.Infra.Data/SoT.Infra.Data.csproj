@@ -76,6 +76,7 @@
     <Compile Include="EntityConfig\CountryConfiguration.cs" />
     <Compile Include="EntityConfig\ElementConfiguration.cs" />
     <Compile Include="EntityConfig\ExampleConfiguration.cs" />
+    <Compile Include="EntityConfig\MenuItemConfiguration.cs" />
     <Compile Include="EntityConfig\ProviderConfiguration.cs" />
     <Compile Include="EntityConfig\RegionConfiguration.cs" />
     <Compile Include="EntityConfig\SubExampleConfiguration.cs" />
@@ -85,6 +86,10 @@
     <Compile Include="Migrations\201711222322182_20171123_922.cs" />
     <Compile Include="Migrations\201711222322182_20171123_922.Designer.cs">
       <DependentUpon>201711222322182_20171123_922.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712140702319_Add dynamic menu 20171214.cs" />
+    <Compile Include="Migrations\201712140702319_Add dynamic menu 20171214.Designer.cs">
+      <DependentUpon>201712140702319_Add dynamic menu 20171214.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -112,6 +117,7 @@
     <Compile Include="SQL\CityQuery.cs" />
     <Compile Include="SQL\CountryQuery.cs" />
     <Compile Include="SQL\EmployeeQuery.cs" />
+    <Compile Include="SQL\MenuQuery.cs" />
     <Compile Include="SQL\ProviderQuery.cs" />
     <Compile Include="UoW\UnitOfWork.cs" />
   </ItemGroup>
@@ -128,6 +134,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201711222322182_20171123_922.resx">
       <DependentUpon>201711222322182_20171123_922.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712140702319_Add dynamic menu 20171214.resx">
+      <DependentUpon>201712140702319_Add dynamic menu 20171214.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

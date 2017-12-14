@@ -34,7 +34,7 @@ namespace SoT.Infra.Data.Context
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Provider> Providers { get; set; }
         public DbSet<Employee> Employees { get; set; }
-        //public DbSet<MenuItem> MenuItems { get; set; }
+        public DbSet<MenuItem> MenuItems { get; set; }
 
         /// <summary>
         /// Custom configuration of the Entity Framework model creation.
@@ -72,6 +72,7 @@ namespace SoT.Infra.Data.Context
             modelBuilder.Configurations.Add(new ProviderConfiguration());
             modelBuilder.Configurations.Add(new RegionConfiguration());
             modelBuilder.Configurations.Add(new EmployeeConfiguration());
+            modelBuilder.Configurations.Add(new MenuItemConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }

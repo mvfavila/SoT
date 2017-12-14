@@ -231,6 +231,19 @@ namespace SoT.Infra.Data.Migrations
                 citySplit
                 );
             #endregion
+
+            #region Navigation - Menu
+            var menuItemHome = MenuItem.FactorySeed("Home", "Index", "Home", string.Empty, string.Empty, string.Empty);
+            var menuItemAdminClaims = MenuItem.FactorySeed("Claims", "Index", "ClaimsAdmin", string.Empty, "AdmClaims", "True");
+            var menuItemManageProvider = MenuItem.FactorySeed("Provider", "Details", "Provider", string.Empty, "ManageProvider", "True");
+
+            context.MenuItems.AddOrUpdate(
+                m => m.Name,
+                menuItemHome,
+                menuItemAdminClaims,
+                menuItemManageProvider
+                );
+            #endregion
         }
     }
 }

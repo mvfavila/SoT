@@ -67,6 +67,30 @@
         }
 
         /// <summary>
+        /// Factory used to seed the database context.
+        /// </summary>
+        /// <param name="name">Menu Item Name.</param>
+        /// <param name="actionName">Action to where the Menu Item points.</param>
+        /// <param name="controllerName">Controller to where the Menu Item points.</param>
+        /// <param name="url">Url to the where the Menu Item points.</param>
+        /// <param name="claimType">Menu Item Claim Type.</param>
+        /// <param name="claimValue">Menu Item Claim Value.</param>
+        /// <returns>See <see cref="MenuItem"/>.</returns>
+        public static MenuItem FactorySeed(string name, string actionName, string controllerName, string url,
+            string claimType, string claimValue)
+        {
+            return new MenuItem
+            {
+                Name = name,
+                ActionName = actionName,
+                ControllerName = controllerName,
+                Url = url,
+                ClaimType = claimType,
+                ClaimValue = claimValue
+            };
+        }
+
+        /// <summary>
         /// Factory used for MenuItem's Unit Tests.
         /// </summary>
         /// <param name="name">Menu Item Name.</param>

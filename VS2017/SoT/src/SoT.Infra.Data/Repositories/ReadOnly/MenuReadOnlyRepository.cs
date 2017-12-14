@@ -1,6 +1,8 @@
-﻿using SoT.Domain.Entities;
+﻿using Dapper;
+using SoT.Domain.Entities;
 using SoT.Domain.Interfaces.Repository.ReadOnly;
 using SoT.Infra.Data.Context;
+using SoT.Infra.Data.SQL;
 using System.Collections.Generic;
 
 namespace SoT.Infra.Data.Repositories.ReadOnly
@@ -9,11 +11,14 @@ namespace SoT.Infra.Data.Repositories.ReadOnly
     {
         public new IEnumerable<MenuItem> GetAll()
         {
-            return new List<MenuItem>
+            using (var connection = Connection)
             {
-                MenuItem.FactoryLoad("Claims", "ActionName", "Controller", "Url", "AdmClaims", "True"),
-                MenuItem.FactoryLoad("Adventure", "ActionName", "Controller", "Url", "AdmAdventure", "True")
-            };
+                connection.Open();
+
+                var cities = connection.Query<MenuItem>(MenuQuery.GET_ALL_MENU_ITEMS);
+
+                return cities;
+            }
         }
     }
 }
