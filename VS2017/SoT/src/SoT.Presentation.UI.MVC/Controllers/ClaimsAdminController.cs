@@ -69,7 +69,10 @@ namespace SoT.Presentation.UI.MVC.Controllers
 
         // POST: ClaimsAdmin/CreateClaim
         [HttpPost]
-        public ActionResult CreateClaim(Claims claim)
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateClaim(
+            [Bind(Include = "Id,Name")]
+            Claims claim)
         {
             try
             {

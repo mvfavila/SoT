@@ -18,6 +18,15 @@ namespace SoT.Presentation.UI.MVC.Controllers
             this.providerAppService = providerAppService;
         }
 
+        [ClaimsAuthorize("AdmProvider", "True")]
+        // GET: Provider/Manage
+        public ActionResult Manage()
+        {
+            var employeeProviderViewModel = providerAppService.GetAll();
+
+            return View(employeeProviderViewModel);
+        }
+
         [ClaimsAuthorize("ManageProvider", "True")]
         // GET: Provider/Details
         public ActionResult Details()

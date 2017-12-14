@@ -233,15 +233,17 @@ namespace SoT.Infra.Data.Migrations
             #endregion
 
             #region Navigation - Menu
-            var menuItemHome = MenuItem.FactorySeed("Home", "Index", "Home", string.Empty, string.Empty, string.Empty);
-            var menuItemAdminClaims = MenuItem.FactorySeed("Claims", "Index", "ClaimsAdmin", string.Empty, "AdmClaims", "True");
-            var menuItemManageProvider = MenuItem.FactorySeed("Provider", "Details", "Provider", string.Empty, "ManageProvider", "True");
+            var menuItemHome = MenuItem.FactorySeed("Home", "Index", "Home", null, null, null);
+            var menuItemAdminClaims = MenuItem.FactorySeed("Claims", "Index", "ClaimsAdmin", null, "AdmClaims", "True");
+            var menuItemManageProvider = MenuItem.FactorySeed("Provider", "Details", "Provider", null, "ManageProvider", "True");
+            var menuItemAdmProvider = MenuItem.FactorySeed("Providers", "Manage", "Provider", null, "AdmProvider", "True");
 
             context.MenuItems.AddOrUpdate(
                 m => m.Name,
                 menuItemHome,
                 menuItemAdminClaims,
-                menuItemManageProvider
+                menuItemManageProvider,
+                menuItemAdmProvider
                 );
             #endregion
         }

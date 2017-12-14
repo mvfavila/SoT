@@ -5,6 +5,7 @@ using SoT.Domain.Interfaces.Services;
 using SoT.Infra.Data.Context;
 using System;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace SoT.Application.AppServices
 {
@@ -47,6 +48,67 @@ namespace SoT.Application.AppServices
             var provider = providerService.GetWithEmployeeById(userId);
 
             return Mapping.ProviderMapper.FromDomainToViewModel(provider);
+        }
+
+        public IEnumerable<EmployeeProviderViewModel> GetAll()
+        {
+            return new List<EmployeeProviderViewModel>
+            {
+                new EmployeeProviderViewModel
+                {
+                    EmployeeId = Guid.NewGuid(),
+                    BirthDate = DateTime.Now,
+                    UserId = Guid.NewGuid(),
+                    ProviderId = Guid.NewGuid(),
+                    CompanyName = "Teste",
+                    Active = true,
+                    RegisterDate = DateTime.Now
+                },
+                new EmployeeProviderViewModel
+                {
+                    EmployeeId = Guid.NewGuid(),
+                    BirthDate = DateTime.Now,
+                    UserId = Guid.NewGuid(),
+                    ProviderId = Guid.NewGuid(),
+                    CompanyName = "Teste2",
+                    Active = true,
+                    RegisterDate = DateTime.Now
+                },
+                new EmployeeProviderViewModel
+                {
+                    EmployeeId = Guid.NewGuid(),
+                    BirthDate = DateTime.Now,
+                    UserId = Guid.NewGuid(),
+                    ProviderId = Guid.NewGuid(),
+                    CompanyName = "Teste2",
+                    Active = true,
+                    RegisterDate = DateTime.Now
+                },
+                new EmployeeProviderViewModel
+                {
+                    EmployeeId = Guid.NewGuid(),
+                    BirthDate = DateTime.Now,
+                    UserId = Guid.NewGuid(),
+                    ProviderId = Guid.NewGuid(),
+                    CompanyName = "Teste2",
+                    Active = true,
+                    RegisterDate = DateTime.Now
+                },
+                new EmployeeProviderViewModel
+                {
+                    EmployeeId = Guid.NewGuid(),
+                    BirthDate = DateTime.Now,
+                    UserId = Guid.NewGuid(),
+                    ProviderId = Guid.NewGuid(),
+                    CompanyName = "Teste2",
+                    Active = true,
+                    RegisterDate = DateTime.Now
+                }
+            };
+
+            //var providers = providerService.GetAllWithEmployee();
+
+            //return Mapping.ProviderMapper.FromDomainToViewModel(providers);
         }
 
         public ValidationAppResult Update(EmployeeProviderViewModel employeeProviderViewModel)

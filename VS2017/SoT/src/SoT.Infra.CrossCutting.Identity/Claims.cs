@@ -7,7 +7,7 @@ namespace SoT.Infra.CrossCutting.Identity
     [Table("AspNetClaims")]
     public class Claims
     {
-        private Claims()
+        public Claims()
         {
             Id = Guid.NewGuid();
         }
@@ -18,7 +18,7 @@ namespace SoT.Infra.CrossCutting.Identity
         [Required(AllowEmptyStrings = false, ErrorMessage = "The Claim must have a name")]
         [MaxLength(128, ErrorMessage = "Claim Name can not exceed {0} characters")]
         [Display(Name = "Claim Name")]
-        public string Name { get; private set; }
+        public string Name { get; set; }
 
         /// <summary>
         /// Factory used to seed the database context.

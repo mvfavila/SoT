@@ -18,10 +18,12 @@ namespace SoT.Infra.CrossCutting.Identity.Migrations
         {
             var claimAdmClaims = Claims.FactorySeed("6b97292c-01ea-48a3-90d4-eafa09b33d64", "AdmClaims");
             var claimManageProvider = Claims.FactorySeed("f26349fb-820d-4d4f-8d2c-9dd9cf922495", "ManageProvider");
+            var claimAdmProvider = Claims.FactorySeed("4ccbb28f-4488-47ab-8d62-0770f64cb546", "AdmProvider");
 
             context.Claims.AddOrUpdate(
                 claimAdmClaims,
-                claimManageProvider);
+                claimManageProvider,
+                claimAdmProvider);
         }
     }
 }
