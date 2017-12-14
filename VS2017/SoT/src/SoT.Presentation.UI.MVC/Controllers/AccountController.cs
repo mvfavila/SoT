@@ -49,11 +49,13 @@ namespace SoT.Presentation.UI.MVC.Controllers
             {
                 case SignInStatus.Success:
                     var user = await userManager.FindAsync(model.Email, model.Password);
+
                     if (!user.EmailConfirmed)
                     {
                         TempData["AvisoEmail"] = "User not confirmed. Please check your e-mail.";
                     }
                     await SignInAsync(user, model.RememberMe);
+
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -65,6 +67,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
                     return View(model);
             }
         }
+
         private async Task SignInAsync(ApplicationUser user, bool isPersistent)
         {
             var clientKey = Request.Browser.Type;

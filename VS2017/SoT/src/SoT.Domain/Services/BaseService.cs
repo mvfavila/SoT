@@ -44,7 +44,8 @@ namespace SoT.Domain.Services
 
         public void Dispose()
         {
-            repository.Dispose();
+            if(repository != null)
+                repository.Dispose();
             readOnlyRepository.Dispose();
             GC.SuppressFinalize(this);
         }

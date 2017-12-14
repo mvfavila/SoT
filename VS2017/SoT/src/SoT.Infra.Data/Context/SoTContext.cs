@@ -34,6 +34,7 @@ namespace SoT.Infra.Data.Context
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Provider> Providers { get; set; }
         public DbSet<Employee> Employees { get; set; }
+        //public DbSet<MenuItem> MenuItems { get; set; }
 
         /// <summary>
         /// Custom configuration of the Entity Framework model creation.

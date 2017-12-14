@@ -49,6 +49,7 @@
     <Compile Include="AppServices\CityAppService.cs" />
     <Compile Include="AppServices\CountryAppService.cs" />
     <Compile Include="AppServices\ExampleAppService.cs" />
+    <Compile Include="AppServices\MenuAppService.cs" />
     <Compile Include="AppServices\ProviderAppService.cs" />
     <Compile Include="Interfaces\IAdventureAppService.cs" />
     <Compile Include="Interfaces\IBaseAppService.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="Interfaces\ICityAppService.cs" />
     <Compile Include="Interfaces\ICountryAppService.cs" />
     <Compile Include="Interfaces\IExampleAppService.cs" />
+    <Compile Include="Interfaces\IMenuAppService.cs" />
     <Compile Include="Interfaces\IProviderAppService.cs" />
     <Compile Include="Mapping\AdventureMapper.cs" />
     <Compile Include="Mapping\CategoryMapper.cs" />
@@ -64,6 +66,7 @@
     <Compile Include="Mapping\EmployeeMapper.cs" />
     <Compile Include="Mapping\Example\ExampleMapper.cs" />
     <Compile Include="Mapping\Example\SubExampleMapper.cs" />
+    <Compile Include="Mapping\MenuMapper.cs" />
     <Compile Include="Mapping\ProviderMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validation\ValidationAppError.cs" />
@@ -75,6 +78,7 @@
     <Compile Include="ViewModels\EmployeeProviderViewModel.cs" />
     <Compile Include="ViewModels\ExampleSubExampleViewModel.cs" />
     <Compile Include="ViewModels\ExampleViewModel.cs" />
+    <Compile Include="ViewModels\MenuItemViewModel.cs" />
     <Compile Include="ViewModels\SubExampleViewModel.cs" />
   </ItemGroup>
   <ItemGroup />
