@@ -11,8 +11,7 @@ namespace SoT.Application.Interfaces
 
         IEnumerable<EmployeeProviderViewModel> GetAll();
 
-        IEnumerable<UserEmployeeProviderViewModel> LoadUserData(
-            IEnumerable<UserEmployeeProviderViewModel> userEmployeeProviderViewModels);
+        UserEmployeeProviderViewModel LoadUserData(UserEmployeeProviderViewModel userEmployeeProviderViewModels);
 
         ValidationAppResult Add(EmployeeProviderViewModel employeeProviderViewModel);
 

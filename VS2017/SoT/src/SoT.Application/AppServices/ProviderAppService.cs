@@ -6,6 +6,7 @@ using SoT.Infra.Data.Context;
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using SoT.Domain.Entities;
 
 namespace SoT.Application.AppServices
 {
@@ -55,9 +56,11 @@ namespace SoT.Application.AppServices
             throw new NotImplementedException();
         }
 
-        public IEnumerable<UserEmployeeProviderViewModel> LoadUserData(IEnumerable<UserEmployeeProviderViewModel> userEmployeeProviderViewModels)
+        public UserEmployeeProviderViewModel LoadUserData(UserEmployeeProviderViewModel userEmployeeProviderViewModels)
         {
-            // TODO: load employee and provider data to View Model
+            var provider = providerService.GetWithEmployeeById(userEmployeeProviderViewModels.UserId);
+
+            userEmployeeProviderViewModels = LoadProviderData(provider, userEmployeeProviderViewModels);
 
             return userEmployeeProviderViewModels;
         }
@@ -75,6 +78,18 @@ namespace SoT.Application.AppServices
             Commit();
 
             return FromDomainToApplicationResult(result);
+        }
+
+        private static UserEmployeeProviderViewModel LoadProviderData(Provider provider,
+            UserEmployeeProviderViewModel userEmployeeProviderViewModels)
+        {
+            userEmployeeProviderViewModels.EmployeeId = provider.Employees.FirstOrDefault().EmployeeId;
+            userEmployeeProviderViewModels.BirthDate = provider.Employees.FirstOrDefault().BirthDate;
+            userEmployeeProviderViewModels.ProviderId = provider.ProviderId;
+            userEmployeeProviderViewModels.Active = provider.Active;
+            userEmployeeProviderViewModels.RegisterDate = provider.RegisterDate;
+
+            return userEmployeeProviderViewModels;
         }
 
         public void Dispose()

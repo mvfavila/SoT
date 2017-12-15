@@ -37,8 +37,6 @@ namespace SoT.Presentation.UI.MVC.Controllers
 
             var userEmployeeProviderViewModels = UserMapper.FromIdentityToViewModel(users);
 
-            userEmployeeProviderViewModels = providerAppService.LoadUserData(userEmployeeProviderViewModels);
-
             return View(userEmployeeProviderViewModels.ToList());
         }
 
@@ -51,10 +49,14 @@ namespace SoT.Presentation.UI.MVC.Controllers
             }
             var user = await userManager.FindByIdAsync(id);
 
+            var userEmployeeProviderViewModel = UserMapper.FromIdentityToViewModel(user);
+
+            userEmployeeProviderViewModel = providerAppService.LoadUserData(userEmployeeProviderViewModel);
+
             ViewBag.RoleNames = await userManager.GetRolesAsync(user.Id);
             ViewBag.Claims = await userManager.GetClaimsAsync(user.Id);
 
-            return View(user);
+            return View(userEmployeeProviderViewModel);
         }
 
         // GET: /Users/Create
