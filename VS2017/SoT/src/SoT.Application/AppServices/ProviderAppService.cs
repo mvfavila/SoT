@@ -52,63 +52,14 @@ namespace SoT.Application.AppServices
 
         public IEnumerable<EmployeeProviderViewModel> GetAll()
         {
-            return new List<EmployeeProviderViewModel>
-            {
-                new EmployeeProviderViewModel
-                {
-                    EmployeeId = Guid.NewGuid(),
-                    BirthDate = DateTime.Now,
-                    UserId = Guid.NewGuid(),
-                    ProviderId = Guid.NewGuid(),
-                    CompanyName = "Teste",
-                    Active = true,
-                    RegisterDate = DateTime.Now
-                },
-                new EmployeeProviderViewModel
-                {
-                    EmployeeId = Guid.NewGuid(),
-                    BirthDate = DateTime.Now,
-                    UserId = Guid.NewGuid(),
-                    ProviderId = Guid.NewGuid(),
-                    CompanyName = "Teste2",
-                    Active = true,
-                    RegisterDate = DateTime.Now
-                },
-                new EmployeeProviderViewModel
-                {
-                    EmployeeId = Guid.NewGuid(),
-                    BirthDate = DateTime.Now,
-                    UserId = Guid.NewGuid(),
-                    ProviderId = Guid.NewGuid(),
-                    CompanyName = "Teste2",
-                    Active = true,
-                    RegisterDate = DateTime.Now
-                },
-                new EmployeeProviderViewModel
-                {
-                    EmployeeId = Guid.NewGuid(),
-                    BirthDate = DateTime.Now,
-                    UserId = Guid.NewGuid(),
-                    ProviderId = Guid.NewGuid(),
-                    CompanyName = "Teste2",
-                    Active = true,
-                    RegisterDate = DateTime.Now
-                },
-                new EmployeeProviderViewModel
-                {
-                    EmployeeId = Guid.NewGuid(),
-                    BirthDate = DateTime.Now,
-                    UserId = Guid.NewGuid(),
-                    ProviderId = Guid.NewGuid(),
-                    CompanyName = "Teste2",
-                    Active = true,
-                    RegisterDate = DateTime.Now
-                }
-            };
+            throw new NotImplementedException();
+        }
 
-            //var providers = providerService.GetAllWithEmployee();
+        public IEnumerable<UserEmployeeProviderViewModel> LoadUserData(IEnumerable<UserEmployeeProviderViewModel> userEmployeeProviderViewModels)
+        {
+            // TODO: load employee and provider data to View Model
 
-            //return Mapping.ProviderMapper.FromDomainToViewModel(providers);
+            return userEmployeeProviderViewModels;
         }
 
         public ValidationAppResult Update(EmployeeProviderViewModel employeeProviderViewModel)

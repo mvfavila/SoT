@@ -1,8 +1,12 @@
-﻿using SoT.Infra.CrossCutting.Identity;
+﻿using SoT.Application.Interfaces;
+using SoT.Application.ViewModels;
+using SoT.Infra.CrossCutting.Identity;
 using SoT.Infra.CrossCutting.Identity.Configuration;
 using SoT.Infra.CrossCutting.MvcFilters;
+using SoT.Presentation.UI.MVC.Mapping;
 using SoT.Presentation.UI.MVC.ViewModels.Account;
 using SoT.Presentation.UI.MVC.ViewModels.User;
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -16,17 +20,26 @@ namespace SoT.Presentation.UI.MVC.Controllers
     {
         private readonly ApplicationUserManager userManager;
         private readonly ApplicationRoleManager roleManager;
+        private readonly IProviderAppService providerAppService;
 
-        public UsersAdminController(ApplicationUserManager userManager, ApplicationRoleManager roleManager)
+        public UsersAdminController(ApplicationUserManager userManager, ApplicationRoleManager roleManager,
+            IProviderAppService providerAppService)
         {
             this.userManager = userManager;
             this.roleManager = roleManager;
+            this.providerAppService = providerAppService;
         }
 
         // GET: /Users/
         public async Task<ActionResult> Index()
         {
-            return View(await userManager.Users.ToListAsync());
+            var users = await userManager.Users.ToListAsync();
+
+            var userEmployeeProviderViewModels = UserMapper.FromIdentityToViewModel(users);
+
+            userEmployeeProviderViewModels = providerAppService.LoadUserData(userEmployeeProviderViewModels);
+
+            return View(userEmployeeProviderViewModels.ToList());
         }
 
         // GET: /Users/Details/5

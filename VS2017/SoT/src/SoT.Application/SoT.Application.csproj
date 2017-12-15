@@ -75,6 +75,7 @@
     <Compile Include="ViewModels\CategoryViewModel.cs" />
     <Compile Include="ViewModels\CityViewModel.cs" />
     <Compile Include="ViewModels\CountryViewModel.cs" />
+    <Compile Include="ViewModels\UserEmployeeProviderViewModel.cs" />
     <Compile Include="ViewModels\EmployeeProviderViewModel.cs" />
     <Compile Include="ViewModels\ExampleSubExampleViewModel.cs" />
     <Compile Include="ViewModels\ExampleViewModel.cs" />
