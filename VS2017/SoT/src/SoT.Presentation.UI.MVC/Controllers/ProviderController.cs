@@ -19,30 +19,6 @@ namespace SoT.Presentation.UI.MVC.Controllers
             this.providerAppService = providerAppService;
         }
 
-        [ClaimsAuthorize("AdmProvider", "True")]
-        // GET: Provider/Manage
-        public ActionResult Manage(string sortOrder, string currentFilter, string searchString, int? page)
-        {
-            ViewBag.CurrentSort = sortOrder;
-
-            if (searchString != null)
-            {
-                page = 1;
-            }
-            else
-            {
-                searchString = currentFilter;
-            }
-
-            ViewBag.CurrentFilter = searchString;
-
-            var employeeProviderViewModel = providerAppService.GetAll();
-
-            const int PAGE_SIZE = 3;
-            var pageNumber = (page ?? 1);
-            return View(employeeProviderViewModel.ToPagedList(pageNumber, PAGE_SIZE));
-        }
-
         [ClaimsAuthorize("ManageProvider", "True")]
         // GET: Provider/Details
         public ActionResult Details()

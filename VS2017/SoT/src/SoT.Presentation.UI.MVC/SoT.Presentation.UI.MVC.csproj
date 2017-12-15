@@ -321,12 +321,12 @@
     <Content Include="Views\City\Index.cshtml" />
     <Content Include="Views\Shared\_Navigation.cshtml" />
     <Content Include="Views\Provider\Manage.cshtml" />
+    <Content Include="Views\UsersAdmin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Navigation\" />
     <Folder Include="Views\RolesAdmin\" />
-    <Folder Include="Views\UserAdmin\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

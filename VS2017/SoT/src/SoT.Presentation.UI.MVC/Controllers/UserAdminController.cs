@@ -107,7 +107,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
             {
                 Id = user.Id,
                 Email = user.Email,
-                RolesList = roleManager.Roles.ToList().Select(x => new SelectListItem
+                RolesList = roleManager.Roles.Select(x => new SelectListItem
                 {
                     Selected = userRoles.Contains(x.Name),
                     Text = x.Name,
