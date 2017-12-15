@@ -1,4 +1,5 @@
-﻿@model IEnumerable<SoT.Application.ViewModels.EmployeeProviderViewModel>
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<SoT.Application.ViewModels.EmployeeProviderViewModel>
 
 @{
     ViewBag.Title = "Providers";
@@ -11,16 +12,16 @@
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.CompanyName)
+                @Html.DisplayNameFor(model => model.FirstOrDefault().CompanyName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.BirthDate)
+                @Html.DisplayNameFor(model => model.FirstOrDefault().BirthDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.RegisterDate)
+                @Html.DisplayNameFor(model => model.FirstOrDefault().RegisterDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Active)
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Active)
             </th>
             <th></th>
         </tr>
@@ -32,7 +33,7 @@
                     @Html.DisplayFor(modelItem => item.CompanyName)
                 </td>
                 <th>
-                    @Html.DisplayNameFor(model => model.BirthDate)
+                    @Html.DisplayFor(modelItem => item.BirthDate)
                 </th>
                 <td>
                     @Html.DisplayFor(modelItem => item.RegisterDate)
@@ -45,3 +46,8 @@
 
     </table>
 }
+<br/>
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Manage", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
