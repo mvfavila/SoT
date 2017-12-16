@@ -17,6 +17,8 @@ namespace SoT.Application.Interfaces
 
         ValidationAppResult Update(EmployeeProviderViewModel employeeProviderViewModel);
 
+        ValidationAppResult Update(UserEmployeeProviderViewModel userEemployeeProviderViewModel);
+
         void Delete(Guid id);
     }
 }

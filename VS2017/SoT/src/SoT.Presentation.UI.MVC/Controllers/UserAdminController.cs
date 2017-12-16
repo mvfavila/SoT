@@ -6,12 +6,12 @@ using SoT.Infra.CrossCutting.MvcFilters;
 using SoT.Presentation.UI.MVC.Mapping;
 using SoT.Presentation.UI.MVC.ViewModels.Account;
 using SoT.Presentation.UI.MVC.ViewModels.User;
-using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using System;
 
 namespace SoT.Presentation.UI.MVC.Controllers
 {
@@ -111,67 +111,55 @@ namespace SoT.Presentation.UI.MVC.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var user = await userManager.FindByIdAsync(id);
-            if (user == null)
-            {
-                return HttpNotFound();
-            }
 
-            var userRoles = await userManager.GetRolesAsync(user.Id);
+            var userEmployeeProviderViewModel = UserMapper.FromIdentityToViewModel(user);
 
-            return View(new EditUserViewModel
-            {
-                Id = user.Id,
-                Email = user.Email,
-                RolesList = roleManager.Roles.Select(x => new SelectListItem
-                {
-                    Selected = userRoles.Contains(x.Name),
-                    Text = x.Name,
-                    Value = x.Name
-                })
-            });
+            userEmployeeProviderViewModel = providerAppService.LoadUserData(userEmployeeProviderViewModel);
+
+            ViewBag.RoleNames = await userManager.GetRolesAsync(user.Id);
+            ViewBag.Claims = await userManager.GetClaimsAsync(user.Id);
+
+            return View(userEmployeeProviderViewModel);
         }
 
         // POST: /Users/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Email,Id")] EditUserViewModel editUser,
-            params string[] selectedRole)
+        public async Task<ActionResult> Edit(
+            [Bind(Include = "UserId,EmployeeId,ProviderId,UserName,CompanyName,Name,Lastname,Gender,BirthDate")]
+            UserEmployeeProviderViewModel userEmployeeProviderViewModel)
         {
             if (ModelState.IsValid)
             {
-                var user = await userManager.FindByIdAsync(editUser.Id);
+                var user = await userManager.FindByIdAsync(userEmployeeProviderViewModel.UserId.ToString());
                 if (user == null)
                 {
                     return HttpNotFound();
                 }
 
-                user.UserName = editUser.Email;
-                user.Email = editUser.Email;
+                user = LoadUserData(user, userEmployeeProviderViewModel);
 
-                var userRoles = await userManager.GetRolesAsync(user.Id);
+                await userManager.UpdateAsync(user);
 
-                selectedRole = selectedRole ?? new string[] { };
+                providerAppService.Update(userEmployeeProviderViewModel);
 
-                var result = await userManager.AddToRolesAsync(user.Id,
-                    selectedRole.Except(userRoles).ToArray<string>());
-
-                if (!result.Succeeded)
-                {
-                    ModelState.AddModelError("", result.Errors.First());
-                    return View();
-                }
-                result = await userManager.RemoveFromRolesAsync(user.Id,
-                    userRoles.Except(selectedRole).ToArray<string>());
-
-                if (!result.Succeeded)
-                {
-                    ModelState.AddModelError("", result.Errors.First());
-                    return View();
-                }
                 return RedirectToAction(nameof(Index));
             }
             ModelState.AddModelError("", "Something failed.");
             return View();
+        }
+
+        private static ApplicationUser LoadUserData(ApplicationUser user,
+            UserEmployeeProviderViewModel userEmployeeProviderViewModel)
+        {
+            user.UserName = userEmployeeProviderViewModel.UserName;
+            user.Email = userEmployeeProviderViewModel.UserName;
+            user.Name = userEmployeeProviderViewModel.Name;
+            user.Lastname = userEmployeeProviderViewModel.Lastname;
+            user.Gender = userEmployeeProviderViewModel.Gender;
+            user.BirthDate = userEmployeeProviderViewModel.BirthDate;
+
+            return user;
         }
 
         // GET: /Users/Delete/5

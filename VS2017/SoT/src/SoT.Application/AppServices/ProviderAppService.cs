@@ -73,11 +73,38 @@ namespace SoT.Application.AppServices
 
             provider.AddEmployee(employee);
 
+            BeginTransaction();
+
             var result = employeeService.Update(employee);
 
-            Commit();
+            if (result.IsValid)
+            {
+                result = providerService.Update(provider);
+                if (result.IsValid)
+                    Commit();
+            }
 
             return FromDomainToApplicationResult(result);
+        }
+
+        public ValidationAppResult Update(UserEmployeeProviderViewModel userEemployeeProviderViewModel)
+        {
+            return Update(ConvertViewModel(userEemployeeProviderViewModel));
+        }
+
+        private static EmployeeProviderViewModel ConvertViewModel(
+            UserEmployeeProviderViewModel userEemployeeProviderViewModel)
+        {
+            return new EmployeeProviderViewModel
+            {
+                UserId = userEemployeeProviderViewModel.UserId,
+                EmployeeId = userEemployeeProviderViewModel.EmployeeId,
+                ProviderId = userEemployeeProviderViewModel.ProviderId,
+                CompanyName = userEemployeeProviderViewModel.CompanyName,
+                BirthDate = userEemployeeProviderViewModel.BirthDate,
+                Active = userEemployeeProviderViewModel.Active,
+                RegisterDate = userEemployeeProviderViewModel.RegisterDate
+            };
         }
 
         private static UserEmployeeProviderViewModel LoadProviderData(Provider provider,
@@ -86,6 +113,7 @@ namespace SoT.Application.AppServices
             userEmployeeProviderViewModels.EmployeeId = provider.Employees.FirstOrDefault().EmployeeId;
             userEmployeeProviderViewModels.BirthDate = provider.Employees.FirstOrDefault().BirthDate;
             userEmployeeProviderViewModels.ProviderId = provider.ProviderId;
+            userEmployeeProviderViewModels.CompanyName = provider.CompanyName;
             userEmployeeProviderViewModels.Active = provider.Active;
             userEmployeeProviderViewModels.RegisterDate = provider.RegisterDate;
 

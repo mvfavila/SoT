@@ -1,4 +1,4 @@
-﻿@model SoT.Presentation.UI.MVC.ViewModels.User.EditUserViewModel
+﻿@model SoT.Application.ViewModels.UserEmployeeProviderViewModel
 
 @{
     ViewBag.Title = "Edit";
@@ -14,35 +14,102 @@
         <h4>Edit user.</h4>
         <hr />
         @Html.ValidationSummary(true)
-        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.UserId)
+        @Html.HiddenFor(model => model.ProviderId)
+        @Html.HiddenFor(model => model.EmployeeId)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.UserName, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-               @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-               @Html.ValidationMessageFor(model => model.Email)
+               @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+               @Html.ValidationMessageFor(model => model.UserName)
+            </div>
+            @Html.LabelFor(model => model.CompanyName, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.CompanyName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CompanyName)
+            </div>
+            @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+            @Html.LabelFor(model => model.Lastname, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Lastname, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Lastname)
+            </div>
+            @Html.LabelFor(model => model.Gender, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Gender, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Gender)
+            </div>
+            @Html.LabelFor(model => model.BirthDate, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.BirthDate, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.BirthDate)
             </div>
         </div>
-        <div class="form-group">
-            @Html.Label("Roles", new { @class = "control-label col-md-2" })
-            <span class=" col-md-10">
-                @foreach (var item in Model.RolesList)
-                {
-                    <input type="checkbox" name="SelectedRole" value="@item.Value" checked="@item.Selected" class="checkbox-inline" />
-                    @Html.Label(item.Value, new { @class = "control-label" })
-                }
-            </span>
+        <div class="form-horizontal">
+            <h4>User Roles</h4>
+            @if (ViewBag.RoleNames.Count == 0)
+            {
+                <hr />
+                <p>User has no roles.</p>
+            }
+            else
+            {
+                <table class="table">
+
+                    @foreach (var item in ViewBag.RoleNames)
+                    {
+                        <tr>
+                            <td>
+                                @item
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
         </div>
         
-        <div class="form-group">
-            @Html.Label("Claims", new { @class = "control-label col-md-2" })
-            <span class=" col-md-10">
-                <a href="@Url.Action("SetUserClaim","ClaimsAdmin", new { id = Model.Id })">Add Claim</a>
-            </span>
+        <div class="form-horizontal">
+            <h4>User Claims</h4>
+
+            @if (ViewBag.Claims.Count == 0)
+            {
+                <hr />
+                <p>User has no claims.</p>
+            }
+            else
+            {
+                <table class="table">
+                    <tr class="table-bordered">
+                        <td>
+                            <b>Claim Name</b>
+                        </td>
+                        <td>
+                            <b>Claim Value</b>
+                        </td>
+                    </tr>
+
+                    @foreach (var item in ViewBag.Claims)
+                    {
+                        <tr>
+                            <td>
+                                @item.Type
+                            </td>
+                            <td>
+                                @item.Value
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
         </div>
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
+            <div class="col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
