@@ -6,6 +6,16 @@ namespace SoT.Domain.Tests.Shared
 {
     public static class TestConstants
     {
+        internal static readonly Guid GENDER_ID_VALID = Guid.Parse("2107891b-659f-4e04-9d3f-676e58e2661b");
+        internal static readonly Guid GENDER_ID_INVALID = Guid.Parse("00000000-0000-0000-0000-000000000000");
+
+        internal static readonly string GENDER_VALUE_VALID = "Female";
+        internal static readonly string GENDER_VALUE_INVALID_NULL;
+        internal static readonly string GENDER_VALUE_INVALID_EMPTY = "";
+        internal static readonly string GENDER_VALUE_INVALID_EMPTY_SPACES = " ";
+        internal static readonly string GENDER_VALUE_VALID_LENGTH_EDGE = new string('A', 30);
+        internal static readonly string GENDER_VALUE_INVALID_LENGTH = new string('A', 31);
+
         internal static readonly Guid ADDRESS_ID_VALID = Guid.Parse("f008f005-b1ac-4d3b-8d51-01235e2c50e5");
         internal static readonly Guid ADDRESS_ID_INVALID = Guid.Parse("00000000-0000-0000-0000-000000000000");
 

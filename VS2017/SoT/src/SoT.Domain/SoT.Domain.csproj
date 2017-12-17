@@ -44,6 +44,7 @@
     <Compile Include="Entities\Example\Example.cs" />
     <Compile Include="Entities\Example\SubExample.cs" />
     <Compile Include="Entities\City.cs" />
+    <Compile Include="Entities\Gender.cs" />
     <Compile Include="Entities\MenuItem.cs" />
     <Compile Include="Entities\Provider.cs" />
     <Compile Include="Entities\Region.cs" />
@@ -131,6 +132,9 @@
     <Compile Include="Specification\Example\ExampleHasSubExampleSpecification.cs" />
     <Compile Include="Specification\Example\ExampleIsActiveSpecification.cs" />
     <Compile Include="Specification\Example\ExampleIsUniqueEntrySpecification.cs" />
+    <Compile Include="Specification\Gender\GenderIsKeyNotNull.cs" />
+    <Compile Include="Specification\Gender\GenderIsValueNotNullAndNotEmpty.cs" />
+    <Compile Include="Specification\Gender\GenderIsValueValidLength.cs" />
     <Compile Include="Specification\Provider\ProviderIsCompanyNameNotNullAndNotEmpty.cs" />
     <Compile Include="Specification\Provider\ProviderIsCompanyNameValidLength.cs" />
     <Compile Include="Specification\Provider\ProviderIsKeyNotNull.cs" />
@@ -150,6 +154,7 @@
     <Compile Include="Validation\Employee\EmployeeIsVerifiedForRegistration.cs" />
     <Compile Include="Validation\Example\ExampleIsVerifiedForDatabaseRegistration.cs" />
     <Compile Include="Validation\Example\ExampleIsVerifiedForRegistration.cs" />
+    <Compile Include="Validation\Gender\GenderIsVerifiedForRegistration.cs" />
     <Compile Include="Validation\Provider\ProviderIsVerifiedForEdition.cs" />
     <Compile Include="Validation\Provider\ProviderIsVerifiedForRegistration.cs" />
     <Compile Include="Validation\Region\RegionIsVerifiedForRegistration.cs" />
