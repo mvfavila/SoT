@@ -4,14 +4,14 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit.</h2>
+<h2>Edit</h2>
 
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Edit user.</h4>
+        <h4>Edit user</h4>
         <hr />
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.UserId)
@@ -61,7 +61,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.BirthDate, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(m => m.BirthDate, new { @class = "form-control" })
+                @Html.TextBoxFor(m => m.BirthDate, new { @Value = Model.BirthDate.ToString("yyyy/MM/dd"), @class = "form-control input-group date" })
                 @Html.ValidationMessageFor(model => model.BirthDate)
             </div>
         </div>
@@ -138,4 +138,12 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript" language="javascript">
+        $('.input-group.date').datepicker({
+            format: "yyyy/mm/dd",
+            autoclose: true,
+            todayHighlight: true
+        });
+    </script>
 }
