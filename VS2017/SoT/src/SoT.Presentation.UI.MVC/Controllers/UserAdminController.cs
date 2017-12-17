@@ -5,13 +5,11 @@ using SoT.Infra.CrossCutting.Identity.Configuration;
 using SoT.Infra.CrossCutting.MvcFilters;
 using SoT.Presentation.UI.MVC.Mapping;
 using SoT.Presentation.UI.MVC.ViewModels.Account;
-using SoT.Presentation.UI.MVC.ViewModels.User;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using System;
 
 namespace SoT.Presentation.UI.MVC.Controllers
 {
@@ -21,13 +19,15 @@ namespace SoT.Presentation.UI.MVC.Controllers
         private readonly ApplicationUserManager userManager;
         private readonly ApplicationRoleManager roleManager;
         private readonly IProviderAppService providerAppService;
+        private readonly IGenderAppService genderAppService;
 
         public UsersAdminController(ApplicationUserManager userManager, ApplicationRoleManager roleManager,
-            IProviderAppService providerAppService)
+            IProviderAppService providerAppService, IGenderAppService genderAppService)
         {
             this.userManager = userManager;
             this.roleManager = roleManager;
             this.providerAppService = providerAppService;
+            this.genderAppService = genderAppService;
         }
 
         // GET: /Users/
@@ -118,6 +118,10 @@ namespace SoT.Presentation.UI.MVC.Controllers
 
             ViewBag.RoleNames = await userManager.GetRolesAsync(user.Id);
             ViewBag.Claims = await userManager.GetClaimsAsync(user.Id);
+
+            var genders = genderAppService.GetAllActive();
+
+            ViewBag.Genders = new SelectList(genders, "GenderId", "Value");
 
             return View(userEmployeeProviderViewModel);
         }

@@ -5,6 +5,7 @@
         public static readonly string GET_ALL_BY_SITUATION = @"
             SELECT *
             FROM Gender g
-            WHERE g.ACTIVE = @SITUATION";
+            WHERE g.ACTIVE = @SITUATION
+            ORDER BY g.Value";
     }
 }
