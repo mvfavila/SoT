@@ -87,6 +87,7 @@
     <Compile Include="Services\CityServiceTest.cs" />
     <Compile Include="Services\CountryServiceTest.cs" />
     <Compile Include="Services\EmployeeServiceTest.cs" />
+    <Compile Include="Services\GenderServiceTest.cs" />
     <Compile Include="Services\ProviderServiceTest.cs" />
     <Compile Include="Shared\TestConstants.cs" />
     <Compile Include="Validation\Address\AddressValidationTest.cs" />

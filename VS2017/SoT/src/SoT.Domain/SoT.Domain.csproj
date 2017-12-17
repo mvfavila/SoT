@@ -75,6 +75,7 @@
     <Compile Include="Interfaces\Services\ICountryService.cs" />
     <Compile Include="Interfaces\Services\IEmployeeService.cs" />
     <Compile Include="Interfaces\Services\IExampleService.cs" />
+    <Compile Include="Interfaces\Services\IGenderService.cs" />
     <Compile Include="Interfaces\Services\IMenuService.cs" />
     <Compile Include="Interfaces\Services\IProviderService.cs" />
     <Compile Include="Interfaces\Services\ISubExampleService.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="Services\CountryService.cs" />
     <Compile Include="Services\EmployeeService.cs" />
     <Compile Include="Services\ExampleService.cs" />
+    <Compile Include="Services\GenderService.cs" />
     <Compile Include="Services\MenuService.cs" />
     <Compile Include="Services\ProviderService.cs" />
     <Compile Include="Services\SubExampleService.cs" />
