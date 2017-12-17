@@ -64,6 +64,7 @@
     <Compile Include="Interfaces\Repository\ReadOnly\ICountryReadOnlyRepository.cs" />
     <Compile Include="Interfaces\Repository\ReadOnly\IEmployeeReadOnlyRepository.cs" />
     <Compile Include="Interfaces\Repository\ReadOnly\IExampleReadOnlyRepository.cs" />
+    <Compile Include="Interfaces\Repository\ReadOnly\IGenderReadOnlyRepository.cs" />
     <Compile Include="Interfaces\Repository\ReadOnly\IMenuReadOnlyRepository.cs" />
     <Compile Include="Interfaces\Repository\ReadOnly\IProviderReadOnlyRepository.cs" />
     <Compile Include="Interfaces\Repository\ReadOnly\ISubExampleReadOnlyRepository.cs" />
