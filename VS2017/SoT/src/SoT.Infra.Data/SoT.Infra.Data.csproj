@@ -76,6 +76,7 @@
     <Compile Include="EntityConfig\CountryConfiguration.cs" />
     <Compile Include="EntityConfig\ElementConfiguration.cs" />
     <Compile Include="EntityConfig\ExampleConfiguration.cs" />
+    <Compile Include="EntityConfig\GenderConfiguration.cs" />
     <Compile Include="EntityConfig\MenuItemConfiguration.cs" />
     <Compile Include="EntityConfig\ProviderConfiguration.cs" />
     <Compile Include="EntityConfig\RegionConfiguration.cs" />
@@ -90,6 +91,10 @@
     <Compile Include="Migrations\201712140702319_Add dynamic menu 20171214.cs" />
     <Compile Include="Migrations\201712140702319_Add dynamic menu 20171214.Designer.cs">
       <DependentUpon>201712140702319_Add dynamic menu 20171214.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712170823287_20171217 Gender entity added.cs" />
+    <Compile Include="Migrations\201712170823287_20171217 Gender entity added.Designer.cs">
+      <DependentUpon>201712170823287_20171217 Gender entity added.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -137,6 +142,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712140702319_Add dynamic menu 20171214.resx">
       <DependentUpon>201712140702319_Add dynamic menu 20171214.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712170823287_20171217 Gender entity added.resx">
+      <DependentUpon>201712170823287_20171217 Gender entity added.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

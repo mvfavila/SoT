@@ -232,6 +232,19 @@ namespace SoT.Infra.Data.Migrations
                 );
             #endregion
 
+            #region Gender
+            var genderMale = Gender.FactorySeed("633b44ad-e479-4470-bb09-57963533d190", "Male", true);
+            var genderFemale = Gender.FactorySeed("db90e33b-a0cd-4c03-b47e-d9da416fc5e4", "Female", true);
+            var genderUnspecified = Gender.FactorySeed("43e56cf8-39b4-4a10-aafb-1533e522b7da", "Unspecified", true);
+
+            context.Genders.AddOrUpdate(
+                g => g.GenderId,
+                genderMale,
+                genderFemale,
+                genderUnspecified
+                );
+            #endregion
+
             #region Navigation - Menu
             var menuItemHome = MenuItem.FactorySeed("Home", "Index", "Home", null, null, null);
             var menuItemAdminClaims = MenuItem.FactorySeed("Claims", "Index", "ClaimsAdmin", null, "AdmClaims", "True");

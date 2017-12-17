@@ -55,13 +55,15 @@ namespace SoT.Domain.Entities
         /// <summary>
         /// Factory used to seed the database context.
         /// </summary>
+        /// <param name="genderId">Gender Unique Id.</param>
         /// <param name="value">Gender Value.</param>
         /// <param name="active">Informs if the Gender is active in SoT system.</param>
         /// <returns>See <see cref="Gender"/>.</returns>
-        public static Gender FactorySeed(string value, bool active)
+        public static Gender FactorySeed(string genderId, string value, bool active)
         {
             return new Gender
             {
+                GenderId = Guid.Parse(genderId),
                 Value = value,
                 Active = active
             };
