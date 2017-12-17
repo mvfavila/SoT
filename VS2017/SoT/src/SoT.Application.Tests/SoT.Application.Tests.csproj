@@ -82,6 +82,7 @@
     <Compile Include="AppServices\CategoryAppServiceTest.cs" />
     <Compile Include="AppServices\CityAppServiceTest.cs" />
     <Compile Include="AppServices\CountryAppServiceTest.cs" />
+    <Compile Include="AppServices\GenderAppServiceTest.cs" />
     <Compile Include="AppServices\MenuAppServiceTest.cs" />
     <Compile Include="AppServices\ProviderAppServiceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
