@@ -19,11 +19,13 @@ namespace SoT.Domain.Entities
         /// Class constructor.
         /// </summary>
         /// <param name="birthDate">Employee's birth date.</param>
-        private Employee(DateTime birthDate)
+        /// <param name="genderId">Unique id of the Employee's <see cref="Gender"/>.</param>
+        private Employee(DateTime birthDate, Guid genderId)
             : base()
         {
             EmployeeId = Guid.NewGuid();
             BirthDate = birthDate;
+            GenderId = genderId;
         }
 
         /// <summary>
@@ -35,6 +37,16 @@ namespace SoT.Domain.Entities
         /// Employee's birth date.
         /// </summary>
         public DateTime BirthDate { get; private set; }
+
+        /// <summary>
+        /// Unique id of the Employee's <see cref="Gender"/>.
+        /// </summary>
+        public Guid GenderId { get; private set; }
+
+        /// <summary>
+        /// Employee's <see cref="Entities.Gender"/>.
+        /// </summary>
+        public Gender Gender { get; private set; }
 
         /// <summary>
         /// Unique id of the <see cref="Provider"/> attached to the Employee.
@@ -82,10 +94,11 @@ namespace SoT.Domain.Entities
         /// Factory used when a new Employee is being added to the database context.
         /// </summary>
         /// <param name="birthDate">Employee's birth date.</param>
+        /// <param name="genderId">Unique id of the Employee's <see cref="Gender"/>.</param>
         /// <returns>See <see cref="Employee"/>.</returns>
-        public static Employee FactoryAdd(DateTime birthDate)
+        public static Employee FactoryAdd(DateTime birthDate, Guid genderId)
         {
-            return new Employee(birthDate);
+            return new Employee(birthDate, genderId);
         }
 
         /// <summary>
@@ -93,16 +106,19 @@ namespace SoT.Domain.Entities
         /// </summary>
         /// <param name="employeeId">Employee's Unique Id.</param>
         /// <param name="birthDate">Employee's birth date.</param>
+        /// <param name="genderId">Unique id of the Employee's <see cref="Gender"/>.</param>
         /// <param name="provider"><see cref="Entities.Provider"/> where the Employee works or which is owned by the
         /// Employee.</param>
         /// <param name="userId">Unique id of the <see cref="Entities.User"/> attached to the Employee.</param>
         /// <returns>See <see cref="Employee"/>.</returns>
-        public static Employee FactoryMap(Guid employeeId, DateTime birthDate, Provider provider, Guid userId)
+        public static Employee FactoryMap(Guid employeeId, DateTime birthDate, Guid genderId, Provider provider,
+            Guid userId)
         {
             return new Employee
             {
                 EmployeeId = employeeId,
                 BirthDate = birthDate,
+                GenderId = genderId,
                 ProviderId = provider.ProviderId,
                 Provider = provider,
                 UserId = userId
@@ -114,18 +130,20 @@ namespace SoT.Domain.Entities
         /// </summary>
         /// <param name="employeeId">Employee's Unique Id.</param>
         /// <param name="birthDate">Employee's birth date.</param>
+        /// <param name="genderId">Unique id of the Employee's <see cref="Gender"/>.</param>
         /// <param name="providerId">Unique id of the <see cref="Provider"/> attached to the Employee.</param>
         /// <param name="provider"><see cref="Entities.Provider"/> where the Employee works or which is owned by the
         /// Employee.</param>
         /// <param name="userId">Unique id of the <see cref="Entities.User"/> attached to the Employee.</param>
         /// <returns>See <see cref="Employee"/>.</returns>
-        public static Employee FactoryTest(Guid employeeId, DateTime birthDate, Guid providerId, Provider provider,
+        public static Employee FactoryTest(Guid employeeId, DateTime birthDate, Guid genderId, Guid providerId, Provider provider,
             Guid userId)
         {
             return new Employee
             {
                 EmployeeId = employeeId,
                 BirthDate = birthDate,
+                GenderId = genderId,
                 ProviderId = providerId,
                 Provider = provider,
                 UserId = userId

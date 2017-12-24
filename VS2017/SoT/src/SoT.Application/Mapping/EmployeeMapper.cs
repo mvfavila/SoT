@@ -15,6 +15,7 @@ namespace SoT.Application.Mapping
             return Employee.FactoryMap(
                 employeeProviderViewModel.EmployeeId,
                 employeeProviderViewModel.BirthDate,
+                employeeProviderViewModel.GenderId,
                 provider,
                 employeeProviderViewModel.UserId
                 );

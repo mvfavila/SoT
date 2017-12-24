@@ -22,6 +22,9 @@ namespace SoT.Application.ViewModels
         public DateTime BirthDate { get; set; }
 
         [ScaffoldColumn(false)]
+        public Guid GenderId { get; set; }
+
+        [ScaffoldColumn(false)]
         public Guid UserId { get; set; }
 
         // Provider

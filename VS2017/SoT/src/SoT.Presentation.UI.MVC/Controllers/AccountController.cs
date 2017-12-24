@@ -154,9 +154,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
                     UserName = model.Email,
                     Email = model.Email,
                     Name = model.Name,
-                    Lastname = model.Lastname,
-                    Gender = model.Gender,
-                    BirthDate = model.BirthDate
+                    Lastname = model.Lastname
                 };
                 var result = await userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)

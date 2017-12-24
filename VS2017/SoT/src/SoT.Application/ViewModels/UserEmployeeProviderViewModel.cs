@@ -24,8 +24,6 @@ namespace SoT.Application.ViewModels
         [Display(Name = "Last name")]
         public string Lastname { get; set; }
 
-        public string Gender { get; set; }
-
         // Employee
 
         [ScaffoldColumn(false)]
@@ -35,6 +33,9 @@ namespace SoT.Application.ViewModels
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         [DataType(DataType.Date, ErrorMessage = "Date format invalid")]
         public DateTime BirthDate { get; set; }
+
+        [ScaffoldColumn(false)]
+        public Guid GenderId { get; set; }
 
         // Provider
 

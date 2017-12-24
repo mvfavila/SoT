@@ -13,6 +13,7 @@ namespace SoT.Domain.Tests.Services
     public class EmployeeServiceTest
     {
         private readonly AutoMoqer mocker;
+        private readonly Guid GENDER_ID_MALE = Guid.Parse("633b44ad-e479-4470-bb09-57963533d190");
 
         public EmployeeServiceTest()
         {
@@ -42,6 +43,7 @@ namespace SoT.Domain.Tests.Services
                 .CustomInstantiator(e => Employee.FactoryTest(
                     Guid.NewGuid(),
                     e.Date.Past(90, DateTime.Now.AddYears(-18)),
+                    GENDER_ID_MALE,
                     Guid.NewGuid(),
                     providerFaker.Generate(),
                     Guid.NewGuid()
@@ -81,6 +83,7 @@ namespace SoT.Domain.Tests.Services
                 .CustomInstantiator(e => Employee.FactoryTest(
                     Guid.NewGuid(),
                     e.Date.Past(90, DateTime.Now.AddYears(-18)),
+                    GENDER_ID_MALE,
                     Guid.NewGuid(),
                     providerFaker.Generate(),
                     Guid.NewGuid()

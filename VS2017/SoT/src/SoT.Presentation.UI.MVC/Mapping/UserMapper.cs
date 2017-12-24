@@ -16,8 +16,7 @@ namespace SoT.Presentation.UI.MVC.Mapping
                 UserId = Guid.Parse(user.Id),
                 UserName = user.UserName,
                 Name = user.Name,
-                Lastname = user.Lastname,
-                Gender = user.Gender
+                Lastname = user.Lastname
             };
         }
 

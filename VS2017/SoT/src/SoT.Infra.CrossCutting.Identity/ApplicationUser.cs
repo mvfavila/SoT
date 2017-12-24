@@ -18,8 +18,6 @@ namespace SoT.Infra.CrossCutting.Identity
 
         public string Name { get; set; }
         public string Lastname { get; set; }
-        public string Gender { get; set; }
-        public DateTime BirthDate { get; set; }
 
         public virtual ICollection<Client> Clients { get; set; }
 

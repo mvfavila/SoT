@@ -37,6 +37,7 @@ namespace SoT.Application.Mapping
             {
                 EmployeeId = employee.EmployeeId,
                 BirthDate = employee.BirthDate,
+                GenderId = employee.GenderId,
                 UserId = employee.UserId,
                 ProviderId = provider.ProviderId,
                 CompanyName = provider.CompanyName,

@@ -20,6 +20,7 @@ namespace SoT.Application.Tests.AppServices
     public class ProviderAppServiceTest
     {
         private readonly AutoMoqer mocker;
+        private readonly Guid GENDER_ID_MALE = Guid.Parse("633b44ad-e479-4470-bb09-57963533d190");
 
         public ProviderAppServiceTest()
         {
@@ -83,6 +84,7 @@ namespace SoT.Application.Tests.AppServices
                 .CustomInstantiator(e => Employee.FactoryTest(
                     Guid.NewGuid(),
                     e.Date.Past(90, DateTime.Now.AddYears(-18)),
+                    GENDER_ID_MALE,
                     providerId,
                     null,
                     Guid.NewGuid()
@@ -113,6 +115,7 @@ namespace SoT.Application.Tests.AppServices
             var firstEmployee = provider.Employees.FirstOrDefault();
             Assert.Equal(firstEmployee.EmployeeId, employeeProviderViewModel.EmployeeId);
             Assert.Equal(firstEmployee.BirthDate, employeeProviderViewModel.BirthDate);
+            Assert.Equal(firstEmployee.GenderId, employeeProviderViewModel.GenderId);
             Assert.Equal(firstEmployee.ProviderId, employeeProviderViewModel.ProviderId);
             Assert.Equal(firstEmployee.UserId, employeeProviderViewModel.UserId);
         }

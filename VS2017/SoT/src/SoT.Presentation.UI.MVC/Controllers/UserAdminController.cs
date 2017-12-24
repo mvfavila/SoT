@@ -160,8 +160,6 @@ namespace SoT.Presentation.UI.MVC.Controllers
             user.Email = userEmployeeProviderViewModel.UserName;
             user.Name = userEmployeeProviderViewModel.Name;
             user.Lastname = userEmployeeProviderViewModel.Lastname;
-            user.Gender = userEmployeeProviderViewModel.Gender;
-            user.BirthDate = userEmployeeProviderViewModel.BirthDate;
 
             return user;
         }
