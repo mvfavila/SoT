@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNet.Identity;
-using PagedList;
 using SoT.Application.Interfaces;
 using SoT.Application.ViewModels;
 using SoT.Infra.CrossCutting.MvcFilters;
@@ -13,10 +12,12 @@ namespace SoT.Presentation.UI.MVC.Controllers
     public class ProviderController : Controller
     {
         private readonly IProviderAppService providerAppService;
+        private readonly IGenderAppService genderAppService;
 
-        public ProviderController(IProviderAppService providerAppService)
+        public ProviderController(IProviderAppService providerAppService, IGenderAppService genderAppService)
         {
             this.providerAppService = providerAppService;
+            this.genderAppService = genderAppService;
         }
 
         [ClaimsAuthorize("ManageProvider", "True")]
@@ -46,6 +47,11 @@ namespace SoT.Presentation.UI.MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
+            var genders = genderAppService.GetAllActive();
+
+            ViewBag.Genders = new SelectList(genders, "GenderId", "Value");
+
             var employeeProviderViewModel = providerAppService.GetByUserId(userId);
             if (employeeProviderViewModel != null)
             {

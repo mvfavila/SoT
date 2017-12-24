@@ -107,6 +107,10 @@
     <Compile Include="Migrations\201711080157559_Create database.Designer.cs">
       <DependentUpon>201711080157559_Create database.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712240802595_BirthDate and Gender moved from ApplicationUser to Employee.cs" />
+    <Compile Include="Migrations\201712240802595_BirthDate and Gender moved from ApplicationUser to Employee.Designer.cs">
+      <DependentUpon>201712240802595_BirthDate and Gender moved from ApplicationUser to Employee.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -126,6 +130,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711080157559_Create database.resx">
       <DependentUpon>201711080157559_Create database.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712240802595_BirthDate and Gender moved from ApplicationUser to Employee.resx">
+      <DependentUpon>201712240802595_BirthDate and Gender moved from ApplicationUser to Employee.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
