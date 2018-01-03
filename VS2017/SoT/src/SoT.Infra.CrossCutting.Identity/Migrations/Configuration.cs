@@ -1,5 +1,6 @@
 namespace SoT.Infra.CrossCutting.Identity.Migrations
 {
+    using Microsoft.AspNet.Identity.EntityFramework;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -26,6 +27,30 @@ namespace SoT.Infra.CrossCutting.Identity.Migrations
                 claimManageProvider,
                 claimAdmProvider,
                 claimAdmUsers);
+
+            // TODO: remove user addition after development
+            var userAdmin = ApplicationUser.FactorySeed("f9babd79-00ca-4b97-83c7-b908f39d5585", "Admin", "Doe", "admin@email.com", @"ACcx4YaAQgp5LxJ75JphPcH6/LcXb/1WlPDWS/OXfIFSxs0tV1Fu9gDKgPnsSU/c8Q==", "b64a9f55-cb3f-4358-b1a9-058ab5676a20");
+            userAdmin.Claims.Add(ConvertClaim(1, claimAdmClaims, userAdmin, "True"));
+            userAdmin.Claims.Add(ConvertClaim(2, claimAdmUsers, userAdmin, "True"));
+
+            var userProvider = ApplicationUser.FactorySeed("6e4175d4-7a7e-4e15-b225-1ad7b13e054c", "Provider", "Doe", "provider@email.com", @"AKTY/48QsaqvUlhRyfU7vbff39kMU4Lg8YTfLMfQk88dU1EkAhGjwLJv5ii5DL7XGw==", "cc6d9e2b-aad4-4f96-acda-ded430c613b7");
+            userAdmin.Claims.Add(ConvertClaim(3, claimManageProvider, userProvider, "True"));
+
+            context.Users.AddOrUpdate(
+                userAdmin,
+                userProvider
+                );
+        }
+
+        private static IdentityUserClaim ConvertClaim(int id, Claims claim, ApplicationUser user, string claimValue)
+        {
+            return new IdentityUserClaim
+            {
+                Id = id,
+                UserId = user.Id,
+                ClaimType = claim.Name,
+                ClaimValue = claimValue
+            };
         }
     }
 }

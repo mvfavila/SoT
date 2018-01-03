@@ -67,5 +67,34 @@ namespace SoT.Infra.CrossCutting.Identity
                 }
             }
         }
+
+        /// <summary>
+        /// Factory used to seed the database context.
+        /// </summary>
+        /// <param name="id">User Unique Id.</param>
+        /// <param name="name">User name.</param>
+        /// <param name="lastname">User lastname.</param>
+        /// <param name="email">User e-mail.</param>
+        /// <param name="password">User password.</param>
+        /// <param name="securityStamp">User security stamp.</param>
+        /// <returns>See <see cref="ApplicationUser"/>.</returns>
+        public static ApplicationUser FactorySeed(string id, string name, string lastname, string email,
+            string password, string securityStamp)
+        {
+            // TODO: remove method after development
+            return new ApplicationUser
+            {
+                Id = id,
+                Name = name,
+                Lastname = lastname,
+                Email = email,
+                EmailConfirmed = true,
+                PasswordHash = password,
+                SecurityStamp = securityStamp,
+                LockoutEnabled = true,
+                AccessFailedCount = 0,
+                UserName = email
+            };
+        }
     }
 }
