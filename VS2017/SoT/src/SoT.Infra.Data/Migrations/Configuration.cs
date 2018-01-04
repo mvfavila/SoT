@@ -249,12 +249,14 @@ namespace SoT.Infra.Data.Migrations
             var menuItemHome = MenuItem.FactorySeed("Home", "Index", "Home", null, null, null);
             var menuItemAdminClaims = MenuItem.FactorySeed("Claims", "Index", "ClaimsAdmin", null, "AdmClaims", "True");
             var menuItemAdmUsers = MenuItem.FactorySeed("Users", "Index", "UsersAdmin", null, "AdmUsers", "True");
+            var menuItemRegisterAsProvider = MenuItem.FactorySeed("Become a Provider", "Create", "Provider", null, "IsProvider", "False");
 
             context.MenuItems.AddOrUpdate(
                 m => m.Name,
                 menuItemHome,
                 menuItemAdminClaims,
-                menuItemAdmUsers
+                menuItemAdmUsers,
+                menuItemRegisterAsProvider
                 );
             #endregion
         }
