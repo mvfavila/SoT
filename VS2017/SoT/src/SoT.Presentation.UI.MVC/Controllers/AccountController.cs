@@ -145,7 +145,9 @@ namespace SoT.Presentation.UI.MVC.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(
+            [Bind(Include = "Email,Name,Lastname,Password,ConfirmPassword")]
+            RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
