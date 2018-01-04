@@ -9,6 +9,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System.Security.Claims;
 
 namespace SoT.Presentation.UI.MVC.Controllers
 {
@@ -158,9 +161,11 @@ namespace SoT.Presentation.UI.MVC.Controllers
                     Name = model.Name,
                     Lastname = model.Lastname
                 };
+
                 var result = await userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    await AddRegistrationClaimsToUser(user);
                     var code = await userManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     var callbackUrl = Url.Action(nameof(ConfirmEmail), "Account",
                         new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
@@ -174,6 +179,14 @@ namespace SoT.Presentation.UI.MVC.Controllers
 
             // In case of error show the same view
             return View(model);
+        }
+
+        private async Task AddRegistrationClaimsToUser(ApplicationUser user)
+        {
+            const string CLAIM_IS_PROVIDER_TYPE = "IsProvider";
+            const string CLAIM_IS_PROVIDER_VALUE = "False";
+
+            await userManager.AddClaimAsync(user.Id, new Claim(CLAIM_IS_PROVIDER_TYPE, CLAIM_IS_PROVIDER_VALUE));
         }
 
         // GET: /Account/ConfirmEmail

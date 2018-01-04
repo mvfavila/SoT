@@ -1,9 +1,12 @@
 ﻿using Microsoft.AspNet.Identity;
 using SoT.Application.Interfaces;
 using SoT.Application.ViewModels;
+using SoT.Infra.CrossCutting.Identity.Configuration;
 using SoT.Infra.CrossCutting.MvcFilters;
 using System;
 using System.Net;
+using System.Security.Claims;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace SoT.Presentation.UI.MVC.Controllers
@@ -11,11 +14,13 @@ namespace SoT.Presentation.UI.MVC.Controllers
     [Authorize]
     public class ProviderController : Controller
     {
+        private ApplicationUserManager userManager;
         private readonly IProviderAppService providerAppService;
         private readonly IGenderAppService genderAppService;
 
-        public ProviderController(IProviderAppService providerAppService, IGenderAppService genderAppService)
+        public ProviderController(ApplicationUserManager userManager, IProviderAppService providerAppService, IGenderAppService genderAppService)
         {
+            this.userManager = userManager;
             this.providerAppService = providerAppService;
             this.genderAppService = genderAppService;
         }
@@ -62,7 +67,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
         // POST: Provider/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(
+        public async Task<ActionResult> Create(
             [Bind(Include = "EmployeeId,BirthDate,ProviderId,CompanyName,RegisterDate,GenderId")]
             EmployeeProviderViewModel employeeProviderViewModel)
         {
@@ -80,11 +85,25 @@ namespace SoT.Presentation.UI.MVC.Controllers
                     return View(employeeProviderViewModel);
                 }
 
+                await ConfigureClaims(employeeProviderViewModel);
+
                 // TODO: check if this should be the action to redirect to
                 return RedirectToAction("Index", "Home");
             }
 
             return View(employeeProviderViewModel);
+        }
+
+        private async Task ConfigureClaims(EmployeeProviderViewModel employeeProviderViewModel)
+        {
+            const string CLAIM_IS_PROVIDER_TYPE = "IsProvider";
+            const string CLAIM_IS_PROVIDER_OLD_VALUE = "False";
+            const string CLAIM_IS_PROVIDER_NEW_VALUE = "True";
+
+            userManager.RemoveClaim(employeeProviderViewModel.UserId.ToString(),
+                new Claim(CLAIM_IS_PROVIDER_TYPE, CLAIM_IS_PROVIDER_OLD_VALUE));
+            await userManager.AddClaimAsync(employeeProviderViewModel.UserId.ToString(),
+                new Claim(CLAIM_IS_PROVIDER_TYPE, CLAIM_IS_PROVIDER_NEW_VALUE));
         }
 
         [ClaimsAuthorize("ManageProvider", "True")]
