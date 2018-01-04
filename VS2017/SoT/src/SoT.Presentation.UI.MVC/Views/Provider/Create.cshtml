@@ -1,4 +1,5 @@
-﻿@model SoT.Application.ViewModels.EmployeeProviderViewModel
+﻿@using SoT.Application.ViewModels
+@model SoT.Application.ViewModels.EmployeeProviderViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -18,7 +19,7 @@
         <div class="form-group">
             @Html.Label("Gender", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(m => m.GenderId, (SelectList)ViewBag.Genders, "Please select a gender", htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownListFor(m => m.GenderId, new SelectList(Model.Genders ?? new List<GenderViewModel>(), "GenderId", "Value"), "Please select a gender", htmlAttributes: new { @class = "form-control" })
             </div>
         </div>
 

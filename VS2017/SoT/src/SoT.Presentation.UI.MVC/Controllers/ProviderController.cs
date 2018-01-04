@@ -48,24 +48,22 @@ namespace SoT.Presentation.UI.MVC.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var genders = genderAppService.GetAllActive();
-
-            ViewBag.Genders = new SelectList(genders, "GenderId", "Value");
-
             var employeeProviderViewModel = providerAppService.GetByUserId(userId);
             if (employeeProviderViewModel != null)
             {
                 return RedirectToAction(nameof(Details), "Provider");
             }
 
-            return View();
+            var genders = genderAppService.GetAllActive();
+
+            return View(new EmployeeProviderViewModel { Genders = genders });
         }
 
         // POST: Provider/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(
-            [Bind(Include = "EmployeeId,BirthDate,ProviderId,CompanyName,RegisterDate")]
+            [Bind(Include = "EmployeeId,BirthDate,ProviderId,CompanyName,RegisterDate,GenderId")]
             EmployeeProviderViewModel employeeProviderViewModel)
         {
             if (ModelState.IsValid)

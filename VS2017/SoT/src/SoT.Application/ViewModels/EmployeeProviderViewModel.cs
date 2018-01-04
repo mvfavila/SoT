@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace SoT.Application.ViewModels
@@ -23,6 +24,8 @@ namespace SoT.Application.ViewModels
 
         [ScaffoldColumn(false)]
         public Guid GenderId { get; set; }
+
+        public IEnumerable<GenderViewModel> Genders { get; set; }
 
         [ScaffoldColumn(false)]
         public Guid UserId { get; set; }
