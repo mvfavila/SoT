@@ -7,18 +7,18 @@ namespace SoT.Infra.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class _20171123_922 : IMigrationMetadata
+    public sealed partial class _20180104Firstmigration : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(_20171123_922));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(_20180104Firstmigration));
         
         string IMigrationMetadata.Id
         {
-            get { return "201711222322182_20171123_922"; }
+            get { return "201801032325330_20180104 - First migration"; }
         }
         
         string IMigrationMetadata.Source
         {
-            get { return Resources.GetString("Source"); }
+            get { return null; }
         }
         
         string IMigrationMetadata.Target

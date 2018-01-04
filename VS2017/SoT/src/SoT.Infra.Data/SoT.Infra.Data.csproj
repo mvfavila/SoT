@@ -84,21 +84,9 @@
     <Compile Include="Interfaces\IContextManager.cs" />
     <Compile Include="Interfaces\IDbContext.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
-    <Compile Include="Migrations\201711222322182_20171123_922.cs" />
-    <Compile Include="Migrations\201711222322182_20171123_922.Designer.cs">
-      <DependentUpon>201711222322182_20171123_922.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712140702319_Add dynamic menu 20171214.cs" />
-    <Compile Include="Migrations\201712140702319_Add dynamic menu 20171214.Designer.cs">
-      <DependentUpon>201712140702319_Add dynamic menu 20171214.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712170823287_20171217 Gender entity added.cs" />
-    <Compile Include="Migrations\201712170823287_20171217 Gender entity added.Designer.cs">
-      <DependentUpon>201712170823287_20171217 Gender entity added.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801031100207_20180103.cs" />
-    <Compile Include="Migrations\201801031100207_20180103.Designer.cs">
-      <DependentUpon>201801031100207_20180103.cs</DependentUpon>
+    <Compile Include="Migrations\201801032325330_20180104 - First migration.cs" />
+    <Compile Include="Migrations\201801032325330_20180104 - First migration.Designer.cs">
+      <DependentUpon>201801032325330_20180104 - First migration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -143,17 +131,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201711222322182_20171123_922.resx">
-      <DependentUpon>201711222322182_20171123_922.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712140702319_Add dynamic menu 20171214.resx">
-      <DependentUpon>201712140702319_Add dynamic menu 20171214.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712170823287_20171217 Gender entity added.resx">
-      <DependentUpon>201712170823287_20171217 Gender entity added.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801031100207_20180103.resx">
-      <DependentUpon>201801031100207_20180103.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201801032325330_20180104 - First migration.resx">
+      <DependentUpon>201801032325330_20180104 - First migration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

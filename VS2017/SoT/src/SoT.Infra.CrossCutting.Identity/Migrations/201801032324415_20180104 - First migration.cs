@@ -3,10 +3,31 @@ namespace SoT.Infra.CrossCutting.Identity.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class _20180104Firstmigration : DbMigration
     {
         public override void Up()
         {
+            CreateTable(
+                "dbo.AspNetClaims",
+                c => new
+                    {
+                        Id = c.Guid(nullable: false),
+                        Name = c.String(nullable: false, maxLength: 128),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.AspNetClients",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        ClientKey = c.String(),
+                        ApplicationUser_Id = c.String(maxLength: 128),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUser_Id)
+                .Index(t => t.ApplicationUser_Id);
+            
             CreateTable(
                 "dbo.AspNetRoles",
                 c => new
@@ -37,8 +58,6 @@ namespace SoT.Infra.CrossCutting.Identity.Migrations
                         Id = c.String(nullable: false, maxLength: 128),
                         Name = c.String(),
                         Lastname = c.String(),
-                        Gender = c.String(),
-                        BirthDate = c.DateTime(nullable: false),
                         Email = c.String(maxLength: 256),
                         EmailConfirmed = c.Boolean(nullable: false),
                         PasswordHash = c.String(),
@@ -68,18 +87,6 @@ namespace SoT.Infra.CrossCutting.Identity.Migrations
                 .Index(t => t.UserId);
             
             CreateTable(
-                "dbo.AspNetClients",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        ClientKey = c.String(),
-                        ApplicationUser_Id = c.String(maxLength: 128),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUser_Id)
-                .Index(t => t.ApplicationUser_Id);
-            
-            CreateTable(
                 "dbo.AspNetUserLogins",
                 c => new
                     {
@@ -101,18 +108,19 @@ namespace SoT.Infra.CrossCutting.Identity.Migrations
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
-            DropIndex("dbo.AspNetClients", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
+            DropIndex("dbo.AspNetClients", new[] { "ApplicationUser_Id" });
             DropTable("dbo.AspNetUserLogins");
-            DropTable("dbo.AspNetClients");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
+            DropTable("dbo.AspNetClients");
+            DropTable("dbo.AspNetClaims");
         }
     }
 }
