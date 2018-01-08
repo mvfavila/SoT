@@ -17,9 +17,16 @@ namespace SoT.Infra.Data.Repositories.ReadOnly
             {
                 connection.Open();
 
-                var providers = connection.Query<Provider>(ProviderQuery.GET_ALL);
+                var providersWithEmployees = connection.Query<Provider, Employee, Provider>(
+                        ProviderQuery.GET_ALL,
+                        (provider, employee) =>
+                        {
+                            provider.AddEmployee(employee);
+                            return provider;
+                        })
+                        .ToList();
 
-                return providers;
+                return providersWithEmployees;
             }
         }
 

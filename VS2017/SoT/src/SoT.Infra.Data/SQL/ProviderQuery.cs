@@ -3,8 +3,11 @@
 	public class ProviderQuery
 	{
 		public static readonly string GET_ALL = @"
-			SELECT *
-			FROM Provider p";
+			SELECT p.*,
+				   e.EmployeeId as 'Id',
+				   e.*
+			FROM Provider p
+			INNER JOIN Employee e ON p.ProviderId = e.ProviderId";
 
 		public static readonly string GET_BY_ID = @"
 			SELECT *
