@@ -23,6 +23,7 @@ namespace SoT.Infra.CrossCutting.Identity.Migrations
             var claimAdmUsers = Claims.FactorySeed("13518f90-0a73-4de4-ade0-033d86de2ec7", "AdmUsers");
             var claimAdmProviders = Claims.FactorySeed("52ce7f0f-cfca-4867-95c6-94eafe9923f7", "AdmProviders");
             var claimVerifiedUser = Claims.FactorySeed("9b102c72-2d8e-4079-b284-f0a8b27181d4", "VerifiedUser");
+            var claimManageAdventure = Claims.FactorySeed("3f78b113-d203-44cd-9644-68ca8eabf4d9", "ManageAdventure");
 
             context.Claims.AddOrUpdate(
                 claimAdmClaims,
@@ -30,7 +31,8 @@ namespace SoT.Infra.CrossCutting.Identity.Migrations
                 claimAdmProvider,
                 claimAdmUsers,
                 claimAdmProviders,
-                claimVerifiedUser);
+                claimVerifiedUser,
+                claimManageAdventure);
 
             // TODO: remove user addition after development
             var userAdmin = ApplicationUser.FactorySeed("f9babd79-00ca-4b97-83c7-b908f39d5585", "Admin", "Doe", "admin@email.com", @"ACcx4YaAQgp5LxJ75JphPcH6/LcXb/1WlPDWS/OXfIFSxs0tV1Fu9gDKgPnsSU/c8Q==", "b64a9f55-cb3f-4358-b1a9-058ab5676a20");
@@ -42,6 +44,7 @@ namespace SoT.Infra.CrossCutting.Identity.Migrations
             var userProvider = ApplicationUser.FactorySeed("6e4175d4-7a7e-4e15-b225-1ad7b13e054c", "Provider", "Doe", "provider@email.com", @"AKTY/48QsaqvUlhRyfU7vbff39kMU4Lg8YTfLMfQk88dU1EkAhGjwLJv5ii5DL7XGw==", "cc6d9e2b-aad4-4f96-acda-ded430c613b7");
             userAdmin.Claims.Add(ConvertClaim(3, claimManageProvider, userProvider, "True"));
             userAdmin.Claims.Add(ConvertClaim(6, claimVerifiedUser, userProvider, "True"));
+            userAdmin.Claims.Add(ConvertClaim(7, claimManageAdventure, userProvider, "True"));
 
             context.Users.AddOrUpdate(
                 userAdmin,

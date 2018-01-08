@@ -114,11 +114,15 @@ namespace SoT.Presentation.UI.MVC.Controllers
             const string CLAIM_IS_PROVIDER_TYPE = "IsProvider";
             const string CLAIM_IS_PROVIDER_OLD_VALUE = "False";
             const string CLAIM_IS_PROVIDER_NEW_VALUE = "True";
+            const string CLAIM_MANAGE_ADVENTURE_TYPE = "ManageAdventure";
+            const string CLAIM_MANAGE_ADVENTURE_VALUE = "True";
 
-            userManager.RemoveClaim(employeeProviderViewModel.UserId.ToString(),
-                new Claim(CLAIM_IS_PROVIDER_TYPE, CLAIM_IS_PROVIDER_OLD_VALUE));
-            await userManager.AddClaimAsync(employeeProviderViewModel.UserId.ToString(),
-                new Claim(CLAIM_IS_PROVIDER_TYPE, CLAIM_IS_PROVIDER_NEW_VALUE));
+            var user_id = employeeProviderViewModel.UserId.ToString();
+
+            userManager.RemoveClaim(user_id, new Claim(CLAIM_IS_PROVIDER_TYPE, CLAIM_IS_PROVIDER_OLD_VALUE));
+            await userManager.AddClaimAsync(user_id,new Claim(CLAIM_IS_PROVIDER_TYPE, CLAIM_IS_PROVIDER_NEW_VALUE));
+            await userManager.AddClaimAsync(user_id, new Claim(CLAIM_MANAGE_ADVENTURE_TYPE,
+                CLAIM_MANAGE_ADVENTURE_VALUE));
         }
 
         [ClaimsAuthorize("ManageProvider", "True")]
