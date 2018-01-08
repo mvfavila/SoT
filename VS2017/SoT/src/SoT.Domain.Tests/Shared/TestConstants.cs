@@ -127,6 +127,9 @@ namespace SoT.Domain.Tests.Shared
         internal static readonly DateTime EMPLOYEE_DATE_OF_BIRTH_VALID_EDGE = DateTime.Today.AddYears(-18);
         internal static readonly DateTime EMPLOYEE_DATE_OF_BIRTH_INVALID = DateTime.Today.AddYears(-18).AddDays(1);
 
+        internal static readonly Employee EMPLOYEE_VALID = Employee.FactoryTest(EMPLOYEE_ID_VALID,
+            EMPLOYEE_DATE_OF_BIRTH_VALID, GENDER_ID_VALID, PROVIDER_ID_VALID, null, USER_ID_VALID);
+
         internal static readonly Guid PROVIDER_ID_VALID = Guid.Parse("53135957-c223-4c80-8104-c0e25afc8d8c");
         internal static readonly Guid PROVIDER_ID_INVALID = Guid.Parse("00000000-0000-0000-0000-000000000000");
 
@@ -144,8 +147,10 @@ namespace SoT.Domain.Tests.Shared
 
         internal static readonly ICollection<Employee> PROVIDER_EMPLOYEES_VALID = new List<Employee>
         {
-            null
+            EMPLOYEE_VALID
         };
+        internal static readonly ICollection<Employee> PROVIDER_EMPLOYEES_INVALID_NULL = null;
+        internal static readonly ICollection<Employee> PROVIDER_EMPLOYEES_INVALID_EMPTY = new List<Employee>();
 
         internal static readonly Provider PROVIDER_VALID = null;
 

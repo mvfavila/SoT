@@ -5,6 +5,7 @@ using SoT.Domain.ValueObjects;
 using SoT.Domain.Interfaces.Repository;
 using SoT.Domain.Interfaces.Repository.ReadOnly;
 using SoT.Domain.Validation.Provider;
+using System.Collections.Generic;
 
 namespace SoT.Domain.Services
 {
@@ -19,6 +20,11 @@ namespace SoT.Domain.Services
         {
             this.providerRepository = providerRepository;
             this.providerReadOnlyRepository = providerReadOnlyRepository;
+        }
+
+        public new IEnumerable<Provider> GetAll()
+        {
+            return providerReadOnlyRepository.GetAll();
         }
 
         public Provider GetWithEmployeeById(Guid userId)

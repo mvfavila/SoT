@@ -14,6 +14,7 @@ namespace SoT.Domain.Tests.Services
     public class ProviderServiceTest
     {
         private readonly AutoMoqer mocker;
+        private readonly Guid GENDER_ID_MALE = Guid.Parse("633b44ad-e479-4470-bb09-57963533d190");
 
         public ProviderServiceTest()
         {
@@ -57,7 +58,19 @@ namespace SoT.Domain.Tests.Services
                     true
                     ));
 
+            var employee = new Faker<Employee>()
+                .CustomInstantiator(e => Employee.FactoryTest(
+                    Guid.NewGuid(),
+                    e.Date.Past(90, DateTime.Now.AddYears(-18)),
+                    GENDER_ID_MALE,
+                    Guid.NewGuid(),
+                    providerFaker.Generate(),
+                    Guid.NewGuid()
+                    )).Generate();
+
             var provider = providerFaker.Generate();
+
+            provider.AddEmployee(employee);
 
             // Act
             var validationResult = providerService.Add(provider);
@@ -87,7 +100,19 @@ namespace SoT.Domain.Tests.Services
                     true
                     ));
 
+            var employee = new Faker<Employee>()
+                .CustomInstantiator(e => Employee.FactoryTest(
+                    Guid.NewGuid(),
+                    e.Date.Past(90, DateTime.Now.AddYears(-18)),
+                    GENDER_ID_MALE,
+                    Guid.NewGuid(),
+                    providerFaker.Generate(),
+                    Guid.NewGuid()
+                    )).Generate();
+
             var provider = providerFaker.Generate();
+
+            provider.AddEmployee(employee);
 
             // Act
             var validationResult = providerService.Update(provider);

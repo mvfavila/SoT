@@ -45,5 +45,17 @@ namespace SoT.Application.Mapping
                 RegisterDate = provider.RegisterDate
             };
         }
+
+        internal static IEnumerable<EmployeeProviderViewModel> FromDomainToViewModel(IEnumerable<Provider> providers)
+        {
+            var viewModels = new List<EmployeeProviderViewModel>();
+
+            foreach (var provider in providers)
+            {
+                viewModels.Add(FromDomainToViewModel(provider));
+            }
+
+            return viewModels;
+        }
     }
 }

@@ -141,6 +141,7 @@
     <Compile Include="Specification\Gender\GenderIsValueValidLength.cs" />
     <Compile Include="Specification\Provider\ProviderIsCompanyNameNotNullAndNotEmpty.cs" />
     <Compile Include="Specification\Provider\ProviderIsCompanyNameValidLength.cs" />
+    <Compile Include="Specification\Provider\ProviderIsEmployeesNotNullAndNotEmpty.cs" />
     <Compile Include="Specification\Provider\ProviderIsKeyNotNull.cs" />
     <Compile Include="Specification\Region\RegionIsKeyNotNull.cs" />
     <Compile Include="Specification\Region\RegionIsNameNotNullAndNotEmpty.cs" />

@@ -10,6 +10,7 @@ namespace SoT.Domain.Validation.Provider
             var isKeyNotNull = new ProviderIsKeyNotNull();
             var isCompanyNameNotNullAndNotEmpty = new ProviderIsCompanyNameNotNullAndNotEmpty();
             var isCompanyNameValidLength = new ProviderIsCompanyNameValidLength();
+            var isEmployeesNotNullAndNotEmpty = new ProviderIsEmployeesNotNullAndNotEmpty();
 
             base.AddRule("IsKeyNotNull", new Rule<Entities.Provider>(isKeyNotNull,
                 $"{nameof(Entities.Provider.ProviderId)} is required"));
@@ -20,6 +21,10 @@ namespace SoT.Domain.Validation.Provider
 
             base.AddRule("IsCompanyNameValidLength", new Rule<Entities.Provider>(isCompanyNameValidLength,
                 $"{nameof(Entities.Provider.CompanyName)} can not have more than 400 chars"));
+
+            base.AddRule("IsEmployeesNotNullAndNotEmpty", new Rule<Entities.Provider>(
+                isEmployeesNotNullAndNotEmpty,
+                $"{nameof(Entities.Provider)} must have at least one employee"));
         }
     }
 }

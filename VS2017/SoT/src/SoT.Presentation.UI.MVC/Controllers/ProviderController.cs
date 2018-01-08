@@ -25,6 +25,19 @@ namespace SoT.Presentation.UI.MVC.Controllers
             this.genderAppService = genderAppService;
         }
 
+        [ClaimsAuthorize("AdmProviders", "True")]
+        // GET: Provider/List
+        public ActionResult List()
+        {
+            var prodiverViewModel = providerAppService.GetAll();
+
+            if (prodiverViewModel == null)
+            {
+                return HttpNotFound();
+            }
+            return View(prodiverViewModel);
+        }
+
         [ClaimsAuthorize("ManageProvider", "True")]
         // GET: Provider/Details
         public ActionResult Details()

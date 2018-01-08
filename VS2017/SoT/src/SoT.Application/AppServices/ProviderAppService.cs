@@ -44,16 +44,18 @@ namespace SoT.Application.AppServices
             throw new NotImplementedException();
         }
 
+        public IEnumerable<EmployeeProviderViewModel> GetAll()
+        {
+            var provider = providerService.GetAll();
+
+            return Mapping.ProviderMapper.FromDomainToViewModel(provider);
+        }
+
         public EmployeeProviderViewModel GetByUserId(Guid userId)
         {
             var provider = providerService.GetWithEmployeeById(userId);
 
             return Mapping.ProviderMapper.FromDomainToViewModel(provider);
-        }
-
-        public IEnumerable<EmployeeProviderViewModel> GetAll()
-        {
-            throw new NotImplementedException();
         }
 
         public UserEmployeeProviderViewModel LoadUserData(UserEmployeeProviderViewModel userEmployeeProviderViewModels)

@@ -130,5 +130,38 @@ namespace SoT.Domain.Tests.Validation.Provider
             Assert.Contains($"{nameof(Domain.Entities.Provider.CompanyName)} can not have more than 400 chars",
                 provider.ValidationResult.Errors.Select(error => error.Message).ToList());
         }
+
+        [Fact(DisplayName = "Provider must have an employee")]
+        [Trait(nameof(Provider), "Instantiation")]
+        public void Provider_Instantiate_MustHaveEmployee()
+        {
+            var provider = Domain.Entities.Provider.FactoryTest(
+                TestConstants.PROVIDER_ID_VALID,
+                TestConstants.PROVIDER_COMPANY_NAME_VALID,
+                TestConstants.PROVIDER_ADVENTURES_VALID,
+                TestConstants.PROVIDER_EMPLOYEES_INVALID_NULL,
+                TestConstants.ACTIVE
+                );
+
+            var isValid = provider.IsValid();
+
+            Assert.False(isValid);
+            Assert.Contains($"{nameof(Domain.Entities.Provider)} must have at least one employee",
+                provider.ValidationResult.Errors.Select(error => error.Message).ToList());
+
+            provider = Domain.Entities.Provider.FactoryTest(
+                TestConstants.PROVIDER_ID_VALID,
+                TestConstants.PROVIDER_COMPANY_NAME_VALID,
+                TestConstants.PROVIDER_ADVENTURES_VALID,
+                TestConstants.PROVIDER_EMPLOYEES_INVALID_EMPTY,
+                TestConstants.ACTIVE
+                );
+
+            isValid = provider.IsValid();
+
+            Assert.False(isValid);
+            Assert.Contains($"{nameof(Domain.Entities.Provider)} must have at least one employee",
+                provider.ValidationResult.Errors.Select(error => error.Message).ToList());
+        }
     }
 }
