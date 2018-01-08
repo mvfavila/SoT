@@ -26,7 +26,7 @@ namespace SoT.Application.Mapping
                 );
         }
 
-        internal static EmployeeProviderViewModel FromDomainToViewModel(Provider provider)
+        internal static EmployeeProviderViewModel FromDomainToEmployeeViewModel(Provider provider)
         {
             if (provider == null)
                 return null;
@@ -46,13 +46,40 @@ namespace SoT.Application.Mapping
             };
         }
 
-        internal static IEnumerable<EmployeeProviderViewModel> FromDomainToViewModel(IEnumerable<Provider> providers)
+        internal static IEnumerable<EmployeeProviderViewModel> FromDomainToEmployeeViewModel(
+            IEnumerable<Provider> providers)
         {
             var viewModels = new List<EmployeeProviderViewModel>();
 
             foreach (var provider in providers)
             {
-                viewModels.Add(FromDomainToViewModel(provider));
+                viewModels.Add(FromDomainToEmployeeViewModel(provider));
+            }
+
+            return viewModels;
+        }
+
+        // ProviderEmployeesViewModel
+
+        internal static ProviderEmployeesViewModel FromDomainToProviderViewModel(Provider provider)
+        {
+            return new ProviderEmployeesViewModel
+            {
+                ProviderId = provider.ProviderId,
+                CompanyName = provider.CompanyName,
+                Active = provider.Active,
+                RegisterDate = provider.RegisterDate
+            };
+        }
+
+        internal static IEnumerable<ProviderEmployeesViewModel> FromDomainToProviderViewModel(
+            IEnumerable<Provider> providers)
+        {
+            var viewModels = new List<ProviderEmployeesViewModel>();
+
+            foreach (var provider in providers)
+            {
+                viewModels.Add(FromDomainToProviderViewModel(provider));
             }
 
             return viewModels;

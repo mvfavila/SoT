@@ -79,6 +79,7 @@
     <Compile Include="ViewModels\CityViewModel.cs" />
     <Compile Include="ViewModels\CountryViewModel.cs" />
     <Compile Include="ViewModels\GenderViewModel.cs" />
+    <Compile Include="ViewModels\ProviderEmployeesViewModel.cs" />
     <Compile Include="ViewModels\UserEmployeeProviderViewModel.cs" />
     <Compile Include="ViewModels\EmployeeProviderViewModel.cs" />
     <Compile Include="ViewModels\ExampleSubExampleViewModel.cs" />

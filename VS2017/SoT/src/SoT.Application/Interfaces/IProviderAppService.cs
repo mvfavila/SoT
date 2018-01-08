@@ -9,7 +9,7 @@ namespace SoT.Application.Interfaces
     {
         EmployeeProviderViewModel GetByUserId(Guid userId);
 
-        IEnumerable<EmployeeProviderViewModel> GetAll();
+        IEnumerable<ProviderEmployeesViewModel> GetAll();
 
         UserEmployeeProviderViewModel LoadUserData(UserEmployeeProviderViewModel userEmployeeProviderViewModels);
 
