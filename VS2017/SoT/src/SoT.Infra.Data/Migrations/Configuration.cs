@@ -251,6 +251,7 @@ namespace SoT.Infra.Data.Migrations
             var menuItemAdmUsers = MenuItem.FactorySeed("Users", "Index", "UsersAdmin", null, "AdmUsers", "True");
             var menuItemRegisterAsProvider = MenuItem.FactorySeed("Become a Provider", "Create", "Provider", null, "IsProvider", "False");
             var menuItemAdmProviders = MenuItem.FactorySeed("Providers", "List", "Provider", null, "AdmProviders", "True");
+            var menuItemManageAdventur = MenuItem.FactorySeed("Adventure", "List", "Adventure", null, "ManageAdventure", "True");
 
             context.MenuItems.AddOrUpdate(
                 m => m.Name,
@@ -258,7 +259,8 @@ namespace SoT.Infra.Data.Migrations
                 menuItemAdminClaims,
                 menuItemAdmUsers,
                 menuItemRegisterAsProvider,
-                menuItemAdmProviders
+                menuItemAdmProviders,
+                menuItemManageAdventur
                 );
             #endregion
         }
