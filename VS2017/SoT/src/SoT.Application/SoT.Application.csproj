@@ -86,7 +86,9 @@
     <Compile Include="ViewModels\MenuItemViewModel.cs" />
     <Compile Include="ViewModels\SubExampleViewModel.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SoT.Domain\SoT.Domain.csproj">
       <Project>{71dca81a-c687-4568-bb2d-78972c8b7b15}</Project>

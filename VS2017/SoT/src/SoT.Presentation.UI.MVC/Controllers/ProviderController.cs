@@ -87,6 +87,8 @@ namespace SoT.Presentation.UI.MVC.Controllers
 
                 await ConfigureClaims(employeeProviderViewModel);
 
+                await userManager.SendSmsAsync("f9babd79-00ca-4b97-83c7-b908f39d5585", $"This is an automatic message./nHi, the company {employeeProviderViewModel.CompanyName} wants to became a SoT Provider. Please check his registration.");
+
                 // TODO: check if this should be the action to redirect to
                 return RedirectToAction("Index", "Home");
             }

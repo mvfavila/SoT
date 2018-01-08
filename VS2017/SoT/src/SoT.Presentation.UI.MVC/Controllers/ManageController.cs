@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using SoT.Infra.CrossCutting.Identity;
 using SoT.Infra.CrossCutting.Identity.Configuration;
@@ -100,7 +99,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
                 var message = new IdentityMessage
                 {
                     Destination = model.Number,
-                    Body = "The security code is: " + code
+                    Body = "Hi, we are the Sum of This Team\nYour security code is: " + code
                 };
                 await userManager.SmsService.SendAsync(message);
             }

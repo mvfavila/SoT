@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNet.Identity;
 using System.Configuration;
 using System.Threading.Tasks;
-using Twilio.Clients;
+using Twilio;
+using Twilio.Rest.Api.V2010.Account;
+using Twilio.Types;
 
 namespace SoT.Infra.CrossCutting.Identity.Configuration
 {
@@ -14,13 +16,15 @@ namespace SoT.Infra.CrossCutting.Identity.Configuration
                 // Using TWILIO as the SMS Provider.
                 // https://www.twilio.com/docs/quickstart/csharp/sms/sending-via-rest
 
-                const string accountSid = "ACCOUNT ID";
-                const string authToken = "ACCOUNT TOKEN";
+                const string accountSid = "SID";
+                const string authToken = "AuthToken";
 
-                var client = new TwilioRestClient(accountSid, authToken);
+                TwilioClient.Init(accountSid, authToken);
 
-                // TODO: send twilio SMS
-                //client.SendMessage("814-350-7742", message.Destination, message.Body);
+                MessageResource.Create(
+                    from: new PhoneNumber("+61429064260"), // From number, must be an SMS-enabled Twilio number
+                    to: new PhoneNumber(message.Destination), // To number, if using Sandbox see note above
+                    body: message.Body); // Message content
             }
 
             return Task.FromResult(0);
