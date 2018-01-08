@@ -408,6 +408,7 @@
     <Content Include="Views\UsersAdmin\Index.cshtml" />
     <Content Include="Views\UsersAdmin\Details.cshtml" />
     <Content Include="Views\UsersAdmin\Edit.cshtml" />
+    <Content Include="Views\Provider\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -434,6 +435,10 @@
       <Project>{3f2cd304-9ffd-454d-9f83-498d3543874b}</Project>
       <Name>SoT.Application</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SoT.Domain\SoT.Domain.csproj">
+      <Project>{71dca81a-c687-4568-bb2d-78972c8b7b15}</Project>
+      <Name>SoT.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SoT.Infra,CrossCutting.IoC\SoT.Infra.CrossCutting.IoC.csproj">
       <Project>{5dceed43-b670-403f-a350-cf8110b336d4}</Project>
       <Name>SoT.Infra.CrossCutting.IoC</Name>
@@ -449,6 +454,10 @@
     <ProjectReference Include="..\SoT.Infra.CrossCutting.MvcFilters\SoT.Infra.CrossCutting.MvcFilters.csproj">
       <Project>{A9E36224-67BD-4B08-8FF3-C9721256A8EF}</Project>
       <Name>SoT.Infra.CrossCutting.MvcFilters</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SoT.Infra.Data\SoT.Infra.Data.csproj">
+      <Project>{bfdceb5c-bbf8-4758-b81d-39125116f50a}</Project>
+      <Name>SoT.Infra.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
