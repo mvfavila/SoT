@@ -250,13 +250,15 @@ namespace SoT.Infra.Data.Migrations
             var menuItemAdminClaims = MenuItem.FactorySeed("Claims", "Index", "ClaimsAdmin", null, "AdmClaims", "True");
             var menuItemAdmUsers = MenuItem.FactorySeed("Users", "Index", "UsersAdmin", null, "AdmUsers", "True");
             var menuItemRegisterAsProvider = MenuItem.FactorySeed("Become a Provider", "Create", "Provider", null, "IsProvider", "False");
+            var menuItemAdmProviders = MenuItem.FactorySeed("Providers", "List", "Provider", null, "AdmProviders", "True");
 
             context.MenuItems.AddOrUpdate(
                 m => m.Name,
                 menuItemHome,
                 menuItemAdminClaims,
                 menuItemAdmUsers,
-                menuItemRegisterAsProvider
+                menuItemRegisterAsProvider,
+                menuItemAdmProviders
                 );
             #endregion
         }
