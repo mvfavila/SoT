@@ -32,7 +32,6 @@ namespace SoT.Application.ViewModels
         public Guid CityId { get; set; }
 
         [Display(Name = "City")]
-        [Required(ErrorMessage = "Field Name is required")]
         [MaxLength(100, ErrorMessage = "The maximum length of the field Name is 100")]
         public string CityName { get; private set; }
 

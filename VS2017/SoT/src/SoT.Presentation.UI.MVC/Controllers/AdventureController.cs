@@ -82,7 +82,8 @@ namespace SoT.Presentation.UI.MVC.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(
-            [Bind(Include = "AdventureId,Name,CategoryId,CityId,AddressId,InsurenceMinimalAmount,ProviderId,Active")]
+            [Bind(Include = @"AdventureId,Name,CategoryId,CityId,AddressId,InsurenceMinimalAmount,ProviderId,Active,
+            Street01,Complement,Postcode")]
             AdventureAddressViewModel adventureAddressViewModel)
         {
             if (ModelState.IsValid)

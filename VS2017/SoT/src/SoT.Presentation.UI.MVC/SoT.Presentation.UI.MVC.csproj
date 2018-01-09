@@ -410,6 +410,7 @@
     <Content Include="Views\UsersAdmin\Edit.cshtml" />
     <Content Include="Views\Provider\List.cshtml" />
     <Content Include="Views\Adventure\List.cshtml" />
+    <Content Include="Views\Adventure\_Address.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
