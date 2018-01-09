@@ -7,6 +7,7 @@ using SoT.Domain.Interfaces.Services;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Web;
 using Xunit;
 
@@ -84,6 +85,69 @@ namespace SoT.Application.Tests.AppServices
             Assert.Equal(adventure.ProviderId, adventureAddressViewModel.ProviderId);
             Assert.Equal(adventure.UserId, adventureAddressViewModel.UserId);
             Assert.Equal(adventure.Active, adventureAddressViewModel.Active);
+        }
+
+        [Fact(DisplayName = "Get All Adventures (with Address) by User Id")]
+        [Trait(nameof(Adventure), "App Service")]
+        public void Adventure_GetAllByUser_Sucess()
+        {
+            // Arrange
+            var address = new Faker<Address>()
+                .CustomInstantiator(a => Address.FactoryTest(
+                    Guid.NewGuid(),
+                    a.Address.StreetName(),
+                    a.Address.StreetAddress(),
+                    a.Address.ZipCode(),
+                    Guid.NewGuid()
+                    )).Generate();
+
+            var adventures = new Faker<Adventure>()
+                .CustomInstantiator(a => Adventure.FactoryTest(
+                    Guid.NewGuid(),
+                    a.Commerce.ProductName(),
+                    Guid.NewGuid(),
+                    null,
+                    Guid.NewGuid(),
+                    null,
+                    address.AddressId,
+                    address,
+                    decimal.Parse(a.Commerce.Price()),
+                    Guid.NewGuid(),
+                    null,
+                    new List<Availability>(),
+                    Guid.NewGuid(),
+                    true
+                    )).Generate(5000);
+
+            mocker.Create<AdventureAppService>();
+            var adventureAppService = mocker.Resolve<AdventureAppService>();
+            var adventureService = mocker.GetMock<IAdventureService>();
+            adventureService
+                .Setup(a => a.GetAllWithAddressById(It.IsAny<Guid>()))
+                .Returns(adventures);
+            var userId = Guid.NewGuid();
+
+            // Act
+            var adventureAddressViewModels = adventureAppService.GetAllByUser(userId).ToList();
+
+            // Assert
+            adventureService.Verify(a => a.GetAllWithAddressById(It.IsAny<Guid>()), Times.Once());
+            for (int i = 0; i < adventures.Count; i++)
+            {
+                Assert.Equal(adventures[i].AdventureId, adventureAddressViewModels[i].AdventureId);
+                Assert.Equal(adventures[i].Name, adventureAddressViewModels[i].Name);
+                Assert.Equal(adventures[i].CategoryId, adventureAddressViewModels[i].CategoryId);
+                Assert.Equal(adventures[i].CityId, adventureAddressViewModels[i].CityId);
+                Assert.Equal(adventures[i].AddressId, adventureAddressViewModels[i].AddressId);
+                Assert.Equal(adventures[i].Address.Street01, adventureAddressViewModels[i].Street01);
+                Assert.Equal(adventures[i].Address.Complement, adventureAddressViewModels[i].Complement);
+                Assert.Equal(adventures[i].Address.Postcode, adventureAddressViewModels[i].Postcode);
+                Assert.Equal(adventures[i].InsurenceMinimalAmount,
+                    adventureAddressViewModels[i].InsurenceMinimalAmount);
+                Assert.Equal(adventures[i].ProviderId, adventureAddressViewModels[i].ProviderId);
+                Assert.Equal(adventures[i].UserId, adventureAddressViewModels[i].UserId);
+                Assert.Equal(adventures[i].Active, adventureAddressViewModels[i].Active);
+            }
         }
     }
 }

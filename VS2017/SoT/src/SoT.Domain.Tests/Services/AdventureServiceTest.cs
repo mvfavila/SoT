@@ -34,5 +34,23 @@ namespace SoT.Domain.Tests.Services
             // Assert
             adventureRepository.Verify(a => a.GetWithAddressById(It.IsAny<Guid>(), It.IsAny<Guid>()), Times.Once());
         }
+
+        [Fact(DisplayName = "Get All Adventures (with Address) by User Id")]
+        [Trait("Adventure", "Domain Service")]
+        public void Adventure_GetAllWithAddressById_Sucess()
+        {
+            // Arrange
+            mocker.Create<AdventureService>();
+
+            var adventureService = mocker.Resolve<AdventureService>();
+            var adventureRepository = mocker.GetMock<IAdventureReadOnlyRepository>();
+            var userId = Guid.NewGuid();
+
+            // Act
+            adventureService.GetAllWithAddressById(userId);
+
+            // Assert
+            adventureRepository.Verify(a => a.GetAllWithAddressById(It.IsAny<Guid>()), Times.Once());
+        }
     }
 }

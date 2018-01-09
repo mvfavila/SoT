@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using SoT.Application.Interfaces;
 using SoT.Application.ViewModels;
+using SoT.Infra.CrossCutting.MvcFilters;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -39,6 +40,24 @@ namespace SoT.Presentation.UI.MVC.Controllers
                 return HttpNotFound();
             }
             return View(adventureAddressViewModel);
+        }
+
+        // GET: Adventure/List
+        [ClaimsAuthorize("ManageAdventure", "True")]
+        public ActionResult List()
+        {
+            var loggedId = User.Identity.GetUserId();
+
+            if (loggedId == null || !Guid.TryParse(loggedId, out Guid userId))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var adventureAddressViewModels = adventureAppService.GetAllByUser(userId);
+            if (adventureAddressViewModels == null)
+            {
+                return HttpNotFound();
+            }
+            return View(adventureAddressViewModels);
         }
 
         // GET: Adventure/Create

@@ -4,6 +4,8 @@ using SoT.Domain.Interfaces.Services;
 using SoT.Infra.Data.Context;
 using System;
 using SoT.Application.Validation;
+using System.Collections.Generic;
+using SoT.Domain.Entities;
 
 namespace SoT.Application.AppServices
 {
@@ -14,6 +16,13 @@ namespace SoT.Application.AppServices
         public AdventureAppService(IAdventureService adventureService)
         {
             this.adventureService = adventureService;
+        }
+
+        public IEnumerable<AdventureAddressViewModel> GetAllByUser(Guid userId)
+        {
+            var adventures = adventureService.GetAllWithAddressById(userId);
+
+            return Mapping.AdventureMapper.FromDomainToViewModel(adventures);
         }
 
         public AdventureAddressViewModel GetById(Guid adventureId, Guid userId)

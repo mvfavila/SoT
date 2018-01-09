@@ -1,5 +1,6 @@
 ﻿using SoT.Application.ViewModels;
 using SoT.Domain.Entities;
+using System.Collections.Generic;
 
 namespace SoT.Application.Mapping
 {
@@ -24,6 +25,18 @@ namespace SoT.Application.Mapping
                 Postcode = adventure.Address.Postcode,
                 UserId = adventure.UserId
             };
+        }
+
+        internal static IEnumerable<AdventureAddressViewModel> FromDomainToViewModel(IEnumerable<Adventure> adventures)
+        {
+            var viewModels = new List<AdventureAddressViewModel>();
+
+            foreach (var adventure in adventures)
+            {
+                viewModels.Add(FromDomainToViewModel(adventure));
+            }
+
+            return viewModels;
         }
     }
 }

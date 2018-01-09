@@ -3,6 +3,7 @@ using SoT.Domain.Interfaces.Repository;
 using SoT.Domain.Interfaces.Repository.ReadOnly;
 using SoT.Domain.Interfaces.Services;
 using System;
+using System.Collections.Generic;
 
 namespace SoT.Domain.Services
 {
@@ -22,6 +23,11 @@ namespace SoT.Domain.Services
         public Adventure GetWithAddressById(Guid adventureId, Guid userId)
         {
             return adventureReadOnlyRepository.GetWithAddressById(adventureId, userId);
+        }
+
+        public IEnumerable<Adventure> GetAllWithAddressById(Guid userId)
+        {
+            return adventureReadOnlyRepository.GetAllWithAddressById(userId);
         }
     }
 }
