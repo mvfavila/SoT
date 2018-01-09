@@ -31,6 +31,11 @@ namespace SoT.Application.ViewModels
         [ScaffoldColumn(false)]
         public Guid CityId { get; set; }
 
+        [Display(Name = "City")]
+        [Required(ErrorMessage = "Field Name is required")]
+        [MaxLength(100, ErrorMessage = "The maximum length of the field Name is 100")]
+        public string CityName { get; private set; }
+
         [Display(Name = "Insurence Minimal Amount")]
         [RegularExpression(DECIMAL_REGULAR_EXPRESSION)]
         [Range(0, 9999999.99)]
@@ -41,8 +46,7 @@ namespace SoT.Application.ViewModels
 
         [ScaffoldColumn(false)]
         public Guid UserId { get; set; }
-
-        [ScaffoldColumn(false)]
+        
         public bool Active { get; set; }
 
         // Address

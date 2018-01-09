@@ -63,14 +63,19 @@ namespace SoT.Presentation.UI.MVC.Controllers
         // GET: Adventure/Create
         public ActionResult Create()
         {
+            PopulateDropDownLists();
+            return View();
+        }
+
+        private void PopulateDropDownLists()
+        {
             var categories = categoryAppService.GetAllActive();
             var countries = countryAppService.GetAllActive();
             var cities = new List<CityViewModel>();
 
-            ViewBag.CategoryId = new SelectList(categories, "CategoryId", "Name");
-            ViewBag.CountryId = new SelectList(countries, "CountryId", "Name");
-            ViewBag.CityId = new SelectList(cities, "CityId", "Name");
-            return View();
+            ViewBag.Categories = new SelectList(categories, "CategoryId", "Name");
+            ViewBag.Countries = new SelectList(countries, "CountryId", "Name");
+            ViewBag.Cities = new SelectList(cities, "CityId", "Name");
         }
 
         // POST: Adventure/Create
@@ -95,6 +100,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
                 return RedirectToAction($"Details", "Provider");
             }
 
+            PopulateDropDownLists();
             return View(adventureAddressViewModel);
         }
 
