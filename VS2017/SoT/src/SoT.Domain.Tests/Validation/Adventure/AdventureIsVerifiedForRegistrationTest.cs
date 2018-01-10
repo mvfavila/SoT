@@ -23,7 +23,6 @@ namespace SoT.Domain.Tests.Validation.Adventure
                 TestConstants.PROVIDER_ID_VALID,
                 TestConstants.PROVIDER_VALID,
                 TestConstants.AVAILABILITIES_VALID,
-                TestConstants.USER_ID_VALID,
                 TestConstants.ACTIVE
                 );
 
@@ -50,7 +49,6 @@ namespace SoT.Domain.Tests.Validation.Adventure
                 TestConstants.PROVIDER_ID_VALID,
                 TestConstants.PROVIDER_VALID,
                 TestConstants.AVAILABILITIES_VALID,
-                TestConstants.USER_ID_VALID,
                 TestConstants.ACTIVE
                 );
 
@@ -78,7 +76,6 @@ namespace SoT.Domain.Tests.Validation.Adventure
                 TestConstants.PROVIDER_ID_VALID,
                 TestConstants.PROVIDER_VALID,
                 TestConstants.AVAILABILITIES_VALID,
-                TestConstants.USER_ID_VALID,
                 TestConstants.ACTIVE
                 );
 
@@ -106,7 +103,6 @@ namespace SoT.Domain.Tests.Validation.Adventure
                 TestConstants.PROVIDER_ID_VALID,
                 TestConstants.PROVIDER_VALID,
                 TestConstants.AVAILABILITIES_VALID,
-                TestConstants.USER_ID_VALID,
                 TestConstants.ACTIVE
                 );
 
@@ -134,7 +130,6 @@ namespace SoT.Domain.Tests.Validation.Adventure
                 TestConstants.PROVIDER_ID_VALID,
                 TestConstants.PROVIDER_VALID,
                 TestConstants.AVAILABILITIES_VALID,
-                TestConstants.USER_ID_VALID,
                 TestConstants.ACTIVE
                 );
 
@@ -162,7 +157,6 @@ namespace SoT.Domain.Tests.Validation.Adventure
                 TestConstants.PROVIDER_ID_VALID,
                 TestConstants.PROVIDER_VALID,
                 TestConstants.AVAILABILITIES_VALID,
-                TestConstants.USER_ID_VALID,
                 TestConstants.ACTIVE
                 );
 
@@ -183,7 +177,6 @@ namespace SoT.Domain.Tests.Validation.Adventure
                 TestConstants.PROVIDER_ID_VALID,
                 TestConstants.PROVIDER_VALID,
                 TestConstants.AVAILABILITIES_VALID,
-                TestConstants.USER_ID_VALID,
                 TestConstants.ACTIVE
                 );
 
@@ -211,7 +204,6 @@ namespace SoT.Domain.Tests.Validation.Adventure
                 TestConstants.PROVIDER_ID_VALID,
                 TestConstants.PROVIDER_VALID,
                 TestConstants.AVAILABILITIES_VALID,
-                TestConstants.USER_ID_VALID,
                 TestConstants.ACTIVE
                 );
 
@@ -239,7 +231,6 @@ namespace SoT.Domain.Tests.Validation.Adventure
                 TestConstants.PROVIDER_ID_VALID,
                 TestConstants.PROVIDER_VALID,
                 TestConstants.AVAILABILITIES_VALID,
-                TestConstants.USER_ID_VALID,
                 TestConstants.ACTIVE
                 );
 
@@ -267,7 +258,6 @@ namespace SoT.Domain.Tests.Validation.Adventure
                 TestConstants.PROVIDER_ID_VALID,
                 TestConstants.PROVIDER_VALID,
                 TestConstants.AVAILABILITIES_VALID,
-                TestConstants.USER_ID_VALID,
                 TestConstants.ACTIVE
                 );
 
@@ -295,7 +285,6 @@ namespace SoT.Domain.Tests.Validation.Adventure
                 TestConstants.PROVIDER_ID_VALID,
                 TestConstants.PROVIDER_VALID,
                 TestConstants.AVAILABILITIES_VALID,
-                TestConstants.USER_ID_VALID,
                 TestConstants.ACTIVE
                 );
 
@@ -324,7 +313,6 @@ namespace SoT.Domain.Tests.Validation.Adventure
                 TestConstants.PROVIDER_ID_VALID,
                 TestConstants.PROVIDER_VALID,
                 TestConstants.AVAILABILITIES_VALID,
-                TestConstants.USER_ID_VALID,
                 TestConstants.ACTIVE
                 );
 
@@ -345,7 +333,6 @@ namespace SoT.Domain.Tests.Validation.Adventure
                 TestConstants.PROVIDER_ID_VALID,
                 TestConstants.PROVIDER_VALID,
                 TestConstants.AVAILABILITIES_VALID,
-                TestConstants.USER_ID_VALID,
                 TestConstants.ACTIVE
                 );
 
@@ -374,7 +361,6 @@ namespace SoT.Domain.Tests.Validation.Adventure
                 TestConstants.PROVIDER_ID_VALID,
                 TestConstants.PROVIDER_VALID,
                 TestConstants.AVAILABILITIES_VALID,
-                TestConstants.USER_ID_VALID,
                 TestConstants.ACTIVE
                 );
 
@@ -395,7 +381,6 @@ namespace SoT.Domain.Tests.Validation.Adventure
                 TestConstants.PROVIDER_ID_VALID,
                 TestConstants.PROVIDER_VALID,
                 TestConstants.AVAILABILITIES_VALID,
-                TestConstants.USER_ID_VALID,
                 TestConstants.ACTIVE
                 );
 
@@ -416,7 +401,6 @@ namespace SoT.Domain.Tests.Validation.Adventure
                 TestConstants.PROVIDER_ID_VALID,
                 TestConstants.PROVIDER_VALID,
                 TestConstants.AVAILABILITIES_VALID,
-                TestConstants.USER_ID_VALID,
                 TestConstants.ACTIVE
                 );
 
@@ -437,7 +421,6 @@ namespace SoT.Domain.Tests.Validation.Adventure
                 TestConstants.PROVIDER_ID_VALID,
                 TestConstants.PROVIDER_VALID,
                 TestConstants.AVAILABILITIES_VALID,
-                TestConstants.USER_ID_VALID,
                 TestConstants.ACTIVE
                 );
 
@@ -466,7 +449,6 @@ namespace SoT.Domain.Tests.Validation.Adventure
                 TestConstants.PROVIDER_ID_INVALID,
                 TestConstants.PROVIDER_VALID,
                 TestConstants.AVAILABILITIES_VALID,
-                TestConstants.USER_ID_VALID,
                 TestConstants.ACTIVE
                 );
 

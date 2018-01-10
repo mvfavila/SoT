@@ -177,7 +177,6 @@ namespace SoT.Domain.Tests.Shared
             PROVIDER_ID_VALID,
             PROVIDER_VALID,
             AVAILABILITIES_VALID,
-            USER_ID_VALID,
             ACTIVE
             );
 

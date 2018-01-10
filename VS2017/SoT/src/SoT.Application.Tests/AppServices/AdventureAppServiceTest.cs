@@ -55,7 +55,6 @@ namespace SoT.Application.Tests.AppServices
                     Guid.NewGuid(),
                     null,
                     new List<Availability>(),
-                    Guid.NewGuid(),
                     true
                     )).Generate();
 
@@ -83,7 +82,6 @@ namespace SoT.Application.Tests.AppServices
             Assert.Equal(adventure.Address.Postcode, adventureAddressViewModel.Postcode);
             Assert.Equal(adventure.InsurenceMinimalAmount, adventureAddressViewModel.InsurenceMinimalAmount);
             Assert.Equal(adventure.ProviderId, adventureAddressViewModel.ProviderId);
-            Assert.Equal(adventure.UserId, adventureAddressViewModel.UserId);
             Assert.Equal(adventure.Active, adventureAddressViewModel.Active);
         }
 
@@ -115,7 +113,6 @@ namespace SoT.Application.Tests.AppServices
                     Guid.NewGuid(),
                     null,
                     new List<Availability>(),
-                    Guid.NewGuid(),
                     true
                     )).Generate(5000);
 
@@ -145,7 +142,6 @@ namespace SoT.Application.Tests.AppServices
                 Assert.Equal(adventures[i].InsurenceMinimalAmount,
                     adventureAddressViewModels[i].InsurenceMinimalAmount);
                 Assert.Equal(adventures[i].ProviderId, adventureAddressViewModels[i].ProviderId);
-                Assert.Equal(adventures[i].UserId, adventureAddressViewModels[i].UserId);
                 Assert.Equal(adventures[i].Active, adventureAddressViewModels[i].Active);
             }
         }

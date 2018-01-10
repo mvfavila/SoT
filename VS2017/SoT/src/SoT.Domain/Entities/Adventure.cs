@@ -106,11 +106,6 @@ namespace SoT.Domain.Entities
         public virtual IEnumerable<Availability> Availabilities { get; private set; }
 
         /// <summary>
-        /// Unique id of the ApplicationUser attached to the Adventure.
-        /// </summary>
-        public Guid UserId { get; private set; }
-
-        /// <summary>
         /// Informs if the Adventure is active in SoT system.
         /// </summary>
         public bool Active { get; private set; }
@@ -178,12 +173,11 @@ namespace SoT.Domain.Entities
         /// <param name="providerId">Unique id of the Adventure's <see cref="Entities.Provider"/>.</param>
         /// <param name="provider"><see cref="Provider"/> attached to the Adventure.</param>
         /// <param name="availabilities">Adventure's collection of <see cref="Availability"/>.</param>
-        /// <param name="userId">Unique id of the ApplicationUser attached to the Adventure.</param>
         /// <param name="active">Informs if the Adventure is active in SoT system.</param>
         /// <returns>See <see cref="Adventure"/>.</returns>
         public static Adventure FactoryTest(Guid adventureId, string name, Guid categoryId, Category category,
             Guid cityId, City city, Guid addressId, Address address, decimal? insurenceMinimalAmount, Guid providerId,
-            Provider provider, IEnumerable<Availability> availabilities, Guid userId, bool active)
+            Provider provider, IEnumerable<Availability> availabilities, bool active)
         {
             return new Adventure
             {
@@ -199,7 +193,6 @@ namespace SoT.Domain.Entities
                 ProviderId = providerId,
                 Provider = provider,
                 Availabilities = availabilities,
-                UserId = userId,
                 Active = active
             };
         }

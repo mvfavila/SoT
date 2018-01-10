@@ -23,8 +23,7 @@ namespace SoT.Application.Mapping
                 AddressId = adventure.AddressId,
                 Street01 = adventure.Address.Street01,
                 Complement = adventure.Address.Complement,
-                Postcode = adventure.Address.Postcode,
-                UserId = adventure.UserId
+                Postcode = adventure.Address.Postcode
             };
         }
 

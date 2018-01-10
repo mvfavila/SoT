@@ -42,9 +42,6 @@ namespace SoT.Application.ViewModels
 
         [ScaffoldColumn(false)]
         public Guid ProviderId { get; set; }
-
-        [ScaffoldColumn(false)]
-        public Guid UserId { get; set; }
         
         public bool Active { get; set; }
 
