@@ -88,6 +88,10 @@
     <Compile Include="Migrations\201801032325330_20180104 - First migration.Designer.cs">
       <DependentUpon>201801032325330_20180104 - First migration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801100415417_20180110 - Adventure reference to User removed.cs" />
+    <Compile Include="Migrations\201801100415417_20180110 - Adventure reference to User removed.Designer.cs">
+      <DependentUpon>201801100415417_20180110 - Adventure reference to User removed.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AdventureRepository.cs" />
@@ -133,6 +137,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201801032325330_20180104 - First migration.resx">
       <DependentUpon>201801032325330_20180104 - First migration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801100415417_20180110 - Adventure reference to User removed.resx">
+      <DependentUpon>201801100415417_20180110 - Adventure reference to User removed.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
