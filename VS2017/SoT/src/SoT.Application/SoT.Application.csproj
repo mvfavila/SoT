@@ -61,6 +61,7 @@
     <Compile Include="Interfaces\IGenderAppService.cs" />
     <Compile Include="Interfaces\IMenuAppService.cs" />
     <Compile Include="Interfaces\IProviderAppService.cs" />
+    <Compile Include="Mapping\AddressMapper.cs" />
     <Compile Include="Mapping\AdventureMapper.cs" />
     <Compile Include="Mapping\CategoryMapper.cs" />
     <Compile Include="Mapping\CityMapper.cs" />

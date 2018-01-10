@@ -1,6 +1,7 @@
 ﻿using SoT.Application.ViewModels;
 using SoT.Domain.Entities;
 using System.Collections.Generic;
+using System;
 
 namespace SoT.Application.Mapping
 {
@@ -37,6 +38,18 @@ namespace SoT.Application.Mapping
             }
 
             return viewModels;
+        }
+
+        internal static Adventure FromViewModelToDomain(AdventureAddressViewModel adventureAddressViewModel)
+        {
+            return Adventure.FactoryAdd(
+                adventureAddressViewModel.Name,
+                adventureAddressViewModel.CategoryId,
+                adventureAddressViewModel.CityId,
+                adventureAddressViewModel.AddressId,
+                adventureAddressViewModel.InsurenceMinimalAmount,
+                adventureAddressViewModel.ProviderId
+                );
         }
     }
 }

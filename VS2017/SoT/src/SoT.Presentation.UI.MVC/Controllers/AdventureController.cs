@@ -15,14 +15,17 @@ namespace SoT.Presentation.UI.MVC.Controllers
         private readonly ICountryAppService countryAppService;
         private readonly ICityAppService cityAppService;
         private readonly ICategoryAppService categoryAppService;
+        private readonly IProviderAppService providerAppService;
 
         public AdventureController(IAdventureAppService adventureAppService, ICountryAppService countryAppService,
-            ICityAppService cityAppService, ICategoryAppService categoryAppService)
+            ICityAppService cityAppService, ICategoryAppService categoryAppService,
+            IProviderAppService providerAppService)
         {
             this.adventureAppService = adventureAppService;
             this.countryAppService = countryAppService;
             this.cityAppService = cityAppService;
             this.categoryAppService = categoryAppService;
+            this.providerAppService = providerAppService;
         }
 
         // GET: Adventure/Details/5
@@ -67,17 +70,6 @@ namespace SoT.Presentation.UI.MVC.Controllers
             return View();
         }
 
-        private void PopulateDropDownLists()
-        {
-            var categories = categoryAppService.GetAllActive();
-            var countries = countryAppService.GetAllActive();
-            var cities = new List<CityViewModel>();
-
-            ViewBag.Categories = new SelectList(categories, "CategoryId", "Name");
-            ViewBag.Countries = new SelectList(countries, "CountryId", "Name");
-            ViewBag.Cities = new SelectList(cities, "CityId", "Name");
-        }
-
         // POST: Adventure/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -88,6 +80,20 @@ namespace SoT.Presentation.UI.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var loggedId = User.Identity.GetUserId();
+
+                if (loggedId == null || !Guid.TryParse(loggedId, out Guid userId))
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+
+                var provider = providerAppService.GetByUserId(userId);
+                if(provider == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                adventureAddressViewModel.ProviderId = provider.ProviderId;
+
                 var result = adventureAppService.Add(adventureAddressViewModel);
                 if (!result.IsValid)
                 {
@@ -98,11 +104,22 @@ namespace SoT.Presentation.UI.MVC.Controllers
                     return View(adventureAddressViewModel);
                 }
 
-                return RedirectToAction($"Details", "Provider");
+                return RedirectToAction($"List", "Adventure");
             }
 
             PopulateDropDownLists();
             return View(adventureAddressViewModel);
+        }
+
+        private void PopulateDropDownLists()
+        {
+            var categories = categoryAppService.GetAllActive();
+            var countries = countryAppService.GetAllActive();
+            var cities = new List<CityViewModel>();
+
+            ViewBag.Categories = new SelectList(categories, "CategoryId", "Name");
+            ViewBag.Countries = new SelectList(countries, "CountryId", "Name");
+            ViewBag.Cities = new SelectList(cities, "CityId", "Name");
         }
 
         // GET: Adventure/Edit/5

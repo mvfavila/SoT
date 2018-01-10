@@ -4,6 +4,8 @@ using SoT.Domain.Interfaces.Repository.ReadOnly;
 using SoT.Domain.Interfaces.Services;
 using System;
 using System.Collections.Generic;
+using SoT.Domain.ValueObjects;
+using SoT.Domain.Validation.Adventure;
 
 namespace SoT.Domain.Services
 {
@@ -18,6 +20,29 @@ namespace SoT.Domain.Services
         {
             this.adventureRepository = adventureRepository;
             this.adventureReadOnlyRepository = adventureReadOnlyRepository;
+        }
+
+        public new ValidationResult Add(Adventure adventure)
+        {
+            var validationResult = new ValidationResult();
+
+            if (!adventure.IsValid())
+            {
+                validationResult.AddError(adventure.ValidationResult);
+                return validationResult;
+            }
+
+            var validator = new AdventureIsVerifiedForRegistration();
+            var validationService = validator.Validate(adventure);
+            if (!validationService.IsValid)
+            {
+                validationResult.AddError(adventure.ValidationResult);
+                return validationResult;
+            }
+
+            adventureRepository.Add(adventure);
+
+            return validationResult;
         }
 
         public Adventure GetWithAddressById(Guid adventureId, Guid userId)

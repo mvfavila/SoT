@@ -1,11 +1,10 @@
 ﻿using SoT.Application.Interfaces;
+using SoT.Application.Validation;
 using SoT.Application.ViewModels;
 using SoT.Domain.Interfaces.Services;
 using SoT.Infra.Data.Context;
 using System;
-using SoT.Application.Validation;
 using System.Collections.Generic;
-using SoT.Domain.Entities;
 
 namespace SoT.Application.AppServices
 {
@@ -34,7 +33,20 @@ namespace SoT.Application.AppServices
 
         public ValidationAppResult Add(AdventureAddressViewModel adventureAddressViewModel)
         {
-            throw new NotImplementedException();
+            var adventure = Mapping.AdventureMapper.FromViewModelToDomain(adventureAddressViewModel);
+
+            var address = Mapping.AddressMapper.FromViewModelToDomain(adventureAddressViewModel);
+
+            adventure.AddAddress(address);
+
+            var result = adventureService.Add(adventure);
+
+            // TODO: log should be added here informing that the adventure was added
+            // TODO: check if it was a valid insertion
+            if(result.IsValid)
+                Commit();
+
+            return FromDomainToApplicationResult(result);
         }
 
         public void Dispose()
