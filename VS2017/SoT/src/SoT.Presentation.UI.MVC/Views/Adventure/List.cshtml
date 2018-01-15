@@ -41,7 +41,7 @@
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.InsurenceMinimalAmount)
+            @Html.Display(item.InsurenceMinimalAmount == null ? "None" : item.InsurenceMinimalAmount.ToString())
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Active)

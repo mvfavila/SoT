@@ -10,7 +10,7 @@
 			FROM Adventure adventure
 			INNER JOIN Address address ON adventure.AddressId = address.AddressId
 			WHERE adventure.AdventureId = @ID
-				adventure.UserId = @USER_ID";
+				AND adventure.ProviderId = (SELECT ProviderId FROM Employee WHERE UserId = @USER_ID)";
 
 		public static readonly string GET_ALL_WITH_ADDRESS_BY_USER_ID = @"
 			SELECT
@@ -19,6 +19,6 @@
 				address.*
 			FROM Adventure adventure
 			INNER JOIN Address address ON adventure.AddressId = address.AddressId
-			WHERE adventure.ProviderId = (SELECT TOP 1 ProviderId FROM Adventure WHERE UserId = @USER_ID)";
+			WHERE adventure.ProviderId = (SELECT ProviderId FROM Employee WHERE UserId = @USER_ID)";
 	}
 }

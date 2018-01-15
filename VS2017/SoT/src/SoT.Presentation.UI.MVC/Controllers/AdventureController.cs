@@ -64,6 +64,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
         }
 
         // GET: Adventure/Create
+        [ClaimsAuthorize("ManageAdventure", "True")]
         public ActionResult Create()
         {
             PopulateDropDownLists();
@@ -73,6 +74,7 @@ namespace SoT.Presentation.UI.MVC.Controllers
         // POST: Adventure/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ClaimsAuthorize("ManageAdventure", "True")]
         public ActionResult Create(
             [Bind(Include = @"AdventureId,Name,CategoryId,CityId,AddressId,InsurenceMinimalAmount,ProviderId,Active,
             Street01,Complement,Postcode")]
